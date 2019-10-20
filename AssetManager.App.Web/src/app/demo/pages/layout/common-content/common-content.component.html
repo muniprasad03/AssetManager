@@ -1,0 +1,88 @@
+<div class="row">
+  <!-- impression, goal, impact start -->
+  <div class="col-xl-3 col-md-12">
+    <a href="/dashboard/analytics">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <div class="row align-items-center">
+        <div class="col-auto m-auto">
+          <i class="fas fa-eye badge-light-primary"></i>
+        </div>
+      </div>
+      <div class="row align-items-center text-center">
+        <div class="col">
+          <h3 class="m-t-20 text-c-blue">Assets Register</h3>
+        </div>
+      </div>
+    </app-card>
+    </a>
+  </div>
+  <div class="col-xl-3 col-md-12">
+    <a href="/dashboard/analytics">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <div class="row align-items-center">
+        <div class="col-auto  m-auto">
+          <i class="fas fa-bullseye badge-light-success"></i>
+        </div>
+      </div>
+      <div class="row align-items-center text-center">
+        <div class="col">
+          <h3 class=" m-t-20 text-c-green">Employee Register</h3>
+        </div>
+      </div>
+    </app-card>
+  </a>
+  </div>
+
+  <div class="col-xl-3 col-md-12">
+    <a href="/dashboard/analytics">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <div class="row align-items-center">
+        <div class="col-auto  m-auto">
+          <i class="fas fa-bullseye badge-light-warning"></i>
+        </div>
+      </div>
+      <div class="row align-items-center text-center">
+        <div class="col">
+          <h3 class=" m-t-20 text-c-yellow">User Management</h3>
+        </div>
+      </div>
+    </app-card>
+  </a>
+  </div>
+
+
+  <div class="col-xl-3 col-md-12">
+    <a href="/dashboard/analytics">
+    <app-card [hidHeader]="true" cardClass="comp-card">
+      <div class="row align-items-center">
+        <div class="col-auto  m-auto">
+          <i class="fas fa-bullseye badge-light-danger"></i>
+        </div>
+      </div>
+      <div class="row align-items-center text-center">
+        <div class="col">
+          <h3 class=" m-t-20 text-c-red">Maintance Schedule</h3>
+        </div>
+      </div>
+    </app-card>
+    </a>
+  </div>
+  <!-- impression, goal, impact end -->
+</div>
+<div class="row">
+  <button (click)="getLocation()">Get Location</button>
+</div>
+<button *ngIf="!enableScanner" (click)="openScanner()">Open Scanner</button>
+<button *ngIf="enableScanner" (click)="closeScanner()">Close Scanner</button>
+<div *ngIf="enableScanner && !hasPermission">
+  Please allow camera permissions and reload the site to scan
+</div>
+<div class="row">
+  <zxing-scanner *ngIf="enableScanner"
+  (scanSuccess)="scanSuccessHandler($event)"
+  (permissionResponse)="onHasPermission($event)"
+  ></zxing-scanner>
+</div>
+<div class="row" *ngIf="scannedData">
+  <h3>Scanned Data: {{scannedData}}</h3>
+</div>
