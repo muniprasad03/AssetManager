@@ -20,7 +20,7 @@ namespace AssetManager.App.Web.Core
         /// The context.
         /// </value>
         [Import]
-        public XFailureLog.Services.IRequestContext Context { get; set; }
+        public AssetManager.IRequestContext Context { get; set; }
 
         /// <summary>
         /// When overridden, provides an entry point for custom authorization checks.

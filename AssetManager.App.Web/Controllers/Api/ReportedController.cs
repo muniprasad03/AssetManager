@@ -1,7 +1,8 @@
 ﻿using AssetManager.Services;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using XFailureLog.Web.Core;
+using AssetManager.App.Web.Core;
+using AssetManager.Models;
 
 namespace AssetManager.App.Web.Controllers.Api
 {

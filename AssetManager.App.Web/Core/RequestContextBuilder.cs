@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
-using XFailureLog.Models;
-using XFailureLog.Services;
-using XFailureLog.Services.Services;
+using AssetManager.Models;
+using AssetManager.Services;
 
 namespace AssetManager.App.Web.Core
 {

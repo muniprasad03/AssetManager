@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using XFailureLog.Models;
-using XFailureLog.Services.Services;
-using XFailureLog.Web.Models;
+using AssetManager.App.Web.Models;
+using AssetManager.Services;
+using AssetManager.Models;
 
 namespace AssetManager.App.Web.Controllers
 {

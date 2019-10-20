@@ -10,7 +10,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(XFailureLog.Web.SimpleInjectorInitializer), "Initialize")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(AssetManager.App.Web.SimpleInjectorInitializer), "Initialize")]
 namespace AssetManager.App.Web
 {
     public class SimpleInjectorInitializer

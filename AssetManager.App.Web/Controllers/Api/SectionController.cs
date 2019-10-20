@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using XFailureLog.Models;
-using XFailureLog.Services.Services;
-using XFailureLog.Web.Core;
+using AssetManager.Models;
+using AssetManager.Services;
+using AssetManager.App.Web.Core;
 
 namespace AssetManager.App.Web.Controllers.Api
 {

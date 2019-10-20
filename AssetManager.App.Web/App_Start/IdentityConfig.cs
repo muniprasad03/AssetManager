@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using XFailureLog.Web.Models;
+using AssetManager.App.Web.Models;
 
 namespace AssetManager.App.Web
 {

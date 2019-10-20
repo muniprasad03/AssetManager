@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using XFailureLog.Web.Core;
+using AssetManager.Models;
+using AssetManager.Services;
 
 namespace AssetManager.App.Web.Controllers.Api
 {

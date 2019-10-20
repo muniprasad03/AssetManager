@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using XFailureLog.Services;
-using XFailureLog.Services.Services;
-using XFailureLog.Web.Controllers;
-using XFailureLog.Web.Controllers.Api;
-using XFailureLog.Web.Models;
+using AssetManager.Services;
+using AssetManager.App.Web.Controllers;
+using AssetManager.App.Web.Models;
+using AssetManager.App.Web.Controllers.Api;
 
 namespace AssetManager.App.Web
 {
@@ -15,7 +14,7 @@ namespace AssetManager.App.Web
     {
         public static void InitializeContainer(Container container)
         {
-            container.RegisterPerWebRequest<XFailureLog.Services.IRequestContext>(() => container.GetInstance<Core.RequestContextBuilder>().Build());
+            container.RegisterPerWebRequest<AssetManager.IRequestContext>(() => container.GetInstance<Core.RequestContextBuilder>().Build());
 
             container.RegisterSingleton<Func<IRequestContext>>(
                () => container.GetInstance<Core.RequestContextBuilder>().Build());
@@ -24,7 +23,7 @@ namespace AssetManager.App.Web
 
             container.RegisterInitializer<BaseApiController>(c => c.RequestContext = container.GetInstance<IRequestContext>());
 
-            container.RegisterPerWebRequest<XFailureLog.Data.Model.XWorkDB>(() => new XFailureLog.Data.Model.XWorkDB("XWork"));
+            container.RegisterPerWebRequest<AssetManager.Data.Model.XAssetDB>(() => new AssetManager.Data.Model.XAssetDB("XAsset"));
 
             container.Register<IReportedService, ReportedService>();
             container.Register<IWorkService, PointService>();

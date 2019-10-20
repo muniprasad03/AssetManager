@@ -6,11 +6,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using XFailureLog.Models;
+using AssetManager.Models;
 using Microsoft.AspNet.Identity;
-using XFailureLog.Services.Services;
-using XFailureLog.Web.Core;
-using XFailureLog.Web.Models;
+using AssetManager.Services;
+using AssetManager.App.Web.Core;
+using AssetManager.App.Web.Models;
 
 namespace AssetManager.App.Web.Controllers.Api
 {

@@ -18,7 +18,7 @@ namespace AssetManager.App.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            XFailureLog.Services.AutoMapperBootstrap.Init();
+            AssetManager.AutoMapperBootstrap.Init();
             Core.Extensions.InitializeLicence();
         }
 
