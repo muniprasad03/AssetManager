@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http.Controllers;
 
-namespace XFailureLog.Web.Core
+namespace AssetManager.App.Web.Core
 {
     public class SessionAuthorize : System.Web.Http.AuthorizeAttribute
     {

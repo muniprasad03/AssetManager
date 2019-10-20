@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using XFailureLog.Web.Core;
 
-namespace XFailureLog.Web.Controllers
+namespace AssetManager.App.Web.Controllers
 {
     [AdminAuthorizeAttribute]
     public class StationController : BaseController

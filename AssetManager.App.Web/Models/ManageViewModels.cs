@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace XFailureLog.Web.Models
+namespace AssetManager.App.Web.Models
 {
     public class IndexViewModel
     {

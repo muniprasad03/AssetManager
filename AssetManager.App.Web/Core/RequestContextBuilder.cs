@@ -8,7 +8,7 @@ using XFailureLog.Models;
 using XFailureLog.Services;
 using XFailureLog.Services.Services;
 
-namespace XFailureLog.Web.Core
+namespace AssetManager.App.Web.Core
 {
     public class RequestContextBuilder
     {

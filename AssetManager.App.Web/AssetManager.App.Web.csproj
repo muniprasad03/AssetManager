@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XFailureLog.Web</RootNamespace>
-    <AssemblyName>XFailureLog.Web</AssemblyName>
+    <RootNamespace>AssetManager.App.Web</RootNamespace>
+    <AssemblyName>AssetManager.App.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -1405,11 +1405,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XFailureLog.Models\AssetManager.Models.csproj">
+    <ProjectReference Include="..\AssetManager.Models\AssetManager.Models.csproj">
       <Project>{4e78ac45-f582-4b85-a53f-d535372844a8}</Project>
       <Name>AssetManager.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XFailureLog.Services\AssetManager.Services.csproj">
+    <ProjectReference Include="..\AssetManager.Services\AssetManager.Services.csproj">
       <Project>{169e3a63-df6b-4dd5-b4b3-b7e59bbc9460}</Project>
       <Name>AssetManager.Services</Name>
     </ProjectReference>

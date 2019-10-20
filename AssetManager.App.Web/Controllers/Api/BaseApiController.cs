@@ -9,7 +9,7 @@ using XFailureLog.Models.Reports;
 using XFailureLog.Services;
 using XFailureLog.Web.Core;
 
-namespace XFailureLog.Web.Controllers.Api
+namespace AssetManager.App.Web.Controllers.Api
 {
     /// <summary>
     /// Class BaseApiController.

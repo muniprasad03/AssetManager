@@ -12,7 +12,7 @@ using XFailureLog.Models;
 using XFailureLog.Services.Services;
 using XFailureLog.Web.Models;
 
-namespace XFailureLog.Web.Controllers
+namespace AssetManager.App.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller

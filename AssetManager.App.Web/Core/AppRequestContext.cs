@@ -5,7 +5,7 @@ using System.Web;
 using XFailureLog.Models;
 using XFailureLog.Services;
 
-namespace XFailureLog.Web.Core
+namespace AssetManager.App.Web.Core
 {
     public class AppRequestContext : IRequestContext
     {

@@ -11,7 +11,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(XFailureLog.Web.SimpleInjectorInitializer), "Initialize")]
-namespace XFailureLog.Web
+namespace AssetManager.App.Web
 {
     public class SimpleInjectorInitializer
     {

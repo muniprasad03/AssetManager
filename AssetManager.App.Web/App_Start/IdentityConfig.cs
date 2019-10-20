@@ -12,7 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using XFailureLog.Web.Models;
 
-namespace XFailureLog.Web
+namespace AssetManager.App.Web
 {
     public class EmailService : IIdentityMessageService
     {

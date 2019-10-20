@@ -9,7 +9,7 @@ using System.Web.Http.Filters;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace XFailureLog.Web.Core
+namespace AssetManager.App.Web.Core
 {
     public class AdminAuthorizeAttribute : System.Web.Mvc.AuthorizeAttribute
     {
