@@ -102,7 +102,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XFailureLog.Models\AssetManager.Models.csproj">
+    <ProjectReference Include="..\AssetManager.Models\AssetManager.Models.csproj">
       <Project>{4e78ac45-f582-4b85-a53f-d535372844a8}</Project>
       <Name>AssetManager.Models</Name>
     </ProjectReference>
