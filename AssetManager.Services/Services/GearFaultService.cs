@@ -9,9 +9,9 @@ namespace AssetManager.Services
 {
     public class GearFaultService : ServiceBase, IGearFaultService
     {
-          public XblockDB DB { get; set; }
+          public XAssetDB DB { get; set; }
 
-          public GearFaultService(IRequestContext requestContext, XblockDB db)
+          public GearFaultService(IRequestContext requestContext, XAssetDB db)
             : base(requestContext)
         {
             this.DB = db;

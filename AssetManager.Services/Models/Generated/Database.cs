@@ -4,9 +4,9 @@
 // 
 // The following connection settings were used to generate this file
 // 
-//     Connection String Name: `Xblock`
+//     Connection String Name: `XAsset`
 //     Provider:               `System.Data.SqlClient`
-//     Connection String:      `Data Source=.\sqlexpress;Initial Catalog=Xblock;User ID=sa;password=**zapped**;`
+//     Connection String:      `Data Source=.\sqlexpress;Initial Catalog=XAsset;User ID=sa;password=**zapped**;`
 //     Schema:                 ``
 //     Include Views:          `True`
 
@@ -18,15 +18,15 @@ using PetaPoco;
 
 namespace AssetManager.Data.Model
 {
-	public partial class XblockDB : Database
+	public partial class XAssetDB : Database
 	{
-		public XblockDB() 
-			: base("Xblock")
+		public XAssetDB() 
+			: base("XAsset")
 		{
 			CommonConstruct();
 		}
 
-		public XblockDB(string connectionStringName) 
+		public XAssetDB(string connectionStringName) 
 			: base(connectionStringName)
 		{
 			CommonConstruct();
@@ -36,11 +36,11 @@ namespace AssetManager.Data.Model
 		
 		public interface IFactory
 		{
-			XblockDB GetInstance();
+			XAssetDB GetInstance();
 		}
 		
 		public static IFactory Factory { get; set; }
-        public static XblockDB GetInstance()
+        public static XAssetDB GetInstance()
         {
 			if (_instance!=null)
 				return _instance;
@@ -48,10 +48,10 @@ namespace AssetManager.Data.Model
 			if (Factory!=null)
 				return Factory.GetInstance();
 			else
-				return new XblockDB();
+				return new XAssetDB();
         }
 
-		[ThreadStatic] static XblockDB _instance;
+		[ThreadStatic] static XAssetDB _instance;
 		
 		public override void OnBeginTransaction()
 		{
@@ -67,7 +67,7 @@ namespace AssetManager.Data.Model
         
 		public class Record<T> where T:new()
 		{
-			public static XblockDB repo { get { return XblockDB.GetInstance(); } }
+			public static XAssetDB repo { get { return XAssetDB.GetInstance(); } }
 			public bool IsNew() { return repo.IsNew(this); }
 			public object Insert() { return repo.Insert(this); }
 			public int Update(IEnumerable<string> columns) { return repo.Update(this, columns); }
@@ -133,7 +133,7 @@ namespace AssetManager.Data.Model
 	[TableName("User")]
 	[PrimaryKey("Id")]
 	[ExplicitColumns]
-    public partial class User : XblockDB.Record<User>  
+    public partial class User : XAssetDB.Record<User>  
     {
         [Column] 
 		public int Id 
@@ -395,7 +395,7 @@ namespace AssetManager.Data.Model
 	[TableName("UserLoginActivity")]
 	[PrimaryKey("Id")]
 	[ExplicitColumns]
-    public partial class UserLoginActivity : XblockDB.Record<UserLoginActivity>  
+    public partial class UserLoginActivity : XAssetDB.Record<UserLoginActivity>  
     {
         [Column] 
 		public int Id 
@@ -582,104 +582,7 @@ namespace AssetManager.Data.Model
 	[TableName("Section")]
 	[PrimaryKey("Id")]
 	[ExplicitColumns]
-    public partial class Section : XblockDB.Record<Section>  
-    {
-        [Column] 
-		public int Id 
-		{ 
-			get
-			{
-				return _Id;
-			}
-			set
-			{
-				_Id = value;
-				MarkColumnModified("Id");
-			}
-		}
-		int _Id;
-
-        [Column] 
-		public string Name 
-		{ 
-			get
-			{
-				return _Name;
-			}
-			set
-			{
-				_Name = value;
-				MarkColumnModified("Name");
-			}
-		}
-		string _Name;
-
-        [Column] 
-		public DateTime DateCreated 
-		{ 
-			get
-			{
-				return _DateCreated;
-			}
-			set
-			{
-				_DateCreated = value;
-				MarkColumnModified("DateCreated");
-			}
-		}
-		DateTime _DateCreated;
-
-        [Column] 
-		public DateTime DateModified 
-		{ 
-			get
-			{
-				return _DateModified;
-			}
-			set
-			{
-				_DateModified = value;
-				MarkColumnModified("DateModified");
-			}
-		}
-		DateTime _DateModified;
-
-        [Column] 
-		public string CreatedBy 
-		{ 
-			get
-			{
-				return _CreatedBy;
-			}
-			set
-			{
-				_CreatedBy = value;
-				MarkColumnModified("CreatedBy");
-			}
-		}
-		string _CreatedBy;
-
-        [Column] 
-		public string ModifiedBy 
-		{ 
-			get
-			{
-				return _ModifiedBy;
-			}
-			set
-			{
-				_ModifiedBy = value;
-				MarkColumnModified("ModifiedBy");
-			}
-		}
-		string _ModifiedBy;
-
-	}
-    
-	[TableName("Department")]
-	[PrimaryKey("Id")]
-	[ExplicitColumns]
-    public partial class Department : XblockDB.Record<Department>  
+    public partial class Section : XAssetDB.Record<Section>  
     {
         [Column] 
 		public int Id 
@@ -776,7 +679,7 @@ namespace AssetManager.Data.Model
 	[TableName("Board")]
 	[PrimaryKey("Id")]
 	[ExplicitColumns]
-    public partial class Board : XblockDB.Record<Board>  
+    public partial class Board : XAssetDB.Record<Board>  
     {
         [Column] 
 		public int Id 
@@ -888,7 +791,7 @@ namespace AssetManager.Data.Model
 	[TableName("BlockRquest")]
 	[PrimaryKey("Id")]
 	[ExplicitColumns]
-    public partial class BlockRquest : XblockDB.Record<BlockRquest>  
+    public partial class BlockRquest : XAssetDB.Record<BlockRquest>  
     {
         [Column] 
 		public int Id 
@@ -1224,7 +1127,7 @@ namespace AssetManager.Data.Model
     
 	[TableName("BlockRquestView")]
 	[ExplicitColumns]
-    public partial class BlockRquestView : XblockDB.Record<BlockRquestView>  
+    public partial class BlockRquestView : XAssetDB.Record<BlockRquestView>  
     {
         [Column] 
 		public int Id 
@@ -1615,6 +1518,484 @@ namespace AssetManager.Data.Model
 			}
 		}
 		string _RequestedByName;
+
+	}
+    
+	[TableName("Station")]
+	[PrimaryKey("Id")]
+	[ExplicitColumns]
+    public partial class Station : XAssetDB.Record<Station>  
+    {
+        [Column] 
+		public int Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		int _Id;
+
+        [Column] 
+		public string Name 
+		{ 
+			get
+			{
+				return _Name;
+			}
+			set
+			{
+				_Name = value;
+				MarkColumnModified("Name");
+			}
+		}
+		string _Name;
+
+        [Column] 
+		public int? SectionId 
+		{ 
+			get
+			{
+				return _SectionId;
+			}
+			set
+			{
+				_SectionId = value;
+				MarkColumnModified("SectionId");
+			}
+		}
+		int? _SectionId;
+
+        [Column] 
+		public string Code 
+		{ 
+			get
+			{
+				return _Code;
+			}
+			set
+			{
+				_Code = value;
+				MarkColumnModified("Code");
+			}
+		}
+		string _Code;
+
+        [Column] 
+		public int? ASTEId 
+		{ 
+			get
+			{
+				return _ASTEId;
+			}
+			set
+			{
+				_ASTEId = value;
+				MarkColumnModified("ASTEId");
+			}
+		}
+		int? _ASTEId;
+
+        [Column] 
+		public int? CSEId 
+		{ 
+			get
+			{
+				return _CSEId;
+			}
+			set
+			{
+				_CSEId = value;
+				MarkColumnModified("CSEId");
+			}
+		}
+		int? _CSEId;
+
+        [Column] 
+		public int? JEId 
+		{ 
+			get
+			{
+				return _JEId;
+			}
+			set
+			{
+				_JEId = value;
+				MarkColumnModified("JEId");
+			}
+		}
+		int? _JEId;
+
+        [Column] 
+		public int? ESMId 
+		{ 
+			get
+			{
+				return _ESMId;
+			}
+			set
+			{
+				_ESMId = value;
+				MarkColumnModified("ESMId");
+			}
+		}
+		int? _ESMId;
+
+        [Column] 
+		public DateTime DateCreated 
+		{ 
+			get
+			{
+				return _DateCreated;
+			}
+			set
+			{
+				_DateCreated = value;
+				MarkColumnModified("DateCreated");
+			}
+		}
+		DateTime _DateCreated;
+
+        [Column] 
+		public DateTime DateModified 
+		{ 
+			get
+			{
+				return _DateModified;
+			}
+			set
+			{
+				_DateModified = value;
+				MarkColumnModified("DateModified");
+			}
+		}
+		DateTime _DateModified;
+
+        [Column] 
+		public string CreatedBy 
+		{ 
+			get
+			{
+				return _CreatedBy;
+			}
+			set
+			{
+				_CreatedBy = value;
+				MarkColumnModified("CreatedBy");
+			}
+		}
+		string _CreatedBy;
+
+        [Column] 
+		public string ModifiedBy 
+		{ 
+			get
+			{
+				return _ModifiedBy;
+			}
+			set
+			{
+				_ModifiedBy = value;
+				MarkColumnModified("ModifiedBy");
+			}
+		}
+		string _ModifiedBy;
+
+        [Column] 
+		public short? Stationtype 
+		{ 
+			get
+			{
+				return _Stationtype;
+			}
+			set
+			{
+				_Stationtype = value;
+				MarkColumnModified("Stationtype");
+			}
+		}
+		short? _Stationtype;
+
+	}
+    
+	[TableName("StationDetails")]
+	[ExplicitColumns]
+    public partial class StationDetail : XAssetDB.Record<StationDetail>  
+    {
+        [Column] 
+		public int Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		int _Id;
+
+        [Column] 
+		public string Name 
+		{ 
+			get
+			{
+				return _Name;
+			}
+			set
+			{
+				_Name = value;
+				MarkColumnModified("Name");
+			}
+		}
+		string _Name;
+
+        [Column] 
+		public int? SectionId 
+		{ 
+			get
+			{
+				return _SectionId;
+			}
+			set
+			{
+				_SectionId = value;
+				MarkColumnModified("SectionId");
+			}
+		}
+		int? _SectionId;
+
+        [Column] 
+		public string Code 
+		{ 
+			get
+			{
+				return _Code;
+			}
+			set
+			{
+				_Code = value;
+				MarkColumnModified("Code");
+			}
+		}
+		string _Code;
+
+        [Column] 
+		public int? ASTEId 
+		{ 
+			get
+			{
+				return _ASTEId;
+			}
+			set
+			{
+				_ASTEId = value;
+				MarkColumnModified("ASTEId");
+			}
+		}
+		int? _ASTEId;
+
+        [Column] 
+		public int? CSEId 
+		{ 
+			get
+			{
+				return _CSEId;
+			}
+			set
+			{
+				_CSEId = value;
+				MarkColumnModified("CSEId");
+			}
+		}
+		int? _CSEId;
+
+        [Column] 
+		public int? JEId 
+		{ 
+			get
+			{
+				return _JEId;
+			}
+			set
+			{
+				_JEId = value;
+				MarkColumnModified("JEId");
+			}
+		}
+		int? _JEId;
+
+        [Column] 
+		public int? ESMId 
+		{ 
+			get
+			{
+				return _ESMId;
+			}
+			set
+			{
+				_ESMId = value;
+				MarkColumnModified("ESMId");
+			}
+		}
+		int? _ESMId;
+
+        [Column] 
+		public DateTime DateCreated 
+		{ 
+			get
+			{
+				return _DateCreated;
+			}
+			set
+			{
+				_DateCreated = value;
+				MarkColumnModified("DateCreated");
+			}
+		}
+		DateTime _DateCreated;
+
+        [Column] 
+		public DateTime DateModified 
+		{ 
+			get
+			{
+				return _DateModified;
+			}
+			set
+			{
+				_DateModified = value;
+				MarkColumnModified("DateModified");
+			}
+		}
+		DateTime _DateModified;
+
+        [Column] 
+		public string CreatedBy 
+		{ 
+			get
+			{
+				return _CreatedBy;
+			}
+			set
+			{
+				_CreatedBy = value;
+				MarkColumnModified("CreatedBy");
+			}
+		}
+		string _CreatedBy;
+
+        [Column] 
+		public string ModifiedBy 
+		{ 
+			get
+			{
+				return _ModifiedBy;
+			}
+			set
+			{
+				_ModifiedBy = value;
+				MarkColumnModified("ModifiedBy");
+			}
+		}
+		string _ModifiedBy;
+
+        [Column] 
+		public short? Stationtype 
+		{ 
+			get
+			{
+				return _Stationtype;
+			}
+			set
+			{
+				_Stationtype = value;
+				MarkColumnModified("Stationtype");
+			}
+		}
+		short? _Stationtype;
+
+        [Column] 
+		public string SectionName 
+		{ 
+			get
+			{
+				return _SectionName;
+			}
+			set
+			{
+				_SectionName = value;
+				MarkColumnModified("SectionName");
+			}
+		}
+		string _SectionName;
+
+        [Column] 
+		public string ASTEName 
+		{ 
+			get
+			{
+				return _ASTEName;
+			}
+			set
+			{
+				_ASTEName = value;
+				MarkColumnModified("ASTEName");
+			}
+		}
+		string _ASTEName;
+
+        [Column] 
+		public string CSEName 
+		{ 
+			get
+			{
+				return _CSEName;
+			}
+			set
+			{
+				_CSEName = value;
+				MarkColumnModified("CSEName");
+			}
+		}
+		string _CSEName;
+
+        [Column] 
+		public string ESMName 
+		{ 
+			get
+			{
+				return _ESMName;
+			}
+			set
+			{
+				_ESMName = value;
+				MarkColumnModified("ESMName");
+			}
+		}
+		string _ESMName;
+
+        [Column] 
+		public string JEName 
+		{ 
+			get
+			{
+				return _JEName;
+			}
+			set
+			{
+				_JEName = value;
+				MarkColumnModified("JEName");
+			}
+		}
+		string _JEName;
 
 	}
 }

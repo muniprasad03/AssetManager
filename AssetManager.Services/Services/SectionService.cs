@@ -9,9 +9,9 @@ namespace AssetManager.Services
 {
     public class SectionService : ServiceBase, ISectiontService
     {
-        public XWorkDB DB { get; set; }
+        public XAssetDB DB { get; set; }
 
-        public SectionService(IRequestContext requestContext, XWorkDB db)
+        public SectionService(IRequestContext requestContext, XAssetDB db)
             : base(requestContext)
         {
             this.DB = db;

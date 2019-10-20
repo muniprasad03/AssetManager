@@ -102,7 +102,7 @@ namespace AssetManager.Services
         /// <typeparam name="T">object type</typeparam>
         /// <param name="modelObject">The model object.</param>
         /// <param name="context">The context.</param>
-        public static void SetAuditFieldsOnCreate<T>(this Data.Model.XblockDB.Record<T> modelObject, IRequestContext context) where T : new()
+        public static void SetAuditFieldsOnCreate<T>(this Data.Model.XAssetDB.Record<T> modelObject, IRequestContext context) where T : new()
         {
             dynamic auditFieldOject = modelObject;
             auditFieldOject.CreatedBy = context.User.UserName;
@@ -117,7 +117,7 @@ namespace AssetManager.Services
         /// <typeparam name="T">object type</typeparam>
         /// <param name="modelObject">The model object.</param>
         /// <param name="context">The context.</param>
-        public static void SetAuditFieldsOnUpdate<T>(this Data.Model.XblockDB.Record<T> modelObject, IRequestContext context) where T : new()
+        public static void SetAuditFieldsOnUpdate<T>(this Data.Model.XAssetDB.Record<T> modelObject, IRequestContext context) where T : new()
         {
             dynamic auditFieldOject = modelObject;
             auditFieldOject.ModifiedBy = context.User.UserName;

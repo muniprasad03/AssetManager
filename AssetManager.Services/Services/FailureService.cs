@@ -9,9 +9,9 @@ namespace AssetManager.Services
 {
     public class FailureService : ServiceBase, IFailureService
     {
-         public AssetManager.Data.Model.XblockDB DB { get; set; }
+         public AssetManager.Data.Model.XAssetDB DB { get; set; }
 
-         public FailureService(IRequestContext requestContext, XblockDB db)
+         public FailureService(IRequestContext requestContext, XAssetDB db)
             : base(requestContext)
         {
             this.DB = db;

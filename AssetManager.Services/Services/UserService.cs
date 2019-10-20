@@ -10,9 +10,9 @@ namespace AssetManager.Services
 {
     public class UserService : ServiceBase, IUserService
     {
-        public XWorkDB DB { get; set; }
+        public XAssetDB DB { get; set; }
 
-        public UserService(IRequestContext requestContext, XWorkDB db)
+        public UserService(IRequestContext requestContext, XAssetDB db)
             : base(requestContext)
         {
             this.DB = db;

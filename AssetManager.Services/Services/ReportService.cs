@@ -1,23 +1,19 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
+﻿using AssetManager.Data.Model;
+using AssetManager.Models.Reports;
+using DocumentFormat.OpenXml.Spreadsheet;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AssetManager.Data.Model;
-using AssetManager.Models.Reports;
-using AssetManager.Models;
-using AssetManager.Models;
 
 namespace AssetManager.Services
 {
     public class ReportService : ServiceBase, IReportService
     {
-         public AssetManager.Data.Model.XWorkDB DB { get; set; }
+         public XAssetDB DB { get; set; }
 
-         public ReportService(IRequestContext requestContext, XWorkDB db)
+         public ReportService(IRequestContext requestContext, XAssetDB db)
             : base(requestContext)
         {
             this.DB = db;
@@ -25,71 +21,75 @@ namespace AssetManager.Services
 
          public List<AssetManager.Models.FailureView> GetFailures(DateTime from, DateTime to)
          {
-             return this.Context.User.IsSFREditor || this.Context.User.IsReportViewer || this.Context.User.IsAdmin ? this.DB.Fetch<AssetManager.Data.Model.FailureView>("Select * from FailureView Where Cast(TimeOfOccurance as Date) BetWeen @0 and @1", from.Date, to.Date).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList() : this.DB.Fetch<Data.Model.FailureView>("Where StationId in (@0) and Cast(TimeOfOccurance as Date) Between @1 and @2", this.Context.User.GroupedStations, from.Date, to.Date).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            return null;
+                //this.Context.User.IsSFREditor || this.Context.User.IsReportViewer || this.Context.User.IsAdmin ? this.DB.Fetch<AssetManager.Data.Model.FailureView>("Select * from FailureView Where Cast(TimeOfOccurance as Date) BetWeen @0 and @1", from.Date, to.Date).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList() : this.DB.Fetch<Data.Model.FailureView>("Where StationId in (@0) and Cast(TimeOfOccurance as Date) Between @1 and @2", this.Context.User.GroupedStations, from.Date, to.Date).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
          }
 
         public List<AssetManager.Models.FailureView> GetFailures(FailureFilterRequest request)
         {
-            return this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureFilterReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8, @@forSections = @9, @@forStations = @10, @@forUsers = @11, @@forGearfaults = @12, @@forReports = @13, @@forSubGears = @14, @@forManufactures = @15, @@punctualityId = @16, @@stationTypeId = @17, @@forStationTypes = @18", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString(), request.PunctualityFilter.HasValue ? request.PunctualityFilter : -1, request.StationTypeFilter, request.StationTypes.ToFilterCSV().ToString()).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            //return this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureFilterReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8, @@forSections = @9, @@forStations = @10, @@forUsers = @11, @@forGearfaults = @12, @@forReports = @13, @@forSubGears = @14, @@forManufactures = @15, @@punctualityId = @16, @@stationTypeId = @17, @@forStationTypes = @18", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString(), request.PunctualityFilter.HasValue ? request.PunctualityFilter : -1, request.StationTypeFilter, request.StationTypes.ToFilterCSV().ToString()).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            return null;
         }
 
         public List<AssetManager.Models.FailureView> GetFailureCauses(FailureCauseFilterRequest request)
         {
-            return this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureFilterCauseReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8,  @@causeId = @9,  @@subCauseId = @10, @@forSections = @11, @@forStations = @12, @@forUsers = @13, @@forGearfaults = @14, @@forReports = @15, @@forSubGears = @16, @@forManufactures = @17, @@forCauses = @18, @@forSubCauses = @19, @@stationTypeId = @20, @@forStationTypes = @21", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.CauseFilter, request.SubCauseFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString(), request.Causes.ToFilterCSV().ToString(), request.SubCauses.ToFilterCSV().ToString(), request.StationTypeFilter, request.StationTypes.ToFilterCSV().ToString()).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            //return this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureFilterCauseReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8,  @@causeId = @9,  @@subCauseId = @10, @@forSections = @11, @@forStations = @12, @@forUsers = @13, @@forGearfaults = @14, @@forReports = @15, @@forSubGears = @16, @@forManufactures = @17, @@forCauses = @18, @@forSubCauses = @19, @@stationTypeId = @20, @@forStationTypes = @21", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.CauseFilter, request.SubCauseFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString(), request.Causes.ToFilterCSV().ToString(), request.SubCauses.ToFilterCSV().ToString(), request.StationTypeFilter, request.StationTypes.ToFilterCSV().ToString()).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            return null;
         }
 
         public List<AssetManager.Models.FailureView> GetFailureReport(FailureFilterRequest request)
         {
-            var data = this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureFilterReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8, @@forSections = @9, @@forStations = @10, @@forUsers = @11, @@forGearfaults = @12, @@forReports = @13, @@forSubGears = @14, @@forManufactures = @15, @@punctualityId = @16, @@stationTypeId = @17, @@forStationTypes = @18", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString(), request.PunctualityFilter.HasValue ? request.PunctualityFilter : -1, request.StationTypeFilter, request.StationTypes.ToFilterCSV().ToString()).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
-            //var data = this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
-            if (request.TimeOfOccurenceOrder != AssetManager.Models.SortOrder.None || request.TotalTimeOrder != AssetManager.Models.SortOrder.None)
-            {
-                if (request.TotalTimeOrder == AssetManager.Models.SortOrder.Asc)
-                {
-                    return data.OrderBy(s => s.TotalDuration).ToList();
-                }
-                if (request.TotalTimeOrder == AssetManager.Models.SortOrder.Desc)
-                {
-                    return data.OrderByDescending(s => s.TotalDuration).ToList();
-                }
-                if (request.TimeOfOccurenceOrder == AssetManager.Models.SortOrder.Asc)
-                {
-                    return data.OrderBy(s => s.TimeOfOccurance).ToList();
-                }
-                if (request.TimeOfOccurenceOrder == AssetManager.Models.SortOrder.Desc)
-                {
-                    return data.OrderByDescending(s => s.TimeOfOccurance).ToList();
-                }
-            }
+            //var data = this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureFilterReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8, @@forSections = @9, @@forStations = @10, @@forUsers = @11, @@forGearfaults = @12, @@forReports = @13, @@forSubGears = @14, @@forManufactures = @15, @@punctualityId = @16, @@stationTypeId = @17, @@forStationTypes = @18", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString(), request.PunctualityFilter.HasValue ? request.PunctualityFilter : -1, request.StationTypeFilter, request.StationTypes.ToFilterCSV().ToString()).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            ////var data = this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            //if (request.TimeOfOccurenceOrder != AssetManager.Models.SortOrder.None || request.TotalTimeOrder != AssetManager.Models.SortOrder.None)
+            //{
+            //    if (request.TotalTimeOrder == AssetManager.Models.SortOrder.Asc)
+            //    {
+            //        return data.OrderBy(s => s.TotalDuration).ToList();
+            //    }
+            //    if (request.TotalTimeOrder == AssetManager.Models.SortOrder.Desc)
+            //    {
+            //        return data.OrderByDescending(s => s.TotalDuration).ToList();
+            //    }
+            //    if (request.TimeOfOccurenceOrder == AssetManager.Models.SortOrder.Asc)
+            //    {
+            //        return data.OrderBy(s => s.TimeOfOccurance).ToList();
+            //    }
+            //    if (request.TimeOfOccurenceOrder == AssetManager.Models.SortOrder.Desc)
+            //    {
+            //        return data.OrderByDescending(s => s.TimeOfOccurance).ToList();
+            //    }
+            //}
 
-            return data;
+            //return data;
+            return null;
         }
         
         public List<AssetManager.Models.FailureView> GetFailureCauseReport(FailureCauseFilterRequest request)
         {
-            var data = this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureFilterCauseReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8,  @@causeId = @9,  @@subCauseId = @10, @@forSections = @11, @@forStations = @12, @@forUsers = @13, @@forGearfaults = @14, @@forReports = @15, @@forSubGears = @16, @@forManufactures = @17, @@forCauses = @18, @@forSubCauses = @19, @@stationTypeId = @20, @@forStationTypes = @21", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.CauseFilter, request.SubCauseFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString(), request.Causes.ToFilterCSV().ToString(), request.SubCauses.ToFilterCSV().ToString(), request.StationTypeFilter, request.StationTypes.ToFilterCSV().ToString()).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
-            //var data = this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
-            if (request.TimeOfOccurenceOrder != AssetManager.Models.SortOrder.None || request.TotalTimeOrder != AssetManager.Models.SortOrder.None)
-            {
-                if (request.TotalTimeOrder == AssetManager.Models.SortOrder.Asc)
-                {
-                    return data.OrderBy(s => s.TotalDuration).ToList();
-                }
-                if (request.TotalTimeOrder == AssetManager.Models.SortOrder.Desc)
-                {
-                    return data.OrderByDescending(s => s.TotalDuration).ToList();
-                }
-                if (request.TimeOfOccurenceOrder == AssetManager.Models.SortOrder.Asc)
-                {
-                    return data.OrderBy(s => s.TimeOfOccurance).ToList();
-                }
-                if (request.TimeOfOccurenceOrder == AssetManager.Models.SortOrder.Desc)
-                {
-                    return data.OrderByDescending(s => s.TimeOfOccurance).ToList();
-                }
-            }
+            //var data = this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureFilterCauseReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8,  @@causeId = @9,  @@subCauseId = @10, @@forSections = @11, @@forStations = @12, @@forUsers = @13, @@forGearfaults = @14, @@forReports = @15, @@forSubGears = @16, @@forManufactures = @17, @@forCauses = @18, @@forSubCauses = @19, @@stationTypeId = @20, @@forStationTypes = @21", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.CauseFilter, request.SubCauseFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString(), request.Causes.ToFilterCSV().ToString(), request.SubCauses.ToFilterCSV().ToString(), request.StationTypeFilter, request.StationTypes.ToFilterCSV().ToString()).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            ////var data = this.DB.Fetch<Data.Model.FailureView>(";EXEC FailureReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter).MapCollectionTo<Data.Model.FailureView, AssetManager.Models.FailureView>().ToList();
+            //if (request.TimeOfOccurenceOrder != AssetManager.Models.SortOrder.None || request.TotalTimeOrder != AssetManager.Models.SortOrder.None)
+            //{
+            //    if (request.TotalTimeOrder == AssetManager.Models.SortOrder.Asc)
+            //    {
+            //        return data.OrderBy(s => s.TotalDuration).ToList();
+            //    }
+            //    if (request.TotalTimeOrder == AssetManager.Models.SortOrder.Desc)
+            //    {
+            //        return data.OrderByDescending(s => s.TotalDuration).ToList();
+            //    }
+            //    if (request.TimeOfOccurenceOrder == AssetManager.Models.SortOrder.Asc)
+            //    {
+            //        return data.OrderBy(s => s.TimeOfOccurance).ToList();
+            //    }
+            //    if (request.TimeOfOccurenceOrder == AssetManager.Models.SortOrder.Desc)
+            //    {
+            //        return data.OrderByDescending(s => s.TimeOfOccurance).ToList();
+            //    }
+            //}
 
-            return data;
+            return null;
         }
         public dynamic GetCostStats()
          {
@@ -133,90 +133,68 @@ namespace AssetManager.Services
 
         public List<ReportCompareStats> GetCompareStats(CompareStatsFilterRequest request)
         {
-            var result = new List<ReportCompareStats>();
-            if (request.CompareReportType == AssetManager.Models.CompareReportType.GearAtFault)
-            {
-                var data1 = this.DB.Fetch<dynamic>(";EXEC GearFaultCountFilterReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8, @@forSections = @9, @@forStations = @10, @@forUsers = @11, @@forGearfaults = @12, @@forReports = @13, @@forSubGears = @14, @@forManufactures = @15", request.FromDate1.Date, request.ToDate1.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString()).ToDictionary(c => (int)c.GEARFAULTID, c => (int)c.FAILURECOUNT);
-                var data2 = this.DB.Fetch<dynamic>(";EXEC GearFaultCountFilterReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8, @@forSections = @9, @@forStations = @10, @@forUsers = @11, @@forGearfaults = @12, @@forReports = @13, @@forSubGears = @14, @@forManufactures = @15", request.FromDate2.Date, request.ToDate2.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString()).ToDictionary(c => (int)c.GEARFAULTID, c => (int)c.FAILURECOUNT);
-                var gearFaults = this.DB.Fetch<Data.Model.GearFault>(string.Empty);
-                gearFaults.ForEach(gear =>
-                {
-                    result.Add(new ReportCompareStats() { Title = gear.Name.ToUpper(), Range1Count = data1.ContainsKey(gear.Id) ? data1[gear.Id] : 0, Range2Count = data2.ContainsKey(gear.Id) ? data2[gear.Id] : 0 });
-                });
-            }
-            else
-            {
-                var data1 = this.DB.Fetch<dynamic>(";EXEC ReportedCountReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6", request.FromDate1.Date, request.ToDate1.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter).ToDictionary(c => (int)c.REPORTEDID, c => (int)c.FAILURECOUNT);
-                var data2 = this.DB.Fetch<dynamic>(";EXEC ReportedCountReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6", request.FromDate2.Date, request.ToDate2.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter).ToDictionary(c => (int)c.REPORTEDID, c => (int)c.FAILURECOUNT);
-                var reported = this.DB.Fetch<Data.Model.Reported>(string.Empty);
-                reported.ForEach(gear =>
-                {
-                    result.Add(new ReportCompareStats() { Title = gear.Name.ToUpper(), Range1Count = data1.ContainsKey(gear.Id) ? data1[gear.Id] : 0, Range2Count = data2.ContainsKey(gear.Id) ? data2[gear.Id] : 0 });
-                });
-            }
-
-            var totals = new ReportCompareStats() { Title = "Totals", Range1Count = result.Sum(s => s.Range1Count), Range2Count = result.Sum(s => s.Range2Count) };
-            result.Add(totals);
-            return result;
+            return null;
         }
 
         public List<StationSummaryStats> GetStationSummaryStats(StationSummaryStatsFilterRequest request)
         {
-            var result = new List<StationSummaryStats>();
-            var data1 = this.DB.Fetch<StationStatsModel>(";EXEC StationSummaryFilterReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8, @@forSections = @9, @@forStations = @10, @@forUsers = @11, @@forGearfaults = @12, @@forReports = @13, @@forSubGears = @14, @@forManufactures = @15", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString()).ToList();
-            var stats = data1.GroupBy(s => s.StationId).ToDictionary(failures => failures.Key, failures => failures.ToList());
-            var stations = this.DB.Fetch<Data.Model.Station>(string.Empty);
-            var gearFalts = new List<Data.Model.GearFault>();
-            if (request.GearAtFaultFilter == 0)
-            {
-                gearFalts = this.DB.Fetch<Data.Model.GearFault>(string.Empty);
-            }
-            else
-            {
-                gearFalts = this.DB.Fetch<Data.Model.GearFault>("Where id in (" + request.Gears.ToFilterCSV() + ")");
-            }
+            //var result = new List<StationSummaryStats>();
+            //var data1 = this.DB.Fetch<StationStatsModel>(";EXEC StationSummaryFilterReport @@startDate = @0, @@endDate = @1, @@sectionId = @2, @@stationId = @3, @@userId = @4, @@gearfaultId = @5, @@reportedId = @6, @@subGearfaultId =@7, @@manufactureId = @8, @@forSections = @9, @@forStations = @10, @@forUsers = @11, @@forGearfaults = @12, @@forReports = @13, @@forSubGears = @14, @@forManufactures = @15", request.FromDate.Date, request.ToDate.Date, request.SectionFilter, request.StationFilter, request.UserFilter, request.GearAtFaultFilter, request.ReportedFilter, request.SubGearAtFaultFilter, request.ManufactureFilter, request.Sections.ToFilterCSV().ToString(), request.Stations.ToFilterCSV().ToString(), request.Users.ToFilterCSV().ToString(), request.Gears.ToFilterCSV().ToString(), request.Reporteds.ToFilterCSV().ToString(), request.SubGears.ToFilterCSV().ToString(), request.Manufatures.ToFilterCSV().ToString()).ToList();
+            //var stats = data1.GroupBy(s => s.StationId).ToDictionary(failures => failures.Key, failures => failures.ToList());
+            //var stations = this.DB.Fetch<Data.Model.Station>(string.Empty);
+            //var gearFalts = new List<Data.Model.GearFault>();
+            //if (request.GearAtFaultFilter == 0)
+            //{
+            //    gearFalts = this.DB.Fetch<Data.Model.GearFault>(string.Empty);
+            //}
+            //else
+            //{
+            //    gearFalts = this.DB.Fetch<Data.Model.GearFault>("Where id in (" + request.Gears.ToFilterCSV() + ")");
+            //}
 
 
-            if (request.StationFilter != 0)
-            {
-                stations = stations.Where(s => request.Stations.Any(fs => fs == s.Id)).ToList();
-            }
-            else if (request.UserFilter != 0)
-            {
-                stations = stations.Where(s => request.Users.Contains(s.ASTEId ?? 0)  || request.Users.Contains(s.CSEId ?? 0)|| request.Users.Contains(s.JEId?? 0) || request.Users.Contains(s.ESMId ?? 0)).ToList();
-            }
-            else if (request.SectionFilter != 0)
-            {
-                stations = stations.Where(s => request.Sections.Contains(s.SectionId ?? 0)).ToList();
-            }
+            //if (request.StationFilter != 0)
+            //{
+            //    stations = stations.Where(s => request.Stations.Any(fs => fs == s.Id)).ToList();
+            //}
+            //else if (request.UserFilter != 0)
+            //{
+            //    stations = stations.Where(s => request.Users.Contains(s.ASTEId ?? 0)  || request.Users.Contains(s.CSEId ?? 0)|| request.Users.Contains(s.JEId?? 0) || request.Users.Contains(s.ESMId ?? 0)).ToList();
+            //}
+            //else if (request.SectionFilter != 0)
+            //{
+            //    stations = stations.Where(s => request.Sections.Contains(s.SectionId ?? 0)).ToList();
+            //}
 
 
-            stations.ForEach(station =>
-            {
-                var data = new StationSummaryStats() { StationId = station.Id, StationName = station.Name };
-                if (stats.ContainsKey(station.Id))
-                {
-                    stats[station.Id].ForEach(item =>
-                    {
-                        data.StatsItems.Add(new StatsItem() { Id = item.GearFaultId, Count = item.FailureCount, Name = item.GearFault });
-                    });
-                }
+            //stations.ForEach(station =>
+            //{
+            //    var data = new StationSummaryStats() { StationId = station.Id, StationName = station.Name };
+            //    if (stats.ContainsKey(station.Id))
+            //    {
+            //        stats[station.Id].ForEach(item =>
+            //        {
+            //            data.StatsItems.Add(new StatsItem() { Id = item.GearFaultId, Count = item.FailureCount, Name = item.GearFault });
+            //        });
+            //    }
 
-                if (!result.Any())
-                {
-                    var addedGearFaults = data.StatsItems.ToDictionary(item => item.Id);
-                    gearFalts.ForEach(gear => 
-                    {
-                        if (!addedGearFaults.ContainsKey(gear.Id))
-                        {
-                            data.StatsItems.Add(new StatsItem() { Id = gear.Id, Name = gear.Name });
-                        }
-                    });
-                }
-                result.Add(data);
-            });
+            //    if (!result.Any())
+            //    {
+            //        var addedGearFaults = data.StatsItems.ToDictionary(item => item.Id);
+            //        gearFalts.ForEach(gear => 
+            //        {
+            //            if (!addedGearFaults.ContainsKey(gear.Id))
+            //            {
+            //                data.StatsItems.Add(new StatsItem() { Id = gear.Id, Name = gear.Name });
+            //            }
+            //        });
+            //    }
+            //    result.Add(data);
+            //});
 
-            return result;
+            //return result;
+
+            return null;
         }
 
 

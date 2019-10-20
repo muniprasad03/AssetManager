@@ -9,8 +9,8 @@ namespace AssetManager.Services
 {
     public class ContextService
     {
-        public XblockDB DB { get; set; }
-        public ContextService(XblockDB db)
+        public XAssetDB DB { get; set; }
+        public ContextService(XAssetDB db)
         {
             this.DB = db;
         }
