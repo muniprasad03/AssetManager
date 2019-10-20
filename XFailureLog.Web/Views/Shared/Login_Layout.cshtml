@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Failure Log</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/login")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/login.css" rel="stylesheet" />
+</head>
+<body class="login-page">
+    @*<div class="container">
+            <div class="login-form">
+                <section id="loginForm">
+                    <div class="login-content display-content-height">
+                        <div class="col-sm-12 clear-side-padding">
+                            <div class="col-sm-6 logo-container clear-side-padding display-content-height">
+                                <div class="login-logo"></div>
+                                <div class="copyright-text">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 form-container clear-side-padding display-content-height">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>*@
+
+    @*<div class="container">
+            <div class="login-form">
+                <section id="loginForm">
+                    <div class="login-content display-content-height">
+                        <div class="col-sm-12 clear-side-padding">
+                            <div class="marquee col-sm-12">Signal & Telecom Department</div>
+                            <div class="col-sm-6 logo-container clear-side-padding display-content-height">
+                                <div class="login-logo"></div>
+                                <div class="copyright-text">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 form-container clear-side-padding display-content-height">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>*@
+    <div id="background-branding-container">
+        <img id="login-background-image" src="~/Content/Images/images-new.jpg" />
+    </div>
+    <div id="background-branding-overlay" class="overlay ie_legacy"></div>
+
+    <div id="new-login-container" class="new-login-container">
+        <div class="col-sm-12">
+            @RenderBody()
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/login.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

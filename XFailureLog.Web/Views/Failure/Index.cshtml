@@ -1,0 +1,284 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-controller="failureController">
+    <div class="table-list" data-ng-hide="showForm">
+        <div class="col-sm-12 clear-side-padding">
+            <div class="form-group col-sm-4 col-md-4">
+                <label>From Date :</label>
+                <input type="text" class="form-control" data-ng-model="vm.fromDate"
+                       data-uib-datepicker-popup="mediumDate"
+                       data-datepicker-options="{ showWeeks:false }"
+                       data-is-open="oapplyFrom"
+                       data-ng-click="oapplyFrom= oapplyFrom ? false:true;"
+                       placeholder="Select from Date" />
+            </div>
+            <div class="form-group col-sm-4 col-md-4">
+                <label>To Date :</label>
+                <input type="text" class="form-control" data-ng-model="vm.toDate"
+                       data-uib-datepicker-popup="mediumDate"
+                       data-datepicker-options="{ showWeeks:false }"
+                       data-is-open="toapplyFrom"
+                       data-ng-click="toapplyFrom= toapplyFrom ? false:true;"
+                       placeholder="Select to Date.." />
+            </div>
+            <div class="form-group col-sm-4 col-md-4">
+                <button type="button" class="btn btn-default btn-get" ng-click="get()">Get</button>
+            </div>
+        </div>
+        <div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+            <div class="span12 filter-list col-sm-12">
+                @*write search*@
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <input class="form-control search-input" type="search" data-ng-model="searchText" placeholder="Search List...">
+
+                    </li>
+                    <li class="separator-sortby"  style="padding : 10px;">
+                        <span>Add New&nbsp;</span>
+                    </li>
+                    <li class="dropdown">
+                        <img src="~/Content/images/Add.png" ng-click="addItem()" />
+                    </li>
+                    @*<li class="dropdown">
+                        <a class="no-hover" ng-csv="getExportDataSource()" csv-header="getExportHeaders()" filename="IndentReport.csv" style="padding : 0;">
+                            <img src="~/Content/themes/base/images/ExportExcel.png" />
+                        </a>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <table class="table table-hover table-bordered" data-ng-if="vm.failures.length > 0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th ng-repeat="header in vm.tableHeaders" ng-click="vm.sortTableData(header)">{{header.title}}<span data-ng-if="vm.currentSortingElement.name == header.name" data-ng-class="vm.sortReverse ? 'icon-arrow-down2' : 'icon-arrow-up2'"></span></th>
+                        <th>Update<span  data-ng-if="vm.profile.isAdmin">/Delete</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="admin-app-list indent-table" data-ng-repeat="indent in vm.failures| orderBy:vm.currentSortingElement.name:vm.sortReverse | filter:searchText" data-ng-class="{'hieght-light': indent.status == false }">
+                        <td class="app-type">{{$index+1}}</td>
+                        <td class="app-status">{{indent.sfrNo}}</td>
+                        @*<td class="app-status">{{indent.materialDesignation}}</td>*@
+                        <td class="app-status">{{indent.reported}}</td>
+                        <td class="app-status">{{indent.station}}</td>
+                        <td class="app-status">{{indent.gearFault}}</td>
+                        @*<td class="app-status">{{indent.materialType}}</td>*@
+                        <td class="app-status">{{indent.description}}</td>
+                        <td class="app-status">{{indent.causeOfFailureValue}}</td>
+                        <td class="app-status">{{indent.subCauseOfFailureValue}}</td>
+                        <td class="app-status">{{indent.timeOfOccurance | stringToDate: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td class="app-status">{{indent.timeSignalMainInformed | stringToDate: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td class="app-status">{{indent.timeSignalMainReached | stringToDate: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td class="app-status">{{indent.timeRectified | stringToDate: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td class="app-status">{{indent.duration}}</td>
+                        <td><a ng-click="modify(indent)">update</a><a style="margin-left : 15px;" data-ng-if="vm.profile.isAdmin" ng-click="delete(indent)">delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div><h4 data-ng-if="vm.failures.length == 0">No failures added.</h4></div>
+        </div>
+
+    </div>
+
+    <div class="form-section col-sm-12" ng-show="showForm">
+        <h2 ng-hide="showUpdateButton">Add SFR</h2>
+        <h2 ng-show="showUpdateButton">Update SFR</h2>
+
+        <form role="form" name="failure">
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>Reported :</label>
+                <select class="form-control" data-ng-model="model.reportedId" data-ng-options="type.id as type.name for type in vm.reporteds" required>
+                    <option value="">Select</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>SFR No :</label>
+                <input type="text" class="form-control" data-ng-model="model.sfrNo" placeholder="Enter SFR No.." />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>Station :</label>
+                @*<select class="form-control" data-ng-model="model.stationId" data-ng-options="type.id as type.name for type in vm.stations" required>
+                <option value="">Select</option>
+            </select>*@
+                <ui-select ng-model="model.station" on-select="selectStation($item)">
+                    <ui-select-match placeholder="Select or search a station ...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="unit in vm.stations | orderBy:'name' | filter: $select.search">
+                        <div data-ng-bind="unit.name"></div>
+                        <div data-ng-bind="unit.code"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>Equipment Serial No :</label>
+                <input type="text" class="form-control" data-ng-model="model.equipmentSerialNumber" placeholder="Enter Equipment Serial No.." />
+            </div>
+            <div class="form-group col-sm-12 col-md-10 clear-side-padding">
+                <div class="col-sm-6 clear-left-padding">
+                    <label>Gear at fault :</label>
+                    <select class="form-control" data-ng-model="model.gearFaultId" data-ng-change="model.subGearFaultId= null;model.manufacturer = null;model.axleErrorCode= null; model.gearId = null;" data-ng-options="type.id as type.name for type in vm.gearFaults" required>
+                        <option value="">Select</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 clear-right-padding">
+                    <label>Sub Gear at fault :</label>
+                    <select class="form-control" data-ng-model="model.subGearFaultId" data-ng-options="type.id as type.name for type in vm.subGearFaults | filter: { gearFaultId : model.gearFaultId}  | orderBy:'name'" required>
+                        <option value="">Select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-sm-12 col-md-10 clear-side-padding">
+                <div class="col-sm-6 clear-left-padding">
+                    <label>Gear Id :</label>
+                    <input data-ng-show="model.gearFaultId!=17"  type="text" class="form-control" data-ng-model="model.gearId" placeholder="Enter Gear Id.." />
+                    <select data-ng-show="model.gearFaultId==17" class="form-control" data-ng-model="model.gearId" data-ng-options="type.name as type.name for type in vm.axleGearCodes | orderBy:'name'">
+                        <option value="">Select</option>
+                    </select>
+                </div>
+                <div data-ng-show="model.gearFaultId==17" class="col-sm-6 clear-right-padding">
+                    <label>Axle Error Code :</label>
+                    <input type="text" class="form-control" data-ng-model="model.axleErrorCode" placeholder="Enter Error Code.." />
+                </div>
+            </div>
+            <div class="form-group col-sm-12 col-md-10 clear-left-padding">
+                <label>Cause of Failure :</label>
+                <ui-select ng-model="model.causeOfFailureItem" data-ng-change="model.subCauseOfFailureItem = null; model.subCauseOfFailureId = null; model.causeOfFailureId= model.causeOfFailureItem.id">
+                    <ui-select-match placeholder="Select or search a Cause of Failure ...">{{$select.selected.description}}</ui-select-match>
+                    <ui-select-choices repeat="cause in vm.causeOfFailures | orderBy:'description' | filter: $select.search">
+                        <div data-ng-bind="cause.description"></div>
+                    </ui-select-choices>
+                </ui-select>
+                @*<textarea type="text" class="form-control" data-ng-model="model.causeOfFailure" placeholder="enter cause of failure.."></textarea>*@
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>Sub Cause of Failure :</label>
+                <ui-select ng-model="model.subCauseOfFailureItem" data-ng-change="model.subCauseOfFailureId = model.subCauseOfFailureItem.id">
+                    <ui-select-match placeholder="Select or search a Sub Cause of Failure ...">{{$select.selected.description}}</ui-select-match>
+                    <ui-select-choices repeat="subcause in vm.subCauseOfFailure | filter: { causeOfFailureId : model.causeOfFailureId} : true | orderBy:'description' | filter: $select.search">
+                        <div data-ng-bind="subcause.description"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>Manufacture :</label>
+                <ui-select ng-model="model.manufacturer" data-ng-change="model.manufactureId = model.manufacturer.id">
+                    <ui-select-match placeholder="Select or search a Manufacture ...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="unit in vm.manufactures  | orderBy:'name' | filter: $select.search">
+                        <div data-ng-bind="unit.name"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>Breif Description :</label>
+                <textarea type="text" class="form-control" data-ng-model="model.description" placeholder="enter brief description.."></textarea>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>Train Detained :</label>
+                <textarea type="text" class="form-control" data-ng-model="model.trainDetained" placeholder="enter train detained.."></textarea>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="margin: 0px 15px 47px -15px;">
+                    <div class="col-sm-6 clear-left-padding">
+                        <label>Is Train Loss Punctuality :</label>
+                        <div>
+                            <input type="radio" data-ng-value="true" ng-model="model.isTrainLate" data-ng-change="model.trainLossPunctual=null" /> Yes
+                            <input type="radio" data-ng-value="false" ng-model="model.isTrainLate" data-ng-change="model.trainLossPunctual=null" /> No
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clear-left-padding" data-ng-show="model.isTrainLate">
+                        <label>Number Of Trains Late :</label>
+                        <input type="number" class="form-control" data-ng-model="model.numberOfTrainsLate" data-ng-change="model.numberOfTrainsLate = (model.numberOfTrainsLate > 99 ? 99 : model.numberOfTrainsLate)" placeholder="Number Of Trains Late.." />
+                    </div>
+                </div>
+                <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                    <label data-ng-show="model.isTrainLate">Train Loss Punctuality :</label>
+                    <textarea data-ng-show="model.isTrainLate" type="text" class="form-control" data-ng-model="model.trainLossPunctual" placeholder="enter train loss Punctuality.."></textarea>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <div class="col-sm-6 clear-left-padding">
+                    <label>Failure Chargeable :</label>
+                    <div>
+                        <input type="radio" data-ng-value="true" ng-model="model.failureChargeable" data-ng-click="model.department='S&T'" /> Yes
+                        <input type="radio" data-ng-value="false" ng-model="model.failureChargeable" data-ng-change="model.department=null" /> No
+                    </div>
+                </div>
+                <div class="col-sm-6 clear-left-padding">
+                    <label>Department :</label>
+                    <ui-select ng-model="model.department">
+                        <ui-select-match placeholder="Select or search a Department ...">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="unit in getUnits($select.search) | filter: $select.search">
+                            <div data-ng-bind="unit"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>Time of Occurance :</label>
+                <input type="datetime-local" class="form-control" data-ng-model="model.timeOfOccurance" data-ng-change="setDuration()" />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>Time Signal Main Informed :</label>
+                <input type="datetime-local" class="form-control" data-ng-model="model.timeSignalMainInformed" />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>Time Signal Main Reached :</label>
+                <input type="datetime-local" class="form-control" data-ng-model="model.timeSignalMainReached" />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>Time Rectified :</label>
+                <input type="datetime-local" class="form-control" data-ng-model="model.timeRectified" data-ng-change="setDuration()" />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>Duration :</label>
+                <input type="text" class="form-control" data-ng-model="model.duration" placeholder="Duration.." readonly />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>Date Of Installation :</label>
+                <input type="date" class="form-control" data-ng-model="model.dateOfInstallOn" />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>ESM Last Visit On :</label>
+                <input type="date" class="form-control" data-ng-model="model.esmLastVisitOn" />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>SSE Last Visit On :</label>
+                <input type="date" class="form-control" data-ng-model="model.sseLastVisitOn" />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-right-padding">
+                <label>JE Last Visit On :</label>
+                <input type="date" class="form-control" data-ng-model="model.jeLastVisitOn" />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding">
+                <label>DL Information :</label>
+                <input type="text" class="form-control" data-ng-model="model.dlInformation" placeholder="Enter DL Info.." />
+            </div>
+            <div class="col-sm-12 clear-side-padding">
+                <button type="submit" ng-hide="showUpdateButton" class="btn btn-default" ng-click="save(model)">Save</button>
+                <button type="submit" ng-show="showUpdateButton" class="btn btn-default" ng-click="update(model)">Update</button>
+                <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/ng-template" id="employee-display-template">
+    <a class="search-result-item" data-ng-if="!match.model.noResults">
+        <div class="vertical-margin">
+            <span ng-bind-html="match.model.displayName | uibTypeaheadHighlight:query"></span>
+            <br />
+            <span data-ng-if="match.model.email" ng-bind-html="match.model.email"></span>
+            <!--<br data-ng-if="match.model.employeeRole" />-->
+        </div>
+        <!--<span ng-bind-html="match.model.email"></span>-->
+    </a>
+    <a data-ng-if="match.model.noResults" class="search-result-item" data-ng-click="$event.stopPropagation();">
+        <div class="col-sm-12">
+            <h4>No results found</h4>
+        </div>
+    </a>
+</script>

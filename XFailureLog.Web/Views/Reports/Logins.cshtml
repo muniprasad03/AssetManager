@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-controller="loginReportController">
+    <div class="table-list">
+        <div class="col-sm-12 clear-side-padding">
+            <div class="form-group col-sm-3 col-md-3">
+                <label>From Date :</label>
+                <input type="text" class="form-control" data-ng-model="vm.fromDate"
+                       data-uib-datepicker-popup="mediumDate"
+                       data-datepicker-options="{ showWeeks:false }"
+                       data-is-open="oapplyFrom"
+                       data-ng-click="oapplyFrom= oapplyFrom ? false:true;"
+                       placeholder="Select from Date" />
+            </div>
+            <div class="form-group col-sm-3 col-md-3">
+                <label>To Date :</label>
+                <input type="text" class="form-control" data-ng-model="vm.toDate"
+                       data-uib-datepicker-popup="mediumDate"
+                       data-datepicker-options="{ showWeeks:false }"
+                       data-is-open="toapplyFrom"
+                       data-ng-click="toapplyFrom= toapplyFrom ? false:true;"
+                       placeholder="Select to Date.." />
+            </div>
+            <div class="form-group col-sm-6 col-md-6">
+                <button type="button" class="btn btn-default btn-get" ng-click="get()" style=" float: left;">Get</button>
+                <div class="search-bar-item" style="float: left;margin: 21px 0 0 43px;">
+                    <div class="search-box filter-item" style="width: 210px;">
+                        <input class="form-control search-input" type="search" data-ng-model="searchText" placeholder="Search List...">
+                    </div>
+
+                </div>
+                <div class="export-item filter-item" style=" float: left; margin-left: 15px; margin-top: 20px;">
+                    <a class="no-hover"ng-csv="getExportDataSource()" csv-header="getExportHeaders()" filename="SFR_Logins.csv" style="padding : 0;">
+                        <img src="~/Content/images/ExportExcel.png" />
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-sm-11 col-md-8 col-lg-8">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th ng-repeat="header in vm.tableHeaders" ng-click="vm.sortTableData(header)">{{header.title}}<span data-ng-if="vm.currentSortingElement.name == header.name" data-ng-class="vm.sortReverse ? 'icon-arrow-down2' : 'icon-arrow-up2'"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="admin-app-list" data-ng-repeat="station in vm.logins| orderBy:vm.currentSortingElement.name:vm.sortReverse | filter:searchText">
+                        <td class="app-type">{{$index+1}}</td>
+                        <td class="app-status">{{station.userName}}</td>
+                        <td class="app-status">{{station.displayName}}</td>
+                        <td class="app-status">{{station.loginStatusName}}</td>
+                        <td class="app-status">{{station.loginDateTimeValue}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

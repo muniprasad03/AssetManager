@@ -1,0 +1,166 @@
+﻿@{
+    Layout = null;
+}
+<div ng-controller="pointersController">
+    <div data-ng-hide="showForm">
+        <div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+            <div class="span12 filter-list col-sm-12">
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <input type="search" class="form-control search-input" ng-model="searchText" placeholder="Search List..."/>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Add New&nbsp;</span>
+                    </li>
+                    <li class="dropdown">
+                        <img src="~/Content/images/Add.png" ng-click="addItem()" />
+                    </li>
+                    <li class="dropdown pull-right">
+                        <a class="no-hover" ng-csv="getExportDataSource()" csv-header="getExportHeaders()" filename="PointReport.csv">
+                            <img src="~/Content//images/ExportExcel.png" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th ng-repeat="header in vm.tableHeaders" ng-click="vm.sortTableData(header)">{{header.title}}<span data-ng-if="vm.currentSortingElement.name == header.name" data-ng-class="vm.sortReverse ? 'icon-arrow-down2' : 'icon-arrow-up2'"></span></th>
+                        <th>Update/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="admin-app-list" data-ng-repeat="product in vm.pointers | orderBy:vm.currentSortingElement.name:vm.sortReverse | filter:searchText" data-ng-class="{'product-list-item-selected': product.id == selectedProductId }">
+                        <td class="app-type">{{$index+1}}</td>
+                        <td class="app-status">{{product.date | date}}</td>
+                        <td class="app-date-published">{{product.name}}</td>
+                        <td class="app-date-published">{{product.program}}</td>
+                        <td class="app-date-published">{{product.area}}</td>
+                        <td class="app-date-published">{{product.workInvolved}}</td>
+                        <td class="app-date-published">{{product.staffNominated}}</td>
+                        <td class="app-date-published">{{product.substitude}}</td>
+                        <td class="app-date-published">{{product.remarks}}</td>
+                        <td class="app-date-published"><span data-ng-if="product.result">Completed</span><span data-ng-if="!product.result">Not Completed</span></td>
+                        <td><a ng-click="modify(product)">update</a><a style="margin-left : 15px;" ng-click="delete(product)">delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-section col-sm-12 col-md-11 col-lg-10" ng-show="showForm">
+        <h2 ng-hide="showUpdateButton">Add Pointer Work</h2>
+        <h2 ng-show="showUpdateButton">Update Pointer Work</h2>
+
+        <form role="form" name="pointer">
+            <div class="col-sm-6 col-md-5 clear-left-padding">
+                <div class="form-group">
+                    <label>Date:</label>
+                    <input type="text" name="applyFrom" id="applyFrom" class="form-control datepicking input-group-field"
+                           data-uib-datepicker-popup="dd-MM-yyyy"
+                           data-datepicker-options="{ showWeeks:false}"
+                           data-ng-model="model.date"
+                           data-is-open="oapplyFrom"
+                           data-ng-click="oapplyFrom= oapplyFrom ? false:true;"
+                           required />
+                </div>
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" ng-model="model.name" placeholder="Enter name..." required />
+                </div>
+                <div class="form-group">
+                    <label>Program:</label>
+                    <input type="text" class="form-control" ng-model="model.program" placeholder="Enter program name..." required />
+                </div>
+                <div class="form-group">
+                    <label>Area:</label>
+                    @*<input type="text" class="form-control" ng-model="model.area" placeholder="Enter area..." required />*@
+                    <select class="form-control" ng-model="model.area" data-ng-options="d as d for d in vm.areas" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Work Involved</label>
+                    <textarea rows="2" type="text" class="form-control" ng-model="model.workInvolved" placeholder="Enter Work Involved ..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Staff Nominated:</label>
+                    <input type="text" class="form-control" ng-model="model.staffNominated" placeholder="Enter staff nominated..." />
+                </div>
+                <div class="form-group">
+                    <label>Staff Substitude:</label>
+                    <input type="text" class="form-control" ng-model="model.substitude" placeholder="Enter substitude..." />
+                </div>
+                <div class="form-group">
+                    <label>Remarks</label>
+                    <textarea rows="2" type="text" class="form-control" ng-model="model.remarks" placeholder="Enter Remarks ..."></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6 work-details-container">
+                <label class="col-sm-12 header">Work Details</label>
+                <div class="col-sm-12 item">
+                    <div class="title">
+                        Terminal Tightness
+                    </div>
+                    <div class="value">
+                        <xhr-switch-btn class="square pull-right" data-ng-model="model.terminalTightness" name="doNotDeductPF" data-on="Yes" data-off="No"></xhr-switch-btn>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="title">
+                        Gauge Test
+                    </div>
+                    <div class="value">
+                        <xhr-switch-btn class="square pull-right" data-ng-model="model.gaugeTest" name="doNotDeductPF" data-on="Yes" data-off="No"></xhr-switch-btn>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="title">
+                        Out Of Correspondense
+                    </div>
+                    <div class="value">
+                        <xhr-switch-btn class="square pull-right" data-ng-model="model.outOfCorrespondense" name="doNotDeductPF" data-on="Yes" data-off="No"></xhr-switch-btn>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="title">
+                        Normal Indication
+                    </div>
+                    <div class="value">
+                        <xhr-switch-btn class="square pull-right" data-ng-model="model.normalIndication" name="doNotDeductPF" data-on="Yes" data-off="No"></xhr-switch-btn>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="title">
+                        Reverse Indication
+                    </div>
+                    <div class="value">
+                        <xhr-switch-btn class="square pull-right" data-ng-model="model.reverseIndication" name="doNotDeductPF" data-on="Yes" data-off="No"></xhr-switch-btn>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="title">
+                        Tongue Floating
+                    </div>
+                    <div class="value">
+                        <xhr-switch-btn class="square pull-right" data-ng-model="model.tongueFloating" name="doNotDeductPF" data-on="Yes" data-off="No"></xhr-switch-btn>
+                    </div>
+                </div>
+                <div class="col-sm-12 item">
+                    <div class="title">
+                        Cut Out
+                    </div>
+                    <div class="value">
+                        <xhr-switch-btn class="square pull-right" data-ng-model="model.cutOut" name="doNotDeductPF" data-on="Yes" data-off="No"></xhr-switch-btn>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button type="submit" ng-hide="showUpdateButton" class="btn btn-default" ng-click="save(model)">Save</button>
+                <button type="submit" ng-show="showUpdateButton" class="btn btn-default" ng-click="update(model)">Update</button>
+                <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

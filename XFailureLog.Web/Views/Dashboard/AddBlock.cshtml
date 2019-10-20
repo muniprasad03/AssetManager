@@ -1,0 +1,174 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-controller="BlockRequestController">
+    <div class="table-list" data-ng-hide="showForm">
+        <div class="col-sm-12 clear-side-padding">
+            <div class="form-group col-sm-4 col-md-4">
+                <label>From Date :</label>
+                <input type="text" class="form-control" data-ng-model="vm.fromDate"
+                       data-uib-datepicker-popup="mediumDate"
+                       data-datepicker-options="{ showWeeks:false }"
+                       data-is-open="oapplyFrom"
+                       data-ng-click="oapplyFrom= oapplyFrom ? false:true;"
+                       placeholder="Select from Date" />
+            </div>
+            <div class="form-group col-sm-4 col-md-4">
+                <label>To Date :</label>
+                <input type="text" class="form-control" data-ng-model="vm.toDate"
+                       data-uib-datepicker-popup="mediumDate"
+                       data-datepicker-options="{ showWeeks:false }"
+                       data-is-open="toapplyFrom"
+                       data-ng-click="toapplyFrom= toapplyFrom ? false:true;"
+                       placeholder="Select to Date.." />
+            </div>
+            <div class="form-group col-sm-4 col-md-4">
+                <button type="button" class="btn btn-default btn-get" ng-click="get()">Get</button>
+            </div>
+        </div>
+        <div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+            <div class="span12 filter-list col-sm-12">
+                @*write search*@
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <input class="form-control search-input" type="search" data-ng-model="searchText" placeholder="Search List...">
+
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;" ng-click="addItem()">
+                        <span>Add New&nbsp;</span>
+                    </li>
+                    <li class="dropdown">
+                        <img src="~/Content/images/Add.png" ng-click="addItem()" />
+                    </li>
+                    @*<li class="dropdown">
+                            <a class="no-hover" ng-csv="getExportDataSource()" csv-header="getExportHeaders()" filename="IndentReport.csv" style="padding : 0;">
+                                <img src="~/Content/themes/base/images/ExportExcel.png" />
+                            </a>
+                        </li>*@
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <table class="table table-hover table-bordered" data-ng-if="vm.failures.length > 0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th ng-repeat="header in vm.tableHeaders" ng-click="vm.sortTableData(header)">{{header.title}}<span data-ng-if="vm.currentSortingElement.name == header.name" data-ng-class="vm.sortReverse ? 'icon-arrow-down2' : 'icon-arrow-up2'"></span></th>
+                        <th>Update<span data-ng-if="vm.profile.isAdmin">/Delete</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="admin-app-list indent-table" data-ng-repeat="indent in vm.failures| orderBy:vm.currentSortingElement.name:vm.sortReverse | filter:searchText" data-ng-class="{'hieght-light': indent.status == false }">
+                        <td class="app-type">{{$index+1}}</td>
+                        <td class="app-status">{{indent.sfrNo}}</td>
+                        @*<td class="app-status">{{indent.materialDesignation}}</td>*@
+                        <td class="app-status">{{indent.reported}}</td>
+                        <td class="app-status">{{indent.station}}</td>
+                        <td class="app-status">{{indent.gearFault}}</td>
+                        @*<td class="app-status">{{indent.materialType}}</td>*@
+                        <td class="app-status">{{indent.description}}</td>
+                        <td class="app-status">{{indent.causeOfFailureValue}}</td>
+                        <td class="app-status">{{indent.subCauseOfFailureValue}}</td>
+                        <td class="app-status">{{indent.timeOfOccurance | stringToDate: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td class="app-status">{{indent.timeSignalMainInformed | stringToDate: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td class="app-status">{{indent.timeSignalMainReached | stringToDate: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td class="app-status">{{indent.timeRectified | stringToDate: "dd-MMM-yyyy HH:mm"}}</td>
+                        <td class="app-status">{{indent.duration}}</td>
+                        <td><a ng-click="modify(indent)">update</a><a style="margin-left : 15px;" data-ng-if="vm.profile.isAdmin" ng-click="delete(indent)">delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div><h4 data-ng-if="vm.failures.length == 0">No failures added.</h4></div>
+        </div>
+
+    </div>
+
+    <div class="form-section col-sm-12" ng-show="showForm">
+        <h2 ng-hide="showUpdateButton">Add Block Request</h2>
+        <h2 ng-show="showUpdateButton">Update Block Request</h2>
+        <form role="form" name="failure">
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 60px">
+                <label>Department :</label>
+                <select class="form-control" data-ng-model="model.departmentId" data-ng-options="type.id as type.name for type in vm.departments | orderBy:'name'" required>
+                    <option value="">Select</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 60px">
+                <label>Section :</label>
+                @*<select class="form-control" data-ng-model="model.stationId" data-ng-options="type.id as type.name for type in vm.stations" required>
+                <option value="">Select</option>
+            </select>*@
+                <ui-select ng-model="model.section" on-select="selectStation($item)">
+                    <ui-select-match placeholder="Select or search a station ...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="unit in vm.sections | orderBy:'name' | filter: $select.search">
+                        <div data-ng-bind="unit.name"></div>
+                        @*<div data-ng-bind="unit.code"></div>*@
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 60px">
+                <label>Board :</label>
+                <select class="form-control" data-ng-model="model.boardId" data-ng-options="type.id as type.name for type in vm.boards | filter: { sectionId : model.sectionId}  | orderBy:'name'" required>
+                    <option value="">Select</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 60px">
+                <label>Block Section :</label>
+                <input type="text" class="form-control" data-ng-model="model.blockSectionName" placeholder="Enter Block Section.." />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 60px">
+                <label>Direction :</label>
+                <select class="form-control" data-ng-model="model.direction" data-ng-options="type.id as type.name for type in vm.directions | orderBy:'name'" required>
+                    <option value="">Select</option>
+                </select>
+            </div>
+
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 60px">
+                <label>Date of Block :</label>
+                <input type="text" class="form-control" data-ng-model="model.requestDate"
+                       data-uib-datepicker-popup="mediumDate"
+                       data-datepicker-options="{ showWeeks:false }"
+                       data-is-open="oapplyFrom"
+                       data-ng-click="oapplyFrom= oapplyFrom ? false:true;"
+                       placeholder="Select Block Date" />
+                @*<input type="datetime-local" class="form-control" data-ng-model="model.timeOfOccurance" data-ng-change="setDuration()" />*@
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 60px">
+                <label>Required block hours :</label>
+                <input type="text" class="form-control" data-ng-model="model.requestDuration" placeholder="Enter hours of block.." />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 60px">
+                <label>Required Number Of Blocks :</label>
+                <input type="text" class="form-control" data-ng-model="model.numberOfBlocks" placeholder="Enter count of block.." />
+            </div>
+            <div class="form-group col-sm-6 col-md-5 clear-left-padding" style="height: 100px">
+                <label>Work Description :</label>
+                <textarea type="text" class="form-control" data-ng-model="model.description" placeholder="enter brief description.."></textarea>
+            </div>
+            <div class="col-sm-12 clear-side-padding">
+                <button type="submit" ng-hide="showUpdateButton" class="btn btn-default" ng-click="save(model)">Save</button>
+                <button type="submit" ng-show="showUpdateButton" class="btn btn-default" ng-click="update(model)">Update</button>
+                <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/ng-template" id="employee-display-template">
+    <a class="search-result-item" data-ng-if="!match.model.noResults">
+        <div class="vertical-margin">
+            <span ng-bind-html="match.model.displayName | uibTypeaheadHighlight:query"></span>
+            <br />
+            <span data-ng-if="match.model.email" ng-bind-html="match.model.email"></span>
+            <!--<br data-ng-if="match.model.employeeRole" />-->
+        </div>
+        <!--<span ng-bind-html="match.model.email"></span>-->
+    </a>
+    <a data-ng-if="match.model.noResults" class="search-result-item" data-ng-click="$event.stopPropagation();">
+        <div class="col-sm-12">
+            <h4>No results found</h4>
+        </div>
+    </a>
+</script>

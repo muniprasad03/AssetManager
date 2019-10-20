@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+
+<div data-ng-controller="SectionController">
+    <div class="table-list" data-ng-hide="showForm">
+        <div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+            <div class="span12 filter-list col-sm-12">
+                @*write search*@
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <input class="form-control search-input" type="search" ng-model="searchText" placeholder="Search List...">
+
+                    </li>
+                    @*<li class="separator-sortby" style="padding : 10px;">
+                            <span>Sort by&nbsp;</span>
+                        </li>
+                        <li class="dropdown">
+
+                            <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                                {{SortValue}}
+                                <b class="icon-arrow-down2" href="#"></b>
+                            </a>
+                            <ul id="sort-filter" class="dropdown-menu">
+                                <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='None'"></span><a data-ng-click="SortByPredicate='none';SortValue='None';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='None'}">None</a></li>
+                                <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='Department Name'"></span><a data-ng-click="SortByPredicate='name';SortValue='Department Name';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='Department Name'}">Department Name</a></li>
+
+                            </ul>
+                        </li>*@
+                    <li class="dropdown">
+                        <img src="~/Content/images/Add.png" ng-click="addItem()" />
+                    </li>
+                    @*<li class="dropdown">
+                            <img src="~/Content/themes/base/images/ExportExcel.png" ng-click="exportToExcel()" />
+                        </li>*@
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-11 col-md-8 col-lg-8">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th ng-repeat="header in vm.tableHeaders" ng-click="vm.sortTableData(header)">{{header.title}}<span data-ng-if="vm.currentSortingElement.name == header.name" data-ng-class="vm.sortReverse ? 'icon-arrow-down2' : 'icon-arrow-up2'"></span></th>
+                        <th>Update/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="admin-app-list" data-ng-repeat="section in vm.sections| orderBy:vm.currentSortingElement.name:vm.sortReverse | filter:searchText" data-ng-class="{'department-list-item-selected': department.id == selectedDepartmentId }">
+                        <td class="app-type">{{$index+1}}</td>
+                        <td class="app-status">{{section.name}}</td>
+                        <td><a ng-click="modify(section)">update</a><a style="margin-left : 15px;" ng-click="delete(section)">delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="form-section  col-sm-3" ng-show="showForm">
+        <h2 ng-hide="showUpdateButton">Add Section</h2>
+        <h2 ng-show="showUpdateButton">Update Section</h2>
+
+        <form role="form" name="departments">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" class="form-control" ng-model="model.name" placeholder="Enter name..." required />
+            </div>
+            <button type="submit" ng-hide="showUpdateButton" class="btn btn-default" ng-click="save(model)">Save</button>
+            <button type="submit" ng-show="showUpdateButton" class="btn btn-default" ng-click="update(model)">Update</button>
+            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+        </form>
+    </div>
+</div>

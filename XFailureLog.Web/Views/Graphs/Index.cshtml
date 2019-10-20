@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+<div class="col-sm-12 clear-side-padding sec_nav">
+    <ul class="nav nav-pills">
+        <li ui-sref-active="active"><a ui-sref='.failures'>Failures</a></li>
+        <li ui-sref-active="active"><a ui-sref='.compare'>Compare Stats</a></li>
+        <li ui-sref-active="active"><a ui-sref='.incidents'>Month Summary </a></li>
+        <li ui-sref-active="active"><a ui-sref='.costincidents'>Cost Summary</a></li>
+        <li ui-sref-active="active"><a ui-sref='.sectionincidents'>Section Summary</a></li>
+        <li ui-sref-active="active"><a ui-sref='.sectiongearincidents'>Section Gear Summary</a></li>
+        @*<li ui-sref-active="active"><a ui-sref='.summary'>Summary</a></li>
+        <li ui-sref-active="active"><a ui-sref='.causereport'>Cause Report</a></li>*@
+    </ul>
+</div>
+<div class="col-lg-12 col-sm-12 col-md-12 vertical-margin">
+    <div class="sub-page-container" data-ui-view=""></div>
+</div>

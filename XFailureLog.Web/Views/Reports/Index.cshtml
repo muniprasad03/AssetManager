@@ -1,0 +1,19 @@
+﻿@model XFailureLog.Models.User
+
+@{
+    Layout = null;
+}
+<div class="col-sm-12 clear-side-padding sec_nav">
+    <ul class="nav nav-pills">
+        <li ui-sref-active="active"><a ui-sref='.failures'>Failures</a></li>
+        <li ui-sref-active="active"><a ui-sref='.summary'>Station Summary</a></li>
+        <li ui-sref-active="active"><a ui-sref='.causereport'>Cause Report</a></li>
+        @if (Model.IsAdmin || Model.IsReportViewer)
+    {
+        <li ui-sref-active="active"><a ui-sref='.loginreport'>Login Report</a></li>
+}
+    </ul>
+</div>
+<div class="col-lg-12 col-sm-12 col-md-12 vertical-margin">
+    <div class="sub-page-container" data-ui-view=""></div>
+</div>

@@ -1,0 +1,165 @@
+﻿body {
+  margin: 0;
+  padding: 0;
+}
+.login-page {
+  /*background-color: @background-color;*/
+  background-image: url("/Content/images/login_background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: aliceblue;
+}
+.login-page .login-logo {
+  /*background-image: url('../../Images/main_logo.jpg');*/
+  background-image: url('../../Content/Images/Indian-Railway-Logo.jpg');
+  background-repeat: no-repeat;
+  height: 500px;
+  position: relative;
+  background-position: center;
+}
+.login-page .display-content-height {
+  height: 500px;
+}
+.login-page .login-content {
+  background-color: white;
+}
+.login-page .login-content .logo-container {
+  background-color: #038CC4;
+}
+.login-page .login-content .copyright-text {
+  margin-top: 120px;
+}
+.login-page .login-content .copyright-text p {
+  text-align: center;
+  color: white;
+  margin: 0;
+  font-size: 10px;
+}
+.login-page .login-content .form-container {
+  padding: 15px 30px;
+}
+.login-page .login-content .form-container .org-name {
+  font-weight: lighter;
+  margin-top: 130px;
+}
+.login-page .login-content .form-container .form-group {
+  margin-bottom: 15px;
+}
+.login-page .login-content .form-container .form-group .form-control {
+  height: 40px;
+  border-radius: 4px;
+}
+.login-page .login-content .form-container .o365-btn-container {
+  margin-top: 40px;
+}
+.login-page .login-content .form-container .text-muted {
+  margin-top: 12px;
+  font-size: 13px;
+}
+.login-page .control-label {
+  display: block;
+  height: 22px;
+  text-align: left;
+  padding: 6px 0px 0px 6px;
+  font-size: 12px !important;
+  color: #d9534f;
+}
+.login-page .container {
+  max-width: 650px;
+  padding: 0px;
+  margin-top: 10%;
+}
+.login-page ul {
+  padding: 0px;
+  margin-left: -29px;
+  position: absolute;
+  top: 58px;
+}
+.login-page .change-pswd ul {
+  top: 54px;
+}
+.login-page .form-horizontal {
+  padding: 15px 15px;
+}
+.login-page .btn {
+  outline: none;
+}
+.login-page .btn:active {
+  box-shadow: none !important;
+}
+.login-page .light-green-button {
+  height: 35px;
+  background-color: #80BE3A;
+  border: none;
+  color: white;
+  margin-top: 5px;
+  box-shadow: 0 4px 0 #6a9d37;
+}
+.login-page .light-green-button:hover,
+.login-page .light-green-button:focus {
+  box-shadow: 0 3px 0 #6a9d37;
+}
+.login-page .o365-login-button {
+  height: 35px;
+  background-color: #EB3C00;
+  border: none;
+  color: white;
+  margin-top: 10px;
+  box-shadow: 0 4px 0 #b82f00;
+}
+.login-page .o365-login-button:hover,
+.login-page .o365-login-button:focus {
+  box-shadow: 0 3px 0 #b82f00;
+}
+.login-page .btn-submit {
+  width: 110px;
+  background-color: #84BF48;
+  box-shadow: 0 4px 0 #6a9d37;
+  font-size: 12px;
+  padding: 8px 0px;
+  margin-right: 10px;
+  border: none;
+}
+.login-page .btn-submit:hover,
+.login-page .btn-submit:focus {
+  box-shadow: 0 3px 0 #6a9d37;
+}
+.login-page .btn-cancel {
+  width: 110px;
+  background-color: #B9BEC6;
+  box-shadow: 0 4px 0 #9da4af;
+  font-size: 12px;
+  padding: 8px 0px;
+  border: none;
+}
+.login-page .btn-cancel:hover,
+.login-page .btn-cancel:focus {
+  box-shadow: 0 3px 0 #9da4af;
+}
+.login-page .forgot-pswd-btn {
+  margin-top: 60px;
+}
+.login-page .forgot-password {
+  text-decoration: none;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 14px;
+  color: #939393 !important;
+  display: block;
+}
+.footer-container {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  background-color: rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+.footer-container .copyright-content {
+  color: #8c8b8b;
+  margin-top: 22px;
+  font-size: 13px;
+  font-weight: 500;
+}
+/*# sourceMappingURL=login.css.map */

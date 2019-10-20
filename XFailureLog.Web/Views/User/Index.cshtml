@@ -1,0 +1,152 @@
+﻿@{
+    Layout = null;
+}
+<div ng-controller="userController">
+    <div data-ng-hide="showForm">
+        <div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+            <div class="span12 filter-list col-sm-12">
+                @*write search*@
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <input type="search" class="form-control search-input" ng-model="searchText" placeholder="Search List...">
+
+                    </li>
+
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Add New&nbsp;</span>
+                    </li>
+                    @*<li class="dropdown">
+
+                            <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                                {{SortValue}}
+                                <b class="icon-arrow-down2" href="#"></b>
+                            </a>
+                            <ul id="sort-filter" class="dropdown-menu">
+                                <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='None'"></span><a data-ng-click="SortByPredicate='none';SortValue='None';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='None'}">None</a></li>
+                                <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='User Name'"></span><a data-ng-click="SortByPredicate='userName';SortValue='User Name';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='User Name'}">User Name</a></li>
+                                <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='Email'"></span><a data-ng-click="SortByPredicate='email';SortValue='Email';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='Email'}">Email</a></li>
+                                <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='Display Name'"></span><a data-ng-click="SortByPredicate='displayName';SortValue='Display Name';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='Display Name'}">Display Name</a></li>
+                                <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='Login Id'"></span><a data-ng-click="SortByPredicate='logInId';SortValue='Login Id';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='Login Id'}">Login Id</a></li>
+                                <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='Is Admin'"></span><a data-ng-click="SortByPredicate='isAdmin';SortValue='Is Admin';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='Is Admin'}">Is Admin</a></li>
+
+                            </ul>
+                        </li>*@
+                    <li class="dropdown">
+                        <img src="~/Content/images/Add.png" ng-click="addItem()" />
+                    </li>
+                    @*<li class="dropdown">
+                            <img src="~/Content/themes/base/images/ExportExcel.png" ng-click="exportToExcel()" />
+                        </li>*@
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-11">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th ng-repeat="header in vm.tableHeaders" ng-click="vm.sortTableData(header)">{{header.title}}<span data-ng-if="vm.currentSortingElement.name == header.name" data-ng-class="vm.sortReverse ? 'icon-arrow-down2' : 'icon-arrow-up2'"></span></th>
+                        <th>Update/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="admin-app-list" data-ng-repeat="user in vm.users | orderBy:vm.currentSortingElement.name:vm.sortReverse | filter:searchText" data-ng-class="{'product-list-item-selected': product.id == selectedProductId }">
+                        <td>{{$index+1}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.displayName}}</td>
+                        <td>{{user.designation}}</td>
+                        <td>{{user.phoneNumber}}</td>
+                        <td>{{user.isAdmin}}</td>
+                        <td>{{user.isSFREditor}}</td>
+                        <td>{{user.isReportViewer}}</td>
+                        @*<td>{{user.groupUsers}}</td>*@
+                        <td><a ng-click="modify(user)">update</a><a style="margin-left : 15px;" ng-click="resetPassword(user)">reset</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-section  col-sm-3" ng-show="showForm">
+        <h2 ng-hide="showUpdateButton">Add User</h2>
+        <h2 ng-show="showUpdateButton">Update User</h2>
+
+        <form role="form" name="userForm">
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" class="form-control" ng-model="model.email" placeholder="Enter email to used as user Id..." required data-ng-disabled="showUpdateButton" />
+            </div>
+            <div class="form-group">
+                <label>Display Name:</label>
+                <input type="text" class="form-control" ng-model="model.displayName" placeholder="Enter display name..." required />
+            </div>
+            <div class="form-group">
+                <label>Designation:</label>
+                <input type="text" class="form-control" ng-model="model.designation" placeholder="Enter Designation..." required />
+            </div>
+            <div class="form-group">
+                <label>Phone No:</label>
+                <input type="text" class="form-control" ng-model="model.phoneNumber" placeholder="Enter Phone Number..." required />
+            </div>
+            <div class="form-group">
+                <label>Global Admin:</label>
+                <div>
+                    <input type="radio" data-ng-value="true" ng-model="model.isAdmin" /> yes
+                    <input type="radio" data-ng-value="false" ng-model="model.isAdmin" /> NO
+                </div>
+            </div>
+            <div class="form-group">
+                <label>SFR Editor:</label>
+                <div>
+                    <input type="radio" data-ng-value="true" ng-model="model.isSFREditor" /> yes
+                    <input type="radio" data-ng-value="false" ng-model="model.isSFREditor" /> NO
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Report Viewer:</label>
+                <div>
+                    <input type="radio" data-ng-value="true" ng-model="model.isReportViewer" /> yes
+                    <input type="radio" data-ng-value="false" ng-model="model.isReportViewer" /> NO
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12 clear-side-padding">
+                    <label>Also See Stations Of</label>
+                    <div class="employee-search-typeahead">
+                        <span class="icon-user3 input-group-icon"></span>
+                        <input type="text" ng-model="vm.groupUser" uib-typeahead="person as person.name for person in getFilteredEmployees($viewValue)"
+                               typeahead-on-select="vm.selectEmployee()" typeahead-wait-ms="750"
+                               typeahead-template-url="employee-display-template" typeahead-editable="false"
+                               placeholder="Start typing station name or code" class="form-control input-group-field" name="notifyTo" autocomplete="off" />
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 clear-side-padding comment-info"><i>These stations failures can also be seen by this user.</i></div>
+                    <div class="regarded-users col-lg-12 col-md-12 col-sm-12 clear-side-padding" data-ng-if="vm.groupEmployeesList.length > 0">
+                        <div class="selected-users" data-ng-repeat="employee in vm.groupEmployeesList">
+                            <span class=""><span class="user" data-ng-if="employee.displayName">{{employee.displayName}}</span><span class="user" data-ng-if="employee.name">{{employee.name}}</span><span class="remove glyphicon glyphicon-remove" data-ng-click="vm.removeEmployee($index)"></span></span>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <button type="submit" ng-hide="showUpdateButton" class="btn btn-default" ng-click="save(model)">Save</button>
+            <button type="submit" ng-show="showUpdateButton" class="btn btn-default" ng-click="update(model)">Update</button>
+            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<script type="text/ng-template" id="employee-display-template">
+    <a class="search-result-item" data-ng-if="!match.model.noResults">
+        <div class="vertical-margin">
+            <span ng-bind-html="match.model.name | uibTypeaheadHighlight:query"></span>
+            <br />
+            <span data-ng-if="match.model.code" ng-bind-html="match.model.code"></span>
+            <!--<br data-ng-if="match.model.employeeRole" />-->
+        </div>
+        <!--<span ng-bind-html="match.model.email"></span>-->
+    </a>
+    <a data-ng-if="match.model.noResults" class="search-result-item" data-ng-click="$event.stopPropagation();">
+        <div class="col-sm-12">
+            <h4>No results found</h4>
+        </div>
+    </a>
+</script>

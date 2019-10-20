@@ -1,0 +1,58 @@
+﻿@model XFailureLog.Models.User
+
+<div id="left-nav" class="navbar navbar-default navbar-static-side nav-collapse" role="navigation" @*data-ng-controller="LeftNavController"*@>
+    <div class="navbar-inner">
+        <ul class="nav panel-group" id="accordion">
+            <li class="panel" data-ng-class="{'active':vm.state.name==='dashboard'}">
+                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardSubmenu" href="/#/dashboard"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Dashboard</span></a>
+                <ul id="dashboardSubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+            </li>
+            <li class="panel" data-ng-class="{'active':vm.state.name==='reports.failures' || vm.state.name==='reports.summary' || vm.state.name==='reports.causereport'}">
+                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardSubmenu" href="/#/reports/failures"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Reports</span></a>
+                <ul id="dashboardSubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+            </li>
+            <li class="panel" data-ng-class="{'active':vm.state.name==='graphs.failures' || vm.state.name==='graphs.compare' || vm.state.name==='graphs.incidents' || vm.state.name==='graphs.costincidents' || vm.state.name==='graphs.sectionincidents' || vm.state.name==='graphs.sectiongearincidents'}">
+                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardSubmenu" href="/#/graphs/failures"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Analytics</span></a>
+                <ul id="dashboardSubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+            </li>
+            @*<li class="panel" data-ng-class="{'active':vm.state.name==='work'}">
+            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardSubmenu" href="/#/signaltelecom/pointer"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Signal & Telecome</span></a>
+            <ul id="dashboardSubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+            </li>*@
+            @if (Model.IsAdmin || Model.IsSFREditor)
+            {
+                <li class="panel" data-ng-class="{'active':vm.state.name==='sfrentry'}">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardsubmenu" href="/#/sfrentry"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">SFR Entry</span></a>
+                    <ul id="dashboardsubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+                </li>
+            }
+            @if (Model.IsAdmin)
+            {
+                <li class="panel" data-ng-class="{'active':vm.state.name==='gearfault'}">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardsubmenu" href="/#/gearfaults"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Gear at Fault</span></a>
+                    <ul id="dashboardsubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+                </li>
+                <li class="panel" data-ng-class="{'active':vm.state.name==='sections'}">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardsubmenu" href="/#/sections"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Sections</span></a>
+                    <ul id="dashboardsubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+                </li>
+                <li class="panel" data-ng-class="{'active':vm.state.name==='reported'}">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardSubmenu" href="/#/reported"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Reported</span></a>
+                    <ul id="dashboardSubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+                </li>
+                <li class="panel" data-ng-class="{'active':vm.state.name==='stations'}">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardSubmenu" href="/#/stations"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Stations</span></a>
+                    <ul id="dashboardSubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+                </li>
+                <li class="panel" data-ng-class="{'active':vm.state.name==='users'}">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardSubmenu" href="/#/users"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">Users</span></a>
+                    <ul id="dashboardSubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+                </li>
+            }
+            <li class="panel" data-ng-class="{'active':vm.state.name==='about'}">
+                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#dashboardSubmenu" href="/#/about"><span class="icon-dashboard sidebar-list-icon"></span><span class="sidebar-list-label">About</span></a>
+                <ul id="dashboardSubmenu" class="panel-collapse collapse sidebar-dropdown-list"></ul>
+            </li>
+        </ul>
+    </div>
+</div>

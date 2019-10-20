@@ -1,0 +1,502 @@
+-gearSummary=======
+
+
+<div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+            <div class="span12 filter-list col-sm-12">
+                @*write search*@
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <input class="form-control search-input" type="search" data-ng-model="vm.searchText" placeholder="Search List...">
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Section&nbsp;</span>
+                    </li>
+                    <li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                            {{vm.sectionFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                        <ul id="sort-filter" class="dropdown-menu">
+                            <li ng-click="vm.sectionFilter={ id: 0, title: 'All', items : []  };">
+                                <label class="drop-label">
+                                    @*<input type="checkbox" />
+                                    <span class="check-overlay"></span>*@
+                                    <span class="drop-label-text">All</span>
+                                </label>
+                            </li>
+                            <li ng-repeat="dept in vm.sections">
+                                <label class="drop-label">
+                                    <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateSectionFilter(dept)" />
+                                    <span class="check-overlay"></span>
+                                    <span class="drop-label-text">{{dept.name}}</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>User&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'userOptions'" popover-title="Users" popover-is-open="vm.isUserOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.userFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Station&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'stationOptions'" popover-title="Stations" popover-is-open="vm.isStationOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.stationFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Reported&nbsp;</span>
+                    </li>
+                    <li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                            {{vm.reportedFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                        <ul id="sort-filter" class="dropdown-menu">
+                            <li ng-click="vm.reportedFilter={ id: 0, title: 'All', items : []  };">
+                                <label class="drop-label">
+                                    @*<input type="checkbox" />
+                                    <span class="check-overlay"></span>*@
+                                    <span class="drop-label-text">All</span>
+                                </label>
+                            </li>
+                            <li ng-repeat="dept in vm.reporteds">
+                                <label class="drop-label">
+                                    <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateReportedFilter(dept)" />
+                                    <span class="check-overlay"></span>
+                                    <span class="drop-label-text">{{dept.name}}</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Gear at Fault&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false; vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'gearfaultsOptions'" popover-title="Gear at Fault" popover-is-open="vm.isGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.gearFaultFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Sub Gear at Fault&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isManufacureOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'subGearfaultsOptions'" popover-title="Sub Gear at Fault" popover-is-open="vm.isSubGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.subGearFaultFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Manufacture&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'manufacturesOptions'" popover-title="Manufacture" popover-is-open="vm.isManufacureOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.manufactureFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Highlight if Total >=</span>
+                    </li>
+                    <li class="dropdown">
+                        <input class="form-control search-input" type="number" style="width: 55px;padding-right: 0;margin: 5px 5px 0 0;" data-ng-model="vm.errorCount">
+                    </li>
+                    @*<li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false">
+                        <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                        <ul id="sort-filter" class="dropdown-menu">
+                            <li><a ng-click="vm.gearFaultFilter={ id: 0, title: 'All' };">All</a></li>
+                            <li ng-repeat="dept in vm.gearFaults" ng-click="vm.gearFaultFilter = { id: dept.id, title: dept.name };"><a>{{dept.name}}</a></li>
+                        </ul>
+                    </li>*@
+                    <li class="dropdown">
+                        <a class="no-hover" data-ng-click="downloadStatsFile()" style="padding : 0;">
+                            <img src="~/Content/images/ExportExcel.png" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+------cause report======
+
+
+<div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+            <div class="span12 filter-list col-sm-12">
+                @*write search*@
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <input class="form-control search-input" type="search" data-ng-model="searchText" placeholder="Search List...">
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Section&nbsp;</span>
+                    </li>
+                    <li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;vm.isCauseOpen=false;vm.isSubCauseOpen=false;">
+                        <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                            {{vm.sectionFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                        <ul id="sort-filter" class="dropdown-menu">
+                            <li ng-click="vm.sectionFilter={ id: 0, title: 'All', items : []  };">
+                                <label class="drop-label">
+                                    @*<input type="checkbox" />
+                                        <span class="check-overlay"></span>*@
+                                    <span class="drop-label-text">All</span>
+                                </label>
+                            </li>
+                            <li ng-repeat="dept in vm.sections">
+                                <label class="drop-label">
+                                    <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateSectionFilter(dept)" />
+                                    <span class="check-overlay"></span>
+                                    <span class="drop-label-text">{{dept.name}}</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>User&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;vm.isCauseOpen=false;vm.isSubCauseOpen=false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'userOptions'" popover-title="Users" popover-is-open="vm.isUserOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.userFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Station&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;vm.isCauseOpen=false;vm.isSubCauseOpen=false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'stationOptions'" popover-title="Stations" popover-is-open="vm.isStationOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.stationFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Reported&nbsp;</span>
+                    </li>
+                    <li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;vm.isCauseOpen=false;vm.isSubCauseOpen=false;">
+                        <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                            {{vm.reportedFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                        <ul id="sort-filter" class="dropdown-menu">
+                            <li ng-click="vm.reportedFilter={ id: 0, title: 'All', items : []  };">
+                                <label class="drop-label">
+                                    @*<input type="checkbox" />
+                                        <span class="check-overlay"></span>*@
+                                    <span class="drop-label-text">All</span>
+                                </label>
+                            </li>
+                            <li ng-repeat="dept in vm.reporteds">
+                                <label class="drop-label">
+                                    <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateReportedFilter(dept)" />
+                                    <span class="check-overlay"></span>
+                                    <span class="drop-label-text">{{dept.name}}</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Gear at Fault&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false; vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'gearfaultsOptions'" popover-title="Gear at Fault" popover-is-open="vm.isGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.gearFaultFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Sub Gear at Fault&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isManufacureOpen = false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'subGearfaultsOptions'" popover-title="Sub Gear at Fault" popover-is-open="vm.isSubGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.subGearFaultFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Manufacture&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isCauseOpen=false;vm.isSubCauseOpen=false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'manufacturesOptions'" popover-title="Manufacture" popover-is-open="vm.isManufacureOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.manufactureFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Cause&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isSubCauseOpen=false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'causesOptions'" popover-title="Cause" popover-is-open="vm.isCauseOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.causeFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="separator-sortby" style="padding : 10px;">
+                        <span>Sub Cause&nbsp;</span>
+                    </li>
+                    <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isCauseOpen=false;">
+                        <a class="dropdown-toggle accent-color" data-uib-popover-template="'subCausesOptions'" popover-title="Sub Cause" popover-is-open="vm.isSubCauseOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                            {{vm.subCauseFilter.title}}
+                            <b class="icon-arrow-down2"></b>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="no-hover" @*ng-csv="getExportDataSource()" csv-header="getExportHeaders()" filename="SFRReport.csv"*@ data-ng-click="downloadFailureFile()" style="padding : 0;">
+                            <img src="~/Content/images/ExportExcel.png" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+-----------------comparestats-=============
+
+
+<div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+        <div class="span12 filter-list col-sm-12">
+            @*write search*@
+            <ul class="nav nav-pills">
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Section&nbsp;</span>
+                </li>
+                <li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                        {{vm.sectionFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                    <ul id="sort-filter" class="dropdown-menu">
+                        <li ng-click="vm.sectionFilter={ id: 0, title: 'All', items : []  };">
+                            <label class="drop-label">
+                                @*<input type="checkbox" />
+                                    <span class="check-overlay"></span>*@
+                                <span class="drop-label-text">All</span>
+                            </label>
+                        </li>
+                        <li ng-repeat="dept in vm.sections">
+                            <label class="drop-label">
+                                <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateSectionFilter(dept)" />
+                                <span class="check-overlay"></span>
+                                <span class="drop-label-text">{{dept.name}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>User&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'userOptions'" popover-title="Users" popover-is-open="vm.isUserOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.userFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Station&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'stationOptions'" popover-title="Stations" popover-is-open="vm.isStationOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.stationFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Reported&nbsp;</span>
+                </li>
+                <li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                        {{vm.reportedFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                    <ul id="sort-filter" class="dropdown-menu">
+                        <li ng-click="vm.reportedFilter={ id: 0, title: 'All', items : []  };">
+                            <label class="drop-label">
+                                @*<input type="checkbox" />
+                                    <span class="check-overlay"></span>*@
+                                <span class="drop-label-text">All</span>
+                            </label>
+                        </li>
+                        <li ng-repeat="dept in vm.reporteds">
+                            <label class="drop-label">
+                                <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateReportedFilter(dept)" />
+                                <span class="check-overlay"></span>
+                                <span class="drop-label-text">{{dept.name}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Gear at Fault&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false; vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'gearfaultsOptions'" popover-title="Gear at Fault" popover-is-open="vm.isGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.gearFaultFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Sub Gear at Fault&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'subGearfaultsOptions'" popover-title="Sub Gear at Fault" popover-is-open="vm.isSubGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.subGearFaultFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Manufacture&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'manufacturesOptions'" popover-title="Manufacture" popover-is-open="vm.isManufacureOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.manufactureFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="no-hover" @*ng-csv="getExportDataSource()" csv-header="getExportHeaders()" filename="SFRReport.csv"*@ data-ng-click="downloadFailureFile()" style="padding : 0;">
+                        <img src="~/Content/images/ExportExcel.png" />
+                    </a>
+                </li>
+                <li class="separator-sortby legend-item" style="padding : 10px;font-weight: 800;" data-ng-if="vm.failureStats.length > 0">
+                    <span style="background-color: #5bc0de; margin-top: 1px;"></span>Date Range 1
+                </li>
+                <li class="separator-sortby legend-item" style="padding : 10px;font-weight: 800;" data-ng-if="vm.failureStats.length > 0">
+                    <span style="background-color: #C888FD; margin-top: 1px;"></span>Date Range 2
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+---------------- graphs=> failures =====================
+
+<div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+        <div class="span12 filter-list col-sm-12">
+            @*write search*@
+            <ul class="nav nav-pills">
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Section&nbsp;</span>
+                </li>
+                <li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                        {{vm.sectionFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                    <ul id="sort-filter" class="dropdown-menu">
+                        <li ng-click="vm.sectionFilter={ id: 0, title: 'All', items : []  };">
+                            <label class="drop-label">
+                                @*<input type="checkbox" />
+                                    <span class="check-overlay"></span>*@
+                                <span class="drop-label-text">All</span>
+                            </label>
+                        </li>
+                        <li ng-repeat="dept in vm.sections">
+                            <label class="drop-label">
+                                <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateSectionFilter(dept)" />
+                                <span class="check-overlay"></span>
+                                <span class="drop-label-text">{{dept.name}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>User&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'userOptions'" popover-title="Users" popover-is-open="vm.isUserOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.userFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Station&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'stationOptions'" popover-title="Stations" popover-is-open="vm.isStationOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.stationFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Reported&nbsp;</span>
+                </li>
+                <li class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                        {{vm.reportedFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                    <ul id="sort-filter" class="dropdown-menu">
+                        <li ng-click="vm.reportedFilter={ id: 0, title: 'All', items : []  };">
+                            <label class="drop-label">
+                                @*<input type="checkbox" />
+                                    <span class="check-overlay"></span>*@
+                                <span class="drop-label-text">All</span>
+                            </label>
+                        </li>
+                        <li ng-repeat="dept in vm.reporteds">
+                            <label class="drop-label">
+                                <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateReportedFilter(dept)" />
+                                <span class="check-overlay"></span>
+                                <span class="drop-label-text">{{dept.name}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Gear at Fault&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false; vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'gearfaultsOptions'" popover-title="Gear at Fault" popover-is-open="vm.isGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.gearFaultFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Sub Gear at Fault&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'subGearfaultsOptions'" popover-title="Sub Gear at Fault" popover-is-open="vm.isSubGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.subGearFaultFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="separator-sortby" style="padding : 10px;">
+                    <span>Manufacture&nbsp;</span>
+                </li>
+                <li class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;">
+                    <a class="dropdown-toggle accent-color" data-uib-popover-template="'manufacturesOptions'" popover-title="Manufacture" popover-is-open="vm.isManufacureOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.manufactureFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="no-hover" @*ng-csv="getExportDataSource()" csv-header="getExportHeaders()" filename="SFRReport.csv"*@ data-ng-click="downloadFailureFile()" style="padding : 0;">
+                        <img src="~/Content/images/ExportExcel.png" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+

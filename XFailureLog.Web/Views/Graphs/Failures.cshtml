@@ -1,0 +1,481 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="col-sm-12 clear-side-padding" data-ng-controller="graphsController">
+    <div class="col-sm-12">
+        <h5 class="stat-heading clear-top">
+            Total Failure Info Bar Chart
+        </h5>
+    </div>
+    <div class="col-sm-12">
+        <div class="form-group col-sm-4 col-md-4">
+            <label>From Date :</label>
+            <input type="text" class="form-control" data-ng-model="vm.fromDate"
+                   data-uib-datepicker-popup="mediumDate"
+                   data-datepicker-options="{ showWeeks:false }"
+                   data-is-open="oapplyFrom"
+                   data-ng-click="oapplyFrom= oapplyFrom ? false:true;"
+                   placeholder="Select from Date" />
+        </div>
+        <div class="form-group col-sm-4 col-md-4">
+            <label>To Date :</label>
+            <input type="text" class="form-control" data-ng-model="vm.toDate"
+                   data-uib-datepicker-popup="mediumDate"
+                   data-datepicker-options="{ showWeeks:false }"
+                   data-is-open="toapplyFrom"
+                   data-ng-click="toapplyFrom= toapplyFrom ? false:true;"
+                   placeholder="Select to Date.." />
+        </div>
+        <div class="form-group col-sm-4 col-md-4">
+            <button type="button" class="btn btn-default btn-get" ng-click="get()" style=" float: left;">Get</button>
+            <div class="export-item filter-item" style=" float: left; margin-left: 15px; margin-top: 20px;">
+                <a class="no-hover" data-ng-click="downloadFailureFile()" style="padding : 0;">
+                    <img src="~/Content/images/ExportExcel.png" />
+                </a>
+            </div>
+            <div style="float : left">
+                <a class="filter-show" data-ng-click="vm.showFilters = !vm.showFilters"><span data-ng-if="vm.showFilters">Show </span><span data-ng-if="!vm.showFilters">Hide </span>Filters</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 filter-pane">
+        <div class="search-bar-item">
+            <div class="search-box filter-item" style="width: 210px;">
+                <input class="form-control search-input" data-ng-show="false" type="search" data-ng-model="searchText" placeholder="Search List...">
+            </div>
+
+        </div>
+        <div class="filter-items" data-ng-if="!vm.showFilters">
+            <div class="form-group filter-box form">
+                <label class="filter-label">Section</label>
+                <div class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color filter-button" data-toggle="dropdown">
+                        {{vm.sectionFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                    <ul id="sort-filter" class="dropdown-menu">
+                        <li ng-click="vm.sectionFilter={ id: 0, title: 'All', items : []  };">
+                            <label class="drop-label">
+                                <span class="drop-label-text">All</span>
+                            </label>
+                        </li>
+                        <li ng-repeat="dept in vm.sections">
+                            <label class="drop-label">
+                                <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateSectionFilter(dept)" />
+                                <span class="check-overlay"></span>
+                                <span class="drop-label-text">{{dept.name}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group filter-box form">
+                <label class="filter-label">Station Type</label>
+                <div class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color filter-button" data-toggle="dropdown">
+                        {{vm.stationTypeFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                    <ul id="sort-filter" class="dropdown-menu">
+                        <li ng-click="vm.stationTypeFilter={ id: -1, title: 'All', items : []  };">
+                            <label class="drop-label">
+                                <span class="drop-label-text">All</span>
+                            </label>
+                        </li>
+                        <li ng-repeat="dept in vm.stationTypes">
+                            <label class="drop-label">
+                                <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateStationTypeFilter(dept)" />
+                                <span class="check-overlay"></span>
+                                <span class="drop-label-text">{{dept.name}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group filter-box form">
+                <label class="filter-label">Station</label>
+                <div class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color filter-button" data-uib-popover-template="'stationOptions'" popover-title="Stations" popover-is-open="vm.isStationOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.stationFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </div>
+            </div>
+            <div class="form-group filter-box form">
+                <label class="filter-label">User</label>
+                <div class="fixed-width-popover" data-ng-click="vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color filter-button" data-uib-popover-template="'userOptions'" popover-title="Users" popover-is-open="vm.isUserOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.userFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </div>
+            </div>
+            <div class="form-group filter-box form">
+                <label class="filter-label">Reported</label>
+                <div class="dropdown" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color filter-button" data-toggle="dropdown">
+                        {{vm.reportedFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                    <ul id="sort-filter" class="dropdown-menu">
+                        <li ng-click="vm.reportedFilter={ id: 0, title: 'All', items : []  };">
+                            <label class="drop-label">
+                                <span class="drop-label-text">All</span>
+                            </label>
+                        </li>
+                        <li ng-repeat="dept in vm.reporteds">
+                            <label class="drop-label">
+                                <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateReportedFilter(dept)" />
+                                <span class="check-overlay"></span>
+                                <span class="drop-label-text">{{dept.name}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group filter-box form">
+                <label class="filter-label">Gear at Fault</label>
+                <div class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false; vm.isSubGearFaultOpen = false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color filter-button" data-uib-popover-template="'gearfaultsOptions'" popover-title="Gear at Fault" popover-is-open="vm.isGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.gearFaultFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </div>
+            </div>
+            <div class="form-group filter-box form">
+                <label class="filter-label">Sub Gear at Fault</label>
+                <div class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isManufacureOpen = false;">
+                    <a class="dropdown-toggle accent-color filter-button" data-uib-popover-template="'subGearfaultsOptions'" popover-title="Sub Gear at Fault" popover-is-open="vm.isSubGearFaultOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.subGearFaultFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </div>
+            </div>
+            <div class="form-group filter-box form">
+                <label class="filter-label">Manufacture</label>
+                <div class="fixed-width-popover" data-ng-click="vm.isUserOpen=false;vm.isStationOpen=false;vm.isGearFaultOpen=false;vm.isSubGearFaultOpen = false;">
+                    <a class="dropdown-toggle accent-color filter-button" data-uib-popover-template="'manufacturesOptions'" popover-title="Manufacture" popover-is-open="vm.isManufacureOpen" popover-placement="bottom" popover-trigger="outsideClick">
+                        {{vm.manufactureFilter.title}}
+                        <b class="icon-arrow-down2"></b>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12" data-ng-if="vm.failures.length > 0">
+        <div class="label-header">
+            <div class="ruler-label" data-ng-repeat="row in rows" data-ng-style="{'top':row.lableTop}">{{row.label}}</div>
+        </div>
+        <div class="col-sm-7 bar-chart">
+            <div class="inside-div col-sm-12 clear-side-padding">
+                <div class="ruler-row" data-ng-repeat="row in rows" data-ng-style="{'top':row.top}"></div>
+                <div class="progress-container" data-ng-repeat="failure in vm.failures">
+                    <div class="progress progress-vertical available-progress information-tooltip tooltip-grey" uib-tooltip="{{failure.station}}" tooltip-placement="bottom">
+                        <div class="progress-bar progress-bar-info" data-ng-style="{height: failure.fillDuration}" data-ng-click="showFailureDetails(failure)">
+                            <div class="progress-label">{{failure.durationStamp}}</div>
+                        </div>
+                    </div>
+                    <div class="station-name">{{failure.station}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 clear-right-padding">
+            <div class="col-sm-12">
+                <h5 class="stat-heading clear-top" style="text-align: center;">
+                    Failure Cost Estimate Graph
+                </h5>
+            </div>
+            @*<div class="col-sm-12 chart-model clear-side-padding ">
+                    <div class="donut-chart" data-ng-if="vm.experienceRanges.length > 0">
+                        <nvd3 options="vm.experienceDonutChart" data="vm.experienceRanges"></nvd3>
+                    </div>
+                    <div data-ng-if="vm.experienceRanges.length == 0" class="col-sm-12">No failures</div>
+                </div>*@
+            <div class="col-sm-12 chart-model clear-side-padding ">
+                <div class="donut-chart" data-ng-if="vm.departmentRanges.length > 0">
+                    <nvd3 options="vm.experienceDonutChart" data="vm.departmentRanges"></nvd3>
+                </div>
+                <div data-ng-if="vm.departmentRanges.length == 0" class="col-sm-12">No failures</div>
+            </div>
+            <div class="col-sm-12">
+                <h5 class="stat-heading" style="text-align: center;">
+                    Failures on Gear at Faults  Graph
+                </h5>
+            </div>
+            <div class="col-sm-12 chart-model clear-side-padding ">
+                <div class="donut-chart" data-ng-if="vm.gearfaultRanges.length > 0">
+                    <nvd3 options="vm.experienceDonutChart" data="vm.gearfaultRanges"></nvd3>
+                </div>
+                <div data-ng-if="vm.gearfaultRanges.length == 0">No failures</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="col-sm-4" data-ng-if="vm.failures.length > 0">
+            <h5 class="col-sm-12 stat-heading clear-side-padding">Chart statistics</h5>
+            <ul class="col-sm-12 clear-right-padding">
+                <li>No. of Failures : {{vm.failures.length}}</li>
+                <li>No. of Stations : {{stationsCount}}</li>
+                <li>AVG Rectification Time : {{avgTotalDuaration}}</li>
+            </ul>
+        </div>
+        <div class="col-sm-4" data-ng-if="vm.failures.length > 0">
+            <h6 class="col-sm-12 clear-side-padding stat-heading">Cost Estimate STATISTICS</h6>
+            <div class="col-sm-12 clear-side-padding chart-legend">
+                <p class="legend-item" data-ng-repeat="type in vm.experienceRanges">
+                    <span data-ng-style="{backgroundColor: type.color}"></span>{{type.key}}
+                </p>
+                <p class="legend-item" data-ng-repeat="type in vm.departmentRanges">
+                    <span data-ng-style="{backgroundColor: type.color}"></span>{{type.key}}
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4" data-ng-if="vm.failures.length > 0">
+            <h6 class="col-sm-12 clear-side-padding stat-heading">Gear at Faults STATISTICS</h6>
+            <div class="col-sm-12 clear-side-padding chart-legend">
+                <p class="legend-item" data-ng-repeat="type in vm.gearfaultRanges">
+                    <span data-ng-style="{backgroundColor: type.color}"></span>{{type.key}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12"><h4 class="col-sm-12" data-ng-if="vm.failures.length == 0">No failures reported.</h4></div>
+    <script type="text/ng-template" id="stationOptions">
+        <div class="leave-request-options col-sm-12 clear-right-padding" data-ng-nicescroll="" data-nice-option="vm.scrollSettings">
+            <div class="col-sm-12 clear-side-padding">
+                <div class="col-sm-4 clear-left-padding popover-item" data-ng-click="vm.stationFilter={ id: 0, title: 'All', items : [] };vm.isStationOpen=false">
+                    <label class="drop-label">
+                        @*<input type="checkbox" />
+                            <span class="check-overlay"></span>*@
+                        <span class="drop-label-text">All Stations</span>
+                    </label>
+                </div>
+                <div data-ng-repeat="category in vm.currentStations | orderBy:'name'" class="col-sm-4 clear-left-padding popover-item" title="{{category.name}}">
+                    <label class="drop-label">
+                        <input type="checkbox" data-ng-model="category.selected" data-ng-change="updateStationFilter(category)" />
+                        <span class="check-overlay"></span>
+                        <span class="drop-label-text">{{category.name}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="userOptions">
+        <div class="leave-request-options col-sm-12 clear-right-padding" data-ng-nicescroll="" data-nice-option="vm.scrollSettings">
+            <div class="col-sm-12 clear-side-padding">
+                <div class="col-sm-4 clear-left-padding popover-item" data-ng-click="vm.userFilter={ id: 0, title: 'All', items : [] };vm.isUserOpen=false">
+                    <label class="drop-label">
+                        @*<input type="checkbox" />
+                            <span class="check-overlay"></span>*@
+                        <span class="drop-label-text">All Users</span>
+                    </label>
+                </div>
+                <div data-ng-repeat="user in vm.currentUsers | orderBy:'displayName'" class="col-sm-4 clear-left-padding popover-item" title="{{user.displayName}}">
+                    <label class="drop-label">
+                        <input type="checkbox" data-ng-model="user.selected" data-ng-change="updateUserFilter(user)" />
+                        <span class="check-overlay"></span>
+                        <span class="drop-label-text">{{user.displayName}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="gearfaultsOptions">
+        <div class="leave-request-options col-sm-12 clear-right-padding" data-ng-nicescroll="" data-nice-option="vm.scrollSettings">
+            <div class="col-sm-12 clear-side-padding">
+                <div class="col-sm-4 clear-left-padding popover-item" data-ng-click="vm.gearFaultFilter={ id: 0, title: 'All' , items : [] };vm.isGearFaultOpen=false">
+                    <label class="drop-label">
+                        @*<input type="checkbox" />
+                            <span class="check-overlay"></span>*@
+                        <span class="drop-label-text">All</span>
+                    </label>
+                </div>
+                <div data-ng-repeat="dept in vm.gearFaults| orderBy:'name'" class="col-sm-4 clear-left-padding popover-item" title="{{dept.name}}">
+                    <label class="drop-label">
+                        <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateGearFaultFilter(dept)" />
+                        <span class="check-overlay"></span>
+                        <span class="drop-label-text">{{dept.name}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="subGearfaultsOptions">
+        <div class="leave-request-options col-sm-12 clear-right-padding" data-ng-nicescroll="" data-nice-option="vm.scrollSettings">
+            <div class="col-sm-12 clear-side-padding">
+                <div class="col-sm-4 clear-left-padding popover-item" data-ng-click="vm.subGearFaultFilter={ id: 0, title: 'All', items : []  };vm.isSubGearFaultOpen=false">
+                    <label class="drop-label">
+                        @*<input type="checkbox" data-ng/>
+                            <span class="check-overlay"></span>*@
+                        <span class="drop-label-text">All</span>
+                    </label>
+                </div>
+                <div data-ng-repeat="dept in vm.currentSubGearFaults| orderBy:'name'" class="col-sm-4 clear-left-padding popover-item" title="{{dept.name}}">
+                    <label class="drop-label">
+                        <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateSubGearFaultFilter(dept)" />
+                        <span class="check-overlay"></span>
+                        <span class="drop-label-text">{{dept.name}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/ng-template" id="manufacturesOptions">
+        <div class="leave-request-options col-sm-12 clear-right-padding" data-ng-nicescroll="" data-nice-option="vm.scrollSettings">
+            <div class="col-sm-12 clear-side-padding">
+                <div class="col-sm-4 clear-left-padding popover-item" data-ng-click="vm.manufactureFilter={ id: 0, title: 'All', items : []  };vm.isManufacureOpen=false">
+                    <label class="drop-label">
+                        @*<input type="checkbox" />
+                            <span class="check-overlay"></span>*@
+                        <span class="drop-label-text">All</span>
+                    </label>
+                </div>
+                <div data-ng-repeat="dept in vm.currentManufactures| orderBy:'name'" class="col-sm-4 clear-left-padding popover-item" title="{{dept.name}}">
+                    <label class="drop-label">
+                        <input type="checkbox" data-ng-model="dept.selected" data-ng-change="updateManufactureFilter(dept)" />
+                        <span class="check-overlay"></span>
+                        <span class="drop-label-text">{{dept.name}}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
+
+
+<script type="text/ng-template" id="failure-detail">
+    <div class="modal-header col-sm-12 clear-side-padding">
+        <h3 class="clear-margin col-sm-11"> Failure Details</h3>
+        <span class="glyphicon glyphicon-remove close-icon float-right" data-ng-click="$dismiss('true')"></span>
+    </div>
+    <div class="modal-body content-container col-sm-12 clear-side-padding">
+        <div class="col-lg-12 col-md-12 col-sm-12 discussions container clear-side-padding">
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>SFR No.</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.sfrNo}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Reported</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.reported}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Station</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.station}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Gear at fault</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.gearFault}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Breif Description</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.description}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Cause of Failure</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.causeOfFailure}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Is Train Loss Punctuality</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.isTrainLate}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item" data-ng-if="vm.currentFailure.isTrainLate">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Train Loss Punctuality</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.trainLossPunctual}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Train Detained</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.trainDetained}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Failure Chargeable </label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.failureChargeable}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Time of Occurance</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.stimeOfOccurance}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Time Signal Main Informed</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.stimeSignalMainInformed}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Time Signal Main Reached</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.stimeSignalMainReached}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Time Rectified</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.stimeRectified}}
+                </div>
+            </div>
+            <div class="col-sm-12 clear-side-padding modal-item">
+                <div class="col-sm-5 clear-right-padding">
+                    <label>Duration</label>
+                </div>
+                <div class="col-sm-7 clear-right-padding">
+                    {{vm.currentFailure.duration}}
+                </div>
+            </div>
+            <div class="col-sm-12 vertical-margin">
+                <button class="btn btn-submit pull-right blue-button" data-ng-click="$dismiss('true')">Close</button>
+            </div>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+}
+
+<div data-ng-controller="StationController">
+    <div class="table-list" data-ng-hide="showForm">
+        <div id="content-filters" class="row-fluid col-sm-12" style="margin-left: -10px; margin-bottom : 10px;">
+            <div class="span12 filter-list col-sm-12">
+                @*write search*@
+                <ul class="nav nav-pills">
+                    <li class="dropdown">
+                        <input class="form-control search-input" type="search" ng-model="searchText" placeholder="Search List...">
+
+                    </li>
+                    @*<li class="separator-sortby" style="padding : 10px;">
+                        <span>Sort by&nbsp;</span>
+                    </li>
+                    <li class="dropdown">
+
+                        <a class="dropdown-toggle accent-color" data-toggle="dropdown">
+                            {{SortValue}}
+                            <b class="icon-arrow-down2" href="#"></b>
+                        </a>
+                        <ul id="sort-filter" class="dropdown-menu">
+                            <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='None'"></span><a data-ng-click="SortByPredicate='none';SortValue='None';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='None'}">None</a></li>
+                            <li><span class="icon-circle2 dropdown-select-indication" data-ng-show="SortValue =='Department Name'"></span><a data-ng-click="SortByPredicate='name';SortValue='Department Name';reverse=false" data-ng-class="{'admin-list-page-dropdown-value-selected':SortValue =='Department Name'}">Department Name</a></li>
+
+                        </ul>
+                    </li>*@
+                    <li class="dropdown">
+                        <img src="~/Content/images/Add.png" ng-click="addItem()" />
+                    </li>
+                    @*<li class="dropdown">
+                            <img src="~/Content/themes/base/images/ExportExcel.png" ng-click="exportToExcel()" />
+                        </li>*@
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-11 col-md-8 col-lg-8">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th ng-repeat="header in vm.tableHeaders" ng-click="vm.sortTableData(header)">{{header.title}}<span data-ng-if="vm.currentSortingElement.name == header.name" data-ng-class="vm.sortReverse ? 'icon-arrow-down2' : 'icon-arrow-up2'"></span></th>
+                        <th>Update/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="admin-app-list" data-ng-repeat="station in vm.stations| orderBy:vm.currentSortingElement.name:vm.sortReverse | filter:searchText" data-ng-class="{'department-list-item-selected': department.id == selectedDepartmentId }">
+                        <td class="app-type">{{$index+1}}</td>
+                        <td class="app-status">{{station.name}}</td>
+                        <td class="app-status">{{station.code}}</td>
+                        <td class="app-status">{{station.sectionName}}</td>
+                        <td class="app-status">{{station.asteName}}</td>
+                        <td class="app-status">{{station.cseName}}</td>
+                        <td class="app-status">{{station.esmName}}</td>
+                        <td class="app-status">{{station.jeName}}</td>
+                        <td><a ng-click="modify(station)">update</a><a style="margin-left : 15px;" ng-click="delete(station)">delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="form-section  col-sm-3" ng-show="showForm">
+        <h2 ng-hide="showUpdateButton">Add Station</h2>
+        <h2 ng-show="showUpdateButton">Update Station</h2>
+
+        <form role="form" name="departments">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" class="form-control" ng-model="model.name" placeholder="Enter name..." required />
+            </div>
+            <div class="form-group">
+                <label>Code:</label>
+                <input type="text" class="form-control" ng-model="model.code" placeholder="Enter code..." required />
+            </div>
+            <div class="form-group">
+                <label>Section:</label>
+                <select class="form-control" data-ng-model="model.sectionId" data-ng-options="type.id as type.name for type in vm.sections" required>
+                    <option value="">Select</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>ASTE:</label>
+                <div class="employee-search-typeahead">
+                    <span class="icon-user3 input-group-icon"></span>
+                    <input type="text" ng-model="model.asteUser" uib-typeahead="person as person.displayName for person in getFilteredEmployees($viewValue)"
+                           typeahead-wait-ms="750"
+                           typeahead-template-url="employee-display-template" typeahead-editable="false"
+                           placeholder="Start typing employee name" class="form-control input-group-field" name="notifyTo" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>CSE:</label>
+                <div class="employee-search-typeahead">
+                    <span class="icon-user3 input-group-icon"></span>
+                    <input type="text" ng-model="model.cseUser" uib-typeahead="person as person.displayName for person in getFilteredEmployees($viewValue)"
+                           typeahead-wait-ms="750"
+                           typeahead-template-url="employee-display-template" typeahead-editable="false"
+                           placeholder="Start typing employee name" class="form-control input-group-field" name="notifyTo" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>JE:</label>
+                <div class="employee-search-typeahead">
+                    <span class="icon-user3 input-group-icon"></span>
+                    <input type="text" ng-model="model.jeUser" uib-typeahead="person as person.displayName for person in getFilteredEmployees($viewValue)"
+                           typeahead-wait-ms="750"
+                           typeahead-template-url="employee-display-template" typeahead-editable="false"
+                           placeholder="Start typing employee name" class="form-control input-group-field" name="notifyTo" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>ESM:</label>
+                <div class="employee-search-typeahead">
+                    <span class="icon-user3 input-group-icon"></span>
+                    <input type="text" ng-model="model.esmUser" uib-typeahead="person as person.displayName for person in getFilteredEmployees($viewValue)"
+                           typeahead-wait-ms="750"
+                           typeahead-template-url="employee-display-template" typeahead-editable="false"
+                           placeholder="Start typing employee name" class="form-control input-group-field" name="notifyTo" autocomplete="off" />
+                </div>
+            </div>
+            <button type="submit" ng-hide="showUpdateButton" class="btn btn-default" ng-click="save(model)">Save</button>
+            <button type="submit" ng-show="showUpdateButton" class="btn btn-default" ng-click="update(model)">Update</button>
+            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="employee-display-template">
+    <a class="search-result-item" data-ng-if="!match.model.noResults">
+        <div class="vertical-margin">
+            <span ng-bind-html="match.model.displayName | uibTypeaheadHighlight:query"></span>
+            <br />
+            <span data-ng-if="match.model.email" ng-bind-html="match.model.email"></span>
+            <!--<br data-ng-if="match.model.employeeRole" />-->
+        </div>
+        <!--<span ng-bind-html="match.model.email"></span>-->
+    </a>
+    <a data-ng-if="match.model.noResults" class="search-result-item" data-ng-click="$event.stopPropagation();">
+        <div class="col-sm-12">
+            <h4>No results found</h4>
+        </div>
+    </a>
+</script>

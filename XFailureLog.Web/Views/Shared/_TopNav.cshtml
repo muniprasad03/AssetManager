@@ -1,0 +1,35 @@
+﻿<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#151414">
+    <div class="notification" data-control-post-data-notification="" data-ng-bind="notificationMessage"></div>
+    <div class="col-sm-12 clear-side-padding">
+        <a class="pull-left" href="/#/products" style="display: inline-block;   color: white;  text-align:center;    text-decoration: none;   font-weight: 300;    padding: 0 0 0 15px;    vertical-align: -webkit-baseline-middle;    font-size: 24px;">
+            <h4 class="title">IBMS</h4>
+        </a>
+        @*<div class="pull-left">
+            <h2 class="page-section-name vertical-margin" data-ng-bind="title"></h2>
+        </div>*@
+        <div id="top-nav" class="pull-right user-options-container">
+            <div class="collapse navbar-collapse">
+                <div class="nav-no-collapse header-nav pull-right">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="dropdown user-options">
+                            <a data-toggle="dropdown" class="dropdown-toggle display-details-container">
+                                <div class="pull-left profile-displayname">
+                                    <h4 class="pull-left "><span class="employee-name" style="font-weight: 500; color:white;" data-ng-bind="vm.profile.displayName"></span></h4><span class="icon-arrow-down-2 pull-right action-link"></span>
+                                </div>
+                                <div class="member-profile-picture-container profile-picture-container pull-right">
+                                    <img style=" margin: 0 10px 0 10px; width: 35px; border-radius: 50%; vertical-align: middle;" class="profile-picture ng-scope" src="~/Content/images/user.jpg">
+                                </div>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="~/Manage/ChangePassword"><i class="icon-lock3"></i> Change Password</a></li>
+                                <li><a href="~/Account/Logoff"><i class="icon-exit3"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bundle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://vswebessentials.com/schemas/v1/bundle.xsd">
+  <settings>
+    <!--Determines if the bundle file should be automatically optimized after creation/update.-->
+    <minify>true</minify>
+    <!--Determine whether to generate/re-generate this bundle on building the solution.-->
+    <runOnBuild>false</runOnBuild>
+    <!--Specifies a custom subfolder to save files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectory />
+  </settings>
+  <!--The order of the <file> elements determines the order of the files in the bundle.-->
+  <files>
+    <file>/Scripts/angular.js</file>
+    <file>/Scripts/angular-resource.js</file>
+    <file>/Scripts/angular-mocks.js</file>
+    <file>/Scripts/angular-route.js</file>
+    <file>/Scripts/angular-sanitize.js</file>
+    <file>/Scripts/angular-cookies.js</file>
+    <file>/Scripts/angular-ui-router.js</file>
+    <file>/Scripts/angular-ui/ui-bootstrap.js</file>
+    <file>/Scripts/angular-ui/ui-bootstrap-tpls.js</file>
+    <file>/Scripts/ui-grid.js</file>
+    <file>/Scripts/angular-nicescroll.js</file>
+    <file>/Scripts/app/dialog.js</file>
+    <file>/Scripts/select.js</file>
+  </files>
+</bundle>
