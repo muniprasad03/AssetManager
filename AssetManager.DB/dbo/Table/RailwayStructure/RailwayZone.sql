@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[RailwayZone]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Code] NVARCHAR(10) NOT NULL, 
+    [Name] NVARCHAR(256) NOT NULL
+)
