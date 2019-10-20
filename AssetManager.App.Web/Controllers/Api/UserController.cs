@@ -12,7 +12,7 @@ using XFailureLog.Services.Services;
 using XFailureLog.Web.Core;
 using XFailureLog.Web.Models;
 
-namespace XFailureLog.Web.Controllers.Api
+namespace AssetManager.App.Web.Controllers.Api
 {
     [RoutePrefix("api/user")]
     public class UserController : BaseApiController

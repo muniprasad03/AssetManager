@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace XFailureLog.Web
+namespace AssetManager.App.Web
 {
     public static class Extensions
     {

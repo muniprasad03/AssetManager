@@ -9,7 +9,7 @@ using XFailureLog.Models;
 using XFailureLog.Services.Services;
 using XFailureLog.Models.Reports;
 
-namespace XFailureLog.Web.Controllers.Api
+namespace AssetManager.App.Web.Controllers.Api
 {
     [RoutePrefix("api/report")]
     public class ReportController : BaseApiController

@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using XFailureLog.Web.Models;
 
-namespace XFailureLog.Web
+namespace AssetManager.App.Web
 {
     public partial class Startup
     {

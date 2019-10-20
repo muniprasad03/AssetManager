@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace XFailureLog.Web.Controllers
+namespace AssetManager.App.Web.Controllers
 {
     public class WorkController : Controller
     {

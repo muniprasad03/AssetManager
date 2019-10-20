@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace XFailureLog.Web.Models
+namespace AssetManager.App.Web.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

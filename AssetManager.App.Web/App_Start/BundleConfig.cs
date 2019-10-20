@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace XFailureLog.Web
+namespace AssetManager.App.Web
 {
     public class BundleConfig
     {

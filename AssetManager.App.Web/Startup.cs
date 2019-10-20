@@ -3,7 +3,7 @@ using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(XFailureLog.Web.Startup))]
-namespace XFailureLog.Web
+namespace AssetManager.App.Web
 {
     public partial class Startup
     {

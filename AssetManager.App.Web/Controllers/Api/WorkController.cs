@@ -8,7 +8,7 @@ using XFailureLog.Models;
 using XFailureLog.Services.Services;
 using XFailureLog.Web.Core;
 
-namespace XFailureLog.Web.Controllers.Api
+namespace AssetManager.App.Web.Controllers.Api
 {
     [RoutePrefix("api/work")]
     public class WorkController : BaseApiController

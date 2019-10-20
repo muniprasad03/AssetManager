@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 
-namespace XFailureLog.Web
+namespace AssetManager.App.Web
 {
     public static class WebApiConfig
     {

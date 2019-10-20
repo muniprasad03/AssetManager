@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using XFailureLog.Services;
 
-namespace XFailureLog.Web.Controllers
+namespace AssetManager.App.Web.Controllers
 {
     [Authorize]
     public class BaseController : Controller

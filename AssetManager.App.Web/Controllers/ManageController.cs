@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using XFailureLog.Web.Models;
 
-namespace XFailureLog.Web.Controllers
+namespace AssetManager.App.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller

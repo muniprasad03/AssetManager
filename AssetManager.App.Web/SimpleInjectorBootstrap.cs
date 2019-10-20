@@ -9,7 +9,7 @@ using XFailureLog.Web.Controllers;
 using XFailureLog.Web.Controllers.Api;
 using XFailureLog.Web.Models;
 
-namespace XFailureLog.Web
+namespace AssetManager.App.Web
 {
     public sealed class SimpleInjectorBootstrap
     {
