@@ -1,10 +1,6 @@
-﻿using System;
+﻿using AssetManager.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using XFailureLog.Models;
-using XFailureLog.Services.Services;
 using XFailureLog.Web.Core;
 
 namespace AssetManager.App.Web.Controllers.Api
@@ -53,7 +49,6 @@ namespace AssetManager.App.Web.Controllers.Api
 
         [Route("{id}")]
         [AdminApiAuthorizeAttribute]
-
         public void Delete(int id)
         {
             this.ReportedService.Delete(id);
