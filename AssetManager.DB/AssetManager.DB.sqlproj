@@ -56,5 +56,20 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Views" />
+    <Folder Include="dbo\Store Procedures" />
+    <Folder Include="dbo\Table" />
+    <Folder Include="dbo\Table\RailwayStructure" />
+    <Folder Include="dbo\Table\Asset" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Table\RailwayStructure\RailwayZone.sql" />
+    <Build Include="dbo\Table\RailwayStructure\RailwayDivision.sql" />
+    <Build Include="dbo\Table\RailwayStructure\RailwayStation.sql" />
+    <Build Include="dbo\Table\Asset\Asset.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="AssetManager.DB.refactorlog" />
   </ItemGroup>
 </Project>

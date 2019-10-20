@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="d41f3859-7bc5-41e1-9e18-2ed22396f779" ChangeDateTime="10/20/2019 15:01:50">
+    <Property Name="ElementName" Value="[dbo].[SignalAsset].[[StationId]]]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SignalAsset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StationId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="05d7e5fb-de54-4af9-a5ba-86c9f6a1efa0" ChangeDateTime="10/20/2019 15:02:20">
+    <Property Name="ElementName" Value="[dbo].[SignalAsset].[Depart]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SignalAsset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Department" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ff386437-c442-4b8a-89fe-d436c6155f48" ChangeDateTime="10/20/2019 15:02:28">
+    <Property Name="ElementName" Value="[dbo].[SignalAsset].[Department]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SignalAsset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DepartmentId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="32fd789d-f064-4b13-ae51-f8cbc06ff500" ChangeDateTime="10/20/2019 15:03:18">
+    <Property Name="ElementName" Value="[dbo].[SignalAsset].[Cate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SignalAsset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CategoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="37365900-3c32-4455-9263-3c9aae7ffd2a" ChangeDateTime="10/20/2019 15:25:11">
+    <Property Name="ElementName" Value="[dbo].[SignalAsset].[DepartmentId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SignalAsset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Department" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b5cdb2c2-a0b6-4447-91d4-48d3d34ae68b" ChangeDateTime="10/20/2019 15:25:30">
+    <Property Name="ElementName" Value="[dbo].[SignalAsset].[CategoryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SignalAsset]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MainCategory" />
+  </Operation>
+</Operations>

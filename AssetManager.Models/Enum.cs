@@ -55,4 +55,64 @@ namespace AssetManager.Models
         UP = 1,
         Down = 2
     }
+
+    public enum AssetType
+    {
+        None,
+        ColourLightSignal,
+        ElectricalOperatedPoints
+    }
+
+    public enum SignalType
+    {
+        Main,
+        Shunt,
+        Subsidiary
+    }
+
+    public enum SubsidiaryType
+    {
+        None,
+        CallingOn,
+        RouteIndicator,
+        AMarker,
+        AGMarker,
+        Stencil,
+        NumericDisplay,
+        TheaterType
+    }
+
+    public enum SignalTypeOfUnit
+    {
+        None = 0,
+        Metallic,
+        FRP
+    }
+
+    public enum SignalLocation
+    {
+        None,
+        LH,
+        RH,
+        ExtremeLH,
+        ExtremeRH,
+        Gantry
+    }
+
+    public enum SacrificialMast
+    {
+        None,
+        Provided,
+        NotProvided
+    }
+
+    public enum AttachFileType
+    {
+        None,
+        GearImage,
+        Specification,
+        TenderDoc,
+        Manual,
+        Other
+    }
 }

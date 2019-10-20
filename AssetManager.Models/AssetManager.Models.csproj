@@ -46,12 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asset\Asset.cs" />
+    <Compile Include="Asset\AssetFileAttachment.cs" />
+    <Compile Include="Asset\AssetMetadata.cs" />
+    <Compile Include="Asset\ColorLightSignal\ColorLightSignalAssetView.cs" />
+    <Compile Include="Asset\ColorLightSignal\ColorLightSignalAsset.cs" />
+    <Compile Include="Asset\ColorLightSignal\ColorLightSignalMetadata.cs" />
     <Compile Include="CauseOfFailure.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Failure.cs" />
     <Compile Include="AxleGearCode.cs" />
+    <Compile Include="FileAttachment.cs" />
     <Compile Include="GearFault.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="Manufacture.cs" />

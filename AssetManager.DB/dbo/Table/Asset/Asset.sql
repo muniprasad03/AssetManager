@@ -1,0 +1,22 @@
+﻿CREATE TABLE [dbo].[Asset]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [StationId] INT NOT NULL, 
+    [Department] NVARCHAR(50) NOT NULL, 
+    [MainCategory] NVARCHAR(50) NOT NULL, 
+    [AssetType] SMALLINT NOT NULL, 
+    [Latitude] NCHAR(20) NULL, 
+    [Longitude] NCHAR(20) NULL, 
+    [Make] NVARCHAR(512) NULL , 
+    [DOM] DATE NULL, 
+    [Model] NVARCHAR(128) NULL, 
+    [DOI] DATE NULL, 
+    [QRCode] NCHAR(10) NULL, 
+    [MetaData] NVARCHAR(MAX) NULL,
+	[IsDeleted]         BIT             DEFAULT ((0)) NOT NULL,
+    [DateDeleted]       DATETIME        NULL,
+	[DateCreated]  DATETIME         DEFAULT (getutcdate()) NOT NULL,
+    [DateModified] DATETIME         DEFAULT (getutcdate()) NOT NULL,
+    [CreatedBy]    VARCHAR (50)     NULL,
+    [ModifiedBy]   VARCHAR (50)     NULL,
+)
