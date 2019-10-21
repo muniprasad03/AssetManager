@@ -78,10 +78,10 @@ namespace AssetManager.App.Web
                     .Include("~/Content/Site/login.less"));
 
             bundles.Add(new Bundle("~/bundles/assetapp").Include(
-                 "~/dist/assetapp/*.js"));
+                 "~/dist/assetManager/*.js"));
 
       bundles.Add(new StyleBundle("~/bundles/styles").Include(
-                    "~/dist/assetapp/Styles.*"));
+                    "~/dist/assetManager/Styles.*"));
     }
   }
 }
