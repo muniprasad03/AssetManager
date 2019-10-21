@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -14,10 +14,10 @@ namespace AssetManager.App.Web.Controllers.Api
     [RoutePrefix("api/signal")]
     public class ColorLightSignalController : BaseApiController
     {
-        public ColorLightSignalAssetService AssetService { get; set; }
+        public IColorLightSignalAssetService AssetService { get; set; }
         
 
-        public ColorLightSignalController(ColorLightSignalAssetService assetService)
+        public ColorLightSignalController(IColorLightSignalAssetService assetService)
         {
             this.AssetService = assetService;            
         }

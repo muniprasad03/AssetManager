@@ -1,4 +1,4 @@
-﻿using SimpleInjector;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using AssetManager.Services;
 using AssetManager.App.Web.Controllers;
 using AssetManager.App.Web.Models;
 using AssetManager.App.Web.Controllers.Api;
+using AssetManager.Services.Asset;
 
 namespace AssetManager.App.Web
 {
@@ -33,6 +34,7 @@ namespace AssetManager.App.Web
             container.Register<IGearFaultService, GearFaultService>();
             container.Register<IStationService, StationService>();
             container.Register<IUserService, UserService>();
+            container.Register<IColorLightSignalAssetService, ColorLightSignalAssetService>();
 
             container.RegisterPerWebRequest<Microsoft.AspNet.Identity.IUserStore<ApplicationUser>>(() =>
             {

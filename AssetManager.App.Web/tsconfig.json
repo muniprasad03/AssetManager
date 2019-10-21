@@ -18,5 +18,10 @@
       "es2018",
       "dom"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "Scripts/typings/es6-promise"
+  ]
 }

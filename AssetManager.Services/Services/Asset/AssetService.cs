@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AssetManager.Data.Model;
 using AssetManager.Models;
 using PetaPoco;
 
@@ -12,9 +13,9 @@ namespace AssetManager.Services.Asset
     {
         public abstract AssetType AssetType { get; }
 
-        public Database DB { get; private set; }
+        public XAssetDB DB { get; private set; }
 
-        public AssetService(Database db, IRequestContext context)
+        public AssetService(XAssetDB db, IRequestContext context)
             : base(context)
         {
             this.DB = db;

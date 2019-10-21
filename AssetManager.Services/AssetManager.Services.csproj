@@ -63,6 +63,7 @@
     <Compile Include="Services\Asset\AssetService.cs" />
     <Compile Include="Services\Asset\ColorLightSignalAssetService.cs" />
     <Compile Include="Services\Asset\IAssetService.cs" />
+    <Compile Include="Services\Asset\IColorLightSignalAssetService.cs" />
     <Compile Include="Services\FailureService.cs" />
     <Compile Include="Services\GearFaultService.cs" />
     <Compile Include="Services\IFailureService.cs" />

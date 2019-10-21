@@ -511,6 +511,7 @@
     <Content Include="assetManager\tsconfig.app.json" />
     <Content Include="assetManager\tsconfig.spec.json" />
     <Content Include="assetManager\tslint.json" />
+    <Content Include="package.json" />
     <None Include="Properties\PublishProfiles\bzarri - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bzarri - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FileSystem.pubxml" />
@@ -1414,6 +1415,7 @@
     <Content Include="Views\Reports\sections.cshtml" />
     <Content Include="Views\Dashboard\AddBlock.cshtml" />
     <Content Include="Views\Home\UIIndex.cshtml" />
+    <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
