@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AssetManager.Models;
 using DataModel = AssetManager.Data.Model;
+using AssetManager.Models.Asset.ColorLightSignal;
 
 namespace AssetManager
 {
@@ -37,7 +38,13 @@ namespace AssetManager
         .ForMember(d => d.StationType, opt => opt.Ignore());
             AutoMapper.Mapper.CreateMap<User, DataModel.User>()
                 .ForMember(d => d.GroupedStations, opt => opt.MapFrom(src => src.GroupedStations != null ? JsonConvert.SerializeObject(src.GroupedStations) : null));
-            //AutoMapper.Mapper.CreateMap<Category, DataModel.Category>();
+
+            AutoMapper.Mapper.CreateMap<ColorLightSignalAsset, DataModel.Asset>()
+                  .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (short)src.AssetType));
+
+            AutoMapper.Mapper.CreateMap<DataModel.Asset, ColorLightSignalAsset>()
+                .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
+
             AutoMapper.Mapper.CreateMap<Section, DataModel.Section>();
             AutoMapper.Mapper.CreateMap<DataModel.UserLoginActivity, LoginActivity>()
                     .ForMember(d => d.LoginStatus, opt => opt.MapFrom(src => (LoginStatus)src.LoginStatus));

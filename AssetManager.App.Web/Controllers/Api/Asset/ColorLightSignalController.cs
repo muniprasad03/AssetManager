@@ -28,10 +28,10 @@ namespace AssetManager.App.Web.Controllers.Api
             return this.AssetService.GetSignalListView();
         }
 
-        [Route("details")]
-        public ColorLightSignalAsset Get(int assetId)
+        [Route("details/{id}")]
+        public ColorLightSignalAsset Get(int id)
         {
-            return this.AssetService.GetById(assetId);
+            return this.AssetService.GetById(id);
         }
 
         [Route("add")]
@@ -41,17 +41,17 @@ namespace AssetManager.App.Web.Controllers.Api
             return this.AssetService.CreateAsset(asset);
         }
 
-        [Route("update")]
+        [Route("update/{id}")]
         [HttpPut]
-        public bool UpdateSignal(int assetId, ColorLightSignalAsset asset)
+        public bool UpdateSignal(int id, ColorLightSignalAsset asset)
         {
-            return this.AssetService.UpdateAsset(assetId, asset);
+            return this.AssetService.UpdateAsset(id, asset);
         }
 
-        [Route("delete")]
-        public bool DeleteSignal(int assetId)
+        [Route("delete/{id}")]
+        public bool DeleteSignal(int id)
         {
-            return this.AssetService.DeleteAsset(assetId);
+            return this.AssetService.DeleteAsset(id);
         }
     }
 }

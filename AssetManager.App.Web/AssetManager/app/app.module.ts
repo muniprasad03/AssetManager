@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './layout';
 import { AppComponent } from './app.component';
@@ -22,7 +23,9 @@ import { SignalService } from './signal-service/signal-service';
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     SignalService
