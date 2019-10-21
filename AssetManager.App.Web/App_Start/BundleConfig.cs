@@ -1,4 +1,4 @@
-﻿using System.Web;
+using System.Web;
 using System.Web.Optimization;
 
 namespace AssetManager.App.Web
@@ -77,6 +77,11 @@ namespace AssetManager.App.Web
             bundles.Add(new LessBundle("~/Content/login")
                     .Include("~/Content/Site/login.less"));
 
-        }
+            bundles.Add(new Bundle("~/bundles/assetapp").Include(
+                 "~/dist/assetapp/*.js"));
+
+      bundles.Add(new StyleBundle("~/bundles/styles").Include(
+                    "~/dist/assetapp/Styles.*"));
     }
+  }
 }

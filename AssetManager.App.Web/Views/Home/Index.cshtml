@@ -33,22 +33,24 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   @*<link rel="stylesheet" href="styles.ba38a8c0eb1247f713f2.css">*@
+  @Styles.Render("~/bundles/styles")
 </head>
 <body>
   <app-root></app-root>
   <noscript>
     This app works with Javascript being enabled. Enable Javascript in Browser and try again!
   </noscript>
-  <script src="~/dist/runtime-es2015.js" type="module"></script>
-  <script src="~/dist/polyfills-es2015.js" type="module"></script>
-  <script src="~/dist/runtime-es5.js" nomodule></script>
-  <script src="~/dist/polyfills-es5.js" nomodule></script>
-  <script src="~/dist/styles-es2015.js" type="module"></script>
-  <script src="~/dist/styles-es5.js" nomodule></script>
-  <script src="~/dist/scripts.js"></script>
-  <script src="~/dist/vendor-es2015.js" type="module"></script>
-  <script src="~/dist/main-es2015.js" type="module"></script>
-  <script src="~/dist/vendor-es5.js" nomodule></script>
-  <script src="~/dist/main-es5.js" nomodule></script>
+  @*<script src="~/dist/assetapp/runtime-es2015.js" type="module"></script>
+    <script src="~/dist/assetapp/polyfills-es2015.js" type="module"></script>
+    <script src="~/dist/assetapp/runtime-es5.js" nomodule></script>
+    <script src="~/dist/assetapp/polyfills-es5.js" nomodule></script>
+    <script src="~/dist/assetapp/styles-es2015.js" type="module"></script>
+    <script src="~/dist/assetapp/styles-es5.js" nomodule></script>
+    <script src="~/dist/assetapp/scripts.js"></script>
+    <script src="~/dist/assetapp/vendor-es2015.js" type="module"></script>
+    <script src="~/dist/assetapp/main-es2015.js" type="module"></script>
+    <script src="~/dist/assetapp/vendor-es5.js" nomodule></script>
+    <script src="~/dist/assetapp/main-es5.js" nomodule></script>*@
+  @Scripts.Render("~/bundles/assetapp")
 </body>
 </html>
