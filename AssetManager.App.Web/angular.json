@@ -23,7 +23,8 @@
               "assetmanager/assets"
             ],
             "styles": [
-              "assetmanager/styles.css"
+              "assetmanager/styles.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
             ],
             "scripts": []
           },
