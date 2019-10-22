@@ -18,9 +18,9 @@ namespace AssetManager.Services.Asset
 
         public override AssetType AssetType => AssetType.ColourLightSignal;
 
-        public List<ColorLightSignalListView> GetSignalListView()
+        public List<ColorLightSignalAsset> GetSignalListView()
         {
-            return new List<ColorLightSignalListView>();
+            return base.GetAll();
         }
     }
 }

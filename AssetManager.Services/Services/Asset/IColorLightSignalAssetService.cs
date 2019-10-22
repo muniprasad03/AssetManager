@@ -9,6 +9,6 @@ namespace AssetManager.Services.Asset
 {
     public interface IColorLightSignalAssetService : IAssetService<ColorLightSignalAsset>
     {
-        List<ColorLightSignalListView> GetSignalListView();
+        List<ColorLightSignalAsset> GetSignalListView();
     }
 }

@@ -24,11 +24,11 @@ namespace AssetManager.Models.Asset
 
         public string Make { get; set; }
 
-        public DateTime DateOfManufacture { get; set; }
+        public DateTime? DateOfManufacture { get; set; }
 
         public string Model { get; set; }
 
-        public DateTime DateOfInstallation { get; set; }
+        public DateTime? DateOfInstallation { get; set; }
 
         public string QRCode { get; set; }
     }

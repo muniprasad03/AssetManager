@@ -10,6 +10,9 @@ import { SignalComponent } from './signal/signal.component';
 import { AddSignalComponent } from './add-signal/add-signal.component';
 import { AddSignalMaintaneceComponent } from './add-signal-maintanece/add-signal-maintanece.component';
 import { SignalService } from './signal-service/signal-service';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { BsDatepickerModule, DatepickerModule} from 'ngx-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,11 +24,15 @@ import { SignalService } from './signal-service/signal-service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, // required animations module
     HttpModule,
     AppRoutingModule,
     LayoutModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DatepickerModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    ZXingScannerModule
   ],
   providers: [
     SignalService

@@ -23,7 +23,7 @@ namespace AssetManager.App.Web.Controllers.Api
         }
 
         [Route("list")]
-        public List<ColorLightSignalListView> GetAll()
+        public List<ColorLightSignalAsset> GetAll()
         {
             return this.AssetService.GetSignalListView();
         }

@@ -1,283 +1,155 @@
 <p>
-  add-signal works!
+  <a href="#/signals">back</a>
 </p>
 <div class="row">
   <div class="col-sm-12">
     <!-- cardTitle="Basic Component" -->
-    <h5>ADD RAILWAY POINT MACHINE TO INVENTORY</h5>
+    <h5>ADD RAILWAY SIGNAL TO INVENTORY</h5>
     <hr>
-    <form action="javascript:">
+    <form [formGroup]="addAssetForm" name="addAsset" #addAsset>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Station</label>
+        <input type="text" class="form-control" id="station" formControlName="station">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Zone</label>
+        <input type="text" class="form-control" id="station" formControlName="zone">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Division</label>
+        <input type="text" class="form-control" id="station" formControlName="division">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Department</label>
+        <input type="text" class="form-control" id="station" formControlName="department">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">Signal Type</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="signalType">
+          <option value="0">
+            Main
+          </option>
+          <option value="1">
+            Shunt
+          </option>
+          <option value="2">
+            Subsidiary
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">Type of Unit</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="typeOfUnit">
+          <option value="0">N/A</option>
+          <option value="1">Metallic</option>
+          <option value="2">FRP</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Signal Name/Number</label>
+        <input type="text" class="form-control" id="station" formControlName="signalName">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Serial Number</label>
+        <input type="text" class="form-control" id="station" formControlName="serialNumber">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="make">Manufacture</label>
+        <select name="type"
+                class="form-control"
+                id="make"
+                formControlName="make">
+          <option value="">--Select--</option>
+          <option>Agarwal Engineering Works</option>
+          <option>G.K. Engg. Works &amp; Stores (P) Ltd</option>
+          <option>Kiran Infra Engineers Ltd</option>
+          <option>NSS Stores Supply Agency (P) Ltd</option>
+          <option>RT Vision Technologies (P) Ltd</option>
+          <option>Sankar Engg. Works</option>
+          <option>SBM Engg. Works</option>
+          <option>Shyam Sundar Casting (P) Ltd</option>
+          <option>Sigma Trade Agency</option>
+          <option>TSS India Ltd</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="model">Model</label>
+        <input type="text" class="form-control" id="model" formControlName="model">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="milegeInKM">Mileage(KM)</label>
+        <input type="text" class="form-control" id="milegeInKM" formControlName="milegeInKM">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="codalLife">Codal Life</label>
+        <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="latitude">Latitude</label>
+        <input type="text" class="form-control" id="latitude" formControlName="latitude">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="longitude">Longitude</label>
+        <input type="text" class="form-control" id="longitude" formControlName="longitude">
+      </div>
+      <!--<div class="form-group col-sm-6 pl-8">
+    <label for="purchasedon">Date Of Manufacture</label>
+    <div class="input-calendar col-sm-12 clear-padding-x">
+      <input type="text"
+             name="dateOfManufacture"
+             bsDatepicker
+             formControlName="dateOfManufacture"
+             class="form-control"
+             placement="auto"
+             [bsConfig]="{ showWeekNumbers: false }"
+             id="dateOfManufacture" readonly />
+      <span class="ic-calendar"></span>
+    </div>
+  </div>
+  <div class="form-group col-sm-6 pl-8">
+    <label for="purchasedon">Installed on</label>
+    <div class="input-calendar col-sm-12 clear-padding-x">
+      <input type="text"
+             name="dateOfInstallation"
+             bsDatepicker
+             formControlName="dateOfInstallation"
+             class="form-control"
+             placement="auto"
+             [bsConfig]="{ showWeekNumbers: false }"
+             id="dateOfInstallation" readonly />
+      <span class="ic-calendar"></span>
+    </div>
+  </div>-->
+    </form>
+    <div class="form-actions">
       <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="station">Station</label>
-            <input type="text" class="form-control" id="station" placeholder="Enter Station">
-          </div>
-          <div class="form-group">
-            <label for="division">Divison</label>
-            <input type="text" class="form-control" id="division" placeholder="Enter Divison">
-          </div>
-          <div class="form-group">
-            <label for="mainCategory">Main Category</label>
-            <select class="form-control" id="mainCategory">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="pointNumber">Point Number/Name</label>
-            <input type="text" class="form-control" id="pointNumber" placeholder="Point Number">
-          </div>
-          <div class="form-group">
-            <label for="model">Model</label>
-            <input type="text" class="form-control" id="model" placeholder="Model">
-          </div>
-          <div class="form-group">
-            <label for="SerialNumber">Serial Number</label>
-            <input type="text" class="form-control" id="SerialNumber" placeholder="Serial Number">
-          </div>
-          <div class="form-group">
-            <label for="TypeOfTurnOut">Type of Turn Out</label>
-            <select class="form-control" id="TypeOfTurnOut">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="TypeOfCurve">Type of Curve(Inch)</label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="TypeOfSleeper">Type of Sleeper</label>
-            <select class="form-control" id="TypeOfSleeper">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="NoOfGaugeTiePlateInsultationSets">No Of Gauge Tie Plate Insultation Sets</label>
-            <select class="form-control" id="NoOfGaugeTiePlateInsultationSets">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="TypeOfCurve">No Of William Stretcher Institution Sets </label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="pointNumber">Strock</label>
-            <input type="text" class="form-control" id="pointNumber" placeholder="Point Number">
-          </div>
-          <div class="form-group">
-            <label for="model">Costal Life</label>
-            <input type="text" class="form-control" id="model" placeholder="Model">
-          </div>
-          <div class="form-group">
-            <label for="SerialNumber">Date Of Installation</label>
-            <input type="text" class="form-control" id="SerialNumber" placeholder="Serial Number">
-          </div>
-
-          <div class="form-group">
-            <label for="SerialNumber">Longitude</label>
-            <input type="text" class="form-control" id="SerialNumber" placeholder="Serial Number">
-          </div>
-
-          <div class="form-group">
-            <label for="TypeOfCurve">Ac immulation(V) </label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="station">Zone</label>
-            <input type="text" class="form-control" id="station" placeholder="Enter Station">
-          </div>
-          <div class="form-group">
-            <label for="division">Department</label>
-            <input type="text" class="form-control" id="division" placeholder="Enter Divison">
-          </div>
-          <div class="form-group">
-            <label for="mainCategory">Type of Gear</label>
-            <select class="form-control" id="mainCategory">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="TypeOfTurnOut">Make</label>
-            <select class="form-control" id="TypeOfTurnOut">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="pointNumber">Version</label>
-            <input type="text" class="form-control" id="pointNumber" placeholder="Point Number">
-          </div>
-
-          <div class="form-group">
-            <label for="TypeOfCurve">Line</label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="TypeOfSleeper">Rail Type</label>
-            <select class="form-control" id="TypeOfSleeper">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="NoOfGaugeTiePlateInsultationSets">LH/RH Curvee</label>
-            <select class="form-control" id="NoOfGaugeTiePlateInsultationSets">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="TypeOfCurve">No Of Gague the plate </label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="TypeOfCurve">No Of William Steatched Bar </label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="TypeOfCurve">Point Machine Type Stadarad </label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="TypeOfCurve">Spring Setting Device </label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-
-          <div class="form-group">
-            <label for="model">Date of Manufacture</label>
-            <input type="text" class="form-control" id="model" placeholder="Model">
-          </div>
-          <div class="form-group">
-            <label for="SerialNumber">Latitude</label>
-            <input type="text" class="form-control" id="SerialNumber" placeholder="Serial Number">
-          </div>
-
-          <div class="form-group">
-            <label for="pointNumber">Distance from station</label>
-            <input type="text" class="form-control" id="pointNumber" placeholder="Point Number">
-          </div>
-          <div class="form-group">
-            <label for="SerialNumber">Ground Connection Date Of Installation</label>
-            <input type="text" class="form-control" id="SerialNumber" placeholder="Serial Number">
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">Remarks</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-
-          <h5 class="mt-5 text-center">Attach Documents</h5>
-          <hr>
-          <div class="form-group">
-            <label for="TypeOfCurve">Select File Type To Attach </label>
-            <select class="form-control" id="TypeOfCurve">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-          <div class="form-group custom-file" [ngStyle]="{'margin-bottom':'15px'}">
-            <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-            <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-            <!-- <div class="invalid-feedback">Example invalid custom file feedback</div> -->
-          </div>
-          <div class="form-group text-right">
-            <button class="btn btn-primary" type="submit">Submit form</button>
-          </div>
+        <div class="col-md-offset-4 col-md-8">
+          <button (click)="getLocation()" class="btn default">Get Location</button>
+          <button (click)="saveAsset()" class="btn blue">Submit</button>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </div>
+
+<!--<div class="row">
+</div>-->
+<!--<button *ngIf="!enableScanner" (click)="openScanner()">Open Scanner</button>
+<button *ngIf="enableScanner" (click)="closeScanner()">Close Scanner</button>
+<div *ngIf="enableScanner && !hasPermission">
+  Please allow camera permissions and reload the site to scan
+</div>
+<div class="row">
+  <zxing-scanner *ngIf="enableScanner"
+                 (scanSuccess)="scanSuccessHandler($event)"
+                 (permissionResponse)="onHasPermission($event)"></zxing-scanner>
+</div>
+<div class="row" *ngIf="scannedData">
+  <h3>Scanned Data: {{scannedData}}</h3>
+</div>-->

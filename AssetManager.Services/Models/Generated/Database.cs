@@ -164,21 +164,6 @@ namespace AssetManager.Data.Model
         int _StationId;
 
         [Column]
-        public string Department
-        {
-            get
-            {
-                return _Department;
-            }
-            set
-            {
-                _Department = value;
-                MarkColumnModified("Department");
-            }
-        }
-        string _Department;
-
-        [Column]
         public string MainCategory
         {
             get
