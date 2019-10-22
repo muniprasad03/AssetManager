@@ -31,9 +31,15 @@ namespace AssetManager.Services.Asset
             return this.DB.SingleOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and Id = @0 and AssetType = @1", id, this.AssetType).MapTo<T>();
         }
 
+        public T GetByQRCode(string qrCode)
+        {
+            return this.DB.SingleOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and QRCode = @0 and AssetType = @1", qrCode, this.AssetType).MapTo<T>();
+        }
+
         public int CreateAsset(T asset)
         {
             var assetModel = asset.MapTo<Data.Model.Asset>();
+            assetModel.QRCode = Guid.NewGuid().ToString();
             assetModel.SetAuditFieldsOnCreate(this.Context);
             return Convert.ToInt32(this.DB.Insert(assetModel));
         }

@@ -11,7 +11,9 @@ namespace AssetManager.Services.Asset
         Models.AssetType AssetType { get; }
 
         T GetById(int id);
-     
+
+        T GetByQRCode(string qrCode);
+        
         List<T> GetAll();
         
         int CreateAsset(T asset);
