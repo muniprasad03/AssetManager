@@ -18,29 +18,33 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>Signal Name</th>
+            <th>Station</th>
+            <th>Type</th>
+            <th>DOI</th>
+            <th>Distance(KM)</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Implantation</th> 
+            <th>Sacrificial Mast</th>
+            <th>Codal Life</th>
+            <th>Remarks</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
+          <tr *ngFor="let signal of signalsArray; index as i">
+            <td>{{i+1}}</td>
+            <td>{{signal.make}}</td>
+            <td>Thuni</td>
+            <td>Main</td>
+            <td>{{signal.dateOfInstallation | date: 'dd/MM/yyyy'}}</td>
+            <td>{{signal.metadata.milegeInKM}}</td>
+            <td>{{signal.latitude}}</td>
+            <td>{{signal.longitude}}</td>
+            <td>{{signal.metadata.implantation}}</td>
+            <td>None</td>
+            <td>{{signal.metadata.codalLife}}</td>
+            <td>{{signal.metadata.remarks}}</td>
           </tr>
         </tbody>
       </table>
