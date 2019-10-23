@@ -33,7 +33,7 @@ namespace AssetManager.Services.Asset
 
         public T GetByQRCode(string qrCode)
         {
-            return this.DB.SingleOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and QRCode = @0 and AssetType = @1", qrCode, this.AssetType).MapTo<T>();
+            return this.DB.FirstOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and QRCode = @0 and AssetType = @1", qrCode, this.AssetType).MapTo<T>();
         }
 
         public int CreateAsset(T asset)

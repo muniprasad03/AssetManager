@@ -34,7 +34,7 @@ namespace AssetManager.App.Web.Controllers.Api
       return this.AssetService.GetById(id);
     }
 
-    [Route("details/{qrCode}")]
+    [Route("detail/{qrCode}")]
     public ColorLightSignalAsset GetByQRCode(string qrCode)
     {
       return this.AssetService.GetByQRCode(qrCode);

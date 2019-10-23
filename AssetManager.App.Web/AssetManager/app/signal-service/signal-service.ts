@@ -27,7 +27,7 @@
     }
 
     getSignal(id): Promise<any> {
-      const url = `${this.setting}/details/${id}`;
+      const url = `${this.setting}/detail/${id}`;
       return this.http.get(url)
         .toPromise()
         .then(response => response.json() as any)

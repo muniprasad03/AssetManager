@@ -9,7 +9,6 @@ import { BsModalRef } from 'ngx-bootstrap';
   selector: 'app-add-signal',
   templateUrl: './add-signal.component.html',
   styleUrls: ['./add-signal.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddSignalComponent implements OnInit {
   public addAssetForm: FormGroup;
@@ -76,29 +75,6 @@ export class AddSignalComponent implements OnInit {
         window.location.href = '/#/signals';
         console.log(signals);
       });
-  }
-
-  scanSuccessHandler(scannedData) {
-    console.log('scanned data', scannedData);
-    this.scannedData = scannedData;
-  }
-
-  onHasPermission(permission: boolean) {
-    this.hasPermission = permission;
-    console.log(this.hasPermission, 'has permission');
-    if (!this.hasPermission) {
-      this.enableCamera();
-    }
-  }
-
-  enableCamera() {
-    navigator.mediaDevices.getUserMedia({ video: true });
-  }
-  openScanner() {
-    this.enableScanner = true;
-  }
-  closeScanner() {
-    this.enableScanner = false;
   }
 
   getLocation() {

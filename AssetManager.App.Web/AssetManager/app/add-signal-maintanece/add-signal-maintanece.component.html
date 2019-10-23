@@ -2,3 +2,155 @@
   add-signal-maintanece works!
 </p>
 
+<button *ngIf="!enableScanner" (click)="openScanner()">Open Scanner</button>
+<button *ngIf="enableScanner" (click)="closeScanner()">Close Scanner</button>
+<div *ngIf="enableScanner && !hasPermission">
+  Please allow camera permissions and reload the site to scan
+</div>
+<div class="row" style="width: 275px; padding: 15px;">
+  <zxing-scanner *ngIf="enableScanner"
+                 (scanSuccess)="scanSuccessHandler($event)"
+                 (permissionResponse)="onHasPermission($event)"></zxing-scanner>
+</div>
+<div class="row" *ngIf="scannedData && !assetDetails">
+  <h3>No Asset found with that code</h3>
+</div>
+
+
+<div class="row" *ngIf="assetDetails">
+  <h3>Asset Name: {{assetDetails.metadata.signalName}}</h3>
+</div>
+
+<div class="row">
+  <div class="col-sm-12" style="padding-top:20px;">
+    <h3>SMC - 1</h3>
+    <form [formGroup]="addAssetMaintanenceForm" name="addAssetMaintanence" #addAssetMaintanence>
+      <!--<div class="form-group col-sm-6 pl-8">
+    <label for="station">Station</label>
+    <input type="text" class="form-control" id="station" formControlName="station">
+  </div>
+  <div class="form-group col-sm-6 pl-8">
+    <label for="station">Zone</label>
+    <input type="text" class="form-control" id="station" formControlName="zone">
+  </div>
+  <div class="form-group col-sm-6 pl-8">
+    <label for="station">Division</label>
+    <input type="text" class="form-control" id="station" formControlName="division">
+  </div>
+  <div class="form-group col-sm-6 pl-8">
+    <label for="station">Department</label>
+    <input type="text" class="form-control" id="station" formControlName="department">
+  </div>-->
+
+
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">To Do</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="signalType">
+          <option value="0">
+            Installation
+          </option>
+          <option value="1">
+            Replacement
+          </option>
+          <option value="2">
+            Remove
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">Aspect</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="typeOfUnit">
+          <option value="0">DG</option>
+          <option value="1">HHG</option>
+          <option value="2">HG</option>
+          <option value="3">RG</option>
+          <option value="4">A</option>
+          <option value="5">C</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="make">Manufacture</label>
+        <select name="type"
+                class="form-control"
+                id="make"
+                formControlName="make">
+          <option value="">--Select--</option>
+          <option>Agarwal Engineering Works</option>
+          <option>G.K. Engg. Works &amp; Stores (P) Ltd</option>
+          <option>Kiran Infra Engineers Ltd</option>
+          <option>NSS Stores Supply Agency (P) Ltd</option>
+          <option>RT Vision Technologies (P) Ltd</option>
+          <option>Sankar Engg. Works</option>
+          <option>SBM Engg. Works</option>
+          <option>Shyam Sundar Casting (P) Ltd</option>
+          <option>Sigma Trade Agency</option>
+          <option>TSS India Ltd</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Model</label>
+        <input type="text" class="form-control" id="station" formControlName="signalType">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Aspect Number</label>
+        <input type="text" class="form-control" id="station" formControlName="serialNumber">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="make">Manufacture</label>
+        <select name="type"
+                class="form-control"
+                id="make"
+                formControlName="make">
+          <option value="">--Select--</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+      <h3> Records Book</h3>
+
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">RG Voltage(V)</label>
+        <input type="text" class="form-control" id="station" formControlName="signalName">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">DG Voltage(V)</label>
+        <input type="text" class="form-control" id="station" formControlName="serialNumber">
+      </div>
+
+      <div class="form-group col-sm-6 pl-8">
+        <label for="model">HG Voltage(V)</label>
+        <input type="text" class="form-control" id="model" formControlName="model">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="milegeInKM">HHG Voltage(V)</label>
+        <input type="text" class="form-control" id="milegeInKM" formControlName="milegeInKM">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="codalLife">COG Voltage</label>
+        <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="latitude">A-Marker</label>
+        <input type="text" class="form-control" id="latitude" formControlName="latitude">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="longitude">AG-Marker</label>
+        <input type="text" class="form-control" id="longitude" formControlName="longitude">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="longitude">Route Indicator</label>
+        <input type="text" class="form-control" id="longitude" formControlName="longitude">
+      </div>
+    </form>
+  </div>
+</div>
