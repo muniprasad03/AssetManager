@@ -194,6 +194,21 @@ namespace AssetManager.Data.Model
         short _AssetType;
 
         [Column]
+        public string Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                _Name = value;
+                MarkColumnModified("Name");
+            }
+        }
+        string _Name;
+
+        [Column]
         public string Latitude
         {
             get

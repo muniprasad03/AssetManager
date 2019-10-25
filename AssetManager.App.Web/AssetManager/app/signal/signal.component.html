@@ -34,7 +34,7 @@
         <tbody>
           <tr *ngFor="let signal of signalsArray; index as i">
             <td>{{i+1}}</td>
-            <td>{{signal.make}}</td>
+            <td>{{signal.metadata.signalName}}</td>
             <td>Thuni</td>
             <td>Main</td>
             <td>{{signal.dateOfInstallation | date: 'dd/MM/yyyy'}}</td>

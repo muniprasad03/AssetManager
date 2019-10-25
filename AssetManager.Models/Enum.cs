@@ -60,7 +60,10 @@ namespace AssetManager.Models
     {
         None,
         ColourLightSignal,
-        ElectricalOperatedPoints
+        ElectricalOperatedPoints,
+        TrackCircuit,
+        AxelCounter,
+        BlockInstrument
     }
 
     public enum SignalType

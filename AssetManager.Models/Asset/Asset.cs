@@ -17,7 +17,9 @@ namespace AssetManager.Models.Asset
         public string Department { get; set; }
 
         public string MainCategory { get; set; }
-        
+
+        public string Name { get; set; }
+
         public string Latitude { get; set; }
 
         public string Longitude { get; set; }

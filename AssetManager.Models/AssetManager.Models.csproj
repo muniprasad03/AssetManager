@@ -49,9 +49,17 @@
     <Compile Include="Asset\Asset.cs" />
     <Compile Include="Asset\AssetFileAttachment.cs" />
     <Compile Include="Asset\AssetMetadata.cs" />
+    <Compile Include="Asset\AxelCounter\AxelCounterAsset.cs" />
+    <Compile Include="Asset\AxelCounter\AxelCounterMetadata.cs" />
+    <Compile Include="Asset\BlockInstrument\BlockInstrumentAsset.cs" />
+    <Compile Include="Asset\BlockInstrument\BlockInstrumentMetadata.cs" />
     <Compile Include="Asset\ColorLightSignal\ColorLightSignalAssetView.cs" />
     <Compile Include="Asset\ColorLightSignal\ColorLightSignalAsset.cs" />
     <Compile Include="Asset\ColorLightSignal\ColorLightSignalMetadata.cs" />
+    <Compile Include="Asset\PointMachine\PointMachineMetadata.cs" />
+    <Compile Include="Asset\PointMachine\PointMachineAsset.cs" />
+    <Compile Include="Asset\TrackCircuit\TrackCircuitAsset.cs" />
+    <Compile Include="Asset\TrackCircuit\TrackCircuitMetadata.cs" />
     <Compile Include="CauseOfFailure.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Extensions.cs" />

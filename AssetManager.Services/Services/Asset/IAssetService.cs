@@ -12,7 +12,7 @@ namespace AssetManager.Services.Asset
 
         T GetById(int id);
 
-        T GetByQRCode(string qrCode);
+        AssetManager.Models.Asset.Asset GetByQRCode(string qrCode);
         
         List<T> GetAll();
         

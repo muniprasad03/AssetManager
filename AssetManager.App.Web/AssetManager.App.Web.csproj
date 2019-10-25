@@ -214,6 +214,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\Asset\AssetController.cs" />
+    <Compile Include="Controllers\Api\Asset\AxelCounterController.cs" />
+    <Compile Include="Controllers\Api\Asset\BlockInstrumentController.cs" />
+    <Compile Include="Controllers\Api\Asset\PointMachineController.cs" />
     <Compile Include="Controllers\Api\Asset\ColorLightSignalController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\ReportController.cs" />
@@ -5680,6 +5684,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assetManager\app\AxelCounter\" />
+    <Folder Include="assetManager\app\BockInstrument\" />
+    <Folder Include="assetManager\app\Point\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Department\" />
   </ItemGroup>

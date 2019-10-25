@@ -14,8 +14,6 @@ namespace AssetManager.Models.Asset.ColorLightSignal
 
         public SignalTypeOfUnit TypeOfUnit { get; set; }
 
-        public string SignalName { get; set; }
-
         public string SerialNumber { get; set; }
 
         public float MilegeInKM { get; set; }

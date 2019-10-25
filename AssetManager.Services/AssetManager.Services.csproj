@@ -61,6 +61,9 @@
     <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="Models\StoredProcedureModels.cs" />
     <Compile Include="Services\Asset\AssetService.cs" />
+    <Compile Include="Services\Asset\AxelCounterAssetService.cs" />
+    <Compile Include="Services\Asset\PointMachineAssetService.cs" />
+    <Compile Include="Services\Asset\BlockInstrumentAssetService.cs" />
     <Compile Include="Services\Asset\ColorLightSignalAssetService.cs" />
     <Compile Include="Services\Asset\IAssetService.cs" />
     <Compile Include="Services\Asset\IColorLightSignalAssetService.cs" />

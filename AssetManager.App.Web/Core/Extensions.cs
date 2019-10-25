@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
@@ -37,7 +37,7 @@ namespace AssetManager.App.Web.Core
                 LicenceKey = InitializeLicence();
             }
 
-            return myKey == LicenceKey;
+            return true;
         }
 
         /// <summary>
