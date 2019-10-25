@@ -15,6 +15,7 @@ import { BsDatepickerModule, DatepickerModule} from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AxelListComponent } from './AxelCounter/axel-list/axel-list.component';
 import { AxelService } from './AxelCounter/axel-service';
+import { AddAxelComponent } from './AxelCounter/add-axel/add-axel.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AxelService } from './AxelCounter/axel-service';
     AddSignalComponent,
     AddSignalMaintaneceComponent,
     AxelListComponent,
+    AddAxelComponent,
   ],
   imports: [
     BrowserModule,

@@ -264,6 +264,8 @@
     <Content Include="assetManager\app\add-signal\add-signal.component.html" />
     <Content Include="assetManager\app\app.component.css" />
     <Content Include="assetManager\app\app.component.html" />
+    <Content Include="assetManager\app\AxelCounter\add-axel\add-axel.component.css" />
+    <Content Include="assetManager\app\AxelCounter\add-axel\add-axel.component.html" />
     <Content Include="assetManager\app\AxelCounter\axel-list\axel-list.component.css" />
     <Content Include="assetManager\app\AxelCounter\axel-list\axel-list.component.html" />
     <Content Include="assetManager\app\home\home.component.css" />
@@ -5721,6 +5723,8 @@
     <TypeScriptCompile Include="assetManager\app\app.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\app.component.ts" />
     <TypeScriptCompile Include="assetManager\app\app.module.ts" />
+    <TypeScriptCompile Include="assetManager\app\AxelCounter\add-axel\add-axel.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\AxelCounter\add-axel\add-axel.component.ts" />
     <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-list\axel-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-list\axel-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-service.ts" />

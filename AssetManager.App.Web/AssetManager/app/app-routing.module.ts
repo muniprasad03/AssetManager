@@ -5,6 +5,7 @@ import { SignalComponent } from './signal/signal.component';
 import { AddSignalComponent } from './add-signal/add-signal.component';
 import { AddSignalMaintaneceComponent } from './add-signal-maintanece/add-signal-maintanece.component';
 import { AxelListComponent } from './AxelCounter/axel-list/axel-list.component';
+import { AddAxelComponent } from './AxelCounter/add-axel/add-axel.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'signaladd', component: AddSignalComponent },
     { path: 'maintanence', component: AddSignalMaintaneceComponent },
     { path: 'axels', component: AxelListComponent },
+    { path: 'axeladd', component: AddAxelComponent },
 ];
 
 @NgModule({
