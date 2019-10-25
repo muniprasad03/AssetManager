@@ -13,6 +13,8 @@ import { SignalService } from './signal-service/signal-service';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BsDatepickerModule, DatepickerModule} from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AxelListComponent } from './AxelCounter/axel-list/axel-list.component';
+import { AxelService } from './AxelCounter/axel-service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignalComponent,
     AddSignalComponent,
     AddSignalMaintaneceComponent,
+    AxelListComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ZXingScannerModule
   ],
   providers: [
-    SignalService
+      SignalService,
+      AxelService
   ],
   bootstrap: [AppComponent]
 })
