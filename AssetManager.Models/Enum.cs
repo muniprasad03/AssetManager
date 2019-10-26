@@ -160,6 +160,13 @@ namespace AssetManager.Models
         Steel
     }
 
+    public enum PointMachineType
+    {
+        None,
+        IRS,
+        Siemence
+    }
+
     public enum SacrificialMast
     {
         None,
