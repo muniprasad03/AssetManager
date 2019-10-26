@@ -102,6 +102,64 @@ namespace AssetManager.Models
         Gantry
     }
 
+    public enum AxelType
+    {
+        None,
+        SSDAC,
+        HASSDAC,
+        MSDAC,
+        DAC
+    }
+
+    public enum PointLineType
+    {
+        None,
+        MLARoute,
+        MLOtherRoute,
+        OtherPortion
+    }
+
+    public enum TurnOutType
+    {
+        None,
+        SingleEnded,
+        XOver,
+        DerailSwitch,
+        SingleSlip,
+        DoubleDiamondSlip
+    }
+
+    public enum RailType {
+        None,
+        KG52,
+        KG60,
+        ThickWebSwitch,
+    }
+
+    public enum TypeCurve
+    {
+        None,
+        OneIn8,
+        OneIn10,
+        OneIn12,
+        OneIn16
+    }
+
+    public enum HCurveType
+    {
+        None,
+        LH,
+        RH
+    }
+
+    public enum SleeperType
+    {
+        None,
+        PRC,
+        Wooden,
+        Steel
+    }
+
     public enum SacrificialMast
     {
         None,

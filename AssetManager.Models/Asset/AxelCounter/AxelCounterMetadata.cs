@@ -8,6 +8,11 @@ namespace AssetManager.Models.Asset
 {
     public class AxelCounterMetadata
     {
+        public AxelType AxelType { get; set; }
+
+        public string SerialNumber { get; set; }
+        public float CodalLife { get; set; }
+        public float MilegeInKM { get; set; }
 
         public string Remarks { get; set; }
 
