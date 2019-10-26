@@ -65,7 +65,8 @@ export class AddSignalComponent implements OnInit {
       implantation: this.addAssetForm.value["implantation"],
       sacrificialMast: this.addAssetForm.value["sacrificialMast"],
       codalLife: this.addAssetForm.value["codalLife"],
-      remarks: this.addAssetForm.value["remarks"]
+        remarks: this.addAssetForm.value["remarks"],
+        signalBaseInstallation: this.addAssetForm.value["dateOfManufacture"]
     };
 
     modelCopy["metaData"] = metadata;

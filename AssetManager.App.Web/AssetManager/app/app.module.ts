@@ -13,6 +13,13 @@ import { SignalService } from './signal-service/signal-service';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BsDatepickerModule, DatepickerModule} from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AxelListComponent } from './AxelCounter/axel-list/axel-list.component';
+import { AxelService } from './AxelCounter/axel-service';
+import { AddAxelComponent } from './AxelCounter/add-axel/add-axel.component';
+import { PointListComponent } from './point/point-list/point-list.component';
+import { AddPointComponent } from './point/add-point/add-point.component';
+import { TrackListComponent } from './Track Circuits/track-list/track-list.component';
+import { AddTrackComponent } from './Track Circuits/add-track/add-track.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +28,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignalComponent,
     AddSignalComponent,
     AddSignalMaintaneceComponent,
+    AxelListComponent,
+    AddAxelComponent,
+    PointListComponent,
+    AddPointComponent,
+    TrackListComponent,
+    AddTrackComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ZXingScannerModule
   ],
   providers: [
-    SignalService
+      SignalService,
+      AxelService
   ],
   bootstrap: [AppComponent]
 })

@@ -27,7 +27,7 @@
     <SccProvider>SAK</SccProvider>
     <UseGlobalApplicationHostFile />
     <Use64BitIISExpress />
-    <TypeScriptToolsVersion>3.3</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.6</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -264,12 +264,24 @@
     <Content Include="assetManager\app\add-signal\add-signal.component.html" />
     <Content Include="assetManager\app\app.component.css" />
     <Content Include="assetManager\app\app.component.html" />
+    <Content Include="assetManager\app\AxelCounter\add-axel\add-axel.component.css" />
+    <Content Include="assetManager\app\AxelCounter\add-axel\add-axel.component.html" />
+    <Content Include="assetManager\app\AxelCounter\axel-list\axel-list.component.css" />
+    <Content Include="assetManager\app\AxelCounter\axel-list\axel-list.component.html" />
     <Content Include="assetManager\app\home\home.component.css" />
     <Content Include="assetManager\app\home\home.component.html" />
     <Content Include="assetManager\app\layout\page-header\page-header.component.css" />
     <Content Include="assetManager\app\layout\page-header\page-header.component.html" />
+    <Content Include="assetManager\app\Point\add-point\add-point.component.css" />
+    <Content Include="assetManager\app\Point\add-point\add-point.component.html" />
+    <Content Include="assetManager\app\Point\point-list\point-list.component.css" />
+    <Content Include="assetManager\app\Point\point-list\point-list.component.html" />
     <Content Include="assetManager\app\signal\signal.component.css" />
     <Content Include="assetManager\app\signal\signal.component.html" />
+    <Content Include="assetManager\app\Track Circuits\add-track\add-track.component.css" />
+    <Content Include="assetManager\app\Track Circuits\add-track\add-track.component.html" />
+    <Content Include="assetManager\app\Track Circuits\track-list\track-list.component.css" />
+    <Content Include="assetManager\app\Track Circuits\track-list\track-list.component.html" />
     <Content Include="assetManager\favicon.ico" />
     <Content Include="assetManager\index.html" />
     <Content Include="assetManager\karma.conf.js" />
@@ -5684,9 +5696,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assetManager\app\AxelCounter\" />
-    <Folder Include="assetManager\app\BockInstrument\" />
-    <Folder Include="assetManager\app\Point\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Department\" />
   </ItemGroup>
@@ -5721,15 +5730,28 @@
     <TypeScriptCompile Include="assetManager\app\app.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\app.component.ts" />
     <TypeScriptCompile Include="assetManager\app\app.module.ts" />
+    <TypeScriptCompile Include="assetManager\app\AxelCounter\add-axel\add-axel.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\AxelCounter\add-axel\add-axel.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-list\axel-list.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-list\axel-list.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-service.ts" />
     <TypeScriptCompile Include="assetManager\app\home\home.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\home\home.component.ts" />
     <TypeScriptCompile Include="assetManager\app\layout\index.ts" />
     <TypeScriptCompile Include="assetManager\app\layout\layout.module.ts" />
     <TypeScriptCompile Include="assetManager\app\layout\page-header\page-header.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\layout\page-header\page-header.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Point\add-point\add-point.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\Point\add-point\add-point.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Point\point-list\point-list.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\Point\point-list\point-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\signal-service\signal-service.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\track-list\track-list.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\track-list\track-list.component.ts" />
     <TypeScriptCompile Include="assetManager\environments\environment.prod.ts" />
     <TypeScriptCompile Include="assetManager\environments\environment.ts" />
     <TypeScriptCompile Include="assetManager\main.ts" />
