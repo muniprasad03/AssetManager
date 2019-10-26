@@ -20,6 +20,7 @@ import { PointListComponent } from './point/point-list/point-list.component';
 import { AddPointComponent } from './point/add-point/add-point.component';
 import { TrackListComponent } from './Track Circuits/track-list/track-list.component';
 import { AddTrackComponent } from './Track Circuits/add-track/add-track.component';
+import { SignalMaintanenceListComponent } from './signal-maintanence-list/signal-maintanence-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddTrackComponent } from './Track Circuits/add-track/add-track.componen
     PointListComponent,
     AddPointComponent,
     TrackListComponent,
-    AddTrackComponent
+    AddTrackComponent,
+    SignalMaintanenceListComponent
   ],
   imports: [
     BrowserModule,
