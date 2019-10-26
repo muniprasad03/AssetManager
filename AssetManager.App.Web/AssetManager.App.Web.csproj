@@ -278,6 +278,10 @@
     <Content Include="assetManager\app\Point\point-list\point-list.component.html" />
     <Content Include="assetManager\app\signal\signal.component.css" />
     <Content Include="assetManager\app\signal\signal.component.html" />
+    <Content Include="assetManager\app\Track Circuits\add-track\add-track.component.css" />
+    <Content Include="assetManager\app\Track Circuits\add-track\add-track.component.html" />
+    <Content Include="assetManager\app\Track Circuits\track-list\track-list.component.css" />
+    <Content Include="assetManager\app\Track Circuits\track-list\track-list.component.html" />
     <Content Include="assetManager\favicon.ico" />
     <Content Include="assetManager\index.html" />
     <Content Include="assetManager\karma.conf.js" />
@@ -5744,6 +5748,10 @@
     <TypeScriptCompile Include="assetManager\app\signal-service\signal-service.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\track-list\track-list.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\track-list\track-list.component.ts" />
     <TypeScriptCompile Include="assetManager\environments\environment.prod.ts" />
     <TypeScriptCompile Include="assetManager\environments\environment.ts" />
     <TypeScriptCompile Include="assetManager\main.ts" />

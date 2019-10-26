@@ -18,6 +18,8 @@ import { AxelService } from './AxelCounter/axel-service';
 import { AddAxelComponent } from './AxelCounter/add-axel/add-axel.component';
 import { PointListComponent } from './point/point-list/point-list.component';
 import { AddPointComponent } from './point/add-point/add-point.component';
+import { TrackListComponent } from './Track Circuits/track-list/track-list.component';
+import { AddTrackComponent } from './Track Circuits/add-track/add-track.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AddPointComponent } from './point/add-point/add-point.component';
     AddAxelComponent,
     PointListComponent,
     AddPointComponent,
+    TrackListComponent,
+    AddTrackComponent
   ],
   imports: [
     BrowserModule,
