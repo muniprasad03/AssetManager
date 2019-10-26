@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AxelListComponent } from './AxelCounter/axel-list/axel-list.component';
 import { AxelService } from './AxelCounter/axel-service';
 import { AddAxelComponent } from './AxelCounter/add-axel/add-axel.component';
+import { PointListComponent } from './point/point-list/point-list.component';
+import { AddPointComponent } from './point/add-point/add-point.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { AddAxelComponent } from './AxelCounter/add-axel/add-axel.component';
     AddSignalMaintaneceComponent,
     AxelListComponent,
     AddAxelComponent,
+    PointListComponent,
+    AddPointComponent,
   ],
   imports: [
     BrowserModule,
