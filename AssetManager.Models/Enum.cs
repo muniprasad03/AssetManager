@@ -63,7 +63,7 @@ namespace AssetManager.Models
         ElectricalOperatedPoints,
         TrackCircuit,
         AxelCounter,
-        BlockInstrument
+        BlockInstrument,
     }
 
     public enum SignalType

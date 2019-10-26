@@ -217,6 +217,7 @@
     <Compile Include="Controllers\Api\Asset\AssetController.cs" />
     <Compile Include="Controllers\Api\Asset\AxelCounterController.cs" />
     <Compile Include="Controllers\Api\Asset\BlockInstrumentController.cs" />
+    <Compile Include="Controllers\Api\Asset\TrackCircuitController.cs" />
     <Compile Include="Controllers\Api\Asset\PointMachineController.cs" />
     <Compile Include="Controllers\Api\Asset\ColorLightSignalController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
