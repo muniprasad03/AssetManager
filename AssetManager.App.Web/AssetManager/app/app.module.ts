@@ -21,6 +21,7 @@ import { AddPointComponent } from './point/add-point/add-point.component';
 import { TrackListComponent } from './Track Circuits/track-list/track-list.component';
 import { AddTrackComponent } from './Track Circuits/add-track/add-track.component';
 import { SignalMaintanenceListComponent } from './signal-maintanence-list/signal-maintanence-list.component';
+import { AccordionModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SignalMaintanenceListComponent } from './signal-maintanence-list/signal
     FormsModule,
     DatepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    AccordionModule.forRoot(),
     ZXingScannerModule
   ],
   providers: [
