@@ -40,7 +40,7 @@ import { BlockService } from './Block/block-service';
     PointListComponent,
     AddPointComponent,
     TrackListComponent,
-    SignalMaintanenceListComponent
+    SignalMaintanenceListComponent,
     AddTrackComponent,
     BlockListComponent,
     AddBlockComponent
