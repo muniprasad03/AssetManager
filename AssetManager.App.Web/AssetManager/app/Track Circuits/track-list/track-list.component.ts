@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignalService } from '../../signal-service/signal-service';
+import { TrackService } from '../track-service';
 
 @Component({
   selector: 'app-track-list',
@@ -9,7 +9,7 @@ import { SignalService } from '../../signal-service/signal-service';
 export class TrackListComponent implements OnInit {
 
     signalsArray: any;
-    constructor(private SignalService: SignalService) { }
+    constructor(private SignalService: TrackService) { }
 
     ngOnInit() {
         this.SignalService

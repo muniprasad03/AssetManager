@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { PointService } from '../point-service';
+import { BlockService } from '../block-service';
 
 @Component({
-  selector: 'app-point-list',
-  templateUrl: './point-list.component.html',
-  styleUrls: ['./point-list.component.css']
+  selector: 'app-block-list',
+  templateUrl: './block-list.component.html',
+  styleUrls: ['./block-list.component.css']
 })
-export class PointListComponent implements OnInit {
+export class BlockListComponent implements OnInit {
 
     signalsArray: any;
-    constructor(private SignalService: PointService) { }
+    constructor(private SignalService: BlockService) { }
 
     ngOnInit() {
         this.SignalService

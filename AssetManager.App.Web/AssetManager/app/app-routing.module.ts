@@ -10,6 +10,8 @@ import { PointListComponent } from '../app/point/point-list/point-list.component
 import { AddPointComponent } from '../app/point/add-point/add-point.component';
 import { TrackListComponent } from '../app/Track Circuits/track-list/track-list.component';
 import { AddTrackComponent } from './Track Circuits/add-track/add-track.component';
+import { BlockListComponent } from './Block/block-list/block-list.component';
+import { AddBlockComponent } from './Block/add-block/add-block.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,7 +24,9 @@ const routes: Routes = [
     { path: 'points', component: PointListComponent },
     { path: 'pointadd', component: AddPointComponent },
     { path: 'tracks', component: TrackListComponent },
-    { path: 'trackadd', component: AddTrackComponent}
+    { path: 'trackadd', component: AddTrackComponent },
+    { path: 'blocks', component: BlockListComponent },
+    { path: 'blockadd', component: AddBlockComponent}
 ];
 
 @NgModule({

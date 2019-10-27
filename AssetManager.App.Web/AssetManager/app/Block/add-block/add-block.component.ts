@@ -1,21 +1,21 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { PointService } from '../../point/point-service'
+import { BlockService } from '../block-service';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
-  selector: 'app-add-point',
-  templateUrl: './add-point.component.html',
-  styleUrls: ['./add-point.component.css']
+  selector: 'app-add-block',
+  templateUrl: './add-block.component.html',
+  styleUrls: ['./add-block.component.css']
 })
-export class AddPointComponent implements OnInit {
+export class AddBlockComponent implements OnInit {
 
     public addAssetForm: FormGroup;
     public scannedData: any;
     public hasPermission: boolean;
     enableScanner = false;
-    constructor(private SignalService: PointService,
+    constructor(private SignalService: BlockService,
         private formBuilder: FormBuilder
     ) {
 

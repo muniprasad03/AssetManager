@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { SignalService } from '../../signal-service/signal-service'
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { BsModalRef } from 'ngx-bootstrap';
+import { TrackService } from '../track-service';
 
 @Component({
   selector: 'app-add-track',
@@ -15,7 +15,7 @@ export class AddTrackComponent implements OnInit {
     public scannedData: any;
     public hasPermission: boolean;
     enableScanner = false;
-    constructor(private SignalService: SignalService,
+    constructor(private SignalService: TrackService,
         private formBuilder: FormBuilder
     ) {
 

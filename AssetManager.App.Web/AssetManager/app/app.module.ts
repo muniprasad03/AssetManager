@@ -20,6 +20,11 @@ import { PointListComponent } from './point/point-list/point-list.component';
 import { AddPointComponent } from './point/add-point/add-point.component';
 import { TrackListComponent } from './Track Circuits/track-list/track-list.component';
 import { AddTrackComponent } from './Track Circuits/add-track/add-track.component';
+import { PointService } from './point/point-service';
+import { BlockListComponent } from './Block/block-list/block-list.component';
+import { AddBlockComponent } from './Block/add-block/add-block.component';
+import { BlockService } from './Block/block-service';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +38,9 @@ import { AddTrackComponent } from './Track Circuits/add-track/add-track.componen
     PointListComponent,
     AddPointComponent,
     TrackListComponent,
-    AddTrackComponent
+    AddTrackComponent,
+    BlockListComponent,
+    AddBlockComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,9 @@ import { AddTrackComponent } from './Track Circuits/add-track/add-track.componen
   ],
   providers: [
       SignalService,
-      AxelService
+      AxelService,
+      PointService,
+      BlockService
   ],
   bootstrap: [AppComponent]
 })
