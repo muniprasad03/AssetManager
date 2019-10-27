@@ -281,6 +281,8 @@
     <Content Include="assetManager\app\Point\add-point\add-point.component.html" />
     <Content Include="assetManager\app\Point\point-list\point-list.component.css" />
     <Content Include="assetManager\app\Point\point-list\point-list.component.html" />
+    <Content Include="assetManager\app\signal-maintanence-list\signal-maintanence-list.component.css" />
+    <Content Include="assetManager\app\signal-maintanence-list\signal-maintanence-list.component.html" />
     <Content Include="assetManager\app\signal\signal.component.css" />
     <Content Include="assetManager\app\signal\signal.component.html" />
     <Content Include="assetManager\app\Track Circuits\add-track\add-track.component.css" />
@@ -5756,6 +5758,8 @@
     <TypeScriptCompile Include="assetManager\app\Point\point-list\point-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Point\point-list\point-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\Point\point-service.ts" />
+    <TypeScriptCompile Include="assetManager\app\signal-maintanence-list\signal-maintanence-list.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\signal-maintanence-list\signal-maintanence-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\signal-service\signal-service.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.ts" />

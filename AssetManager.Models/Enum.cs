@@ -160,12 +160,45 @@ namespace AssetManager.Models
         Steel
     }
 
+    public enum PointMachineType
+    {
+        None,
+        IRS,
+        Siemence
+    }
+
     public enum SacrificialMast
     {
         None,
         Provided,
         NotProvided
     }
+
+    #region Track
+    public enum DetectionDeviceType
+    {
+        DC,
+        AFTC,
+        SSDAC,
+        MSDAC,
+        HASSD,
+        UAC
+    }
+
+    public enum RedundancyType
+    {
+        None,
+        NotProvided,
+        Provided
+    }
+
+    public enum TCLineType
+    {
+        None,
+        Up,
+        Down
+    }
+    #endregion
 
     public enum AttachFileType
     {

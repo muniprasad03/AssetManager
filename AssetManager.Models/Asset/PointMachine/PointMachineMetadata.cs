@@ -24,7 +24,20 @@ namespace AssetManager.Models.Asset
 
         public int NoOfGaugeTiePlate { get; set; }
 
+        public int NoOfGaugeTiePlateInsulationsSets { get; set; }
+        public int NoOfWilliamStretcherBar { get; set; }
+        public int NoOfWilliamStretcherBarInsulationsSets { get; set; }
+        public PointMachineType PointMachineType { get; set; }
 
+        public string Strock { get; set; }
+
+        public string SpringSettingDevice { get; set; }
+
+        public int CodalLife { get; set; }
+
+        public int ACImmunisation { get; set; }
+
+        public DateTime? GroundConnectionDateOfInstallation { get; set; }
         public string Remarks { get; set; }
 
         public List<AssetFileAttachment> Attachments { get; set; }

@@ -18,7 +18,7 @@ namespace AssetManager.Services.Asset
 
         public override AssetType AssetType => AssetType.TrackCircuit;
 
-        public List<PointMachineAsset> GetSignalListView()
+        public List<TrackCircuitAsset> GetSignalListView()
         {
             return base.GetAll();
         }

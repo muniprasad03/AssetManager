@@ -20,6 +20,8 @@ import { PointListComponent } from './point/point-list/point-list.component';
 import { AddPointComponent } from './point/add-point/add-point.component';
 import { TrackListComponent } from './Track Circuits/track-list/track-list.component';
 import { AddTrackComponent } from './Track Circuits/add-track/add-track.component';
+import { SignalMaintanenceListComponent } from './signal-maintanence-list/signal-maintanence-list.component';
+import { AccordionModule } from 'ngx-bootstrap';
 import { PointService } from './point/point-service';
 import { BlockListComponent } from './Block/block-list/block-list.component';
 import { AddBlockComponent } from './Block/add-block/add-block.component';
@@ -38,6 +40,7 @@ import { BlockService } from './Block/block-service';
     PointListComponent,
     AddPointComponent,
     TrackListComponent,
+    SignalMaintanenceListComponent
     AddTrackComponent,
     BlockListComponent,
     AddBlockComponent
@@ -52,6 +55,7 @@ import { BlockService } from './Block/block-service';
     FormsModule,
     DatepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    AccordionModule.forRoot(),
     ZXingScannerModule
   ],
   providers: [
