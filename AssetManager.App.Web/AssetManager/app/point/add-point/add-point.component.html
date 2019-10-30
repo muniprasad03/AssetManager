@@ -1,10 +1,10 @@
 <p>
-  <a href="#/signals">back</a>
+  <a href="#/points">back</a>
 </p>
 <div class="row">
   <div class="col-sm-12">
     <!-- cardTitle="Basic Component" -->
-    <h5>ADD RAILWAY SIGNAL TO INVENTORY</h5>
+    <h5>ADD RAILWAY POINT MACHINE TO INVENTORY</h5>
     <hr>
     <form [formGroup]="addAssetForm" name="addAsset" #addAsset>
       <div class="form-group col-sm-6 pl-8">
@@ -24,36 +24,220 @@
         <input type="text" class="form-control" id="station" formControlName="department">
       </div>
       <div class="form-group col-sm-6 pl-8">
-        <label for="type">Signal Type</label>
+        <label for="type">PointLine Type</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="signalType">
+                formControlName="pointlineType">
           <option value="0">
-            Main
+            None
           </option>
           <option value="1">
-            Shunt
+            MLARoute
           </option>
           <option value="2">
-            Subsidiary
+            MLOtherRoute
+          </option>
+          <option value="3">
+            OtherPortion
           </option>
         </select>
       </div>
       <div class="form-group col-sm-6 pl-8">
-        <label for="type">Type of Unit</label>
+        <label for="type">TurnOutType</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="typeOfUnit">
-          <option value="0">N/A</option>
-          <option value="1">Metallic</option>
-          <option value="2">FRP</option>
+                formControlName="TurnOutType">
+          <option value="0">None</option>
+          <option value="1">
+            SingleEnded
+          </option>
+          <option value="2">XOver</option>
+          <option value="3">DerailSwitch</option>
+          <option value="4">SingleSlip</option>
+          <option value="5">DoubleDiamondSlip</option>
         </select>
       </div>
       <div class="form-group col-sm-6 pl-8">
-        <label for="station">Signal Name/Number</label>
-        <input type="text" class="form-control" id="station" formControlName="signalName">
+        <label for="type">RailType(KG)</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="RailType">
+          <option value="0">None</option>
+          <option value="1">
+            KG52
+          </option>
+          <option value="2">KG60</option>
+          <option value="3">ThickWebSwitch</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">TypeCurve(Inches)</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="TypeCurve">
+          <option value="0">None</option>
+          <option value="1">
+            OneIn8
+          </option>
+          <option value="2">OneIn10</option>
+          <option value="3">OneIn12</option>
+          <option value="4">OneIn16</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">LH/RH</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="TypeCurve">
+          <option value="0">None</option>
+          <option value="1">
+            LH
+          </option>
+          <option value="2">
+            RH
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">Sleeper Types</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="Typesleeper">
+          <option value="0">None</option>
+          <option value="1">
+            PRC
+          </option>
+          <option value="2">
+            Wooden
+          </option>
+          <option value="3">
+            Steel
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">No Of Gauge Tie Plate </label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="Insulationtype">
+          <option value="1">
+            1
+          </option>
+          <option value="2">
+            2
+          </option>
+          <option value="3">
+            3
+          </option>
+          <option value="4">
+            4
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">>No Of Gauge Tie Plate Insulations Sets </label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="guagetietype">
+          <option value="1">
+            1
+          </option>
+          <option value="2">
+            2
+          </option>
+          <option value="3">
+            3
+          </option>
+          <option value="4">
+            4
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">No Of William Stretcher Bar</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="Insulationtype">
+          <option value="1">
+            1
+          </option>
+          <option value="2">
+            2
+          </option>
+          <option value="3">
+            3
+          </option>
+          <option value="4">
+            4
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">No Of William Stretcher Bar Insulations Sets</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="Insulationtype">
+          <option value="1">
+            1
+          </option>
+          <option value="2">
+            2
+          </option>
+          <option value="3">
+            3
+          </option>
+          <option value="4">
+            4
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">PointMachine Types</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="Typespoint">
+          <option value="0">None</option>
+          <option value="1">
+            IRS
+          </option>
+          <option value="2">
+            Siemence
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Storck</label>
+        <input type="text" class="form-control" id="station" formControlName="storck">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="type">SpringSettingDevice</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="SettingDevice">
+          <option value="0">None</option>
+          <option value="1">
+            Provided
+          </option>
+          <option value="2">
+            Not Provided
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Point Name/Number</label>
+        <input type="text" class="form-control" id="station" formControlName="PointName">
       </div>
       <div class="form-group col-sm-6 pl-8">
         <label for="station">Serial Number</label>
