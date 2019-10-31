@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-sm-12">
     <!-- cardTitle="Basic Component" -->
-    <h5>ADD RAILWAY SIGNAL TO INVENTORY</h5>
+    <h5>ADD BLOCK INSTRUMENTS TO INVENTORY</h5>
     <hr>
     <form [formGroup]="addAssetForm" name="addAsset" #addAsset>
       <div class="form-group col-sm-6 pl-8">
@@ -24,35 +24,88 @@
         <input type="text" class="form-control" id="station" formControlName="department">
       </div>
       <div class="form-group col-sm-6 pl-8">
-        <label for="type">Signal Type</label>
+        <label for="type">Type</label>
         <select name="type"
                 class="form-control"
                 id="type"
                 formControlName="signalType">
           <option value="0">
-            Main
+            None
           </option>
           <option value="1">
-            Shunt
+            Push Button TLBI with UFSBI Block Instrument
           </option>
           <option value="2">
-            Subsidiary
+            Tokenless Block Instrument-Single Line
           </option>
         </select>
       </div>
       <div class="form-group col-sm-6 pl-8">
-        <label for="type">Type of Unit</label>
+        <label for="type">Identifier Type</label>
         <select name="type"
                 class="form-control"
                 id="type"
                 formControlName="typeOfUnit">
-          <option value="0">N/A</option>
-          <option value="1">Metallic</option>
-          <option value="2">FRP</option>
+          <option value="0">None</option>
+          <option value="1">Ajhai-Chata</option>
+          <option value="2">Ajhai-Vrindavan</option>
+          <option value="3">Bhuteshwar-Mathura Junction</option>
+          <option value="4">Bhuteshwar-Mora</option>
+          <option value="5">Bhuteshwar-Vrindavan</option>
+          <option value="6">Chata-Ajhai</option>
+          <option value="7">Chata-Kosi Kalan</option>
+          <option value="8">Hodal-Kosi Kalan</option>
+          <option value="9">Hodal-Sholaka</option>
+          <option value="10">Kosi Kalan-Chata</option>
+          <option value="11">Kosi Kalan-Hodal</option>
+          <option value="12">Mathura Junction-Bhuteshwar</option>
+          <option value="13">Mora-Bhuteshwar</option>
+          <option value="14">Rundhi-Palwal</option>
+          <option value="15">Rundhi-Sholaka</option>
+          <option value="16">Sholaka-Hodal</option>
+          <option value="17">Sholaka-Rundhi</option>
+          <option value="18">Vrindavan-Ajhai</option>
+          <option value="19">Vrindavan-Bhuteshwar</option>
         </select>
       </div>
       <div class="form-group col-sm-6 pl-8">
-        <label for="station">Signal Name/Number</label>
+        <label for="station">InternalSupply</label>
+        <input type="text" class="form-control" id="station" formControlName="internalsupply">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">ExernalSupply</label>
+        <input type="text" class="form-control" id="station" formControlName="externalsupply">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">LineSupply</label>
+        <input type="text" class="form-control" id="station" formControlName="linesupply">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">InternalCurrent</label>
+        <input type="text" class="form-control" id="station" formControlName="internalcurrent">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">ExernalCurrent</label>
+        <input type="text" class="form-control" id="station" formControlName="externalcurrent">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">LineCurrent</label>
+        <input type="text" class="form-control" id="station" formControlName="linecurrent">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">OperatingRange</label>
+        <input type="text" class="form-control" id="station" formControlName="operatingrange">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">OverallDimension</label>
+        <input type="text" class="form-control" id="station" formControlName="overalldimension">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Weight</label>
+        <input type="text" class="form-control" id="station" formControlName="weight">
+      </div>
+      <div class="form-group col-sm-6 pl-8">
+        <label for="station">Block Name/Number</label>
         <input type="text" class="form-control" id="station" formControlName="signalName">
       </div>
       <div class="form-group col-sm-6 pl-8">
