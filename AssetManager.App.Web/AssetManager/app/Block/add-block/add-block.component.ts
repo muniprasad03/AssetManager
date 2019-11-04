@@ -80,7 +80,7 @@ export class AddBlockComponent implements OnInit {
         this.SignalService
             .addSignal(modelCopy)
             .then(signals => {
-                window.location.href = '/#/signals';
+                window.location.href = '/#/blocks';
                 console.log(signals);
             });
     }
