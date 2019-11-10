@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SignalMaintanenceService } from '../signal-service/signal-maintenance-service';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-signal-maintanence-list',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignalMaintanenceListComponent implements OnInit {
 
-  constructor() { }
+  public signalId: number;
+  signalsArray: any;
 
+  constructor(private SignalMaintanenceService: SignalMaintanenceService,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.route.params.subscribe(params => {
+      this.signalId = +params['id'];
+    });
+  }
   ngOnInit() {
+    if (this.signalId > 0) {
+      this.SignalMaintanenceService.getSignals(this.signalId).then(signals => {
+        this.signalsArray = signals;
+      });
+    }
   }
 
 }

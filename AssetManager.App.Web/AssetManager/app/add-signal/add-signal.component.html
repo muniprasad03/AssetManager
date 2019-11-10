@@ -1,65 +1,78 @@
-<p>
-  <a href="#/signals">back</a>
-</p>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12 col-xs-12">
+    <div class="col-md-3 col-xs-3">
+      <a href="#/signals" class="btn default yellow">Back</a>
+    </div>
+    <!--<div class="col-md-3 col-sm-6 col-xs-6 pull-right">
+      <a href="#/signaladd" class="btn blue">New</a>
+      <a href="#/maintanence" class="btn purple">Maintanence</a>
+    </div>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
     <!-- cardTitle="Basic Component" -->
-    <h5>ADD RAILWAY SIGNAL TO INVENTORY</h5>
+    <h4 class="font-w800"><span *ngIf="!signal || !signal.id">ADD </span> <span *ngIf="signal && signal.id">EDIT </span> RAILWAY SIGNAL TO INVENTORY</h4>
     <hr>
     <form [formGroup]="addAssetForm" name="addAsset" #addAsset>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Station</label>
-        <input type="text" class="form-control" id="station" formControlName="station">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Zone</label>
         <input type="text" class="form-control" id="station" formControlName="zone">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Division</label>
         <input type="text" class="form-control" id="station" formControlName="division">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="station">Station</label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="stationId">
+          <option [value]="st.id" *ngFor="let st of stations">{{st.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Department</label>
         <input type="text" class="form-control" id="station" formControlName="department">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">Signal Type</label>
         <select name="type"
                 class="form-control"
                 id="type"
                 formControlName="signalType">
-          <option value="0">
+          <option value="Main">
             Main
           </option>
-          <option value="1">
+          <option value="Shunt">
             Shunt
           </option>
-          <option value="2">
+          <option value="Subsidiary">
             Subsidiary
           </option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">Type of Unit</label>
         <select name="type"
                 class="form-control"
                 id="type"
                 formControlName="typeOfUnit">
-          <option value="0">N/A</option>
-          <option value="1">Metallic</option>
-          <option value="2">FRP</option>
+          <option value="N/A">N/A</option>
+          <option value="Metallic">Metallic</option>
+          <option value="FRP">FRP</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Signal Name/Number</label>
-        <input type="text" class="form-control" id="station" formControlName="signalName">
+        <input type="text" class="form-control" id="station" formControlName="name">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Serial Number</label>
         <input type="text" class="form-control" id="station" formControlName="serialNumber">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="make">Manufacture</label>
         <select name="type"
                 class="form-control"
@@ -78,58 +91,116 @@
           <option>TSS India Ltd</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="model">Model</label>
         <input type="text" class="form-control" id="model" formControlName="model">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="milegeInKM">Mileage(KM)</label>
-        <input type="text" class="form-control" id="milegeInKM" formControlName="milegeInKM">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="purchasedon">Date Of Manufacture</label>
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
+          <input type="text"
+                 name="dateOfManufacture"
+                 bsDatepicker
+                 formControlName="dateOfManufacture"
+                 class="form-control"
+                 placement="auto"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
+                 id="dateOfManufacture" readonly />
+          <span class="ic-calendar"></span>
+        </div>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="codalLife">Codal Life</label>
-        <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="purchasedon">Installed on</label>
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
+          <input type="text"
+                 name="dateOfInstallation"
+                 bsDatepicker
+                 formControlName="dateOfInstallation"
+                 class="form-control"
+                 placement="auto"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
+                 id="dateOfInstallation" readonly />
+          <span class="ic-calendar"></span>
+        </div>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="latitude">Latitude</label>
         <input type="text" class="form-control" id="latitude" formControlName="latitude">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="longitude">Longitude</label>
         <input type="text" class="form-control" id="longitude" formControlName="longitude">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-    <label for="purchasedon">Date Of Manufacture</label>
-    <div class="input-calendar col-sm-12 clear-padding-x">
-      <input type="text"
-             name="dateOfManufacture"
-             bsDatepicker
-             formControlName="dateOfManufacture"
-             class="form-control"
-             placement="auto"
-             [bsConfig]="{ showWeekNumbers: false }"
-             id="dateOfManufacture" readonly />
-      <span class="ic-calendar"></span>
-    </div>
-  </div>
-  <div class="form-group col-sm-6 pl-8">
-    <label for="purchasedon">Installed on</label>
-    <div class="input-calendar col-sm-12 clear-padding-x">
-      <input type="text"
-             name="dateOfInstallation"
-             bsDatepicker
-             formControlName="dateOfInstallation"
-             class="form-control"
-             placement="auto"
-             [bsConfig]="{ showWeekNumbers: false }"
-             id="dateOfInstallation" readonly />
-      <span class="ic-calendar"></span>
-    </div>
-  </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="milegeInKM">Mileage(KM)</label>
+        <input type="text" class="form-control" id="milegeInKM" formControlName="milegeInKM">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="make">Location</label>
+        <select name="type"
+                class="form-control"
+                id="make"
+                formControlName="location">
+          <option value="N/A">N/A</option>
+          <option value="LH">LH</option>
+          <option value="RH">RH</option>
+          <option value="Extreme LH">Extreme LH</option>
+          <option value="Extreme RH">Extreme RH</option>
+          <option value="Gantry">Gantry</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="implantation">Implantation</label>
+        <input type="text" class="form-control" id="implantation" formControlName="implantation">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="SacrificialMast">Sacrificial Mast</label>
+        <select class="form-control valid" id="SacrificialMast" name="SacrificialMast" formControlName="sacrificialMast">
+          <option value="N/A">N/A</option>
+          <option value="Provided">Provided</option>
+          <option value="Not Provided">Not Provided</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="codalLife">Codal Life</label>
+        <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="purchasedon">Signal Base Installation</label>
+        <div class="input-calendar  col-xs-12 col-sm-12" style="padding-left:0; padding-right:0">
+          <input type="text"
+                 name="signalBaseInstallation"
+                 bsDatepicker
+                 formControlName="signalBaseInstallation"
+                 class="form-control"
+                 placement="auto"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
+                 id="signalBaseInstallation" readonly />
+          <span class="ic-calendar"></span>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="purchasedon">Signal Post Installation</label>
+        <div class="input-calendar  col-xs-12 col-sm-12" style="padding-left:0; padding-right:0">
+          <input type="text"
+                 name="signalPostInstallation"
+                 bsDatepicker
+                 formControlName="signalPostInstallation"
+                 class="form-control"
+                 placement="auto"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
+                 id="signalPostInstallation" readonly />
+          <span class="ic-calendar"></span>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="model">Remarks</label>
+        <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
+      </div>
     </form>
     <div class="form-actions">
       <div class="row">
-        <div class="col-md-offset-4 col-md-8">
+        <div class="col-md-offset-4 col-xs-12 col-md-8">
           <button (click)="getLocation()" class="btn default">Get Location</button>
           <button (click)="saveAsset()" class="btn blue">Submit</button>
         </div>

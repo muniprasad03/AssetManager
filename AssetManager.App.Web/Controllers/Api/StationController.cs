@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,7 +26,7 @@ namespace AssetManager.App.Web.Controllers.Api
         }
 
         [Route("getstations")]
-        public List<BoardDetails> GetAll()
+        public List<Board> GetAll()
         {
             return this.StationService.Get();
         }

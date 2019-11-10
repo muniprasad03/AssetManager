@@ -22,10 +22,10 @@ namespace AssetManager.App.Web.Controllers.Api
       this.AssetService = assetService;
     }
 
-    [Route("list")]
-    public List<ColorLightSignalAssetMaintanence> GetAll()
+    [Route("list/{id}")]
+    public List<ColorLightSignalAssetMaintanence> GetAll(int id)
     {
-      return this.AssetService.GetSignalListView();
+      return this.AssetService.GetSignalListView(id);
     }
 
     [Route("detail/{id}")]

@@ -28,6 +28,7 @@ import { AddBlockComponent } from './Block/add-block/add-block.component';
 import { BlockService } from './Block/block-service';
 import { TrackService } from './Track Circuits/track-service';
 import { SignalMaintanenceService } from './signal-service/signal-maintenance-service';
+import { StationService } from './station-Service/station-service';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { SignalMaintanenceService } from './signal-service/signal-maintenance-se
     BlockService,
     TrackService,
     SignalMaintanenceService,
+    StationService,
   ],
   bootstrap: [AppComponent]
 })

@@ -17,9 +17,9 @@ namespace AssetManager.Services
             this.DB = db;
         }
 
-        public List<AssetManager.Models.BoardDetails> Get()
+        public List<AssetManager.Models.Board> Get()
         {
-            return this.DB.Fetch<Data.Model.Board>("Select * from board").MapCollectionTo<Data.Model.Board, AssetManager.Models.BoardDetails>().ToList();
+            return this.DB.Fetch<Data.Model.Station>("Select * from Station").MapCollectionTo<Data.Model.Station, AssetManager.Models.Board>().ToList();
         }
 
         public AssetManager.Models.Board Get(int id)

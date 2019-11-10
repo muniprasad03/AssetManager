@@ -17,11 +17,11 @@ namespace AssetManager.Services.Asset
         {
         }
 
-        public override AssetType AssetType => AssetType.AxelCounter;
+        public override AssetType AssetType => AssetType.ColourLightSignal;
 
-        public List<ColorLightSignalAssetMaintanence> GetSignalListView()
+        public List<ColorLightSignalAssetMaintanence> GetSignalListView(int assetId)
         {
-            return base.GetAll();
+            return base.GetAll(assetId);
         }
     }
 }

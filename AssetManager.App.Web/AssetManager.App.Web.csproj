@@ -5765,6 +5765,7 @@
     <TypeScriptCompile Include="assetManager\app\signal-service\signal-service.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\station-Service\station-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\track-service.ts" />

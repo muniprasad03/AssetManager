@@ -12,6 +12,7 @@ import { TrackListComponent } from '../app/Track Circuits/track-list/track-list.
 import { AddTrackComponent } from './Track Circuits/add-track/add-track.component';
 import { BlockListComponent } from './Block/block-list/block-list.component';
 import { AddBlockComponent } from './Block/add-block/add-block.component';
+import { SignalMaintanenceListComponent } from './signal-maintanence-list/signal-maintanence-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'signaladd', component: AddSignalComponent },
   { path: 'editsignal/:id', component: AddSignalComponent },
   { path: 'maintanence/:id', component: AddSignalMaintaneceComponent },
+  { path: 'signalmaintanencelist/:id', component: SignalMaintanenceListComponent },
   { path: 'axels', component: AxelListComponent },
   { path: 'axeladd', component: AddAxelComponent },
   { path: 'editaxel/:id', component: AddAxelComponent },

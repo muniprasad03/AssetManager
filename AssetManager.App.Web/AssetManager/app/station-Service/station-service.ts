@@ -5,14 +5,14 @@
 
 
   @Injectable()
-  export class SignalMaintanenceService {
+  export class StationService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
-    private setting = 'api/signal/maintanence';  // URL to web api
+    private setting = 'api/station';  // URL to web api
     constructor(private http: Http) { }
 
 
-    getSignals(id): Promise<any> {
-      const url = `${this.setting}/list/${id}`;
+    getStations(): Promise<any> {
+      const url = `${this.setting}/getstations`;
       return this.http.get(url)
         .toPromise()
         .then(response => response.json() as any)

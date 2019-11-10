@@ -51,7 +51,7 @@ namespace AssetManager.Services.Asset
             {
                 assetModel = asset.MapTo(assetModel);
                 assetModel.SetAuditFieldsOnUpdate(this.Context);
-                return this.DB.Update(assetModel, new string[] { "Latitude", "name", "Longitude", "Make", "DOM", "Model", "DOI", "MetaData", "DateModified", "ModifiedBy" }) == 1;
+                return this.DB.Update(assetModel, new string[] { "Latitude", "name", "StationID", "stationName", "Longitude", "Make", "DOM", "Model", "DOI", "MetaData", "DateModified", "ModifiedBy" }) == 1;
             }
 
             return false;

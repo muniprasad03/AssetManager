@@ -32,7 +32,9 @@ namespace AssetManager
                    .ForMember(d => d.GroupedStations, opt => opt.MapFrom(src => src.GroupedStations != null ? JsonConvert.DeserializeObject<List<int>>(src.GroupedStations) : new List<int>()));
             AutoMapper.Mapper.CreateMap<DataModel.User, DisplayUser>();
             AutoMapper.Mapper.CreateMap<DataModel.Section, Section>();
-            AutoMapper.Mapper.CreateMap<DataModel.Station, Board>();
+            AutoMapper.Mapper.CreateMap<DataModel.Station, Board>()
+                    .ForMember(d => d.StationType, opt => opt.Ignore());
+
             AutoMapper.Mapper.CreateMap<DataModel.StationDetail, BoardDetails>()
                     .ForMember(d => d.StationType, opt => opt.Ignore());
             AutoMapper.Mapper.CreateMap<DataModel.Board, BoardDetails>()
