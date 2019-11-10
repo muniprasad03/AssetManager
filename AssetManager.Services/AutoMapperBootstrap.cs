@@ -52,6 +52,15 @@ namespace AssetManager
                   .ForMember(d => d.DateOfManufacture, opt => opt.MapFrom(src => src.DOM))
                    .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
+            AutoMapper.Mapper.CreateMap<ColorLightSignalAssetMaintanence, DataModel.AssetMaintanence>()
+                  .ForMember(d => d.Metadata, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Metadata)))
+                  .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (short)src.AssetType));
+
+            AutoMapper.Mapper.CreateMap<DataModel.AssetMaintanence, ColorLightSignalAssetMaintanence>()
+                   .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<ColorLightSignalMaintanenceMetadata>(src.Metadata) : new ColorLightSignalMaintanenceMetadata()))
+                   .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
+
+
             AutoMapper.Mapper.CreateMap<PointMachineAsset, DataModel.Asset>()
                  .ForMember(d => d.MetaData, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Metadata)))
                  .ForMember(d => d.DOI, opt => opt.MapFrom(src => src.DateOfInstallation == DateTime.MinValue ? (DateTime?)null : src.DateOfInstallation))

@@ -11,39 +11,39 @@ using AssetManager.Services.Asset;
 
 namespace AssetManager.App.Web.Controllers.Api
 {
-  [RoutePrefix("api/signal")]
-  public class ColorLightSignalController : BaseApiController
+  [RoutePrefix("api/signal/maintanence")]
+  public class ColorLightSignalMaintanenceController : BaseApiController
   {
-    public IColorLightSignalAssetService AssetService { get; set; }
+    public ColorLightSignalMaintanenceService AssetService { get; set; }
 
 
-    public ColorLightSignalController(IColorLightSignalAssetService assetService)
+    public ColorLightSignalMaintanenceController(ColorLightSignalMaintanenceService assetService)
     {
       this.AssetService = assetService;
     }
 
     [Route("list")]
-    public List<ColorLightSignalAsset> GetAll()
+    public List<ColorLightSignalAssetMaintanence> GetAll()
     {
       return this.AssetService.GetSignalListView();
     }
 
     [Route("detail/{id}")]
-    public ColorLightSignalAsset Get(int id)
+    public ColorLightSignalAssetMaintanence Get(int id)
     {
       return this.AssetService.GetById(id);
     }
 
     [Route("add")]
     [HttpPost]
-    public int AddSignal(ColorLightSignalAsset asset)
+    public int AddSignal(ColorLightSignalAssetMaintanence asset)
     {
       return this.AssetService.CreateAsset(asset);
     }
 
     [Route("update/{id}")]
     [HttpPut]
-    public bool UpdateSignal(int id, ColorLightSignalAsset asset)
+    public bool UpdateSignal(int id, ColorLightSignalAssetMaintanence asset)
     {
       return this.AssetService.UpdateAsset(id, asset);
     }

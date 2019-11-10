@@ -25,16 +25,17 @@
             <th>Distance(KM)</th>
             <th>Latitude</th>
             <th>Longitude</th>
-            <th>Implantation</th> 
+            <th>Implantation</th>
             <th>Sacrificial Mast</th>
             <th>Codal Life</th>
             <th>Remarks</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let signal of signalsArray; index as i">
             <td>{{i+1}}</td>
-            <td>{{signal.metadata.signalName}}</td>
+            <td>{{signal.name}}</td>
             <td>Thuni</td>
             <td>Main</td>
             <td>{{signal.dateOfInstallation | date: 'dd/MM/yyyy'}}</td>
@@ -45,6 +46,10 @@
             <td>None</td>
             <td>{{signal.metadata.codalLife}}</td>
             <td>{{signal.metadata.remarks}}</td>
+            <td>
+              <a href="#/editsignal/{{signal.id}}">edit</a>
+              <a href="#/maintanence/{{signal.id}}">Maintanence</a>
+            </td>
           </tr>
         </tbody>
       </table>

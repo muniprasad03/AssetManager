@@ -60,7 +60,9 @@
     <Compile Include="AutoMapperBootstrap.cs" />
     <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="Models\StoredProcedureModels.cs" />
+    <Compile Include="Services\Asset\AssetMaintanenceService.cs" />
     <Compile Include="Services\Asset\AssetService.cs" />
+    <Compile Include="Services\Asset\ColorLightSignalMaintanenceService.cs" />
     <Compile Include="Services\Asset\AxelCounterAssetService.cs" />
     <Compile Include="Services\Asset\TrackCircuitAssetService.cs" />
     <Compile Include="Services\Asset\PointMachineAssetService.cs" />

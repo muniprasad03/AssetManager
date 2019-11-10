@@ -217,6 +217,7 @@
     <Compile Include="Controllers\Api\Asset\AssetController.cs" />
     <Compile Include="Controllers\Api\Asset\AxelCounterController.cs" />
     <Compile Include="Controllers\Api\Asset\BlockInstrumentController.cs" />
+    <Compile Include="Controllers\Api\Asset\ColorLightSignalMaintanenceController.cs" />
     <Compile Include="Controllers\Api\Asset\TrackCircuitController.cs" />
     <Compile Include="Controllers\Api\Asset\PointMachineController.cs" />
     <Compile Include="Controllers\Api\Asset\ColorLightSignalController.cs" />
@@ -5760,6 +5761,7 @@
     <TypeScriptCompile Include="assetManager\app\Point\point-service.ts" />
     <TypeScriptCompile Include="assetManager\app\signal-maintanence-list\signal-maintanence-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\signal-maintanence-list\signal-maintanence-list.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\signal-service\signal-maintenance-service.ts" />
     <TypeScriptCompile Include="assetManager\app\signal-service\signal-service.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\signal\signal.component.ts" />

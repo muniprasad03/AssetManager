@@ -18,15 +18,20 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'signals', component: SignalComponent },
   { path: 'signaladd', component: AddSignalComponent },
-    { path: 'maintanence', component: AddSignalMaintaneceComponent },
-    { path: 'axels', component: AxelListComponent },
-    { path: 'axeladd', component: AddAxelComponent },
-    { path: 'points', component: PointListComponent },
-    { path: 'pointadd', component: AddPointComponent },
-    { path: 'tracks', component: TrackListComponent },
-    { path: 'trackadd', component: AddTrackComponent },
-    { path: 'blocks', component: BlockListComponent },
-    { path: 'blockadd', component: AddBlockComponent}
+  { path: 'editsignal/:id', component: AddSignalComponent },
+  { path: 'maintanence/:id', component: AddSignalMaintaneceComponent },
+  { path: 'axels', component: AxelListComponent },
+  { path: 'axeladd', component: AddAxelComponent },
+  { path: 'editaxel/:id', component: AddAxelComponent },
+  { path: 'points', component: PointListComponent },
+  { path: 'pointadd', component: AddPointComponent },
+  { path: 'editpoint/:id', component: AddPointComponent },
+  { path: 'tracks', component: TrackListComponent },
+  { path: 'trackadd', component: AddTrackComponent },
+  { path: 'edittrack/:id', component: AddTrackComponent },
+  { path: 'blocks', component: BlockListComponent },
+  { path: 'blockadd', component: AddBlockComponent },
+  { path: 'editblock/:id', component: AddBlockComponent }
 ];
 
 @NgModule({
