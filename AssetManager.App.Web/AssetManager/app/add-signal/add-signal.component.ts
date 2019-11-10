@@ -19,8 +19,18 @@ export class AddSignalComponent implements OnInit {
   public signalId: number;
   public signal: Signal = new Signal({});
   public stations = [];
-
+  existingName: string;
   enableScanner = false;
+  formSubmitted: boolean;
+  validationMessages = {
+    'name': [
+      { type: 'required', message: 'Required' },
+      { type: 'duplicate', message: 'Duplicate Name' },
+    ], 
+    'stationId': [
+      { type: 'required', message: 'Required' },
+    ]
+  };
   constructor(private SignalService: SignalService,
     private stationSevice: StationService,
     private route: ActivatedRoute,
@@ -37,9 +47,9 @@ export class AddSignalComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (this.signalId > 0) {
       this.SignalService.getSignal(this.signalId).then(sig => {
+        this.existingName = sig.name;
         this.signal = new Signal(sig);
         this.signal.dateOfManufacture = this.signal.dateOfManufacture != null ? new Date(this.signal.dateOfManufacture) : null;
         this.signal.dateOfInstallation = this.signal.dateOfInstallation != null ? new Date(this.signal.dateOfInstallation) : null;
@@ -54,14 +64,19 @@ export class AddSignalComponent implements OnInit {
   buildAddAssetForm() {
     this.addAssetForm = this.formBuilder.group({
       id: new FormControl(this.signal.id),
-      stationId: new FormControl(this.signal.stationId),
+      stationId: new FormControl(this.signal.stationId, {
+        validators: Validators.required
+      }),
       zone: new FormControl({ value: "South Central Railway", disabled: true }),
       division: new FormControl({ value: "Vijayawada", disabled: true }),
       department: new FormControl({ value: "Signal", disabled: true }),
       signalType: new FormControl(this.signal.metadata.signalType),
       subsidiaryType: new FormControl(this.signal.metadata.subsidiaryType),
       typeOfUnit: new FormControl(this.signal.metadata.typeOfUnit),
-      name: new FormControl(this.signal.name),
+      name: new FormControl(this.signal.name, {
+        validators: Validators.required,
+        asyncValidators: [this.isNameUnique.bind(this)], updateOn: 'blur',
+      }),
       serialNumber: new FormControl(this.signal.metadata.serialNumber),
       milegeInKM: new FormControl(this.signal.metadata.milegeInKM),
       implantation: new FormControl(this.signal.metadata.implantation),
@@ -80,7 +95,25 @@ export class AddSignalComponent implements OnInit {
     });
   }               
 
+  isNameUnique = (control: FormControl): Promise<{ [key: string]: any } | null> => {
+    return new Promise((resolve, reject) => {
+      const value: string = control.value;
+      if (this.existingName === value) {
+        resolve(null);
+      } else {
+        this.SignalService.getValidationOfSignalName(this.signal.id, value).subscribe(isExists => {
+          isExists ? resolve({ duplicate: true }) : resolve(null);
+        }, error => {
+          resolve(null);
+        });
+      }
+    });
+  }
+
+
   saveAsset(): void {
+    this.formSubmitted = true;
+    if (!this.addAssetForm.valid) { return; }
     const modelCopy = this.addAssetForm.value;
     const metadata = {
       signalType: this.addAssetForm.value["signalType"],

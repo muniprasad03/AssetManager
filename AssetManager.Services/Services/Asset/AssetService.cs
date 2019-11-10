@@ -36,6 +36,11 @@ namespace AssetManager.Services.Asset
             return this.DB.FirstOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and QRCode = @0 and AssetType = @1", qrCode, this.AssetType).MapTo<AssetManager.Models.Asset.Asset>();
         }
 
+        public bool GetisUnique(int id, string name)
+        {
+            return string.IsNullOrEmpty(name) || (this.DB.Fetch<Data.Model.Asset>("Where  Name = @0 and IsDeleted = 0 and Id != @1 and AssetType = @2", name.Trim(), id, this.AssetType).Count() > 0);
+        }
+
         public int CreateAsset(T asset)
         {
             var assetModel = asset.MapTo<Data.Model.Asset>();

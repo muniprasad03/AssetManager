@@ -12,6 +12,8 @@ namespace AssetManager.Services.Asset
 
         T GetById(int id);
 
+        bool GetisUnique(int id, string name);
+
         AssetManager.Models.Asset.Asset GetByQRCode(string qrCode);
         
         List<T> GetAll();

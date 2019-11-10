@@ -37,3 +37,25 @@ button.btn.btn-link {
 .settings-ic {
   background-image: url('~/assets/global/img/portlet-config-icon-white.png');
 }
+
+.text-x-small {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.page-logo {
+  width: auto !important;
+}
+
+
+@media (min-width: 0px) and (max-width: 720px) {
+  .large-name {
+    display: none;
+  }
+}
+
+@media (min-width: 721px) {
+  .short-name {
+    display: none;
+  }
+}

@@ -1,5 +1,7 @@
   import { Injectable } from '@angular/core';
   import { Headers, Http } from '@angular/http';
+import { HttpParams, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
   //import 'rxjs/add/operator/toPromise';
 
@@ -8,7 +10,8 @@
   export class SignalService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private setting = 'api/signal';  // URL to web api
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+      private httpClient: HttpClient) { }
 
 
     getSignals(): Promise<any> {
@@ -32,6 +35,14 @@
         .toPromise()
         .then(response => response.json() as any)
         .catch(this.handleError);
+    }
+
+    getValidationOfSignalName(id: number, name: string): Observable<any> {
+      id = id || 0;
+      const params = new HttpParams().set('id', id.toString())
+        .set('name', name);
+      const url = `${this.setting}/isUnique`;
+      return this.httpClient.get(url, { params });
     }
 
     updateSignal(settings: any): any {

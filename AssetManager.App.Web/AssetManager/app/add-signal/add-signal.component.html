@@ -24,7 +24,11 @@
         <input type="text" class="form-control" id="station" formControlName="division">
       </div>
       <div class="form-group col-sm-6 pl-8 col-xs-6">
-        <label for="station">Station</label>
+        <label for="station">Station
+        <span *ngFor="let validation of validationMessages.stationId">
+          <span class="text-danger text-x-small" *ngIf="addAssetForm.get('stationId').hasError(validation.type) && (addAssetForm.get('stationId').dirty || addAssetForm.get('stationId').touched || formSubmitted)">{{validation.message}}</span>
+        </span>
+        </label>
         <select name="type"
                 class="form-control"
                 id="type"
@@ -65,8 +69,12 @@
         </select>
       </div>
       <div class="form-group col-sm-6 pl-8 col-xs-6">
-        <label for="station">Signal Name/Number</label>
+        <label for="station">Name/Number
+        <span *ngFor="let validation of validationMessages.name">
+          <span class="text-danger text-x-small" *ngIf="addAssetForm.get('name').hasError(validation.type) && (addAssetForm.get('name').dirty || addAssetForm.get('name').touched || formSubmitted)">{{validation.message}}</span>
+        </span></label>
         <input type="text" class="form-control" id="station" formControlName="name">
+        
       </div>
       <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Serial Number</label>
