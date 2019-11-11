@@ -11,8 +11,8 @@
     constructor(private http: Http) { }
 
 
-    getSignals(): Promise<any> {
-      const url = `${this.setting}/list`;
+    getSignals(id): Promise<any> {
+      const url = `${this.setting}/list/${id}`;
       return this.http.get(url)
         .toPromise()
         .then(response => response.json() as any)

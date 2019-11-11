@@ -2251,6 +2251,21 @@ namespace AssetManager.Data.Model
 		}
 		int _StationId;
 
+        [Column]
+        public string StationName
+        {
+            get
+            {
+                return _StationName;
+            }
+            set
+            {
+                _StationName = value;
+                MarkColumnModified("StationName");
+            }
+        }
+        string _StationName;
+
         [Column] 
 		public string MainCategory 
 		{ 

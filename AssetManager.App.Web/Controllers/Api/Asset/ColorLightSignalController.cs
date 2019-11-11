@@ -34,6 +34,12 @@ namespace AssetManager.App.Web.Controllers.Api
       return this.AssetService.GetById(id);
     }
 
+    [Route("isUnique")]
+    public bool GetisUnique(int id, string name)
+    {
+      return this.AssetService.GetisUnique(id, name);
+    }
+
     [Route("add")]
     [HttpPost]
     public int AddSignal(ColorLightSignalAsset asset)

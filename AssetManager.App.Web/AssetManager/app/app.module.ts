@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './layout';
@@ -28,6 +29,7 @@ import { AddBlockComponent } from './Block/add-block/add-block.component';
 import { BlockService } from './Block/block-service';
 import { TrackService } from './Track Circuits/track-service';
 import { SignalMaintanenceService } from './signal-service/signal-maintenance-service';
+import { StationService } from './station-Service/station-service';
 
 
 @NgModule({
@@ -51,6 +53,7 @@ import { SignalMaintanenceService } from './signal-service/signal-maintenance-se
     BrowserModule,
     BrowserAnimationsModule, // required animations module
     HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     LayoutModule,
     ReactiveFormsModule,
@@ -67,6 +70,7 @@ import { SignalMaintanenceService } from './signal-service/signal-maintenance-se
     BlockService,
     TrackService,
     SignalMaintanenceService,
+    StationService,
   ],
   bootstrap: [AppComponent]
 })

@@ -45,11 +45,12 @@ export class AddSignalMaintaneceComponent implements OnInit {
 
   buildAddAssetForm() {
     this.addAssetMaintanenceForm = this.formBuilder.group({
-      station: new FormControl({ value: "TUNI", disabled: true }),
-      zone: new FormControl({ value: "South Central Railway", disabled: true }),
-      division: new FormControl({ value: "Vijayawada", disabled: true }),
-      department: new FormControl({ value: "Signal", disabled: true }),
+      stationName: new FormControl({ value: this.signal.stationName, disabled: true }),
       signalName: new FormControl(this.signal.name),
+      slatitude: new FormControl(this.signal.latitude),
+      slongitude: new FormControl(this.signal.longitude),
+      latitude: new FormControl(null),
+      longitude: new FormControl(null),
       serialNumber: new FormControl(this.signal.metadata.serialNumber),
       make: new FormControl(this.signal.make),
       model: new FormControl(this.signal.model),
@@ -86,8 +87,7 @@ export class AddSignalMaintaneceComponent implements OnInit {
           faulty: new FormControl(null),
         }),
       }),
-      latitude: new FormControl(null),
-      longitude: new FormControl(null),
+      
     });
   }         
 

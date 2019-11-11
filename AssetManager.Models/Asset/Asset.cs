@@ -13,6 +13,7 @@ namespace AssetManager.Models.Asset
         public abstract AssetType AssetType { get; }
 
         public int StationId { get; set; }
+        public string StationName { get; set; }
 
         public string Department { get; set; }
 

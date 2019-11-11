@@ -1,10 +1,10 @@
 
 <div class="row">
-  <div class="col-md-12">
-    <div class="col-md-3">
-      <a href="#/home">back</a>
+  <div class="col-md-12 col-xs-12">
+    <div class="col-md-3 col-xs-3">
+      <a href="#/home" class="btn default yellow">Back</a>
     </div>
-    <div class="col-md-3 pull-right">
+    <div class="col-md-3 col-sm-6 col-xs-6 pull-right">
       <a href="#/signaladd" class="btn blue">New</a>
       <a href="#/maintanence" class="btn purple">Maintanence</a>
     </div>
@@ -12,12 +12,12 @@
 </div>
 <div class="row">
   <!-- [ basic-table ] start -->
-  <div class="col-md-12">
+  <div class="col-md-12 mt-10">
     <div class="table-responsive">
-      <table class="table">
-        <thead>
+      <table class="table table-bordered table-hover">
+        <thead class="purple-bg white-color">
           <tr>
-            <th>#</th>
+            <th>S.No</th>
             <th>Signal Name</th>
             <th>Station</th>
             <th>Type</th>
@@ -36,19 +36,27 @@
           <tr *ngFor="let signal of signalsArray; index as i">
             <td>{{i+1}}</td>
             <td>{{signal.name}}</td>
-            <td>Thuni</td>
-            <td>Main</td>
+            <td>{{signal.stationName}}</td>
+            <td>{{signal.metadata.signalType}}</td>
             <td>{{signal.dateOfInstallation | date: 'dd/MM/yyyy'}}</td>
             <td>{{signal.metadata.milegeInKM}}</td>
             <td>{{signal.latitude}}</td>
             <td>{{signal.longitude}}</td>
             <td>{{signal.metadata.implantation}}</td>
-            <td>None</td>
+            <td>{{signal.metadata.sacrificialMast}}</td>
             <td>{{signal.metadata.codalLife}}</td>
             <td>{{signal.metadata.remarks}}</td>
             <td>
-              <a href="#/editsignal/{{signal.id}}">edit</a>
-              <a href="#/maintanence/{{signal.id}}">Maintanence</a>
+              <a href="#/editsignal/{{signal.id}}" class="btn default btn-xs purple">
+                <i class="fa fa-edit"></i> Edit
+              </a>
+              <a href="#/signalmaintanencelist/{{signal.id}}" class="btn default btn-xs yellow">
+                <i class="fa fa-share"></i> View
+              </a>
+              <a href="#/maintanence/{{signal.id}}" class="btn default btn-xs blue">
+                <img src="../../../assets/global/img/portlet-config-icon-white.png" />
+                Maintenance
+              </a>
             </td>
           </tr>
         </tbody>

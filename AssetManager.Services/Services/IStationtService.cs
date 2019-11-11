@@ -9,7 +9,7 @@ namespace AssetManager.Services
 {
     public interface IStationService
     {
-        List<BoardDetails> Get();
+        List<Board> Get();
 
         Board Get(int id);
 

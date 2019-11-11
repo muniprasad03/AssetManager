@@ -21,9 +21,9 @@ namespace AssetManager.Services.Asset
             this.DB = db;
         }
 
-        public List<T> GetAll()
+        public List<T> GetAll(int assetId)
         {
-            return this.DB.Fetch<Data.Model.AssetMaintanence>("Where IsDeleted = 0 and AssetType = @0", this.AssetType).MapCollectionTo<Data.Model.AssetMaintanence, T>().ToList();
+            return this.DB.Fetch<Data.Model.AssetMaintanence>("Where IsDeleted = 0 and AssetType = @0 and AssetId =@1", this.AssetType, assetId).MapCollectionTo<Data.Model.AssetMaintanence, T>().ToList();
         }
 
         public T GetById(int id)

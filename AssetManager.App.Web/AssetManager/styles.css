@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+.form-control {
+  font-weight: 600 !important;
+  color: #101010 !important;
+  background-color: #fbfd5f !important;
+}
+
+label {
+  font-weight: 600 !important;
+}
+
+
+.panel-heading.card-header.panel-enabled {
+  background-color: #3598dc !important;
+}
+
+button.btn.btn-link {
+  color: #fff !important;
+}
+
+.font-w800 {
+  font-weight:800;
+}
+
+.purple-bg {
+  background-color: #724c82;
+}
+
+.white-color {
+  color: white;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.settings-ic {
+  background-image: url('~/assets/global/img/portlet-config-icon-white.png');
+}
+
+.text-x-small {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.page-logo {
+  width: auto !important;
+}
+
+
+@media (min-width: 0px) and (max-width: 720px) {
+  .large-name {
+    display: none;
+  }
+}
+
+@media (min-width: 721px) {
+  .short-name {
+    display: none;
+  }
+}
