@@ -48,6 +48,10 @@ button.btn.btn-link {
 }
 
 
+#footer{
+  margin: 0 auto -150px;
+}
+
 @media (min-width: 0px) and (max-width: 720px) {
   .large-name {
     display: none;
