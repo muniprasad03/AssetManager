@@ -1,6 +1,7 @@
   import { Injectable } from '@angular/core';
   import { Headers, Http } from '@angular/http';
-
+import { Observable } from 'rxjs';
+import { HttpParams, HttpClient } from '@angular/common/http';
   //import 'rxjs/add/operator/toPromise';
 
 
@@ -8,7 +9,8 @@
   export class BlockService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private setting = 'api/block';  // URL to web api
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+      private httpClient: HttpClient) { }
 
 
     getSignals(): Promise<any> {
@@ -26,8 +28,16 @@
         .catch(this.handleError);
     }
 
+    getValidationOfSignalName(id: number, name: string): Observable<any> {
+      id = id || 0;
+      const params = new HttpParams().set('id', id.toString())
+        .set('name', name);
+      const url = `${this.setting}/isUnique`;
+      return this.httpClient.get(url, { params });
+    }
+
     getSignal(id): Promise<any> {
-      const url = `${this.setting}/detail/${id}`;
+      const url = `${this.setting}/details/${id}`;
       return this.http.get(url)
         .toPromise()
         .then(response => response.json() as any)

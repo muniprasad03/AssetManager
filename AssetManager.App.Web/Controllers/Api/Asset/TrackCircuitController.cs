@@ -11,7 +11,7 @@ using AssetManager.Services.Asset;
 
 namespace AssetManager.App.Web.Controllers.Api
 {
-  [RoutePrefix("api/point")]
+  [RoutePrefix("api/track")]
   public class TrackCircuitController : BaseApiController
   {
     public TrackCircuitAssetService AssetService { get; set; }
@@ -39,6 +39,12 @@ namespace AssetManager.App.Web.Controllers.Api
     public int AddSignal(TrackCircuitAsset asset)
     {
       return this.AssetService.CreateAsset(asset);
+    }
+
+    [Route("isUnique")]
+    public bool GetisUnique(int id, string name)
+    {
+      return this.AssetService.GetisUnique(id, name);
     }
 
     [Route("update/{id}")]

@@ -99,6 +99,19 @@ namespace AssetManager
                   .ForMember(d => d.DateOfManufacture, opt => opt.MapFrom(src => src.DOM))
                    .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
+
+            AutoMapper.Mapper.CreateMap<TrackCircuitAsset, DataModel.Asset>()
+                 .ForMember(d => d.MetaData, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Metadata)))
+                 .ForMember(d => d.DOI, opt => opt.MapFrom(src => src.DateOfInstallation == DateTime.MinValue ? (DateTime?)null : src.DateOfInstallation))
+                 .ForMember(d => d.DOM, opt => opt.MapFrom(src => src.DateOfManufacture == DateTime.MinValue ? (DateTime?)null : src.DateOfManufacture))
+                 .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (short)src.AssetType));
+
+            AutoMapper.Mapper.CreateMap<DataModel.Asset, TrackCircuitAsset>()
+                 .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.MetaData) ? JsonConvert.DeserializeObject<TrackCircuitMetadata>(src.MetaData) : new TrackCircuitMetadata()))
+              .ForMember(d => d.DateOfInstallation, opt => opt.MapFrom(src => src.DOI))
+                .ForMember(d => d.DateOfManufacture, opt => opt.MapFrom(src => src.DOM))
+                 .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
+
             AutoMapper.Mapper.CreateMap<DataModel.Asset, Models.Asset.Asset>()
              .ForMember(d => d.DateOfInstallation, opt => opt.MapFrom(src => src.DOI))
                .ForMember(d => d.DateOfManufacture, opt => opt.MapFrom(src => src.DOM))

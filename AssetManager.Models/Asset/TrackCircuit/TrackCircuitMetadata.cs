@@ -10,13 +10,12 @@ namespace AssetManager.Models.Asset
     {
         public int CodalLife { get; set; }
         public string SerialNumber { get; set; }
-
-        public DetectionDeviceType DetectionDeviceType { get; set; }
-
+        public string DetectionDeviceType { get; set; }
         public string Make { get; set; }
-        public RedundancyType RedundancyType { get; set; }
-        public TCLineType TCLineType { get; set; }
+        public string RedundancyType { get; set; }
+        public string TCLineType { get; set; }
         public string Platform { get; set; }
+        public string PlatformLine { get; set; }
         public string TCLength { get; set; }
         public float TCLocationFromRelayEnd { get; set; }
         public float TCLocationBxJumperLocation1 { get; set; }
@@ -27,15 +26,13 @@ namespace AssetManager.Models.Asset
         public bool FmBSLSt { get; set; }
         public bool FmBSLTO { get; set; }
         public bool FmHomeStraight { get; set; }
-        public bool FmHomeTO { get; set; }
+        public bool FmHomeTO { get; set; }  
         public bool LoopLine { get; set; }
         public bool Sliding { get; set; }
         public bool OtherGoodsLine { get; set; }
-
         public int LoopLineNo { get; set; }
         public int SlidingNo { get; set; }
         public int OtherGoodsNo { get; set; }
-
         public string Remarks { get; set; }
 
         public List<AssetFileAttachment> Attachments { get; set; }

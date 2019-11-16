@@ -48,6 +48,12 @@ namespace AssetManager.App.Web.Controllers.Api
       return this.AssetService.UpdateAsset(id, asset);
     }
 
+    [Route("isUnique")]
+    public bool GetisUnique(int id, string name)
+    {
+      return this.AssetService.GetisUnique(id, name);
+    }
+
     [Route("delete/{id}")]
     public bool DeleteSignal(int id)
     {

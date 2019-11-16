@@ -1,50 +1,86 @@
-
 <div class="row">
-  <div class="col-md-12">
-    <div class="col-md-3">
-      <a href="#/home">back</a>
+  <div class="col-md-12 col-xs-12">
+    <div class="col-md-3 col-xs-3">
+      <a href="#/home" class="btn default yellow">Back</a>
     </div>
-    <div class="col-md-3 pull-right">
+    <div class="col-md-3 col-sm-6 col-xs-6 pull-right">
       <a href="#/pointadd" class="btn blue">New</a>
-      <a href="#/maintanence" class="btn purple">Maintanence</a>
+      <!--<a href="#/maintanence" class="btn purple">Maintanence</a>-->
     </div>
   </div>
 </div>
 <div class="row">
   <!-- [ basic-table ] start -->
-  <div class="col-md-12">
+  <div class="col-md-12 mt-10">
     <div class="table-responsive">
-      <table class="table">
-        <thead>
+      <table class="table table-bordered table-hover">
+        <thead class="purple-bg white-color">
           <tr>
             <th>#</th>
-            <th>Axel Name</th>
+            <th>Point Name</th>
             <th>Station</th>
-            <th>Type</th>
+            <th>Serial Number</th>
+            <th>Make</th>
+            <th>DOM</th>
             <th>DOI</th>
             <th>Distance(KM)</th>
             <th>Latitude</th>
             <th>Longitude</th>
-            <th>Implantation</th>
-            <th>Sacrificial Mast</th>
+            <th>Line</th>
+            <th>Layout Type</th>
+            <th>Rail Type</th>
+            <th>Type of Curve</th>
+            <th>LH/RH Curve</th>
+            <th>Type of Sleeper</th>
+            <th>No of GTP</th>
+            <th>No of W/S/V</th>
+            <th>Standard</th>
+            <th>Strock</th>
+            <th>SSD</th>
+            <th>AC Immunisation(V)</th>
             <th>Codal Life</th>
             <th>Remarks</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let signal of signalsArray; index as i">
             <td>{{i+1}}</td>
-            <td>{{signal.metadata.signalName}}</td>
-            <td>Thuni</td>
-            <td>Main</td>
+            <td>{{signal.name}}</td>
+            <td>{{signal.stationName}}</td>
+            <td>{{signal.metadata.serialNumber}}</td>
+           <td>{{signal.make}}</td>
+           <td>{{signal.dateOfManufacture | date: 'dd/MM/yyyy'}}</td>
             <td>{{signal.dateOfInstallation | date: 'dd/MM/yyyy'}}</td>
-            <td>{{signal.metadata.milegeInKM}}</td>
+            <td>{{signal.metadata.locationDistance}}</td>
             <td>{{signal.latitude}}</td>
             <td>{{signal.longitude}}</td>
-            <td>{{signal.metadata.implantation}}</td>
-            <td>None</td>
+            <td>{{signal.metadata.lineType}}</td>
+            <td>{{signal.metadata.turnOutType}}</td>
+            <td>{{signal.metadata.railType}}</td>
+            <td>{{signal.metadata.typeCurve}}</td>
+            <td>{{signal.metadata.hCurveType}}</td>
+            <td>{{signal.metadata.sleeperType}}</td>
+            <td>{{signal.metadata.noOfGaugeTiePlate}}</td>
+            <td>{{signal.metadata.noOfWilliamStretcherBarInsulationsSets}}</td>
+            <td>{{signal.metadata.pointMachineType}}</td>
+            <td>{{signal.metadata.strock}}</td>
+            <td>{{signal.metadata.springSettingDevice}}</td>
+            <td>{{signal.metadata.acImmunisation}}</td>
             <td>{{signal.metadata.codalLife}}</td>
             <td>{{signal.metadata.remarks}}</td>
+            <td>
+              <a href="#/editpoint/{{signal.id}}" class="btn default btn-xs purple">
+                <i class="fa fa-edit"></i> Edit
+              </a>
+              <!--<a href="#/signalmaintanencelist/{{signal.id}}" class="btn default btn-xs yellow">
+                <i class="fa fa-share"></i> View
+              </a>
+              <a href="#/maintanence/{{signal.id}}" class="btn default btn-xs blue">
+                <img src="../../../assets/global/img/portlet-config-icon-white.png" />
+                Maintenance
+              </a>-->
+            </td>
           </tr>
         </tbody>
       </table>

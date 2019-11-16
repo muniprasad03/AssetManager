@@ -47,6 +47,10 @@ button.btn.btn-link {
   width: auto !important;
 }
 
+.clear-side-padding {
+  padding-left:0;
+  padding-right:0;
+}
 
 #footer{
   margin: 0 auto -150px;

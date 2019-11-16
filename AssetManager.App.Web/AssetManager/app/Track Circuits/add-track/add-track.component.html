@@ -1,136 +1,365 @@
-<p>
-  <a href="#/tracks">back</a>
-</p>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12 col-xs-12">
+    <div class="col-md-3 col-xs-3">
+      <a href="#/tracks" class="btn default yellow">Back</a>
+    </div>
+    <!--<div class="col-md-3 col-sm-6 col-xs-6 pull-right">
+      <a href="#/signaladd" class="btn blue">New</a>
+      <a href="#/maintanence" class="btn purple">Maintanence</a>
+    </div>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
     <!-- cardTitle="Basic Component" -->
-    <h5>ADD RAILWAY TRACK CIRCUIT  TO INVENTORY</h5>
+    <h4 class="font-w800"><span *ngIf="!signal || !signal.id">ADD </span> <span *ngIf="signal && signal.id">EDIT </span> RAILWAY TRACK CIRCUIT TO INVENTORY</h4>
     <hr>
     <form [formGroup]="addAssetForm" name="addAsset" #addAsset>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Station</label>
-        <input type="text" class="form-control" id="station" formControlName="station">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Zone</label>
         <input type="text" class="form-control" id="station" formControlName="zone">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Division</label>
         <input type="text" class="form-control" id="station" formControlName="division">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="station">
+          Station
+          <span *ngFor="let validation of validationMessages.stationId">
+            <span class="text-danger text-x-small" *ngIf="addAssetForm.get('stationId').hasError(validation.type) && (addAssetForm.get('stationId').dirty || addAssetForm.get('stationId').touched || formSubmitted)">{{validation.message}}</span>
+          </span>
+        </label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="stationId">
+          <option [value]="st.id" *ngFor="let st of stations">{{st.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Department</label>
         <input type="text" class="form-control" id="station" formControlName="department">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">Vehicle Detection Type</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="detectionType">
-          <option value="0">
+                formControlName="detectionDeviceType">
+          <option value="DC">
             DC
           </option>
-          <option value="1">
+          <option value="AFTC">
             AFTC
           </option>
-          <option value="2">
+          <option value="SSDAC">
             SSDAC
           </option>
-          <option value="3">
+          <option value="MSDAC">
             MSDAC
           </option>
-          <option value="4">
+          <option value="HASSD">
             HASSD
           </option>
-          <option value="4">
+          <option value="UAC">
             UAC
           </option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="station">
+          Name/Number
+          <span *ngFor="let validation of validationMessages.name">
+            <span class="text-danger text-x-small" *ngIf="addAssetForm.get('name').hasError(validation.type) && (addAssetForm.get('name').dirty || addAssetForm.get('name').touched || formSubmitted)">{{validation.message}}</span>
+          </span>
+        </label>
+        <input type="text" class="form-control" id="station" formControlName="name">
+
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="station">Serial Number</label>
+        <input type="text" class="form-control" id="station" formControlName="serialNumber">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="make">Manufacture</label>
         <select name="type"
                 class="form-control"
                 id="make"
                 formControlName="make">
-          <option value="">--Select--</option>
-          <option>Agarwal Engineering Works</option>
-          <option>G.K. Engg. Works &amp; Stores (P) Ltd</option>
-          <option>Kiran Infra Engineers Ltd</option>
-          <option>NSS Stores Supply Agency (P) Ltd</option>
-          <option>RT Vision Technologies (P) Ltd</option>
-          <option>Sankar Engg. Works</option>
-          <option>SBM Engg. Works</option>
-          <option>Shyam Sundar Casting (P) Ltd</option>
-          <option>Sigma Trade Agency</option>
+          <option></option>
           <option>TSS India Ltd</option>
+          <option>Alstom Projects India Ltd</option>
+          <option>Ansaldo STS Transportation Systems India Private Limited</option>
+          <option>Bombardier Transportation India Private Limited</option>
+          <option>Byculla</option>
+          <option>Central Electronics Ltd</option>
+          <option>Crompton Greaves Ltd</option>
+          <option>ELDYNE ELECTRO SYSTEM PVT LTD</option>
+          <option>Eldyne Electro-Systems Pvt. Ltd</option>
+          <option>
+            Epsilon Electronics Equipment &amp;
+            Components P. Ltd.
+          </option>
+          <option>Frauscher Sensor Technology India Private Limited</option>
+          <option>G.G. Tronics India Pvt. Ltd</option>
+          <option>General Auto Electric Corporation</option>
+          <option>Mani Electronics</option>
+          <option>Medha Servo Drives Pvt. Ltd</option>
+          <option>Nandi Electric Co.</option>
+          <option>RT Vision Technologies (P) Ltd</option>
+          <option>Siemens Limited</option>
+          <option>Signal &amp; Telecom Workshop</option>
+          <option>SUNTRON SYSTEM</option>
+          <option>Urban Engg. Association Pvt. Limited</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="type">Redundancy</label>
-        <select name="type"
-                class="form-control"
-                id="type"
-                formControlName="Redundancy">
-          <option value="0">N/A</option>
-          <option value="1">Provided</option>
-          <option value="2">Not Provided</option>
-        </select>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="model">Model</label>
+        <input type="text" class="form-control" id="model" formControlName="model">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="milegeInKM">Mileage(KM)</label>
-        <input type="text" class="form-control" id="milegeInKM" formControlName="milegeInKM">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="codalLife">Codal Life</label>
-        <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="latitude">Latitude</label>
-        <input type="text" class="form-control" id="latitude" formControlName="latitude">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="longitude">Longitude</label>
-        <input type="text" class="form-control" id="longitude" formControlName="longitude">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="longitude">FmFm</label>
-        <input type="checkbox" class="form-control" id="longitude" formControlName="fcm">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="purchasedon">Date Of Manufacture</label>
-        <div class="input-calendar col-sm-12 clear-padding-x">
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
           <input type="text"
                  name="dateOfManufacture"
                  bsDatepicker
                  formControlName="dateOfManufacture"
                  class="form-control"
                  placement="auto"
-                 [bsConfig]="{ showWeekNumbers: false }"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
                  id="dateOfManufacture" readonly />
           <span class="ic-calendar"></span>
         </div>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="purchasedon">Installed on</label>
-        <div class="input-calendar col-sm-12 clear-padding-x">
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
           <input type="text"
                  name="dateOfInstallation"
                  bsDatepicker
                  formControlName="dateOfInstallation"
                  class="form-control"
                  placement="auto"
-                 [bsConfig]="{ showWeekNumbers: false }"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
                  id="dateOfInstallation" readonly />
           <span class="ic-calendar"></span>
         </div>
       </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="latitude">Latitude</label>
+        <input type="text" class="form-control" id="latitude" formControlName="latitude">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Longitude</label>
+        <input type="text" class="form-control" id="longitude" formControlName="longitude">
+      </div>
+
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="SacrificialMast">Redundancy</label>
+        <select class="form-control valid" id="SacrificialMast" name="SacrificialMast" formControlName="redundancyType">
+          <option value="N/A">N/A</option>
+          <option value="Provided">Provided</option>
+          <option value="Not Provided">Not Provided</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="codalLife">Codal Life</label>
+        <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
+      </div>
+
+
+
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="SacrificialMast">TC Line</label>
+        <select class="form-control valid" id="SacrificialMast" name="SacrificialMast" formControlName="tcLineType">
+          <option value="N/A">N/A</option>
+          <option value="UP Main">UP Main</option>
+          <option value="Dn Main">Dn Main</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="SacrificialMast">Platform</label>
+        <select class="form-control valid" id="SacrificialMast" name="SacrificialMast" formControlName="platform">
+          <option value="N/A">N/A</option>
+          <option value="PF1">PF1</option>
+          <option value="PF2">PF2</option>
+          <option value="PF3">PF3</option>
+          <option value="PF4">PF4</option>
+          <option value="PF5">PF5</option>
+          <option value="PF6">PF6</option>
+          <option value="PF7">PF7</option>
+          <option value="PF8">PF8</option>
+          <option value="PF9">PF9</option>
+          <option value="PF10">PF10</option>
+          <option value="PF11">PF11</option>
+          <option value="PF12">PF12</option>
+          <option value="PF13">PF13</option>
+          <option value="PF14">PF14</option>
+          <option value="PF15">PF15</option>
+          <option value="PF16">PF16</option>
+          <option value="PF17">PF17</option>
+          <option value="PF18">PF18</option>
+          <option value="PF19">PF19</option>
+          <option value="PF20">PF20</option>
+          <option value="PF21">PF21</option>
+          <option value="PF22">PF22</option>
+          <option value="PF23">PF23</option>
+          <option value="PF24">PF24</option>
+          <option value="PF25">PF25</option>
+          <option value="PF26">PF26</option>
+          <option value="PF27">PF27</option>
+          <option value="PF28">PF28</option>
+          <option value="PF29">PF29</option>
+          <option value="PF30">PF30</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="SacrificialMast">Platform Line</label>
+        <select class="form-control valid" id="SacrificialMast" name="SacrificialMast" formControlName="platformLine">
+          <option value="N/A">N/A</option>
+          <option value="Line-1">Line-1</option>
+          <option value="Line-2">Line-2</option>
+          <option value="Line-3">Line-3</option>
+          <option value="Line-4">Line-4</option>
+          <option value="Line-5">Line-5</option>
+          <option value="Line-6">Line-6</option>
+          <option value="Line-7">Line-7</option>
+          <option value="Line-8">Line-8</option>
+          <option value="Line-9">Line-9</option>
+          <option value="Line-10">Line-10</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <div class="input-group">
+          <div class="icheck-inline">
+            <label>
+              <input type="checkbox" formControlName="fmFm" class="icheck">
+              FM-FM
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <div class="input-group">
+          <div class="icheck-inline">
+            <label>
+              <input type="checkbox" formControlName="fmBSLSt" class="icheck">
+              FM-BSL St
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <div class="input-group">
+          <div class="icheck-inline">
+            <label>
+              <input type="checkbox" formControlName="fmBSLTO" class="icheck">
+              FM-BSL T/O
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <div class="input-group">
+          <div class="icheck-inline">
+            <label>
+              <input type="checkbox" formControlName="fmHomeStraight" class="icheck">
+              FM-HOME Straight
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <div class="input-group">
+          <div class="icheck-inline">
+            <label>
+              <input type="checkbox" formControlName="fmHomeTO" class="icheck">
+              FM-HOME T/O
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12 clear-side-padding">
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <div class="input-group">
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="loopLine" class="icheck">
+                Loop Line
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM">Loop Line No</label>
+          <input type="text" class="form-control" formControlName="loopLineNo">
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12 clear-side-padding">
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <div class="input-group">
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="sliding" class="icheck">
+                Sliding
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM">Sliding No</label>
+          <input type="text" class="form-control" formControlName="slidingNo">
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-12 clear-side-padding">
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <div class="input-group">
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="otherGoodsLine" class="icheck">
+                Other Goods Line
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM"> Other Goods Line No</label>
+          <input type="text" class="form-control" formControlName="otherGoodsNo">
+        </div>
+      </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM">Length Of TC</label>
+          <input type="text" class="form-control" formControlName="tcLength">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM">TC Location From Relay End(Km)</label>
+          <input type="text" class="form-control" formControlName="tcLocationFromRelayEnd">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM">TC Location From Feed End(Km)</label>
+          <input type="text" class="form-control" formControlName="tcLocationFromFeedEnd">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM">TC Location Bx Jumper Location 1 (Km)</label>
+          <input type="text" class="form-control" formControlName="tcLocationBxJumperLocation1">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM">TC Location Bx Jumper Location 2 (Km)</label>
+          <input type="text" class="form-control" formControlName="tcLocationBxJumperLocation2">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="milegeInKM">TC Location Bx Jumper Location 3 (Km)</label>
+          <input type="text" class="form-control" formControlName="tcLocationBxJumperLocation3">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="model">Remarks</label>
+          <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
+        </div>
     </form>
     <div class="form-actions">
       <div class="row">
-        <div class="col-md-offset-4 col-md-8">
+        <div class="col-md-offset-4 col-xs-12 col-md-8">
           <button (click)="getLocation()" class="btn default">Get Location</button>
           <button (click)="saveAsset()" class="btn blue">Submit</button>
         </div>
@@ -138,3 +367,22 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

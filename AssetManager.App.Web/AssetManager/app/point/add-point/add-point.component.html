@@ -1,162 +1,168 @@
-<p>
-  <a href="#/points">back</a>
-</p>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12 col-xs-12">
+    <div class="col-md-3 col-xs-3">
+      <a href="#/points" class="btn default yellow">Back</a>
+    </div>
+    <!--<div class="col-md-3 col-sm-6 col-xs-6 pull-right">
+      <a href="#/signaladd" class="btn blue">New</a>
+      <a href="#/maintanence" class="btn purple">Maintanence</a>
+    </div>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
     <!-- cardTitle="Basic Component" -->
-    <h5>ADD RAILWAY POINT MACHINE TO INVENTORY</h5>
+    <h4 class="font-w800"><span *ngIf="!signal || !signal.id">ADD </span> <span *ngIf="signal && signal.id">EDIT </span> POINT MACHINE TO INVENTORY</h4>
     <hr>
     <form [formGroup]="addAssetForm" name="addAsset" #addAsset>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Station</label>
-        <input type="text" class="form-control" id="station" formControlName="station">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Zone</label>
         <input type="text" class="form-control" id="station" formControlName="zone">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Division</label>
         <input type="text" class="form-control" id="station" formControlName="division">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="station">
+          Station
+          <span *ngFor="let validation of validationMessages.stationId">
+            <span class="text-danger text-x-small" *ngIf="addAssetForm.get('stationId').hasError(validation.type) && (addAssetForm.get('stationId').dirty || addAssetForm.get('stationId').touched || formSubmitted)">{{validation.message}}</span>
+          </span>
+        </label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="stationId">
+          <option [value]="st.id" *ngFor="let st of stations">{{st.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Department</label>
         <input type="text" class="form-control" id="station" formControlName="department">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Main Category </label>
-        <input type="text" class="form-control" id="station" formControlName="mainCategory">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="station">
+          Name/Number
+          <span *ngFor="let validation of validationMessages.name">
+            <span class="text-danger text-x-small" *ngIf="addAssetForm.get('name').hasError(validation.type) && (addAssetForm.get('name').dirty || addAssetForm.get('name').touched || formSubmitted)">{{validation.message}}</span>
+          </span>
+        </label>
+        <input type="text" class="form-control" id="station" formControlName="name">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Type of Gear</label>
-        <input type="text" class="form-control" id="station" formControlName="typeofgear">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Point Name/Number</label>
-        <input type="text" class="form-control" id="station" formControlName="PointName">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="make">Manufacture</label>
         <select name="type"
                 class="form-control"
                 id="make"
                 formControlName="make">
-          <option value="">--Select--</option>
-          <option>Agarwal Engineering Works</option>
-          <option>G.K. Engg. Works &amp; Stores (P) Ltd</option>
-          <option>Kiran Infra Engineers Ltd</option>
-          <option>NSS Stores Supply Agency (P) Ltd</option>
-          <option>RT Vision Technologies (P) Ltd</option>
-          <option>Sankar Engg. Works</option>
-          <option>SBM Engg. Works</option>
-          <option>Shyam Sundar Casting (P) Ltd</option>
-          <option>Sigma Trade Agency</option>
-          <option>TSS India Ltd</option>
+          <option value="">N/A</option>
+          <option>Alstom Projects India Ltd</option>
+          <option>Crompton Greaves Ltd</option>
+          <option>
+            DAKSHIN TRANSTEK PVT LTD
+          </option>
+          <option>FESTO ELGI</option>
+          <option>Globe Scott Motors (P) Ltd</option>
+          <option>Sandhu Technocrats (P) Ltd</option>
+          <option>Siemens Limited</option>
+          <option>Signal Workshop</option>
+          <option>Vossloh Cogifer Signalling India Pvt. Ltd</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="model">Model</label>
         <input type="text" class="form-control" id="model" formControlName="model">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="model">Version</label>
         <input type="text" class="form-control" id="version" formControlName="version">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Serial Number</label>
         <input type="text" class="form-control" id="station" formControlName="serialNumber">
       </div>
-
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">Line</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="pointlineType">
-          <option value="0">
-            None
-          </option>
-          <option value="1">
-            MLARoute
-          </option>
-          <option value="2">
-            MLOtherRoute
-          </option>
-          <option value="3">
-       Other portion of yard
-          </option>
+                formControlName="lineType">
+          <option value="N/A">N/A</option>
+          <option value="ML A Route">ML A Route</option>
+          <option value="ML Other Route">ML Other Route</option>
+          <option value="Other Portion Of Yard">Other Portion Of Yard</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="type">TurnOutType</label>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="type">Type Of Turn Out</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="TurnOutType">
-          <option value="0">None</option>
-          <option value="1">
-            SingleEnded
-          </option>
-          <option value="2">XOver</option>
-          <option value="3">DerailSwitch</option>
-          <option value="4">SingleSlip</option>
-          <option value="5">DoubleDiamondSlip</option>
+                formControlName="turnOutType">
+          <option value="N/A">N/A</option>
+          <option value="Single Ended">Single Ended</option>
+          <option value="X-Over">X-Over</option>
+          <option value="Derail Switch">Derail Switch</option>
+          <option value="Single Slip">Single Slip</option>
+          <option value="Double Diamond Slip">Double Diamond Slip</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="type">RailType(Kg)</label>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="type">Rail Type(Kg)</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="RailType">
-          <option value="0">None</option>
+                formControlName="railType">
+          <option value="N/A">None</option>
           <option value="52Kg">52Kg</option>
           <option value="60Kg">60Kg</option>
           <option value="Thick Web Switches">Thick Web Switches</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="type">TypeCurve(Inch)</label>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="type">Type of Curve(Inch)</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="TypeCurve">
-          <option value="0">None</option>
+                formControlName="typeCurve">
+          <option value="">None</option>
           <option value="1 in 8(1/2)">1 in 8(1/2)</option>
           <option value="1 in 10(1/2)">1 in 10(1/2)</option>
           <option value="1 in 12(1/2)">1 in 12(1/2)</option>
           <option value="1 in 16(1/2)">1 in 16(1/2)</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="type">LH/RH</label>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="type">LH/RH Curve</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="TypeCurve">
-          <option value="0">None</option>
+                formControlName="hCurveType">
+          <option value="">None</option>
           <option value="LH">LH</option>
           <option value="RH">RH</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">Types Of Sleeper </label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="Typesleeper">
-          <option value="0">None</option>
+                formControlName="sleeperType">
+          <option value="">None</option>
           <option value="PRC">PRC</option>
           <option value="Wooden">Wooden</option>
           <option value="Steel">Steel</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type"> No Of Gauge Tie Plate </label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="gaugetieplatetype">
+                formControlName="noOfGaugeTiePlate">
           <option value="1">
             1
           </option>
@@ -171,12 +177,12 @@
           </option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">No Of Gauge Tie Plate Insulations Sets </label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="guagetietype">
+                formControlName="noOfGaugeTiePlateInsulationsSets">
           <option value="1">
             1
           </option>
@@ -191,12 +197,12 @@
           </option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">No Of William Stretcher Bar</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="williamstrecherbar">
+                formControlName="noOfWilliamStretcherBar">
           <option value="1">
             1
           </option>
@@ -211,12 +217,12 @@
           </option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">No Of William Stretcher Bar Insulations Sets</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="williamInsulationtype">
+                formControlName="noOfWilliamStretcherBarInsulationsSets">
           <option value="1">
             1
           </option>
@@ -231,120 +237,111 @@
           </option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">Point Machine Types/Standard</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="Typespoint">
-          <option value="0">None</option>
-          <option value="1">
+                formControlName="pointMachineType">
+          <option value="">None</option>
+          <option value="IRS">
             IRS
           </option>
-          <option value="2">
+          <option value="Siemence">
             Siemence
           </option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Storck</label>
-        <input type="text" class="form-control" id="station" formControlName="storck">
+        <input type="text" class="form-control" id="station" formControlName="strock">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">Spring Setting Device</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="SettingDevice">
-          <option value="0">None</option>
-          <option value="1">
+                formControlName="springSettingDevice">
+          <option value="">None</option>
+          <option value="Provided">
             Provided
           </option>
-          <option value="2">
+          <option value="Not Provided">
             Not Provided
           </option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="milegeInKM">Mileage(KM)</label>
-        <input type="text" class="form-control" id="milegeInKM" formControlName="milegeInKM">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="codalLife">Codal Life</label>
         <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="purchasedon">Date Of Manufacture</label>
-        <div class="input-calendar col-sm-12 clear-padding-x">
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
           <input type="text"
                  name="dateOfManufacture"
                  bsDatepicker
                  formControlName="dateOfManufacture"
                  class="form-control"
                  placement="auto"
-                 [bsConfig]="{ showWeekNumbers: false }"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
                  id="dateOfManufacture" readonly />
           <span class="ic-calendar"></span>
         </div>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="purchasedon">Installed on</label>
-        <div class="input-calendar col-sm-12 clear-padding-x">
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
           <input type="text"
                  name="dateOfInstallation"
                  bsDatepicker
                  formControlName="dateOfInstallation"
                  class="form-control"
                  placement="auto"
-                 [bsConfig]="{ showWeekNumbers: false }"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
                  id="dateOfInstallation" readonly />
           <span class="ic-calendar"></span>
         </div>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="latitude">Latitude</label>
         <input type="text" class="form-control" id="latitude" formControlName="latitude">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="longitude">Longitude</label>
         <input type="text" class="form-control" id="longitude" formControlName="longitude">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="longitude">Distance from Station</label>
-        <input type="text" class="form-control" id="distancefromStation" formControlName="distancefromStation">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Location Distance From Station</label>
+        <input type="text" class="form-control" id="longitude" formControlName="locationDistance">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="type">AC Immunisation(V)</label>
-        <select name="type"
-                class="form-control"
-                id="type"
-                formControlName="acimmunisation">
-          <option value="1">
-            300
-          </option>
-          <option value="2">
-            400
-          </option>
-        </select>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">AC Immunisation(V)</label>
+        <input type="text" class="form-control" id="longitude" formControlName="acImmunisation">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="purchasedon">Ground Connection Date of of Installation </label>
-        <div class="input-calendar col-sm-12 clear-padding-x">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="purchasedon">Ground Connection Date Of Installation</label>
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
           <input type="text"
-                 name="groundconncetion"
+                 name="overhauling"
                  bsDatepicker
-                 formControlName="groundConncetion"
+                 formControlName="groundConnectionDateOfInstallation"
                  class="form-control"
                  placement="auto"
-                 [bsConfig]="{ showWeekNumbers: false }"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
                  id="dateOfInstallation" readonly />
           <span class="ic-calendar"></span>
         </div>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="model">Remarks</label>
+        <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
       </div>
     </form>
     <div class="form-actions">
       <div class="row">
-        <div class="col-md-offset-4 col-md-8">
+        <div class="col-md-offset-4 col-xs-12 col-md-8">
           <button (click)="getLocation()" class="btn default">Get Location</button>
           <button (click)="saveAsset()" class="btn blue">Submit</button>
         </div>
@@ -352,5 +349,3 @@
     </div>
   </div>
 </div>
-
-

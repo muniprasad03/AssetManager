@@ -41,6 +41,12 @@ namespace AssetManager.App.Web.Controllers.Api
       return this.AssetService.CreateAsset(asset);
     }
 
+    [Route("isUnique")]
+    public bool GetisUnique(int id, string name)
+    {
+      return this.AssetService.GetisUnique(id, name);
+    }
+
     [Route("update/{id}")]
     [HttpPut]
     public bool UpdateSignal(int id, BlockInstrumentAsset asset)

@@ -1,188 +1,243 @@
-<p>
-  <a href="#/home">back</a>
-</p>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-12 col-xs-12">
+    <div class="col-md-3 col-xs-3">
+      <a href="#/blocks" class="btn default yellow">Back</a>
+    </div>
+    <!--<div class="col-md-3 col-sm-6 col-xs-6 pull-right">
+      <a href="#/signaladd" class="btn blue">New</a>
+      <a href="#/maintanence" class="btn purple">Maintanence</a>
+    </div>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
     <!-- cardTitle="Basic Component" -->
-    <h5>ADD BLOCK INSTRUMENTS TO INVENTORY</h5>
+    <h4 class="font-w800"><span *ngIf="!signal || !signal.id">ADD </span> <span *ngIf="signal && signal.id">EDIT </span> BLOCK INSTRUMENTS TO INVENTORY</h4>
     <hr>
     <form [formGroup]="addAssetForm" name="addAsset" #addAsset>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Station</label>
-        <input type="text" class="form-control" id="station" formControlName="station">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Zone</label>
         <input type="text" class="form-control" id="station" formControlName="zone">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Division</label>
         <input type="text" class="form-control" id="station" formControlName="division">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="station">
+          Station
+          <span *ngFor="let validation of validationMessages.stationId">
+            <span class="text-danger text-x-small" *ngIf="addAssetForm.get('stationId').hasError(validation.type) && (addAssetForm.get('stationId').dirty || addAssetForm.get('stationId').touched || formSubmitted)">{{validation.message}}</span>
+          </span>
+        </label>
+        <select name="type"
+                class="form-control"
+                id="type"
+                formControlName="stationId">
+          <option [value]="st.id" *ngFor="let st of stations">{{st.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Department</label>
         <input type="text" class="form-control" id="station" formControlName="department">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="type">Type</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="BlockType">
-          <option value="0">
-            None
-          </option>
-          <option value="1">
-            Push Button TLBI with UFSBI Block Instrument
-          </option>
-          <option value="2">
-            Tokenless Block Instrument-Single Line
-          </option>
+                formControlName="type">
+          <option value="N/A">N/A</option>
+          <option value="Push Button TLBI with UFSBI Block Instrument">Push Button TLBI with UFSBI Block Instrument</option>
+          <option value="Tokenless Block Instrument-Single Line(Handle Type)">Tokenless Block Instrument-Single Line(Handle Type)</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="type">Identifier Type</label>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="type">Identifier Name</label>
         <select name="type"
                 class="form-control"
                 id="type"
-                formControlName="typeOfUnit">
-          <option value="0">None</option>
-          <option value="1">Ajhai-Chata</option>
-          <option value="2">Ajhai-Vrindavan</option>
-          <option value="3">Bhuteshwar-Mathura Junction</option>
-          <option value="4">Bhuteshwar-Mora</option>
-          <option value="5">Bhuteshwar-Vrindavan</option>
-          <option value="6">Chata-Ajhai</option>
-          <option value="7">Chata-Kosi Kalan</option>
-          <option value="8">Hodal-Kosi Kalan</option>
-          <option value="9">Hodal-Sholaka</option>
-          <option value="10">Kosi Kalan-Chata</option>
-          <option value="11">Kosi Kalan-Hodal</option>
-          <option value="12">Mathura Junction-Bhuteshwar</option>
-          <option value="13">Mora-Bhuteshwar</option>
-          <option value="14">Rundhi-Palwal</option>
-          <option value="15">Rundhi-Sholaka</option>
-          <option value="16">Sholaka-Hodal</option>
-          <option value="17">Sholaka-Rundhi</option>
-          <option value="18">Vrindavan-Ajhai</option>
-          <option value="19">Vrindavan-Bhuteshwar</option>
+                formControlName="identifierName">
+          <option value="">--Select--</option>
+          <option>Ajhai-Chata</option>
+          <option>Ajhai-Vrindavan</option>
+          <option>Bhuteshwar-Mathura Junction</option>
+          <option>Bhuteshwar-Mora</option>
+          <option>Bhuteshwar-Vrindavan</option>
+          <option>Chata-Ajhai</option>
+          <option>Chata-Kosi Kalan</option>
+          <option>Hodal-Kosi Kalan</option>
+          <option>Hodal-Sholaka</option>
+          <option>Kosi Kalan-Chata</option>
+          <option>Kosi Kalan-Hodal</option>
+          <option>Mathura Junction-Bhuteshwar</option>
+          <option>Mora-Bhuteshwar</option>
+          <option>Rundhi-Palwal</option>
+          <option>Rundhi-Sholaka</option>
+          <option>Sholaka-Hodal</option>
+          <option>Sholaka-Rundhi</option>
+          <option>Vrindavan-Ajhai</option>
+          <option>Vrindavan-Bhuteshwar</option>
+
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">InternalSupply (V)(DC)</label>
-        <input type="text" class="form-control" id="station" formControlName="internalsupply">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="station">
+          Name/Number
+          <span *ngFor="let validation of validationMessages.name">
+            <span class="text-danger text-x-small" *ngIf="addAssetForm.get('name').hasError(validation.type) && (addAssetForm.get('name').dirty || addAssetForm.get('name').touched || formSubmitted)">{{validation.message}}</span>
+          </span>
+        </label>
+        <input type="text" class="form-control" id="station" formControlName="name">
+
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">External Supply (V)</label>
-        <input type="text" class="form-control" id="station" formControlName="externalsupply">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">LineSupply (V)</label>
-        <input type="text" class="form-control" id="station" formControlName="linesupply">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">InternalCurrent (ma)(MAX)</label>
-        <input type="text" class="form-control" id="station" formControlName="internalcurrent">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">ExernalCurrent (ma)(MAX)</label>
-        <input type="text" class="form-control" id="station" formControlName="externalcurrent">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">LineCurrent (ma)(MAX)</label>
-        <input type="text" class="form-control" id="station" formControlName="linecurrent">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Operating Temparature Range</label>
-        <input type="text" class="form-control" id="station" formControlName="operatingrange">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Overall Dimensions</label>
-        <input type="text" class="form-control" id="station" formControlName="overalldimension">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Weight</label>
-        <input type="text" class="form-control" id="station" formControlName="weight">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="station">Block Name/Number</label>
-        <input type="text" class="form-control" id="station" formControlName="blockName">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="station">Serial Number</label>
         <input type="text" class="form-control" id="station" formControlName="serialNumber">
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="make">Manufacture</label>
         <select name="type"
                 class="form-control"
                 id="make"
                 formControlName="make">
-          <option value="">--Select--</option>
-          <option>Agarwal Engineering Works</option>
-          <option>G.K. Engg. Works &amp; Stores (P) Ltd</option>
-          <option>Kiran Infra Engineers Ltd</option>
-          <option>NSS Stores Supply Agency (P) Ltd</option>
-          <option>RT Vision Technologies (P) Ltd</option>
-          <option>Sankar Engg. Works</option>
-          <option>SBM Engg. Works</option>
-          <option>Shyam Sundar Casting (P) Ltd</option>
-          <option>Sigma Trade Agency</option>
+          <option></option>
           <option>TSS India Ltd</option>
+          <option>Alstom Projects India Ltd</option>
+          <option>Ansaldo STS Transportation Systems India Private Limited</option>
+          <option>Bombardier Transportation India Private Limited</option>
+          <option>Byculla</option>
+          <option>Central Electronics Ltd</option>
+          <option>Crompton Greaves Ltd</option>
+          <option>ELDYNE ELECTRO SYSTEM PVT LTD</option>
+          <option>Eldyne Electro-Systems Pvt. Ltd</option>
+          <option>
+            Epsilon Electronics Equipment &amp;
+            Components P. Ltd.
+          </option>
+          <option>Frauscher Sensor Technology India Private Limited</option>
+          <option>G.G. Tronics India Pvt. Ltd</option>
+          <option>General Auto Electric Corporation</option>
+          <option>Mani Electronics</option>
+          <option>Medha Servo Drives Pvt. Ltd</option>
+          <option>Nandi Electric Co.</option>
+          <option>RT Vision Technologies (P) Ltd</option>
+          <option>Siemens Limited</option>
+          <option>Signal &amp; Telecom Workshop</option>
+          <option>SUNTRON SYSTEM</option>
+          <option>Urban Engg. Association Pvt. Limited</option>
         </select>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="model">Model</label>
         <input type="text" class="form-control" id="model" formControlName="model">
       </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="milegeInKM">Mileage(KM)</label>
-        <input type="text" class="form-control" id="milegeInKM" formControlName="milegeInKM">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="codalLife">Codal Life</label>
-        <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="latitude">Latitude</label>
-        <input type="text" class="form-control" id="latitude" formControlName="latitude">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
-        <label for="longitude">Longitude</label>
-        <input type="text" class="form-control" id="longitude" formControlName="longitude">
-      </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="purchasedon">Date Of Manufacture</label>
-        <div class="input-calendar col-sm-12 clear-padding-x">
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
           <input type="text"
                  name="dateOfManufacture"
                  bsDatepicker
                  formControlName="dateOfManufacture"
                  class="form-control"
                  placement="auto"
-                 [bsConfig]="{ showWeekNumbers: false }"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
                  id="dateOfManufacture" readonly />
           <span class="ic-calendar"></span>
         </div>
       </div>
-      <div class="form-group col-sm-6 pl-8">
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
         <label for="purchasedon">Installed on</label>
-        <div class="input-calendar col-sm-12 clear-padding-x">
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
           <input type="text"
                  name="dateOfInstallation"
                  bsDatepicker
                  formControlName="dateOfInstallation"
                  class="form-control"
                  placement="auto"
-                 [bsConfig]="{ showWeekNumbers: false }"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
                  id="dateOfInstallation" readonly />
           <span class="ic-calendar"></span>
         </div>
       </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="codalLife">Codal Life</label>
+        <input type="text" class="form-control" id="codalLife" formControlName="codalLife">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="latitude">Latitude</label>
+        <input type="text" class="form-control" id="latitude" formControlName="latitude">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Longitude</label>
+        <input type="text" class="form-control" id="longitude" formControlName="longitude">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Location</label>
+        <input type="text" class="form-control" id="longitude" formControlName="location">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Location Distance From Station(KM)</label>
+        <input type="text" class="form-control" id="longitude" formControlName="locationDistance">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="purchasedon">Date of Overhauling</label>
+        <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
+          <input type="text"
+                 name="overhauling"
+                 bsDatepicker
+                 formControlName="overhauling"
+                 class="form-control"
+                 placement="auto"
+                 [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
+                 id="dateOfInstallation" readonly />
+          <span class="ic-calendar"></span>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Internal Supply(V)(DC)</label>
+        <input type="text" class="form-control" id="longitude" formControlName="internalSupply">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">External Supply(V)</label>
+        <input type="text" class="form-control" id="longitude" formControlName="externalSupply">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Line Supply(V)</label>
+        <input type="text" class="form-control" id="longitude" formControlName="lineSupply">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Line Current(mA)(MAX)</label>
+        <input type="text" class="form-control" id="longitude" formControlName="lineCurrent">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">External Current(mA)(MAX)</label>
+        <input type="text" class="form-control" id="longitude" formControlName="externalCurrent">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Internal Current(mA)(MAX)</label>
+        <input type="text" class="form-control" id="longitude" formControlName="internalCurrent">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Operating Temparature Range</label>
+        <input type="text" class="form-control" id="longitude" formControlName="operatingRange">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Overall Dimension</label>
+        <input type="text" class="form-control" id="longitude" formControlName="overallDimension">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="longitude">Weight</label>
+        <input type="text" class="form-control" id="longitude" formControlName="weight">
+      </div>
+      <div class="form-group col-sm-6 pl-8 col-xs-6">
+        <label for="model">Remarks</label>
+        <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
+      </div>
     </form>
     <div class="form-actions">
       <div class="row">
-        <div class="col-md-offset-4 col-md-8">
+        <div class="col-md-offset-4 col-xs-12 col-md-8">
           <button (click)="getLocation()" class="btn default">Get Location</button>
           <button (click)="saveAsset()" class="btn blue">Submit</button>
         </div>
@@ -190,6 +245,3 @@
     </div>
   </div>
 </div>
-
-
-

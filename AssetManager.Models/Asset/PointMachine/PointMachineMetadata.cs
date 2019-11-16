@@ -12,30 +12,30 @@ namespace AssetManager.Models.Asset
 
         public string Version { get; set; }
 
-        public PointLineType LineType { get; set; }
-        public TurnOutType TurnOutType { get; set; }
-        public RailType RailType { get; set; }
+        public string LineType { get; set; }
+        public string TurnOutType { get; set; }
+        public string RailType { get; set; }
+        public string LocationDistance { get; set; }
+        public string TypeCurve { get; set; }
 
-        public TypeCurve TypeCurve { get; set; }
+        public string HCurveType { get; set; }
 
-        public HCurveType HTypeCurve { get; set; }
+        public string SleeperType { get; set; }
 
-        public SleeperType SleeperType { get; set; }
+        public int? NoOfGaugeTiePlate { get; set; }
 
-        public int NoOfGaugeTiePlate { get; set; }
-
-        public int NoOfGaugeTiePlateInsulationsSets { get; set; }
-        public int NoOfWilliamStretcherBar { get; set; }
-        public int NoOfWilliamStretcherBarInsulationsSets { get; set; }
-        public PointMachineType PointMachineType { get; set; }
+        public int? NoOfGaugeTiePlateInsulationsSets { get; set; }
+        public int? NoOfWilliamStretcherBar { get; set; }
+        public int? NoOfWilliamStretcherBarInsulationsSets { get; set; }
+        public string PointMachineType { get; set; }
 
         public string Strock { get; set; }
 
         public string SpringSettingDevice { get; set; }
 
-        public int CodalLife { get; set; }
+        public int? CodalLife { get; set; }
 
-        public int ACImmunisation { get; set; }
+        public int? ACImmunisation { get; set; }
 
         public DateTime? GroundConnectionDateOfInstallation { get; set; }
         public string Remarks { get; set; }
