@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'signals', component: SignalComponent },
   { path: 'signaladd', component: AddSignalComponent },
   { path: 'editsignal/:id', component: AddSignalComponent },
-  { path: 'maintanence/:id', component: AddSignalMaintaneceComponent },
+  { path: 'signalmaintanence/:id', component: AddSignalMaintaneceComponent },
   { path: 'signalmaintanencelist/:id', component: SignalMaintanenceListComponent },
   { path: 'axels', component: AxelListComponent },
   { path: 'axeladd', component: AddAxelComponent },
