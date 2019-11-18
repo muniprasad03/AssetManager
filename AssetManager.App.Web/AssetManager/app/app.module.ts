@@ -30,6 +30,15 @@ import { BlockService } from './Block/block-service';
 import { TrackService } from './Track Circuits/track-service';
 import { SignalMaintanenceService } from './signal-service/signal-maintenance-service';
 import { StationService } from './station-Service/station-service';
+import { BlockMaintaneceListComponent } from './block-maintanece-list/block-maintanece-list.component';
+import { AxelMaintaneceListComponent } from './axel-maintanece-list/axel-maintanece-list.component';
+import { PointMaintaneceListComponent } from './point-maintanece-list/point-maintanece-list.component';
+import { TrackCircuitMaintaneceListComponent } from './track-circuit-maintanece-list/track-circuit-maintanece-list.component';
+import { AddBlockMaintaneceComponent } from './add-block-maintanece/add-block-maintanece.component';
+import { AddTrackCircuitMaintaneceComponent } from './add-track-circuit-maintanece/add-track-circuit-maintanece.component';
+import { AddAxelMaintaneceComponent } from './add-axel-maintanece/add-axel-maintanece.component';
+import { AddPointMaintaneceComponent } from './add-point-maintanece/add-point-maintanece.component';
+
 
 
 @NgModule({
@@ -47,7 +56,15 @@ import { StationService } from './station-Service/station-service';
     SignalMaintanenceListComponent,
     AddTrackComponent,
     BlockListComponent,
-    AddBlockComponent
+    AddBlockComponent,
+    BlockMaintaneceListComponent,
+    AxelMaintaneceListComponent,
+    PointMaintaneceListComponent,
+    TrackCircuitMaintaneceListComponent,
+    AddBlockMaintaneceComponent,
+    AddTrackCircuitMaintaneceComponent,
+    AddAxelMaintaneceComponent,
+    AddPointMaintaneceComponent
   ],
   imports: [
     BrowserModule,
