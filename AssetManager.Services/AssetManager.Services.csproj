@@ -62,6 +62,10 @@
     <Compile Include="Models\StoredProcedureModels.cs" />
     <Compile Include="Services\Asset\AssetMaintanenceService.cs" />
     <Compile Include="Services\Asset\AssetService.cs" />
+    <Compile Include="Services\Asset\BlockMaintanenceService.cs" />
+    <Compile Include="Services\Asset\PointMaintanenceService.cs" />
+    <Compile Include="Services\Asset\TrackMaintanenceService.cs" />
+    <Compile Include="Services\Asset\AxelMaintanenceService.cs" />
     <Compile Include="Services\Asset\ColorLightSignalMaintanenceService.cs" />
     <Compile Include="Services\Asset\AxelCounterAssetService.cs" />
     <Compile Include="Services\Asset\TrackCircuitAssetService.cs" />

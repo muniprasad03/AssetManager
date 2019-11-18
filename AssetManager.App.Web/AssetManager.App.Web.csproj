@@ -216,7 +216,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\Asset\AssetController.cs" />
     <Compile Include="Controllers\Api\Asset\AxelCounterController.cs" />
+    <Compile Include="Controllers\Api\Asset\PointMaintanenceController.cs" />
+    <Compile Include="Controllers\Api\Asset\BlockMaintanenceController.cs" />
+    <Compile Include="Controllers\Api\Asset\TrackCircuitMaintanenceController.cs" />
     <Compile Include="Controllers\Api\Asset\BlockInstrumentController.cs" />
+    <Compile Include="Controllers\Api\Asset\AxelMaintanenceController.cs" />
     <Compile Include="Controllers\Api\Asset\ColorLightSignalMaintanenceController.cs" />
     <Compile Include="Controllers\Api\Asset\TrackCircuitController.cs" />
     <Compile Include="Controllers\Api\Asset\PointMachineController.cs" />
