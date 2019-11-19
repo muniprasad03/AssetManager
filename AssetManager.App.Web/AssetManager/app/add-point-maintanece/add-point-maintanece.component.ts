@@ -203,32 +203,60 @@ export class SMCData {
 }
 
 export class RecordBook {
-    public rgVoltage: string;
-    public dgVoltage: string;
-    public hgVoltage: string;
-    public hhgVoltage: string;
-    public cogVoltage: string;
-    public amarker: string;
-    public agmarker: string;
-    public cmarker: string;
-    public routeIndicator: string;
-    public schedule: string;
+    public nr_motormake: string;
+    public nr_serialnumber: string;
+    public nr_manufracturingdate: string;
+    public nr_motorinstallationdate: string;
+    public nr_peakload: string;
+    public nr_normalload: string;
+    public nr_obstructionload: string;
+    public nr_voltagenormal: string;
+    public nr_voltageobstruction: string;
+    public nr_wjr: string;
+    public nr_opertaionpoint_from: string;
+    public nr_opertaionpoint_to: string;
+    public nr_Remarks: string;
+    public motormake: string;
+    public serialnumber: string;
+    public manufracturingdate: string;
+    public motorinstallationdate: string;
+    public peakload: string;
+    public normalload: string;
+    public obstructionload: string;
+    public voltagenormal: string;
+    public voltageobstruction: string;
+    public wjr: string;
+    public opertaionpoint_from: string;
+    public opertaionpoint_to: string;
     public remarks: string;
-    public faulty: string;
 
     constructor(args: RecordBook) {
-        this.rgVoltage = args.rgVoltage;
-        this.dgVoltage = args.dgVoltage;
-        this.hgVoltage = args.hgVoltage;
-        this.hhgVoltage = args.hhgVoltage;
-        this.cogVoltage = args.cogVoltage;
-        this.amarker = args.amarker;
-        this.agmarker = args.agmarker;
-        this.cmarker = args.cmarker;
-        this.routeIndicator = args.routeIndicator;
-        this.schedule = args.schedule;
+        this.nr_motormake = args.nr_motormake;
+        this.nr_serialnumber = args.nr_serialnumber;
+        this.nr_manufracturingdate = args.nr_manufracturingdate;
+        this.nr_motorinstallationdate = args.nr_motorinstallationdate;
+        this.nr_peakload = args.nr_peakload;
+        this.nr_normalload = args.nr_normalload;
+        this.nr_obstructionload = args.nr_obstructionload;
+        this.nr_voltagenormal = args.nr_voltagenormal;
+        this.nr_voltageobstruction = args.nr_voltageobstruction;
+        this.nr_wjr = args.nr_wjr;
+        this.nr_opertaionpoint_from = args.nr_opertaionpoint_from;
+        this.nr_opertaionpoint_to = args.nr_opertaionpoint_to;
+        this.nr_Remarks = args.nr_Remarks;
+        this.motormake = args.motormake;
+        this.serialnumber = args.serialnumber;
+        this.manufracturingdate = args.manufracturingdate;
+        this.motorinstallationdate = args.motorinstallationdate;
+        this.peakload = args.peakload;
+        this.normalload = args.normalload;
+        this.obstructionload = args.obstructionload;
+        this.voltagenormal = args.voltagenormal;
+        this.voltageobstruction = args.voltageobstruction;
+        this.wjr = args.wjr;
+        this.opertaionpoint_from = args.opertaionpoint_from;
+        this.opertaionpoint_to = args.opertaionpoint_to;
         this.remarks = args.remarks;
-        this.faulty = args.faulty;
     }
 
 }
