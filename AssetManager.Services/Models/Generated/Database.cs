@@ -130,6 +130,649 @@ namespace AssetManager.Data.Model
 	
 
     
+	[TableName("Asset")]
+	[PrimaryKey("Id")]
+	[ExplicitColumns]
+    public partial class Asset : XAssetDB.Record<Asset>  
+    {
+        [Column] 
+		public int Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		int _Id;
+
+        [Column] 
+		public int StationId 
+		{ 
+			get
+			{
+				return _StationId;
+			}
+			set
+			{
+				_StationId = value;
+				MarkColumnModified("StationId");
+			}
+		}
+		int _StationId;
+
+        [Column] 
+		public string StationName 
+		{ 
+			get
+			{
+				return _StationName;
+			}
+			set
+			{
+				_StationName = value;
+				MarkColumnModified("StationName");
+			}
+		}
+		string _StationName;
+
+        [Column] 
+		public string MainCategory 
+		{ 
+			get
+			{
+				return _MainCategory;
+			}
+			set
+			{
+				_MainCategory = value;
+				MarkColumnModified("MainCategory");
+			}
+		}
+		string _MainCategory;
+
+        [Column] 
+		public short AssetType 
+		{ 
+			get
+			{
+				return _AssetType;
+			}
+			set
+			{
+				_AssetType = value;
+				MarkColumnModified("AssetType");
+			}
+		}
+		short _AssetType;
+
+        [Column] 
+		public string Latitude 
+		{ 
+			get
+			{
+				return _Latitude;
+			}
+			set
+			{
+				_Latitude = value;
+				MarkColumnModified("Latitude");
+			}
+		}
+		string _Latitude;
+
+        [Column] 
+		public string Longitude 
+		{ 
+			get
+			{
+				return _Longitude;
+			}
+			set
+			{
+				_Longitude = value;
+				MarkColumnModified("Longitude");
+			}
+		}
+		string _Longitude;
+
+        [Column] 
+		public string Make 
+		{ 
+			get
+			{
+				return _Make;
+			}
+			set
+			{
+				_Make = value;
+				MarkColumnModified("Make");
+			}
+		}
+		string _Make;
+
+        [Column] 
+		public DateTime? DOM 
+		{ 
+			get
+			{
+				return _DOM;
+			}
+			set
+			{
+				_DOM = value;
+				MarkColumnModified("DOM");
+			}
+		}
+		DateTime? _DOM;
+
+        [Column] 
+		public string Model 
+		{ 
+			get
+			{
+				return _Model;
+			}
+			set
+			{
+				_Model = value;
+				MarkColumnModified("Model");
+			}
+		}
+		string _Model;
+
+        [Column] 
+		public DateTime? DOI 
+		{ 
+			get
+			{
+				return _DOI;
+			}
+			set
+			{
+				_DOI = value;
+				MarkColumnModified("DOI");
+			}
+		}
+		DateTime? _DOI;
+
+        [Column] 
+		public string QRCode 
+		{ 
+			get
+			{
+				return _QRCode;
+			}
+			set
+			{
+				_QRCode = value;
+				MarkColumnModified("QRCode");
+			}
+		}
+		string _QRCode;
+
+        [Column] 
+		public string MetaData 
+		{ 
+			get
+			{
+				return _MetaData;
+			}
+			set
+			{
+				_MetaData = value;
+				MarkColumnModified("MetaData");
+			}
+		}
+		string _MetaData;
+
+        [Column] 
+		public bool IsDeleted 
+		{ 
+			get
+			{
+				return _IsDeleted;
+			}
+			set
+			{
+				_IsDeleted = value;
+				MarkColumnModified("IsDeleted");
+			}
+		}
+		bool _IsDeleted;
+
+        [Column] 
+		public DateTime? DateDeleted 
+		{ 
+			get
+			{
+				return _DateDeleted;
+			}
+			set
+			{
+				_DateDeleted = value;
+				MarkColumnModified("DateDeleted");
+			}
+		}
+		DateTime? _DateDeleted;
+
+        [Column] 
+		public DateTime DateCreated 
+		{ 
+			get
+			{
+				return _DateCreated;
+			}
+			set
+			{
+				_DateCreated = value;
+				MarkColumnModified("DateCreated");
+			}
+		}
+		DateTime _DateCreated;
+
+        [Column] 
+		public DateTime DateModified 
+		{ 
+			get
+			{
+				return _DateModified;
+			}
+			set
+			{
+				_DateModified = value;
+				MarkColumnModified("DateModified");
+			}
+		}
+		DateTime _DateModified;
+
+        [Column] 
+		public string CreatedBy 
+		{ 
+			get
+			{
+				return _CreatedBy;
+			}
+			set
+			{
+				_CreatedBy = value;
+				MarkColumnModified("CreatedBy");
+			}
+		}
+		string _CreatedBy;
+
+        [Column] 
+		public string ModifiedBy 
+		{ 
+			get
+			{
+				return _ModifiedBy;
+			}
+			set
+			{
+				_ModifiedBy = value;
+				MarkColumnModified("ModifiedBy");
+			}
+		}
+		string _ModifiedBy;
+
+        [Column] 
+		public string name 
+		{ 
+			get
+			{
+				return _name;
+			}
+			set
+			{
+				_name = value;
+				MarkColumnModified("name");
+			}
+		}
+		string _name;
+
+	}
+    
+	[TableName("AssetMaintenanceView")]
+	[ExplicitColumns]
+    public partial class AssetMaintenanceView : XAssetDB.Record<AssetMaintenanceView>  
+    {
+        [Column] 
+		public int Id 
+		{ 
+			get
+			{
+				return _Id;
+			}
+			set
+			{
+				_Id = value;
+				MarkColumnModified("Id");
+			}
+		}
+		int _Id;
+
+        [Column] 
+		public short AssetType 
+		{ 
+			get
+			{
+				return _AssetType;
+			}
+			set
+			{
+				_AssetType = value;
+				MarkColumnModified("AssetType");
+			}
+		}
+		short _AssetType;
+
+        [Column] 
+		public int AssetId 
+		{ 
+			get
+			{
+				return _AssetId;
+			}
+			set
+			{
+				_AssetId = value;
+				MarkColumnModified("AssetId");
+			}
+		}
+		int _AssetId;
+
+        [Column] 
+		public int AddedBy 
+		{ 
+			get
+			{
+				return _AddedBy;
+			}
+			set
+			{
+				_AddedBy = value;
+				MarkColumnModified("AddedBy");
+			}
+		}
+		int _AddedBy;
+
+        [Column] 
+		public DateTime DueOn 
+		{ 
+			get
+			{
+				return _DueOn;
+			}
+			set
+			{
+				_DueOn = value;
+				MarkColumnModified("DueOn");
+			}
+		}
+		DateTime _DueOn;
+
+        [Column] 
+		public DateTime AddedOn 
+		{ 
+			get
+			{
+				return _AddedOn;
+			}
+			set
+			{
+				_AddedOn = value;
+				MarkColumnModified("AddedOn");
+			}
+		}
+		DateTime _AddedOn;
+
+        [Column] 
+		public string Latitiude 
+		{ 
+			get
+			{
+				return _Latitiude;
+			}
+			set
+			{
+				_Latitiude = value;
+				MarkColumnModified("Latitiude");
+			}
+		}
+		string _Latitiude;
+
+        [Column] 
+		public string Longitude 
+		{ 
+			get
+			{
+				return _Longitude;
+			}
+			set
+			{
+				_Longitude = value;
+				MarkColumnModified("Longitude");
+			}
+		}
+		string _Longitude;
+
+        [Column] 
+		public string Metadata 
+		{ 
+			get
+			{
+				return _Metadata;
+			}
+			set
+			{
+				_Metadata = value;
+				MarkColumnModified("Metadata");
+			}
+		}
+		string _Metadata;
+
+        [Column] 
+		public bool Isdeleted 
+		{ 
+			get
+			{
+				return _Isdeleted;
+			}
+			set
+			{
+				_Isdeleted = value;
+				MarkColumnModified("Isdeleted");
+			}
+		}
+		bool _Isdeleted;
+
+        [Column] 
+		public DateTime? DateDeleted 
+		{ 
+			get
+			{
+				return _DateDeleted;
+			}
+			set
+			{
+				_DateDeleted = value;
+				MarkColumnModified("DateDeleted");
+			}
+		}
+		DateTime? _DateDeleted;
+
+        [Column] 
+		public DateTime? DateCreated 
+		{ 
+			get
+			{
+				return _DateCreated;
+			}
+			set
+			{
+				_DateCreated = value;
+				MarkColumnModified("DateCreated");
+			}
+		}
+		DateTime? _DateCreated;
+
+        [Column] 
+		public DateTime? DateModified 
+		{ 
+			get
+			{
+				return _DateModified;
+			}
+			set
+			{
+				_DateModified = value;
+				MarkColumnModified("DateModified");
+			}
+		}
+		DateTime? _DateModified;
+
+        [Column] 
+		public string CreatedBy 
+		{ 
+			get
+			{
+				return _CreatedBy;
+			}
+			set
+			{
+				_CreatedBy = value;
+				MarkColumnModified("CreatedBy");
+			}
+		}
+		string _CreatedBy;
+
+        [Column] 
+		public string ModifiedBy 
+		{ 
+			get
+			{
+				return _ModifiedBy;
+			}
+			set
+			{
+				_ModifiedBy = value;
+				MarkColumnModified("ModifiedBy");
+			}
+		}
+		string _ModifiedBy;
+
+        [Column] 
+		public string DisplayName 
+		{ 
+			get
+			{
+				return _DisplayName;
+			}
+			set
+			{
+				_DisplayName = value;
+				MarkColumnModified("DisplayName");
+			}
+		}
+		string _DisplayName;
+
+        [Column] 
+		public string Designation 
+		{ 
+			get
+			{
+				return _Designation;
+			}
+			set
+			{
+				_Designation = value;
+				MarkColumnModified("Designation");
+			}
+		}
+		string _Designation;
+
+        [Column] 
+		public string name 
+		{ 
+			get
+			{
+				return _name;
+			}
+			set
+			{
+				_name = value;
+				MarkColumnModified("name");
+			}
+		}
+		string _name;
+
+        [Column] 
+		public int StationId 
+		{ 
+			get
+			{
+				return _StationId;
+			}
+			set
+			{
+				_StationId = value;
+				MarkColumnModified("StationId");
+			}
+		}
+		int _StationId;
+
+        [Column] 
+		public string StationName 
+		{ 
+			get
+			{
+				return _StationName;
+			}
+			set
+			{
+				_StationName = value;
+				MarkColumnModified("StationName");
+			}
+		}
+		string _StationName;
+
+        [Column] 
+		public string AssetLatitude 
+		{ 
+			get
+			{
+				return _AssetLatitude;
+			}
+			set
+			{
+				_AssetLatitude = value;
+				MarkColumnModified("AssetLatitude");
+			}
+		}
+		string _AssetLatitude;
+
+        [Column] 
+		public string AssetLongitude 
+		{ 
+			get
+			{
+				return _AssetLongitude;
+			}
+			set
+			{
+				_AssetLongitude = value;
+				MarkColumnModified("AssetLongitude");
+			}
+		}
+		string _AssetLongitude;
+
+	}
+    
 	[TableName("AssetMaintanence")]
 	[PrimaryKey("Id")]
 	[ExplicitColumns]
@@ -196,6 +839,21 @@ namespace AssetManager.Data.Model
 		int _AddedBy;
 
         [Column] 
+		public DateTime DueOn 
+		{ 
+			get
+			{
+				return _DueOn;
+			}
+			set
+			{
+				_DueOn = value;
+				MarkColumnModified("DueOn");
+			}
+		}
+		DateTime _DueOn;
+
+        [Column] 
 		public DateTime AddedOn 
 		{ 
 			get
@@ -256,7 +914,7 @@ namespace AssetManager.Data.Model
 		string _Metadata;
 
         [Column] 
-		public bool? Isdeleted 
+		public bool Isdeleted 
 		{ 
 			get
 			{
@@ -268,7 +926,7 @@ namespace AssetManager.Data.Model
 				MarkColumnModified("Isdeleted");
 			}
 		}
-		bool? _Isdeleted;
+		bool _Isdeleted;
 
         [Column] 
 		public DateTime? DateDeleted 
@@ -2213,313 +2871,6 @@ namespace AssetManager.Data.Model
 			}
 		}
 		string _JEName;
-
-	}
-    
-	[TableName("Asset")]
-	[PrimaryKey("Id")]
-	[ExplicitColumns]
-    public partial class Asset : XAssetDB.Record<Asset>  
-    {
-        [Column] 
-		public int Id 
-		{ 
-			get
-			{
-				return _Id;
-			}
-			set
-			{
-				_Id = value;
-				MarkColumnModified("Id");
-			}
-		}
-		int _Id;
-
-        [Column] 
-		public int StationId 
-		{ 
-			get
-			{
-				return _StationId;
-			}
-			set
-			{
-				_StationId = value;
-				MarkColumnModified("StationId");
-			}
-		}
-		int _StationId;
-
-        [Column]
-        public string StationName
-        {
-            get
-            {
-                return _StationName;
-            }
-            set
-            {
-                _StationName = value;
-                MarkColumnModified("StationName");
-            }
-        }
-        string _StationName;
-
-        [Column] 
-		public string MainCategory 
-		{ 
-			get
-			{
-				return _MainCategory;
-			}
-			set
-			{
-				_MainCategory = value;
-				MarkColumnModified("MainCategory");
-			}
-		}
-		string _MainCategory;
-
-        [Column] 
-		public short AssetType 
-		{ 
-			get
-			{
-				return _AssetType;
-			}
-			set
-			{
-				_AssetType = value;
-				MarkColumnModified("AssetType");
-			}
-		}
-		short _AssetType;
-
-        [Column] 
-		public string Latitude 
-		{ 
-			get
-			{
-				return _Latitude;
-			}
-			set
-			{
-				_Latitude = value;
-				MarkColumnModified("Latitude");
-			}
-		}
-		string _Latitude;
-
-        [Column] 
-		public string Longitude 
-		{ 
-			get
-			{
-				return _Longitude;
-			}
-			set
-			{
-				_Longitude = value;
-				MarkColumnModified("Longitude");
-			}
-		}
-		string _Longitude;
-
-        [Column] 
-		public string Make 
-		{ 
-			get
-			{
-				return _Make;
-			}
-			set
-			{
-				_Make = value;
-				MarkColumnModified("Make");
-			}
-		}
-		string _Make;
-
-        [Column] 
-		public DateTime? DOM 
-		{ 
-			get
-			{
-				return _DOM;
-			}
-			set
-			{
-				_DOM = value;
-				MarkColumnModified("DOM");
-			}
-		}
-		DateTime? _DOM;
-
-        [Column] 
-		public string Model 
-		{ 
-			get
-			{
-				return _Model;
-			}
-			set
-			{
-				_Model = value;
-				MarkColumnModified("Model");
-			}
-		}
-		string _Model;
-
-        [Column] 
-		public DateTime? DOI 
-		{ 
-			get
-			{
-				return _DOI;
-			}
-			set
-			{
-				_DOI = value;
-				MarkColumnModified("DOI");
-			}
-		}
-		DateTime? _DOI;
-
-        [Column] 
-		public string QRCode 
-		{ 
-			get
-			{
-				return _QRCode;
-			}
-			set
-			{
-				_QRCode = value;
-				MarkColumnModified("QRCode");
-			}
-		}
-		string _QRCode;
-
-        [Column] 
-		public string MetaData 
-		{ 
-			get
-			{
-				return _MetaData;
-			}
-			set
-			{
-				_MetaData = value;
-				MarkColumnModified("MetaData");
-			}
-		}
-		string _MetaData;
-
-        [Column] 
-		public bool IsDeleted 
-		{ 
-			get
-			{
-				return _IsDeleted;
-			}
-			set
-			{
-				_IsDeleted = value;
-				MarkColumnModified("IsDeleted");
-			}
-		}
-		bool _IsDeleted;
-
-        [Column] 
-		public DateTime? DateDeleted 
-		{ 
-			get
-			{
-				return _DateDeleted;
-			}
-			set
-			{
-				_DateDeleted = value;
-				MarkColumnModified("DateDeleted");
-			}
-		}
-		DateTime? _DateDeleted;
-
-        [Column] 
-		public DateTime DateCreated 
-		{ 
-			get
-			{
-				return _DateCreated;
-			}
-			set
-			{
-				_DateCreated = value;
-				MarkColumnModified("DateCreated");
-			}
-		}
-		DateTime _DateCreated;
-
-        [Column] 
-		public DateTime DateModified 
-		{ 
-			get
-			{
-				return _DateModified;
-			}
-			set
-			{
-				_DateModified = value;
-				MarkColumnModified("DateModified");
-			}
-		}
-		DateTime _DateModified;
-
-        [Column] 
-		public string CreatedBy 
-		{ 
-			get
-			{
-				return _CreatedBy;
-			}
-			set
-			{
-				_CreatedBy = value;
-				MarkColumnModified("CreatedBy");
-			}
-		}
-		string _CreatedBy;
-
-        [Column] 
-		public string ModifiedBy 
-		{ 
-			get
-			{
-				return _ModifiedBy;
-			}
-			set
-			{
-				_ModifiedBy = value;
-				MarkColumnModified("ModifiedBy");
-			}
-		}
-		string _ModifiedBy;
-
-        [Column] 
-		public string name 
-		{ 
-			get
-			{
-				return _name;
-			}
-			set
-			{
-				_name = value;
-				MarkColumnModified("name");
-			}
-		}
-		string _name;
 
 	}
 }

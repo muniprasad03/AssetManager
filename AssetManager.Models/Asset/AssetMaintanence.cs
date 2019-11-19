@@ -14,10 +14,31 @@ namespace AssetManager.Models.Asset
 
         public int AddedBy { get; set; }
 
+        public DateTime DueOn { get; set; }
         public DateTime AddedOn { get; set; }
 
         public string Latitiude { get; set; }
 
         public string Longitude { get; set; }
+
+        public string DisplayName { get; set; }
+        public string Designation { get; set; }
+        public string name { get; set; }
+        public int StationId { get; set; }
+        public string StationName { get; set; }
+        public string AssetLatitude { get; set; }
+        public string AssetLongitude { get; set; }
+
+        public int DueDays
+        {
+            get
+            {
+                if (this.AddedOn.Date >this.DueOn.Date)
+                {
+                    return (int) (this.AddedOn.Date - this.DueOn.Date).TotalDays;
+                }
+                return -1;
+            }
+        }
     }
 }

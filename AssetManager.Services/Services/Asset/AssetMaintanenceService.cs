@@ -23,12 +23,12 @@ namespace AssetManager.Services.Asset
 
         public List<T> GetAll(int assetId)
         {
-            return this.DB.Fetch<Data.Model.AssetMaintanence>("Where IsDeleted = 0 and AssetType = @0 and AssetId =@1", this.AssetType, assetId).MapCollectionTo<Data.Model.AssetMaintanence, T>().ToList();
+            return this.DB.Fetch<Data.Model.AssetMaintenanceView>("Where IsDeleted = 0 and AssetType = @0 and AssetId =@1", this.AssetType, assetId).MapCollectionTo<Data.Model.AssetMaintenanceView, T>().ToList();
         }
 
         public T GetById(int id)
         {
-            return this.DB.SingleOrDefault<Data.Model.AssetMaintanence>("Where IsDeleted = 0 and Id = @0 and AssetType = @1", id, this.AssetType).MapTo<T>();
+            return this.DB.SingleOrDefault<Data.Model.AssetMaintenanceView>("Where IsDeleted = 0 and Id = @0 and AssetType = @1", id, this.AssetType).MapTo<T>();
         }
 
         public AssetManager.Models.Asset.AssetMaintanence GetByQRCode(string qrCode)
