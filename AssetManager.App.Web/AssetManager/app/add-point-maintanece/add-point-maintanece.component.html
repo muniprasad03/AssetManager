@@ -37,13 +37,13 @@
     <div class="col-sm-12 col-xs-12" style="padding-top:20px;">
 
       <form [formGroup]="addAssetMaintanenceForm" name="addAssetMaintanence" #addAssetMaintanence>
+         <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="station">Station Name</label>
+            <input type="text" class="form-control" id="station" formControlName="stationName">
+         </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Station Name</label>
-          <input type="text" class="form-control" id="station" formControlName="stationName">
-        </div>
-        <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Signal Name</label>
-          <input type="text" class="form-control" id="station" formControlName="signalName">
+          <label for="station">Point Name</label>
+          <input type="text" class="form-control" id="station" formControlName="PointName">
         </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
           <label for="station">Model</label>
@@ -70,15 +70,81 @@
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <div class="input-group">
                 <div class="icheck-inline">
-                  <label>
-                    <input type="checkbox" formControlName="cleanSignal" class="icheck">
-                    cleaning of signal units from outside and protective wire mesh. (19.108.1)
-                  </label>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label for="date">Date</label>
+                    <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
+                      <input type="text"
+                             name="date"
+                             bsDatepicker
+                             formControlName="date"
+                             class="form-control"
+                             placement="auto"
+                             [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
+                             id="dateOfInstallation" readonly />
+                      <span class="ic-calendar"></span>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label for="date">Time</label>
+                    <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
+                      <input placeholder="Selected time" type="text" id="input_starttime" class="form-control timepicker">
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label for="station">Station :</label>
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <h2>Vijayawada</h2>
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label for="station">Gear Name</label>
+                    <input type="text" class="form-control" id="station" formControlName="gearame">
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label for="station">Asset Id</label>
+                    <input type="text" class="form-control" id="station" formControlName="assetid">
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label for="station">Serial Number</label>
+                    <input type="text" class="form-control" id="station" formControlName="serialnumber">
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label for="latitude">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" formControlName="slatitude">
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label for="longitude">Longitude</label>
+                    <input type="text" class="form-control" id="longitude" formControlName="slongitude">
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <div class="icheck-inline">
+                      <input type="checkbox" formControlName="cleanSignal" class="icheck" [value]="true">
+                      <h1>Disconnection Memo</h1>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-6 pl-8 col-xs-6">
+                    <label>Check List</label>
+                    <div class="input-group">
+                      <div class="icheck-inline">
+                        <label>
+                          <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                          The Machine for tightness and free from rust,dirt.
+                        </label>
+
+                      </div>
+                      <div class="icheck-inline">
+                        <label>
+                          <input type="checkbox" class="icheck" formControlName="faulty">
+                          Cleaning,graphite/oiling of slise chairsgenerally up to thirsd sleeper from toes of Also check that other point chairs are checked
+                        </label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+              </div>
           </accordion-group>
-        </div>
+          </div>
         <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
           <accordion-group heading="SMC Book" formGroupName="smcData">
 
@@ -218,72 +284,132 @@
               <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
             </div>
           </accordion-group>
+         </div>
+        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
           <accordion-group heading="Records Book" formGroupName="recordBook">
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">RG Voltage(V)</label>
-              <input type="text" class="form-control" id="station" formControlName="rgVoltage">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">DG Voltage(V)</label>
-              <input type="text" class="form-control" id="station" formControlName="dgVoltage">
-            </div>
-
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">HG Voltage(V)</label>
-              <input type="text" class="form-control" id="hgVoltage" formControlName="hgVoltage">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="milegeInKM">HHG Voltage(V)</label>
-              <input type="text" class="form-control" id="hhgVoltage" formControlName="hhgVoltage">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="codalLife">COG Voltage(V)</label>
-              <input type="text" class="form-control" id="cogVoltage" formControlName="cogVoltage">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="latitude">A-Marker</label>
-              <input type="text" class="form-control" id="amarker" formControlName="amarker">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">AG-Marker</label>
-              <input type="text" class="form-control" id="agmarker" formControlName="agmarker">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">C-Marker</label>
-              <input type="text" class="form-control" id="agmarker" formControlName="cmarker">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">Route Indicator</label>
-              <input type="text" class="form-control" id="routeIndicator" formControlName="routeIndicator">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">Schedule</label>
-              <textarea name="description" rows="2" class="form-control" formControlName="schedule"></textarea>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">Remarks</label>
-              <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label></label>
-              <div class="input-group">
-                <div class="icheck-inline">
-                  <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
-                    Normal
-                  </label>
-                  <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
-                    Faulty
-                  </label>
-                </div>
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- cardTitle="Basic Component" -->
+                <h4 class="font-w800">Test Result Of Motor Points - SMC - 12 (Normal to Reverse)</h4>
+                <hr>
               </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Motor Make</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_motormake">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Motor Serial Number</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_serialnumber">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Motor Manufracturing Date</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_manufracturingdate">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Motor Instalation Date</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_motorinstallationdate">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Peak Load</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_peakload">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Normal Load</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_normalload">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Obstruction Load</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_obstructionload">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Voltage Normal</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_voltagenormal">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Voltage Obstruction</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_voltageobstruction">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">WJR Timing</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_wjr">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Operation Of Point From</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_opertaionpoint_from">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Operation Of Point To</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_opertaionpoint_to">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Remarks</label>
+              <input type="text" class="form-control" id="station" formControlName="NR_Remarks">
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- cardTitle="Basic Component" -->
+                <h4 class="font-w800">Test Result Of Motor Points - SMC - 12 (Reverse to Normal )</h4>
+                <hr>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Motor Make</label>
+              <input type="text" class="form-control" id="station" formControlName="motormake">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Motor Serial Number</label>
+              <input type="text" class="form-control" id="station" formControlName="serialnumber">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Motor Manufracturing Date</label>
+              <input type="text" class="form-control" id="station" formControlName="manufracturingdate">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Motor Instalation Date</label>
+              <input type="text" class="form-control" id="station" formControlName="motorinstallationdate">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Peak Load</label>
+              <input type="text" class="form-control" id="station" formControlName="peakload">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Normal Load</label>
+              <input type="text" class="form-control" id="station" formControlName="normalload">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Obstruction Load</label>
+              <input type="text" class="form-control" id="station" formControlName="obstructionload">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Voltage Normal</label>
+              <input type="text" class="form-control" id="station" formControlName="voltagenormal">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Voltage Obstruction</label>
+              <input type="text" class="form-control" id="station" formControlName="voltageobstruction">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">WJR Timing</label>
+              <input type="text" class="form-control" id="station" formControlName="wjr">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Operation Of Point From</label>
+              <input type="text" class="form-control" id="station" formControlName="opertaionpoint_from">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Operation Of Point To</label>
+              <input type="text" class="form-control" id="station" formControlName="opertaionpoint_to">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Remarks</label>
+              <input type="text" class="form-control" id="station" formControlName="Remarks">
             </div>
           </accordion-group>
         </div>
       </form>
     </div>
-  </div>
+  </div>   
 </accordion>
 
 <div class="form-actions">
