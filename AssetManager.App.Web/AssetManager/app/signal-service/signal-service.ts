@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
   export class SignalService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private setting = 'api/signal';  // URL to web api
+    private assetUrl = 'api/asset';  // URL to web api
     constructor(private http: Http,
       private httpClient: HttpClient) { }
 
@@ -31,6 +32,14 @@ import { Observable } from 'rxjs';
 
     getSignal(id): Promise<any> {
       const url = `${this.setting}/detail/${id}`;
+      return this.http.get(url)
+        .toPromise()
+        .then(response => response.json() as any)
+        .catch(this.handleError);
+    }
+
+    getSignalByQr(id): Promise<any> {
+      const url = `${this.assetUrl}/detail/${id}`;
       return this.http.get(url)
         .toPromise()
         .then(response => response.json() as any)

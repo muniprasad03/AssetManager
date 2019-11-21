@@ -21,6 +21,9 @@ export class AddSignalMaintaneceComponent implements OnInit {
   enableScanner = false;
   public signalId: number;
   public signal: Signal = new Signal({});
+  public maintananceId: number;
+  public viewForm: boolean;
+  public signalMaintanance: ColorLightSignalAssetMaintanence = new ColorLightSignalAssetMaintanence({});
 
   constructor(private SignalService: SignalService,
     private SignalMaintanenceService: SignalMaintanenceService,
@@ -30,14 +33,26 @@ export class AddSignalMaintaneceComponent implements OnInit {
     this.buildAddAssetForm();
     this.route.params.subscribe(params => {
       this.signalId = +params['id'];
+      this.maintananceId = +params['mid'];
     });
   }
 
   ngOnInit() {
     this.buildAddAssetForm();
-    if (this.signalId > 0) {
+    if (this.maintananceId > 0) {
+      this.SignalMaintanenceService.getSignal(this.maintananceId).then(main => {
+        this.signalMaintanance = main;
+        this.viewForm = true;
+        this.buildAddAssetForm();
+      });
+    }
+    else if (this.signalId > 0) {
       this.SignalService.getSignal(this.signalId).then(sig => {
         this.signal = new Signal(sig);
+        this.signalMaintanance.name = this.signal.name;
+        this.signalMaintanance.assetLatitude = this.signal.latitude;
+        this.signalMaintanance.assetLongitude = this.signal.longitude;
+        this.signalMaintanance.stationName = this.signal.stationName;
         this.buildAddAssetForm();
       });
     }
@@ -45,46 +60,45 @@ export class AddSignalMaintaneceComponent implements OnInit {
 
   buildAddAssetForm() {
     this.addAssetMaintanenceForm = this.formBuilder.group({
-      stationName: new FormControl({ value: this.signal.stationName, disabled: true }),
-      signalName: new FormControl(this.signal.name),
-      slatitude: new FormControl(this.signal.latitude),
-      slongitude: new FormControl(this.signal.longitude),
-      latitude: new FormControl(null),
-      longitude: new FormControl(null),
-      serialNumber: new FormControl(this.signal.metadata.serialNumber),
-      make: new FormControl(this.signal.make),
-      model: new FormControl(this.signal.model),
-      cleanSignal: new FormControl(null),
+      stationName: new FormControl({ value: this.signalMaintanance.stationName, disabled: true }),
+      signalName: new FormControl({ value: this.signalMaintanance.name, disabled: true }),
+      slatitude: new FormControl({ value: this.signalMaintanance.assetLatitude, disabled: true }),
+      slongitude: new FormControl({ value: this.signalMaintanance.assetLongitude, disabled: true }),
+      latitude: new FormControl({ value: this.signalMaintanance.latitiude, disabled: this.viewForm }),
+      longitude: new FormControl({ value: this.signalMaintanance.longitude, disabled: this.viewForm }),
+      serialNumber: new FormControl({ value: this.signal.metadata.serialNumber, disabled: true }),
+      make: new FormControl({ value: this.signal.make, disabled: true }),
+      model: new FormControl({ value: this.signal.model, disabled: true }),
       metadata: new FormGroup({
-        cleanSignal: new FormControl(null),
+      cleanSignal: new FormControl({ value: this.signalMaintanance.metadata.cleanSignal, disabled: this.viewForm }),
         smcData: new FormGroup({
-          maintanenceType: new FormControl(null),
-          aspect: new FormControl(null),
-          make: new FormControl(null),
-          model: new FormControl(null),
-          aspectNumber: new FormControl(null),
-          version: new FormControl(null),
-          aspectColor: new FormControl(null),
-          serialNumber: new FormControl(null),
-          dateOfManufacture: new FormControl(null),
-          dataOfInstallation: new FormControl(null),
-          lifeInMonths: new FormControl(null),
-          midLifeRehabilation: new FormControl(null),
-          remarks: new FormControl(null),
+          maintanenceType: new FormControl({ value: this.signalMaintanance.metadata.smcData.maintanenceType, disabled: this.viewForm }),
+          aspect: new FormControl({ value: this.signalMaintanance.metadata.smcData.aspect, disabled: this.viewForm }),
+          make: new FormControl({ value: this.signalMaintanance.metadata.smcData.make, disabled: this.viewForm }),
+          model: new FormControl({ value: this.signalMaintanance.metadata.smcData.model, disabled: this.viewForm }),
+          aspectNumber: new FormControl({ value: this.signalMaintanance.metadata.smcData.aspectNumber, disabled: this.viewForm }),
+          version: new FormControl({ value: this.signalMaintanance.metadata.smcData.version, disabled: this.viewForm }),
+          aspectColor: new FormControl({ value: this.signalMaintanance.metadata.smcData.aspectColor, disabled: this.viewForm }),
+          serialNumber: new FormControl({ value: this.signalMaintanance.metadata.smcData.serialNumber, disabled: this.viewForm }),
+          dateOfManufacture: new FormControl({ value: this.signalMaintanance.metadata.smcData.dateOfManufacture, disabled: this.viewForm }),
+          dateOfInstallation: new FormControl({ value: this.signalMaintanance.metadata.smcData.dateOfInstallation, disabled: this.viewForm }),
+          lifeInMonths: new FormControl({ value: this.signalMaintanance.metadata.smcData.lifeInMonths, disabled: this.viewForm }),
+          midLifeRehabilation: new FormControl({ value: this.signalMaintanance.metadata.smcData.midLifeRehabilation, disabled: this.viewForm }),
+          remarks: new FormControl({ value: this.signalMaintanance.metadata.smcData.remarks, disabled: this.viewForm }),
         }),
         recordBook: new FormGroup({
-          rgVoltage: new FormControl(null),
-          dgVoltage: new FormControl(null),
-          hgVoltage: new FormControl(null),
-          hhgVoltage: new FormControl(null),
-          cogVoltage: new FormControl(null),
-          amarker: new FormControl(null),
-          agmarker: new FormControl(null),
-          cmarker: new FormControl(null),
-          routeIndicator: new FormControl(null),
-          schedule: new FormControl(null),
-          remarks: new FormControl(null),
-          faulty: new FormControl(null),
+          rgVoltage: new FormControl({ value: this.signalMaintanance.metadata.recordBook.rgVoltage, disabled: this.viewForm }),
+          dgVoltage: new FormControl({ value: this.signalMaintanance.metadata.recordBook.dgVoltage, disabled: this.viewForm }),
+          hgVoltage: new FormControl({ value: this.signalMaintanance.metadata.recordBook.hgVoltage, disabled: this.viewForm }),
+          hhgVoltage: new FormControl({ value: this.signalMaintanance.metadata.recordBook.hhgVoltage, disabled: this.viewForm }),
+          cogVoltage: new FormControl({ value: this.signalMaintanance.metadata.recordBook.cogVoltage, disabled: this.viewForm }),
+          amarker: new FormControl({ value: this.signalMaintanance.metadata.recordBook.amarker, disabled: this.viewForm }),
+          agmarker: new FormControl({ value: this.signalMaintanance.metadata.recordBook.agmarker, disabled: this.viewForm }),
+          cmarker: new FormControl({ value: this.signalMaintanance.metadata.recordBook.cmarker, disabled: this.viewForm }),
+          routeIndicator: new FormControl({ value: this.signalMaintanance.metadata.recordBook.routeIndicator, disabled: this.viewForm }),
+          schedule: new FormControl({ value: this.signalMaintanance.metadata.recordBook.schedule, disabled: this.viewForm }),
+          remarks: new FormControl({ value: this.signalMaintanance.metadata.recordBook.remarks, disabled: this.viewForm }),
+          faulty: new FormControl({ value: this.signalMaintanance.metadata.recordBook.faulty, disabled: this.viewForm }),
         }),
       }),
       
@@ -141,17 +155,40 @@ export class AddSignalMaintaneceComponent implements OnInit {
 export class ColorLightSignalAssetMaintanence {
   public id: number;
   public addedBy: number;
+  public assetId: number;
   public addedOn: Date;
   public latitiude: string;
   public longitude: string;
+  public displayName: string;
+  public designation: string;
+  public name: string;
+  public stationId: number;
+  public stationName: string;
+  public assetLatitude: string;
+  public assetLongitude: string;
+  public serialNumber: string;
+  public make: string;
+  public model: string;
+
   public metadata: ColorLightSignalMaintanenceMetadata;
 
-  constructor(args: ColorLightSignalAssetMaintanence) {
+  constructor(args) {
     this.id = args.id;
+    this.assetId = args.assetId;
+    this.displayName = args.displayName;
+    this.designation = args.designation;
+    this.name = args.name;
+    this.stationId = args.stationId;
+    this.stationName = args.stationName;
+    this.assetLatitude = args.assetLatitude;
+    this.assetLongitude = args.assetLongitude;
     this.addedBy = args.addedBy;
     this.addedOn = args.addedOn;
     this.latitiude = args.latitiude;
     this.longitude = args.longitude;
+    this.serialNumber = args.serialNumber;
+    this.make = args.make;
+    this.model = args.model;
     this.metadata = new ColorLightSignalMaintanenceMetadata(args.metadata || {}); 
   }
 
@@ -180,7 +217,7 @@ export class SMCData {
   public aspectColor: string;
   public serialNumber: string;
   public dateOfManufacture: Date;
-  public dataOfInstallation: Date;
+  public dateOfInstallation: Date;
   public lifeInMonths: string;
   public midLifeRehabilation: string;
   public remarks: string;
@@ -195,7 +232,7 @@ export class SMCData {
     this.aspectColor = args.aspectColor;
     this.serialNumber = args.serialNumber;
     this.dateOfManufacture = args.dateOfManufacture;
-    this.dataOfInstallation = args.dataOfInstallation;
+    this.dateOfInstallation = args.dateOfInstallation;
     this.lifeInMonths = args.lifeInMonths;
     this.midLifeRehabilation = args.midLifeRehabilation;
     this.remarks = args.remarks;

@@ -8,7 +8,7 @@ namespace AssetManager.Models.Asset
 {
     public class BlockInstrumentMetadata
     {
-        public int? CodalLife { get; set; }
+        public float? CodalLife { get; set; }
         public string SerialNumber { get; set; }
         public string Type { get; set; }
         public string IdentifierName { get; set; }

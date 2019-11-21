@@ -771,6 +771,51 @@ namespace AssetManager.Data.Model
 		}
 		string _AssetLongitude;
 
+        [Column] 
+		public string SerialNumber 
+		{ 
+			get
+			{
+				return _SerialNumber;
+			}
+			set
+			{
+				_SerialNumber = value;
+				MarkColumnModified("SerialNumber");
+			}
+		}
+		string _SerialNumber;
+
+        [Column] 
+		public string Make 
+		{ 
+			get
+			{
+				return _Make;
+			}
+			set
+			{
+				_Make = value;
+				MarkColumnModified("Make");
+			}
+		}
+		string _Make;
+
+        [Column] 
+		public string Model 
+		{ 
+			get
+			{
+				return _Model;
+			}
+			set
+			{
+				_Model = value;
+				MarkColumnModified("Model");
+			}
+		}
+		string _Model;
+
 	}
     
 	[TableName("AssetMaintanence")]
