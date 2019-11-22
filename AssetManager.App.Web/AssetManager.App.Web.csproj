@@ -5841,7 +5841,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2808</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:2806/</IISUrl>
+          <IISUrl>http://localhost:2808/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

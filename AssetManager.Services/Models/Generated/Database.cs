@@ -884,7 +884,7 @@ namespace AssetManager.Data.Model
 		int _AddedBy;
 
         [Column] 
-		public DateTime DueOn 
+		public DateTime? DueOn 
 		{ 
 			get
 			{
@@ -896,10 +896,10 @@ namespace AssetManager.Data.Model
 				MarkColumnModified("DueOn");
 			}
 		}
-		DateTime _DueOn;
+		DateTime? _DueOn;
 
         [Column] 
-		public DateTime AddedOn 
+		public DateTime? AddedOn 
 		{ 
 			get
 			{
@@ -911,7 +911,7 @@ namespace AssetManager.Data.Model
 				MarkColumnModified("AddedOn");
 			}
 		}
-		DateTime _AddedOn;
+		DateTime? _AddedOn;
 
         [Column] 
 		public string Latitiude 

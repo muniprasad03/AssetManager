@@ -16,8 +16,8 @@ namespace AssetManager.Models.Asset
 
         public int AddedBy { get; set; }
 
-        public DateTime DueOn { get; set; }
-        public DateTime AddedOn { get; set; }
+        public DateTime? DueOn { get; set; }
+        public DateTime? AddedOn { get; set; }
 
         public string Latitiude { get; set; }
 
@@ -39,9 +39,9 @@ namespace AssetManager.Models.Asset
         {
             get
             {
-                if (this.AddedOn.Date >this.DueOn.Date)
+                if (this.AddedOn.HasValue && this.DueOn.HasValue && this.AddedOn.Value.Date >this.DueOn.Value.Date)
                 {
-                    return (int) (this.AddedOn.Date - this.DueOn.Date).TotalDays;
+                    return (int) (this.AddedOn.Value.Date - this.DueOn.Value.Date).TotalDays;
                 }
                 return -1;
             }
