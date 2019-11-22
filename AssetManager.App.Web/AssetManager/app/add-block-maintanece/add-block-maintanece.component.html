@@ -38,12 +38,8 @@
 
       <form [formGroup]="addAssetMaintanenceForm" name="addAssetMaintanence" #addAssetMaintanence>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Station Name</label>
+          <label for="station">Block Instrument Name</label>
           <input type="text" class="form-control" id="station" formControlName="stationName">
-        </div>
-        <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Signal Name</label>
-          <input type="text" class="form-control" id="station" formControlName="signalName">
         </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
           <label for="station">Model</label>
@@ -56,14 +52,6 @@
         <div class="form-group col-sm-6 pl-8 col-xs-6">
           <label for="station">Serial Number</label>
           <input type="text" class="form-control" id="station" formControlName="serialNumber">
-        </div>
-        <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="latitude">Latitude</label>
-          <input type="text" class="form-control" id="latitude" formControlName="slatitude">
-        </div>
-        <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="longitude">Longitude</label>
-          <input type="text" class="form-control" id="longitude" formControlName="slongitude">
         </div>
         <div class="col-sm-12 col-xs-12 accordion-head">
           <accordion-group heading="Check List">
@@ -219,47 +207,521 @@
             </div>
           </accordion-group>
           <accordion-group heading="Records Book" formGroupName="recordBook">
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">RG Voltage(V)</label>
-              <input type="text" class="form-control" id="station" formControlName="rgVoltage">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">DG Voltage(V)</label>
-              <input type="text" class="form-control" id="station" formControlName="dgVoltage">
+              <label for="model">Check & Ensure That:</label>
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">HG Voltage(V)</label>
-              <input type="text" class="form-control" id="hgVoltage" formControlName="hgVoltage">
+              <label>Handle Cannot be turned unless both PB1 and PB2 buttons are pressed at the other end</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="milegeInKM">HHG Voltage(V)</label>
-              <input type="text" class="form-control" id="hhgVoltage" formControlName="hhgVoltage">
+              <label>Sealing and locking of block instrument relays and counters</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="codalLife">COG Voltage(V)</label>
-              <input type="text" class="form-control" id="cogVoltage" formControlName="cogVoltage">
+              <label>Handle Cannot be turned to TCF or TGF without cooperation of SMS at other end</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="latitude">A-Marker</label>
-              <input type="text" class="form-control" id="amarker" formControlName="amarker">
+              <label>Force drobing of lock magnet when handle is turned from to TGF</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">AG-Marker</label>
-              <input type="text" class="form-control" id="agmarker" formControlName="agmarker">
+              <label>LSS cannot be taken off without line clear</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">C-Marker</label>
-              <input type="text" class="form-control" id="agmarker" formControlName="cmarker">
+              <label>LSS returns to on position automatically on occupation of track circuit</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">Route Indicator</label>
-              <input type="text" class="form-control" id="routeIndicator" formControlName="routeIndicator">
+              <label>LSS cannot be taken off for2nd train with same line gear</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">Schedule</label>
-              <textarea name="description" rows="2" class="form-control" formControlName="schedule"></textarea>
+              <label>Home signaling returns to on position automatically on occupation of track</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
             </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Handle Cannot be normalized without cooperation of SM at other end</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Handle Cannot be normalized even with cooperation of SM at other end and when atrain is in a block section</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Cancellation of line clear is only possible with cooperation of SM at other end</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Normal and push back cancellation are not possible with LSS or home signal in off position or with a train in section</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>When SM key in out instrument is inoperative for all functions except reception of bell code TOL code automatic transamission of TOL code</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Shunting key can be taken out only when handle is normal and SM Key is 'IN' after key is taken out handle cannot be turned </label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Carrier frequency of adjacent block instrument of the same station is different</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="model">RELIABILITY :(Periodicity ESM=F,JE=M,SE=Q)</label>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Line Current (mA)</label>
+              <input type="text" class="form-control" placeholder="mil Amps" id="station" formControlName="linecurrent">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Line Voltage (v)</label>
+              <input type="text" class="form-control" placeholder="Volt" id="station" formControlName="linevoltage">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Functioning of all buzzers and indications</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Movement of counters for each cancellation</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check working Telephone</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check and tight all wiring connections in the instrument</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>check and clean all contancts spring and contact segments and contact pressure</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check that insulated lead in wires are provided with adequate sepration up to the block instrument.</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Refernce of message and given to whom in case of any defect </label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check and insure full deflection indicators</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check whether the insrument is due for overhualing</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check block and telephone battery are kept clean,terminals tight and free from dirt or cossrion. Record the value of batteries  </label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check all mechanical parts such as spring,screw & nuts etc. are in good condition and kept tight</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check that the line clear can be granted only when recption signals and the last stop signal are proved at On</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check that the opposing last stop signals of the block station cannot be taken OFF at one and the same time </label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check that the circuit for providing the arrival of a train is directional</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Check that all push buttons are self-restoring.</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label>Block bell & its armature are working properly.</label>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label class="">
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    Checked
+                  </label>
+                  <label>
+                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    Unchecked
+                  </label>
+                </div>
+              </div>
+            </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="model">Remarks</label>
               <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
