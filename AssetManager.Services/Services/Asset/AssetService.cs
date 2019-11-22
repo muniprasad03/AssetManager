@@ -31,11 +31,9 @@ namespace AssetManager.Services.Asset
             return this.DB.SingleOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and Id = @0 and AssetType = @1", id, this.AssetType).MapTo<T>();
         }
 
-        public AssetManager.Models.Asset.Asset GetByQRCode(string qrCode)
+        public List<Models.Asset.Asset> GetByQRCode(string qrCode)
         {
-            var dataModel = this.DB.FirstOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and QRCode = @0", qrCode);
-            var model = dataModel.MapTo<AssetManager.Models.Asset.Asset>();
-            return model;
+            return this.DB.Fetch<Data.Model.Asset>("Where IsDeleted = 0 and QRCode = @0", qrCode).MapCollectionTo<Data.Model.Asset, AssetManager.Models.Asset.Asset>().ToList();
         }
 
         public bool GetisUnique(int id, string name)

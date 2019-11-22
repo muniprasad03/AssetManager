@@ -20,7 +20,7 @@ namespace AssetManager.App.Web.Controllers.Api
     }
 
     [Route("detail/{qrCode}")]
-    public Asset GetByQRCode(string qrCode)
+    public List<Asset> GetByQRCode(string qrCode)
     {
       return this.AssetService.GetByQRCode(qrCode);
     }

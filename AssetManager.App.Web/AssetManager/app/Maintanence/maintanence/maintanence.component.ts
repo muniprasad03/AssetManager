@@ -28,31 +28,36 @@ export class MaintanenceComponent implements OnInit {
     if (!this.formSubmitted) {
       this.formSubmitted = true;
       this.SignalService.getSignalByQr(scannedData)
-        .then(signal => {
-          if (signal && signal.id > 0) {
-            this.assetDetails = signal;
+        .then(signals => {
+          if (signals && signals.length > 0) {
+            this.assetDetails = signals;
             this.scannedData = null;
             this.closeScanner();
-            let url = "";
-            switch (signal.assetType) {
-              case 1:
-                url = "#/signalmaintanence/" + signal.id;
-                break;
-              case 2:
-                url = "#/pointmaintanece/" + signal.id;
-                break;
-              case 3:
-                url = "#/trackcircuitmaintanece/" + signal.id;
-                break;
-              case 4:
-                url = "#/axelmaintanence/" + signal.id;
-                break;
-              case 5:
-                url = "#/blockmaintanece/" + signal.id;
-                break;
-            }
-            console.log(signal);
-            window.location.href = url;
+            this.assetDetails.forEach(signal => {
+              let url = "";
+              switch (signal.assetType) {
+                case 1:
+                  signal.url = "#/signalmaintanence/" + signal.id;
+                  signal.typeName = "Signal";
+                  break;
+                case 2:
+                  signal.url = "#/pointmaintanece/" + signal.id;
+                  signal.typeName = "Point";
+                  break;
+                case 3:
+                  signal.url = "#/trackcircuitmaintanece/" + signal.id;
+                  signal.typeName = "Track";
+                  break;
+                case 4:
+                  signal.url = "#/axelmaintanence/" + signal.id;
+                  signal.typeName = "Axel";
+                  break;
+                case 5:
+                  signal.url = "#/blockmaintanece/" + signal.id;
+                  signal.typeName = "Block";
+                  break;
+              }
+            });
           }
             this.formSubmitted = false;
         });
