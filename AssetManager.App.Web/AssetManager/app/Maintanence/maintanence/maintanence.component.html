@@ -10,11 +10,11 @@
   </div>
 </div>
 <div class="row">
-<div class="col-sm-12 col-xs-12">
-  <!-- cardTitle="Basic Component" -->
-  <h4 class="font-w800">ADD MAINTANECE</h4>
-  <hr>
-</div>
+  <div class="col-sm-12 col-xs-12">
+    <!-- cardTitle="Basic Component" -->
+    <h4 class="font-w800">ADD MAINTANECE</h4>
+    <hr>
+  </div>
 </div>
 
 <button *ngIf="!enableScanner" (click)="openScanner()">Open Scanner</button>
@@ -30,3 +30,41 @@
 <div class="row" *ngIf="scannedData && !assetDetails">
   <h3>No Asset found with that code</h3>
 </div>
+<div class="row" *ngIf="assetDetails">
+  <!-- [ basic-table ] start -->
+  <div class="col-md-12 mt-10">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="purple-bg white-color">
+          <tr>
+            <th>S.No</th>
+            <th>Asset Name</th>
+            <th>Station</th>
+            <th>Type</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let signal of assetDetails; index as i">
+            <td>{{i+1}}</td>
+            <td>{{signal.name}}</td>
+            <td>{{signal.stationName}}</td>
+            <td>{{signal.typeName}}</td>
+            <td>{{signal.latitude}}</td>
+            <td>{{signal.longitude}}</td>
+            <td>
+              <a href="{{signal.url}}" class="btn default btn-xs blue">
+                <img src="../../../assets/global/img/portlet-config-icon-white.png" />
+                Maintenance
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- [ basic-table ] end -->
+</div>
+
