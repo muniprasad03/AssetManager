@@ -26,7 +26,7 @@ namespace AssetManager.Models.Asset.ColorLightSignal
         public string AspectColor { get; set; }
         public string SerialNumber { get; set; }
         public DateTime DateOfManufacture { get; set; }
-        public DateTime DataOfInstallation { get; set; }
+        public DateTime DateOfInstallation { get; set; }
         public string LifeInMonths { get; set; }
         public string MidlifeRehabilation { get; set; }
         public string Remarks { get; set; }

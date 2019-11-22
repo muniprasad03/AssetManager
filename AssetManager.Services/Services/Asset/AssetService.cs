@@ -33,7 +33,9 @@ namespace AssetManager.Services.Asset
 
         public AssetManager.Models.Asset.Asset GetByQRCode(string qrCode)
         {
-            return this.DB.FirstOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and QRCode = @0 and AssetType = @1", qrCode, this.AssetType).MapTo<AssetManager.Models.Asset.Asset>();
+            var dataModel = this.DB.FirstOrDefault<Data.Model.Asset>("Where IsDeleted = 0 and QRCode = @0", qrCode);
+            var model = dataModel.MapTo<AssetManager.Models.Asset.Asset>();
+            return model;
         }
 
         public bool GetisUnique(int id, string name)

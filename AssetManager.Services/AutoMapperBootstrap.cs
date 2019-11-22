@@ -55,62 +55,92 @@ namespace AssetManager
                    .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<ColorLightSignalAssetMaintanence, DataModel.AssetMaintanence>()
+                .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                   .ForMember(d => d.Metadata, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Metadata)))
                   .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (short)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintanence, ColorLightSignalAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                    .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<ColorLightSignalMaintanenceMetadata>(src.Metadata) : new ColorLightSignalMaintanenceMetadata()))
                    .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintenanceView, ColorLightSignalAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                   .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<ColorLightSignalMaintanenceMetadata>(src.Metadata) : new ColorLightSignalMaintanenceMetadata()))
                   .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<PointAssetMaintanence, DataModel.AssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                  .ForMember(d => d.Metadata, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Metadata)))
                  .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (short)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintanence, PointAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                    .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<PointAssetMaintanenceMetadata>(src.Metadata) : new PointAssetMaintanenceMetadata()))
                    .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintenanceView, PointAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                   .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<PointAssetMaintanenceMetadata>(src.Metadata) : new PointAssetMaintanenceMetadata()))
                   .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<AxelAssetMaintanence, DataModel.AssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
               .ForMember(d => d.Metadata, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Metadata)))
               .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (short)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintanence, AxelAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                    .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<AxelAssetMaintanenceMetadata>(src.Metadata) : new AxelAssetMaintanenceMetadata()))
                    .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintenanceView, AxelAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                   .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<AxelAssetMaintanenceMetadata>(src.Metadata) : new AxelAssetMaintanenceMetadata()))
                   .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<BlockAssetMaintanence, DataModel.AssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
               .ForMember(d => d.Metadata, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Metadata)))
               .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (short)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintanence, BlockAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                    .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<BlockAssetMaintanenceMetadata>(src.Metadata) : new BlockAssetMaintanenceMetadata()))
                    .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintenanceView, BlockAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                   .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<BlockAssetMaintanenceMetadata>(src.Metadata) : new BlockAssetMaintanenceMetadata()))
                   .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<TrackAssetMaintanence, DataModel.AssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
               .ForMember(d => d.Metadata, opt => opt.MapFrom(src => JsonConvert.SerializeObject(src.Metadata)))
               .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (short)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintanence, TrackAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                    .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<TrackAssetMaintanenceMetadata>(src.Metadata) : new TrackAssetMaintanenceMetadata()))
                    .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 
             AutoMapper.Mapper.CreateMap<DataModel.AssetMaintenanceView, TrackAssetMaintanence>()
+                 .ForMember(d => d.AddedOn, opt => opt.MapFrom(src => src.AddedOn == DateTime.MinValue ? (DateTime?)null : src.AddedOn))
+                  .ForMember(d => d.DueOn, opt => opt.MapFrom(src => src.DueOn == DateTime.MinValue ? (DateTime?)null : src.DueOn))
                   .ForMember(d => d.Metadata, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Metadata) ? JsonConvert.DeserializeObject<TrackAssetMaintanenceMetadata>(src.Metadata) : new TrackAssetMaintanenceMetadata()))
                   .ForMember(d => d.AssetType, opt => opt.MapFrom(src => (AssetType)src.AssetType));
 

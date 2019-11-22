@@ -294,6 +294,8 @@
     <Content Include="assetManager\app\home\home.component.html" />
     <Content Include="assetManager\app\layout\page-header\page-header.component.css" />
     <Content Include="assetManager\app\layout\page-header\page-header.component.html" />
+    <Content Include="assetManager\app\Maintanence\maintanence\maintanence.component.css" />
+    <Content Include="assetManager\app\Maintanence\maintanence\maintanence.component.html" />
     <Content Include="assetManager\app\point-maintanece-list\point-maintanece-list.component.css" />
     <Content Include="assetManager\app\point-maintanece-list\point-maintanece-list.component.html" />
     <Content Include="assetManager\app\Point\add-point\add-point.component.css" />
@@ -5791,6 +5793,8 @@
     <TypeScriptCompile Include="assetManager\app\layout\layout.module.ts" />
     <TypeScriptCompile Include="assetManager\app\layout\page-header\page-header.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\layout\page-header\page-header.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Maintanence\maintanence\maintanence.component.spec.ts" />
+    <TypeScriptCompile Include="assetManager\app\Maintanence\maintanence\maintanence.component.ts" />
     <TypeScriptCompile Include="assetManager\app\point-maintanece-list\point-maintanece-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\point-maintanece-list\point-maintanece-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\Point\add-point\add-point.component.spec.ts" />
@@ -5837,7 +5841,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2808</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:2806/</IISUrl>
+          <IISUrl>http://localhost:2808/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -38,6 +38,7 @@ import { AddBlockMaintaneceComponent } from './add-block-maintanece/add-block-ma
 import { AddTrackCircuitMaintaneceComponent } from './add-track-circuit-maintanece/add-track-circuit-maintanece.component';
 import { AddAxelMaintaneceComponent } from './add-axel-maintanece/add-axel-maintanece.component';
 import { AddPointMaintaneceComponent } from './add-point-maintanece/add-point-maintanece.component';
+import { MaintanenceComponent } from './Maintanence/maintanence/maintanence.component';
 
 
 
@@ -64,7 +65,8 @@ import { AddPointMaintaneceComponent } from './add-point-maintanece/add-point-ma
     AddBlockMaintaneceComponent,
     AddTrackCircuitMaintaneceComponent,
     AddAxelMaintaneceComponent,
-    AddPointMaintaneceComponent
+    AddPointMaintaneceComponent,
+    MaintanenceComponent
   ],
   imports: [
     BrowserModule,

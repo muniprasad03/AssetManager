@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <div class="col-md-3 col-xs-3">
+      <a href="#/home" class="btn default yellow">Back</a>
+    </div>
+    <!--<div class="col-md-3 col-sm-6 col-xs-6 pull-right">
+      <a href="#/signaladd" class="btn blue">New</a>
+      <a href="#/maintanence" class="btn purple">Maintanence</a>
+    </div>-->
+  </div>
+</div>
+<div class="row">
+<div class="col-sm-12 col-xs-12">
+  <!-- cardTitle="Basic Component" -->
+  <h4 class="font-w800">ADD MAINTANECE</h4>
+  <hr>
+</div>
+</div>
+
+<button *ngIf="!enableScanner" (click)="openScanner()">Open Scanner</button>
+<button *ngIf="enableScanner" (click)="closeScanner()">Close Scanner</button>
+<div *ngIf="enableScanner && !hasPermission">
+  Please allow camera permissions and reload the site to scan
+</div>
+<div class="row" style="width: 275px; padding: 15px;">
+  <zxing-scanner *ngIf="enableScanner"
+                 (scanSuccess)="scanSuccessHandler($event)"
+                 (permissionResponse)="onHasPermission($event)"></zxing-scanner>
+</div>
+<div class="row" *ngIf="scannedData && !assetDetails">
+  <h3>No Asset found with that code</h3>
+</div>

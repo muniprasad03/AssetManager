@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AssetManager.Models.Asset
 {
-    public abstract class Asset
+    public class Asset
     {
         public int Id { get; set; }
 
-        public abstract AssetType AssetType { get; }
+        public virtual AssetType AssetType { get; set; }
 
         public int StationId { get; set; }
         public string StationName { get; set; }

@@ -42,7 +42,7 @@
             <td>{{signal.addedOn | date: 'dd/MM/yyyy'}}</td>
             <td><span *ngIf="signal.dueDays > -1">{{signal.dueDays}} Day(s) Over Due</span><span *ngIf="signal.dueDays < 0">On Time</span></td>
             <td>
-              <a href="#/signalmaintanencelist/{{signal.id}}" class="btn default btn-xs yellow">
+              <a href="#/signal/{{signal.assetId}}/view/{{signal.id}}" class="btn default btn-xs yellow">
                 <i class="fa fa-share"></i> View
               </a>
             </td>

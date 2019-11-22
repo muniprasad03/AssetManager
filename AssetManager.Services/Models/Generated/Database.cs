@@ -771,6 +771,51 @@ namespace AssetManager.Data.Model
 		}
 		string _AssetLongitude;
 
+        [Column] 
+		public string SerialNumber 
+		{ 
+			get
+			{
+				return _SerialNumber;
+			}
+			set
+			{
+				_SerialNumber = value;
+				MarkColumnModified("SerialNumber");
+			}
+		}
+		string _SerialNumber;
+
+        [Column] 
+		public string Make 
+		{ 
+			get
+			{
+				return _Make;
+			}
+			set
+			{
+				_Make = value;
+				MarkColumnModified("Make");
+			}
+		}
+		string _Make;
+
+        [Column] 
+		public string Model 
+		{ 
+			get
+			{
+				return _Model;
+			}
+			set
+			{
+				_Model = value;
+				MarkColumnModified("Model");
+			}
+		}
+		string _Model;
+
 	}
     
 	[TableName("AssetMaintanence")]
@@ -839,7 +884,7 @@ namespace AssetManager.Data.Model
 		int _AddedBy;
 
         [Column] 
-		public DateTime DueOn 
+		public DateTime? DueOn 
 		{ 
 			get
 			{
@@ -851,10 +896,10 @@ namespace AssetManager.Data.Model
 				MarkColumnModified("DueOn");
 			}
 		}
-		DateTime _DueOn;
+		DateTime? _DueOn;
 
         [Column] 
-		public DateTime AddedOn 
+		public DateTime? AddedOn 
 		{ 
 			get
 			{
@@ -866,7 +911,7 @@ namespace AssetManager.Data.Model
 				MarkColumnModified("AddedOn");
 			}
 		}
-		DateTime _AddedOn;
+		DateTime? _AddedOn;
 
         [Column] 
 		public string Latitiude 

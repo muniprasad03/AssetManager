@@ -21,6 +21,7 @@ import { AddPointMaintaneceComponent } from './add-point-maintanece/add-point-ma
 import { PointMaintaneceListComponent } from './point-maintanece-list/point-maintanece-list.component';
 import { AddTrackCircuitMaintaneceComponent } from './add-track-circuit-maintanece/add-track-circuit-maintanece.component';
 import { TrackCircuitMaintaneceListComponent } from './track-circuit-maintanece-list/track-circuit-maintanece-list.component';
+import { MaintanenceComponent } from './Maintanence/maintanence/maintanence.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'signaladd', component: AddSignalComponent },
   { path: 'editsignal/:id', component: AddSignalComponent },
   { path: 'signalmaintanence/:id', component: AddSignalMaintaneceComponent },
+  { path: 'signal/:id/view/:mid', component: AddSignalMaintaneceComponent },
   { path: 'signalmaintanencelist/:id', component: SignalMaintanenceListComponent },
   { path: 'axels', component: AxelListComponent },
   { path: 'axeladd', component: AddAxelComponent },
@@ -49,7 +51,8 @@ const routes: Routes = [
   { path: 'blockmaintanece/:id', component: AddBlockMaintaneceComponent },
   { path: 'blockmaintanecelist/:id', component: BlockMaintaneceListComponent },
   { path: 'trackcircuitmaintanece/:id', component: AddTrackCircuitMaintaneceComponent },
-  { path: 'trackcircuitmaintanecelist/:id', component: TrackCircuitMaintaneceListComponent }
+  { path: 'trackcircuitmaintanecelist/:id', component: TrackCircuitMaintaneceListComponent },
+  { path: 'maintanence', component: MaintanenceComponent }
 ];
 
 @NgModule({
