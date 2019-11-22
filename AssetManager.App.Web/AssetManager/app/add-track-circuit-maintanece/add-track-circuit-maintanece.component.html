@@ -37,25 +37,42 @@
     <div class="col-sm-12 col-xs-12" style="padding-top:20px;">
 
       <form [formGroup]="addAssetMaintanenceForm" name="addAssetMaintanence" #addAssetMaintanence>
+
+
         <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Station Name</label>
-          <input type="text" class="form-control" id="station" formControlName="stationName">
+          <label for="purchasedon">DATE</label>
+          <div class="input-calendar col-xs-12 col-sm-12 clear-padding-x" style="padding-left:0; padding-right:0">
+            <input type="text"
+                   name="dateOfManufacture"
+                   bsDatepicker
+                   formControlName="date"
+                   class="form-control"
+                   placement="auto"
+                   [bsConfig]="{ showWeekNumbers: false }"
+                   id="dateOfManufacture" readonly />
+            <span class="ic-calendar"></span>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="station">Time</label>
+          <input type="text" class="form-control" id="station" formControlName="time">
+        </div>
+
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="station">Station :</label>
+        </div>
+
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <h3>Vijayawada</h3>
         </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Signal Name</label>
-          <input type="text" class="form-control" id="station" formControlName="signalName">
+          <label for="station">Gear Name</label>
+          <input type="text" class="form-control" id="station" formControlName="gearname">
         </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Model</label>
-          <input type="text" class="form-control" id="station" formControlName="model">
-        </div>
-        <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Make</label>
-          <input type="text" class="form-control" id="station" formControlName="make">
-        </div>
-        <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Serial Number</label>
-          <input type="text" class="form-control" id="station" formControlName="serialNumber">
+          <label for="station">Asset Id</label>
+          <input type="text" class="form-control" id="station" formControlName="assetid">
         </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
           <label for="latitude">Latitude</label>
@@ -65,222 +82,574 @@
           <label for="longitude">Longitude</label>
           <input type="text" class="form-control" id="longitude" formControlName="slongitude">
         </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <div class="input-group">
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                Outside track bonds, impedance bonds,bond wires and clips,jumper,power feed,relay and cable connections.
+              </label>
+            </div>
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                For firminess,insulation condition of jumper connections/ Track lead connections,replacing if insulation worn out or connections corrored and properly securing them.(17.26)(17.27)(17.21.1)
+              </label>
+            </div>
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                Replacing corroded bonds.(17.26.2 & 3)
+              </label>
+            </div>
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                Visual check & cleaning of insulated block joints(17.21.5)
+              </label>
+            </div>
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                Traction bonds/ jumpers do not cause any short circuits with track circuit rails / connections
+              </label>
+            </div>
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                Engineering fittings - Track condition, availability of liners & pad
+              </label>
+            </div>
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                Bugs and Glued Joint Position
+              </label>
+            </div>
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                Gaps in Glued Joint
+              </label>
+            </div>
+            <div class="icheck-inline">
+              <label>
+                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                Position of burr on Arm Glued Joint
+              </label>
+            </div>
+          </div>
+        </div>
         <div class="col-sm-12 col-xs-12 accordion-head">
           <accordion-group heading="Check List">
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <div class="input-group">
-                <div class="icheck-inline">
-                  <label>
-                    <input type="checkbox" formControlName="cleanSignal" class="icheck">
-                    cleaning of signal units from outside and protective wire mesh. (19.108.1)
-                  </label>
-                </div>
-              </div>
+              <label for="station">Station :</label>
             </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <h3>Vijayawada</h3>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="type">Make</label>
+              <select name="type"
+                      class="form-control"
+                      id="type"
+                      formControlName="Make">
+                <option value="0">N/A</option>
+              </select>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="type">Model</label>
+              <select name="type"
+                      class="form-control"
+                      id="type"
+                      formControlName="Model">
+                <option value="0">N/A</option>
+              </select>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="type">Serial Number</label>
+              <input type="text" class="form-control" id="station" formControlName="serialnumber">
+            </div>
+
           </accordion-group>
         </div>
         <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
-          <accordion-group heading="SMC Book" formGroupName="smcData">
+          <accordion-group heading="SMC-9(A) - LH" formGroupName="smcData2">
+
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="type">To Do</label>
-              <select name="type"
-                      class="form-control"
-                      id="type"
-                      formControlName="maintanenceType">
-                <option value="0">
-                  Installation
-                </option>
-                <option value="1">
-                  Replacement
-                </option>
-                <option value="2">
-                  Remove
-                </option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="type">Aspect</label>
-              <select name="type"
-                      class="form-control"
-                      id="type"
-                      formControlName="aspect">
-                <option value="0">DG</option>
-                <option value="1">HHG</option>
-                <option value="2">HG</option>
-                <option value="3">RG</option>
-                <option value="4">A</option>
-                <option value="5">C</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Manufacture</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="make">
-                <option value="">--Select--</option>
-                <option>Agarwal Engineering Works</option>
-                <option>G.K. Engg. Works &amp; Stores (P) Ltd</option>
-                <option>Kiran Infra Engineers Ltd</option>
-                <option>NSS Stores Supply Agency (P) Ltd</option>
-                <option>RT Vision Technologies (P) Ltd</option>
-                <option>Sankar Engg. Works</option>
-                <option>SBM Engg. Works</option>
-                <option>Shyam Sundar Casting (P) Ltd</option>
-                <option>Sigma Trade Agency</option>
-                <option>TSS India Ltd</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Model</label>
-              <input type="text" class="form-control" id="model" formControlName="model">
+              <label for="station">Type of Relay</label>
+              <input type="text" class="form-control" id="model" formControlName="typeofrelay">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Aspect Number</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="aspectNumber">
-                <option value="">--Select--</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+              <label for="station">Date Installed</label>
+              <input type="text" class="form-control" id="aspectNumber" formControlName="dateinstalled">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Version</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="version">
+              <label for="station">P.U Volts</label>
+              <input type="text" class="form-control" id="aspectNumber" formControlName="puvolts">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Aspect Color</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="aspectColor">
-                <option>RED</option>
-                <option>WHITE</option>
-                <option>YELLOW</option>
-                <option>GREEN</option>
-              </select>
+              <label for="station">D.A Volts</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="davolts">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Serial Number</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="serialNumber">
+              <label for="station">P.U Volts</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="pucurrent">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="purchasedon">Date Of Manufacture</label>
-              <div class="input-calendar col-xs-12 col-sm-12 clear-padding-x" style="padding-left:0; padding-right:0">
-                <input type="text"
-                       name="dateOfManufacture"
-                       bsDatepicker
-                       formControlName="dateOfManufacture"
-                       class="form-control"
-                       placement="auto"
-                       [bsConfig]="{ showWeekNumbers: false }"
-                       id="dateOfManufacture" readonly />
-                <span class="ic-calendar"></span>
-              </div>
+              <label for="station">D.A Current</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="dacurrent">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="purchasedon">Installed on</label>
-              <div class="input-calendar col-xs-12 col-sm-12 clear-padding-x" style="padding-left:0; padding-right:0">
-                <input type="text"
-                       name="dateOfInstallation"
-                       bsDatepicker
-                       formControlName="dataOfInstallation"
-                       class="form-control"
-                       placement="auto"
-                       [bsConfig]="{ showWeekNumbers: false }"
-                       id="dateOfInstallation" readonly />
-                <span class="ic-calendar"></span>
-              </div>
+              <label for="station">Resistance Of Relay</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="resistanceofrelay">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Life In Months</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="lifeInMonths">
+              <label for="station">length of track Circuit(m)</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="lengthoftrackcircuit">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Mid Life Rehabilation</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="midLifeRehabilation">
-                <option>No</option>
-                <option>Yes</option>
-              </select>
+              <label for="station">Length Of Leads From Feed End To Track(m)</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="lengthofleadsfromfeedendtotrack">
             </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Type Of Ballast</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeofbalast">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Type Of Track Feed</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeoftrackfeed">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Size Of Track Feed Conductor</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="sizeoftrackfeedconductor">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Size Of Conductor To Relay</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="sizeofconductorrealy">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Type Of Sleeper and Condition</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeofsleeperandcondition">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Type Of Insulated Joints</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeofinsulatedjoints">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">No Of Bridges/ Curvelts in track</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="noofbridgescurveltsintrack">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">No Of Level Crossing in Track</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="nooflevelcrossingintrack">
+            </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="model">Remarks</label>
               <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
             </div>
           </accordion-group>
-          <accordion-group heading="Records Book" formGroupName="recordBook">
+        </div>
+        <!-----------------------end of smc9(A) LH--------------------------------------------------------------->
+
+        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
+          <accordion-group heading="SMC-9(A) - RH" formGroupName="smcData2">
+
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">RG Voltage(V)</label>
-              <input type="text" class="form-control" id="station" formControlName="rgVoltage">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">DG Voltage(V)</label>
-              <input type="text" class="form-control" id="station" formControlName="dgVoltage">
+              <label for="station">Weather</label>
+              <input type="text" class="form-control" id="model" formControlName="weather">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">HG Voltage(V)</label>
-              <input type="text" class="form-control" id="hgVoltage" formControlName="hgVoltage">
+              <label for="type">Condition of ballast Wet,Damp or Dry</label>
+              <select name="type"
+                      class="form-control"
+                      id="type"
+                      formControlName="conditionofbalast">
+                <option value="0">Wet</option>
+                <option value="1">Damp</option>
+                <option value="2">Dry</option>
+              </select>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="milegeInKM">HHG Voltage(V)</label>
-              <input type="text" class="form-control" id="hhgVoltage" formControlName="hhgVoltage">
+              <label for="station">Percentage of Ballast clear of Rails</label>
+              <input type="text" class="form-control" id="aspectNumber" formControlName="percentageofrails">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="codalLife">COG Voltage(V)</label>
-              <input type="text" class="form-control" id="cogVoltage" formControlName="cogVoltage">
+              <label for="type">Draining of Track</label>
+              <select name="type"
+                      class="form-control"
+                      id="type"
+                      formControlName="drainingoftrack">
+                <option value="0">Good</option>
+                <option value="1">Fair</option>
+                <option value="2">Bad</option>
+              </select>
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="latitude">A-Marker</label>
-              <input type="text" class="form-control" id="amarker" formControlName="amarker">
+              <label for="station">Condition Of Rail Surface</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofrailsurface">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">AG-Marker</label>
-              <input type="text" class="form-control" id="agmarker" formControlName="agmarker">
+              <label for="station">Condition Of Bonds and Jumper</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofbondsandjumpers">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">C-Marker</label>
-              <input type="text" class="form-control" id="agmarker" formControlName="cmarker">
+              <label for="station">COndition Of Insulated Joints</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofinsulatedjoins">
             </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="longitude">Route Indicator</label>
-              <input type="text" class="form-control" id="routeIndicator" formControlName="routeIndicator">
+              <label for="station">Condition of Track Battery</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofbattery">
             </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- cardTitle="Basic Component" -->
+                <h4 class="font-w800">Track Feed End</h4>
+                <hr>
+              </div>
+            </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">Schedule</label>
-              <textarea name="description" rows="2" class="form-control" formControlName="schedule"></textarea>
+              <label for="station">Feed Resistance</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="feedresistance">
             </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Volatge At Battery/Track Feed Voltage</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="trackfeedvoltage">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">VF Voltage at rails</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="voltageatrails">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">IF Current at Rails</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="ifcurrentatrails">
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- cardTitle="Basic Component" -->
+                <h4 class="font-w800">Relay End</h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">VR Voltage ar Rails</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="vrvoltageatrails">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Voltage At Realy Terminals</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="voltageatrelay">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">IR Current at Relay Terminals</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="currentatrelay">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Ballast Resistance</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="ballastresistance">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Ballast Resistance and Bond Resistance</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="ballastbondresistance">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Drop Shunt Value</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="dropshuntvalue">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Pick Up Shunt Value</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="pickupshuntvalue">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Phase Angle (fro AC Track Circuit)</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="phaseangle">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">No of Track failures during the year</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="trackfailure">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Cause Of Failure</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="causeoffailure">
+            </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="model">Remarks</label>
               <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
             </div>
+          </accordion-group>
+        </div>
+        <!-----------------------end of smc9(A) RH--------------------------------------------------------------->
+
+        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
+          <accordion-group heading="SMC-10" formGroupName="smcData2">
+
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- cardTitle="Basic Component" -->
+                <h4 class="font-w800">Test of Insulation Joint/ Glued Joint</h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Track No</label>
+              <input type="text" class="form-control" id="model" formControlName="trackno">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="type">Joint Type</label>
+              <select name="type"
+                      class="form-control"
+                      id="type"
+                      formControlName="jointype">
+                <option value="0">--Select--</option>
+                <option value="1">Glued</option>
+                <option value="2">Insulation</option>
+              </select>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Date</label>
+              <input type="text" class="form-control" id="aspectNumber" formControlName="date">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">End Post</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofrailsurface">
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- cardTitle="Basic Component" -->
+                <h4 class="font-w800">Channel Plate</h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Channel Plate -1</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="channel1">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Channel Plate -2</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="channel2">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Channel Plate -3</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="channel3">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Channel Plate -4</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="channel4">
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- cardTitle="Basic Component" -->
+                <h4 class="font-w800">Collets</h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Collet -1</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="collet1">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Collet -2</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="collet2">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Collet -3</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="collet3">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Collet -4</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="collet4">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Collet -5</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="collet5">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Collet -6</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="collet6">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Collet -7</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="collet7">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">Collet -8</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="collet8">
+            </div>
+
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="model">Remarks</label>
+              <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- cardTitle="Basic Component" -->
+                <h4 class="font-w800">Condition of Joint</h4>
+                <hr>
+              </div>
+            </div>
+
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label></label>
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
                     <input type="radio" class="icheck" formControlName="faulty" [value]="false">
-                    Normal
+                    Failed
                   </label>
                   <label>
                     <input type="radio" class="icheck" formControlName="faulty" [value]="true">
-                    Faulty
+                    Maintenance
                   </label>
                 </div>
               </div>
             </div>
+
           </accordion-group>
         </div>
+        <!----------------------------- end of SMC 10 ------------------------------------>
+        <accordion-group heading="Records Book" formGroupName="recordBook">
+
+          <div class="row">
+            <div class="col-sm-12 col-xs-12">
+              <!-- cardTitle="Basic Component" -->
+              <h4 class="font-w800">Record Book Of DC Track Circuit</h4>
+              <hr>
+            </div>
+          </div>
+
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="station">Battery Voltage(V)</label>
+            <input type="text" class="form-control" id="station" formControlName="batteryvoltage">
+          </div>
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="station">Speific Gravity</label>
+            <input type="text" class="form-control" id="station" formControlName="specificgravity">
+          </div>
+
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="model">Charger</label>
+            <input type="text" class="form-control" placeholder="Off Load" id="hgVoltage" formControlName="offload">
+            <input type="text" class="form-control" placeholder="Off Load" id="hhgVoltage" formControlName="onload">
+            <input type="text" class="form-control" placeholder="current" id="hhgVoltage" formControlName="current">
+          </div>
+
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="codalLife">Drop Across chock</label>
+            <input type="text" class="form-control" id="cogVoltage" formControlName="dropacross">
+          </div>
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="latitude">Drop Across Resistance</label>
+            <input type="text" class="form-control" id="amarker" formControlName="dropacrossresistance">
+          </div>
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="longitude">Voltage at Feed end(v)</label>
+            <input type="text" class="form-control" id="agmarker" formControlName="voltageatfeedend">
+          </div>
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="longitude">Current at Feed end(mA)</label>
+            <input type="text" class="form-control" id="agmarker" formControlName="currentatfeedend">
+          </div>
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="longitude">Voltage at Relay end(V)</label>
+            <input type="text" class="form-control" id="routeIndicator" formControlName="voltageatrelayend">
+          </div>
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="model">Current at Relay end(mA)</label>
+            <textarea name="description" rows="2" class="form-control" formControlName="currentatrelayend"></textarea>
+          </div>
+
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="model">Schedule Done</label>
+            <textarea name="description" rows="2" class="form-control" formControlName="scheduledone"></textarea>
+          </div>
+
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label for="model">Remarks</label>
+            <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
+          </div>
+          <div class="form-group col-sm-6 pl-8 col-xs-6">
+            <label>Status of Track Circuit</label>
+            <div class="input-group">
+              <div class="icheck-inline">
+                <label class="">
+                  <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                  Normal
+                </label>
+                <label>
+                  <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                  Faulty
+                </label>
+              </div>
+            </div>
+          </div>
+        </accordion-group>
+
+
       </form>
     </div>
   </div>
