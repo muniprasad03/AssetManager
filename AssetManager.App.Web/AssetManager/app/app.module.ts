@@ -39,6 +39,7 @@ import { AddTrackCircuitMaintaneceComponent } from './add-track-circuit-maintane
 import { AddAxelMaintaneceComponent } from './add-axel-maintanece/add-axel-maintanece.component';
 import { AddPointMaintaneceComponent } from './add-point-maintanece/add-point-maintanece.component';
 import { MaintanenceComponent } from './Maintanence/maintanence/maintanence.component';
+import { AxelMaintanenceService } from './AxelCounter/axel-maintenance-service';
 
 
 
@@ -89,6 +90,7 @@ import { MaintanenceComponent } from './Maintanence/maintanence/maintanence.comp
     BlockService,
     TrackService,
     SignalMaintanenceService,
+    AxelMaintanenceService,
     StationService,
   ],
   bootstrap: [AppComponent]

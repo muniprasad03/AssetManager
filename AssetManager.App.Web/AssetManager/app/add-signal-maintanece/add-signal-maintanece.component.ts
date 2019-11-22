@@ -15,10 +15,6 @@ import { SignalMaintanenceService } from '../signal-service/signal-maintenance-s
 export class AddSignalMaintaneceComponent implements OnInit {
 
   public addAssetMaintanenceForm: FormGroup;
-  public scannedData: any;
-  public assetDetails: any;
-  public hasPermission: boolean;
-  enableScanner = false;
   public signalId: number;
   public signal: Signal = new Signal({});
   public maintananceId: number;
@@ -115,40 +111,6 @@ export class AddSignalMaintaneceComponent implements OnInit {
           window.location.href = '/#/signals';
           console.log(signals);
         });
-  }
-
-  scanSuccessHandler(scannedData) {
-    console.log('scanned data', scannedData);
-    this.scannedData = scannedData;
-    this.assetDetails = null;
-    this.SignalService.getSignal(scannedData)
-      .then(signal => {
-        //window.location.href = '/#/signals';
-        this.assetDetails = signal;
-        this.scannedData = null;
-        this.closeScanner();
-        console.log(signal);
-      });
-  }
-
-  onHasPermission(permission: boolean) {
-    this.hasPermission = permission;
-    console.log(this.hasPermission, 'has permission');
-    if (!this.hasPermission) {
-      this.enableCamera();
-    }
-  }
-
-  enableCamera() {
-    navigator.mediaDevices.getUserMedia({ video: true });
-  }
-
-  openScanner() {
-    this.enableScanner = true;
-  }
-
-  closeScanner() {
-    this.enableScanner = false;
   }
 }
 

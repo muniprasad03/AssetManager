@@ -46,6 +46,7 @@ const routes: Routes = [
   { path: 'editblock/:id', component: AddBlockComponent },
   { path: 'axelmaintanence/:id', component: AddAxelMaintaneceComponent },
   { path: 'axelmaintanecelist/:id', component: AxelMaintaneceListComponent },
+  { path: 'axel/:id/view/:mid', component: AddAxelMaintaneceComponent },
   { path: 'pointmaintanece/:id', component: AddPointMaintaneceComponent },
   { path: 'pointmaintanecelist/:id', component: PointMaintaneceListComponent },
   { path: 'blockmaintanece/:id', component: AddBlockMaintaneceComponent },

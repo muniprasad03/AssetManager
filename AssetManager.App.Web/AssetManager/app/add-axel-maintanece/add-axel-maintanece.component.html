@@ -13,115 +13,174 @@
 <div class="row">
   <div class="col-sm-12 col-xs-12">
     <!-- cardTitle="Basic Component" -->
-    <h4 class="font-w800">ADD AXEL MAINTANECE</h4>
+    <h4 class="font-w800"><span *ngIf="!viewForm">ADD</span> AXEL MAINTANECE <span *ngIf="viewForm">Details</span></h4>
     <hr>
   </div>
 </div>
-
-<!--<button *ngIf="!enableScanner" (click)="openScanner()">Open Scanner</button>
-<button *ngIf="enableScanner" (click)="closeScanner()">Close Scanner</button>
-<div *ngIf="enableScanner && !hasPermission">
-  Please allow camera permissions and reload the site to scan
-</div>
-<div class="row" style="width: 275px; padding: 15px;">
-  <zxing-scanner *ngIf="enableScanner"
-                 (scanSuccess)="scanSuccessHandler($event)"
-                 (permissionResponse)="onHasPermission($event)"></zxing-scanner>
-</div>
-<div class="row" *ngIf="scannedData && !assetDetails">
-  <h3>No Asset found with that code</h3>
-</div>-->
-
 <accordion [closeOthers]="true">
   <div class="row">
     <div class="col-sm-12 col-xs-12" style="padding-top:20px;">
 
       <form [formGroup]="addAssetMaintanenceForm" name="addAssetMaintanence" #addAssetMaintanence>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Station :</label>
+          <label for="station">Station Name</label>
+          <input type="text" class="form-control" id="station" formControlName="stationName">
         </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <h2>Vijayawada</h2>
+          <label for="station">Signal Name</label>
+          <input type="text" class="form-control" id="station" formControlName="signalName">
         </div>
-        <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Axle Counter No</label>
-          <input type="text" class="form-control" id="station" formControlName="axlecounterno">
-        </div>
-
-        <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Make</label>
-          <input type="text" class="form-control" id="station" formControlName="make">
-        </div>
-
         <div class="form-group col-sm-6 pl-8 col-xs-6">
           <label for="station">Model</label>
           <input type="text" class="form-control" id="station" formControlName="model">
         </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="station">Make</label>
+          <input type="text" class="form-control" id="station" formControlName="make">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="station">Serial Number</label>
+          <input type="text" class="form-control" id="station" formControlName="serialNumber">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="latitude">Latitude</label>
+          <input type="text" class="form-control" id="latitude" formControlName="slatitude">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="longitude">Longitude</label>
+          <input type="text" class="form-control" id="longitude" formControlName="slongitude">
+        </div>
+        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
+          <accordion-group heading="Check List">
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="outDoor" class="icheck">
+                    cleaning of signal units from outside and protective wire mesh. (19.108.1)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="packingCondition" class="icheck">
+                    cleaning of signal units from outside and protective wire mesh. (19.108.1)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="connectedEquipmentCondition" class="icheck">
+                    cleaning of signal units from outside and protective wire mesh. (19.108.1)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="electricalCondition" class="icheck">
+                    cleaning of signal units from outside and protective wire mesh. (19.108.1)
+                  </label>
+                </div>
+              </div>
+            </div>
+          </accordion-group>
+          <accordion-group heading="Records Book" formGroupName="recordBook">
+            <div class="form-group col-sm-12 pl-8 col-xs-12">
+              <label for="make">Channel Type</label>
+              <select name="type"
+                      class="form-control"
+                      id="make"
+                      formControlName="channelType">
+                <option>A-B</option>
+                <option>C-D</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">DC Input(V)</label>
+              <input type="text" class="form-control" id="station" formControlName="dCInputVoltage">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="station">OSC Voltage(V)</label>
+              <input type="text" class="form-control" id="station" formControlName="oscVoltage">
+            </div>
 
-        <accordion-group heading="Records Book" formGroupName="recordBook">
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="make">Manufacture</label>
-            <select name="type"
-                    class="form-control"
-                    id="make"
-                    formControlName="make">
-              <option value="">--Select--</option>
-              <option>A-B</option>
-              <option>C-D</option>
-            </select>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="model">Frequecy(Hz)</label>
+              <input type="text" class="form-control" id="hgVoltage" formControlName="frequency">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="milegeInKM">Staggering</label>
+              <input type="text" class="form-control" id="hhgVoltage" formControlName="staggering">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6" *ngIf="addAssetMaintanenceForm.get('metadata') && addAssetMaintanenceForm.get('metadata').get('recordBook').get('channelType').value == 'A-B'">
+              <label for="codalLife">CH-IN-A</label>
+              <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="chInAChannel">
+              <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="chInADip">
+              <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="chInACrossLevel">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6" *ngIf="addAssetMaintanenceForm.get('metadata') && addAssetMaintanenceForm.get('metadata').get('recordBook').get('channelType').value == 'A-B'">
+              <label for="codalLife">CH-IN-B</label>
+              <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="chInBChannel">
+              <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="chInBDip">
+              <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="chInBCrossLevel">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6"  *ngIf="addAssetMaintanenceForm.get('metadata') && addAssetMaintanenceForm.get('metadata').get('recordBook').get('channelType').value == 'C-D'">
+              <label for="codalLife">CH-IN-C</label>
+              <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="chInCChannel">
+              <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="chInCDip">
+              <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="chInCCrossLevel">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6"  *ngIf="addAssetMaintanenceForm.get('metadata') && addAssetMaintanenceForm.get('metadata').get('recordBook').get('channelType').value == 'C-D'">
+              <label for="codalLife">CH-IN-D</label>
+              <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="chInDChannel">
+              <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="chInDDip">
+              <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="chInDCrossLevel">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6" *ngIf="addAssetMaintanenceForm.get('metadata') && addAssetMaintanenceForm.get('metadata').get('recordBook').get('channelType').value == 'A-B'">
+              <label for="codalLife">CH-OUT After EJB-A</label>
+              <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="chOutAChannel">
+              <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="chOutADip">
+              <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="chOutACrossLevel">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6" *ngIf="addAssetMaintanenceForm.get('metadata') && addAssetMaintanenceForm.get('metadata').get('recordBook').get('channelType').value == 'A-B'">
+              <label for="codalLife">CH-OUT After EJB-B</label>
+              <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="chOutBChannel">
+              <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="chOutBDip">
+              <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="chOutBCrossLevel">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6" *ngIf="addAssetMaintanenceForm.get('metadata') && addAssetMaintanenceForm.get('metadata').get('recordBook').get('channelType').value == 'C-D'">
+              <label for="codalLife">CH-OUT After EJB-C</label>
+              <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="chOutCChannel">
+              <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="chOutCDip">
+              <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="chOutCCrossLevel">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6"  *ngIf="addAssetMaintanenceForm.get('metadata') && addAssetMaintanenceForm.get('metadata').get('recordBook').get('channelType').value == 'C-D'">
+              <label for="codalLife">CH-OUT After EJB-D</label>
+              <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="chOutDChannel">
+              <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="chOutDDip">
+              <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="chOutDCrossLevel">
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <label for="model">Remarks</label>
+              <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
+            </div>
+          </accordion-group>
           </div>
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="station">DC Input(V)</label>
-            <input type="text" class="form-control" id="station" formControlName="dcInput">
-          </div>
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="station">OSC Voltage(V)</label>
-            <input type="text" class="form-control" id="station" formControlName="oscVoltage">
-          </div>
-
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="model">Frequecy(Hz)</label>
-            <input type="text" class="form-control" id="hgVoltage" formControlName="frequecy">
-          </div>
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="milegeInKM">Staggering</label>
-            <input type="text" class="form-control" id="hhgVoltage" formControlName="staggering">
-          </div>
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="codalLife">CH-IN-A</label>
-            <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="channelmv">
-            <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="dip">
-            <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="crosslevel">
-          </div>
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="codalLife">CH-IN-B</label>
-            <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="channelmv">
-            <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="dip">
-            <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="crosslevel">
-          </div>
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="codalLife">CH-OUT After EJB-A</label>
-            <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="channelmv">
-            <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="dip">
-            <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="crosslevel">
-          </div>
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="codalLife">CH-OUT After EJB-B</label>
-            <input type="text" class="form-control" id="cogVoltage" placeholder="Channel (mv)" formControlName="channelmv">
-            <input type="text" class="form-control" id="amarker" placeholder="DIP (mv)" formControlName="dip">
-            <input type="text" class="form-control" id="agmarker" placeholder="Cross Level (mA)" formControlName="crosslevel">
-          </div>
-          <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="model">Remarks</label>
-            <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
-          </div>
-        </accordion-group>
       </form>
     </div>
   </div>
 </accordion>
 
-<div class="form-actions">
+<div class="form-actions" *ngIf="!viewForm">
   <div class="row">
     <div class="col-md-offset-4 col-xs-12 col-md-8">
       <!--<button (click)="getLocation()" class="btn default">Get Location</button>-->

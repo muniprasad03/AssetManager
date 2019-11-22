@@ -5780,6 +5780,7 @@
     <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-list\axel-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-list\axel-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-service.ts" />
+    <TypeScriptCompile Include="assetManager\app\AxelCounter\axel-maintenance-service.ts" />
     <TypeScriptCompile Include="assetManager\app\block-maintanece-list\block-maintanece-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\block-maintanece-list\block-maintanece-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\Block\add-block\add-block.component.spec.ts" />

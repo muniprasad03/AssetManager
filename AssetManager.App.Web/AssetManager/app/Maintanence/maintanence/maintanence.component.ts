@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { SignalService } from '../../signal-service/signal-service';
 
@@ -15,7 +16,7 @@ export class MaintanenceComponent implements OnInit {
   enableScanner = false;
   formSubmitted: boolean;
 
-  constructor(private SignalService: SignalService) { }
+  constructor(private SignalService: SignalService, private location: Location) { }
 
   ngOnInit() {
   }
@@ -82,6 +83,10 @@ export class MaintanenceComponent implements OnInit {
 
   closeScanner() {
     this.enableScanner = false;
+  }
+
+  back() {
+    this.location.back();
   }
 
 }
