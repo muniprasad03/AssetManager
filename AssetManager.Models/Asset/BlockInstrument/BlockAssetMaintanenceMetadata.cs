@@ -15,7 +15,6 @@ namespace AssetManager.Models.Asset
         public bool BatteriesCleanliness { get; set; }
         public bool TelephoneChord { get; set; }
         public BlockRecordBook RecordBook { get; set; }
-
     }
 
     public class BlockRecordBook
