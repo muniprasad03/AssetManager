@@ -5785,6 +5785,7 @@
     <TypeScriptCompile Include="assetManager\app\block-maintanece-list\block-maintanece-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\Block\add-block\add-block.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Block\add-block\add-block.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Block\block-maintenance-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Block\block-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Block\block-list\block-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Block\block-list\block-list.component.ts" />
@@ -5800,6 +5801,7 @@
     <TypeScriptCompile Include="assetManager\app\point-maintanece-list\point-maintanece-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\Point\add-point\add-point.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Point\add-point\add-point.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Point\point-maintenance-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Point\point-list\point-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Point\point-list\point-list.component.ts" />
     <TypeScriptCompile Include="assetManager\app\Point\point-service.ts" />
@@ -5812,7 +5814,7 @@
     <TypeScriptCompile Include="assetManager\app\station-Service\station-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.ts" />
-    <TypeScriptCompile Include="assetManager\app\Track Circuits\track-service-maintenace.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\track-maintenance-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\track-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\track-list\track-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\track-list\track-list.component.ts" />

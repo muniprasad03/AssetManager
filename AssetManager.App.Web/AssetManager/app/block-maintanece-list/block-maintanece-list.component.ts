@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BlockMaintanenceService } from '../Block/block-maintenance-service';
 
 @Component({
   selector: 'app-block-maintanece-list',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlockMaintaneceListComponent implements OnInit {
 
-  constructor() { }
+  public signalId: number;
+  signalsArray: any;
 
-  ngOnInit() {
+  constructor(private SignalMaintanenceService: BlockMaintanenceService,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.signalId = +params['id'];
+    });
   }
-
+  ngOnInit() {
+    if (this.signalId > 0) {
+      this.SignalMaintanenceService.getSignals(this.signalId).then(signals => {
+        this.signalsArray = signals;
+      });
+    }
+  }
 }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { SignalService } from '../signal-service/signal-service'
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { Signal } from '../add-signal/add-signal.component';
 import { ActivatedRoute } from '@angular/router';
-import { SignalMaintanenceService } from '../signal-service/signal-maintenance-service';
+import { Point } from '../point/add-point/add-point.component';
+import { PointService } from '../point/point-service';
+import { PointMaintanenceService } from '../Point/point-maintenance-service';
 
 @Component({
   selector: 'app-add-point-maintanece',
@@ -13,196 +12,182 @@ import { SignalMaintanenceService } from '../signal-service/signal-maintenance-s
 })
 export class AddPointMaintaneceComponent implements OnInit {
 
-    public addAssetMaintanenceForm: FormGroup;
-    public scannedData: any;
-    public assetDetails: any;
-    public hasPermission: boolean;
-    enableScanner = false;
-    public signalId: number;
-    public signal: Signal = new Signal({});
+  public addAssetMaintanenceForm: FormGroup;
+  public signalId: number;
+  public signal: Point = new Point({});
+  public maintananceId: number;
+  public viewForm: boolean;
+  public signalMaintanance: PointAssetMaintanence = new PointAssetMaintanence({});
 
-    constructor(private SignalService: SignalService,
-        private SignalMaintanenceService: SignalMaintanenceService,
-        private route: ActivatedRoute,
-        private formBuilder: FormBuilder
-    ) {
+  constructor(private SignalService: PointService,
+    private SignalMaintanenceService: PointMaintanenceService,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.buildAddAssetForm();
+    this.route.params.subscribe(params => {
+      this.signalId = +params['id'];
+      this.maintananceId = +params['mid'];
+    });
+  }
+
+  ngOnInit() {
+    this.buildAddAssetForm();
+    if (this.maintananceId > 0) {
+      this.SignalMaintanenceService.getSignal(this.maintananceId).then(main => {
+        this.signalMaintanance = main;
+        this.viewForm = true;
         this.buildAddAssetForm();
-        this.route.params.subscribe(params => {
-            this.signalId = +params['id'];
-        });
+      });
     }
-
-    ngOnInit() {
+    else if (this.signalId > 0) {
+      this.SignalService.getSignal(this.signalId).then(sig => {
+        this.signal = new Point(sig);
+        this.signalMaintanance.name = this.signal.name;
+        this.signalMaintanance.assetLatitude = this.signal.latitude;
+        this.signalMaintanance.assetLongitude = this.signal.longitude;
+        this.signalMaintanance.stationName = this.signal.stationName;
         this.buildAddAssetForm();
-        if (this.signalId > 0) {
-            this.SignalService.getSignal(this.signalId).then(sig => {
-                this.signal = new Signal(sig);
-                this.buildAddAssetForm();
-            });
-        }
+      });
     }
+  }
 
-    buildAddAssetForm() {
-        this.addAssetMaintanenceForm = this.formBuilder.group({
-            stationName: new FormControl({ value: this.signal.stationName, disabled: true }),
-            pointName: new FormControl(this.signal.name),
-            slatitude: new FormControl(this.signal.latitude),
-            slongitude: new FormControl(this.signal.longitude),
-            latitude: new FormControl(null),
-            longitude: new FormControl(null),
-            serialNumber: new FormControl(this.signal.metadata.serialNumber),
-            make: new FormControl(this.signal.make),
-            model: new FormControl(this.signal.model),
-            cleanSignal: new FormControl(null),
-            metadata: new FormGroup({
-                cleanSignal: new FormControl(null),
-                smcData: new FormGroup({
-                    maintanenceType: new FormControl(null),
-                    aspect: new FormControl(null),
-                    make: new FormControl(null),
-                    model: new FormControl(null),
-                    aspectNumber: new FormControl(null),
-                    version: new FormControl(null),
-                    aspectColor: new FormControl(null),
-                    serialNumber: new FormControl(null),
-                    dateOfManufacture: new FormControl(null),
-                    dataOfInstallation: new FormControl(null),
-                    lifeInMonths: new FormControl(null),
-                    midLifeRehabilation: new FormControl(null),
-                    remarks: new FormControl(null),
-                }),
-                recordBook: new FormGroup({
-                    rgVoltage: new FormControl(null),
-                    dgVoltage: new FormControl(null),
-                    hgVoltage: new FormControl(null),
-                    hhgVoltage: new FormControl(null),
-                    cogVoltage: new FormControl(null),
-                    amarker: new FormControl(null),
-                    agmarker: new FormControl(null),
-                    cmarker: new FormControl(null),
-                    routeIndicator: new FormControl(null),
-                    schedule: new FormControl(null),
-                    remarks: new FormControl(null),
-                    faulty: new FormControl(null),
-                }),
-            }),
+  buildAddAssetForm() {
+    this.addAssetMaintanenceForm = this.formBuilder.group({
+      stationName: new FormControl({ value: this.signalMaintanance.stationName, disabled: true }),
+      pointName: new FormControl({ value: this.signalMaintanance.name, disabled: true }),
+      slatitude: new FormControl({ value: this.signalMaintanance.assetLatitude, disabled: true }),
+      slongitude: new FormControl({ value: this.signalMaintanance.assetLongitude, disabled: true }),
+      latitude: new FormControl({ value: this.signalMaintanance.latitiude, disabled: this.viewForm }),
+      longitude: new FormControl({ value: this.signalMaintanance.longitude, disabled: this.viewForm }),
+      serialNumber: new FormControl({ value: this.signal.metadata.serialNumber, disabled: true }),
+      make: new FormControl({ value: this.signal.make, disabled: true }),
+      model: new FormControl({ value: this.signal.model, disabled: true }),
+      metadata: new FormGroup({
+        isRustFree: new FormControl({ value: this.signalMaintanance.metadata.isRustFree, disabled: this.viewForm }),
+        isPointChairsOiled: new FormControl({ value: this.signalMaintanance.metadata.isPointChairsOiled, disabled: this.viewForm }),
+        isPointGearsOiled: new FormControl({ value: this.signalMaintanance.metadata.isPointGearsOiled, disabled: this.viewForm }),
+        switchSetting: new FormControl({ value: this.signalMaintanance.metadata.switchSetting, disabled: this.viewForm }),
+        ssdCondition: new FormControl({ value: this.signalMaintanance.metadata.ssdCondition, disabled: this.viewForm }),
+        isObservationTest: new FormControl({ value: this.signalMaintanance.metadata.isObservationTest, disabled: this.viewForm }),
+        nrsmcData: new FormGroup({
+          motorMake: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.motorMake, disabled: this.viewForm }),
+          motorSerialNumber: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.motorSerialNumber, disabled: this.viewForm }),
+          dateOfManufacture: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.dateOfManufacture, disabled: true }),
+          dateOfInstallation: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.dateOfInstallation, disabled: true }),
+          peakLoad: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.peakLoad, disabled: this.viewForm }),
+          normalLoad: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.normalLoad, disabled: this.viewForm }),
+          obstructionLoad: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.obstructionLoad, disabled: this.viewForm }),
+          voltageObstruction: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.voltageObstruction, disabled: this.viewForm }),
+          voltageNormal: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.voltageNormal, disabled: this.viewForm }),
+          wjrTiming: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.wjrTiming, disabled: this.viewForm }),
+          operationFrom: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.operationFrom, disabled: true }),
+          operationTo: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.operationTo, disabled: true }),
+          remarks: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.remarks, disabled: this.viewForm }),
+        }),
+        rnsmcData: new FormGroup({
+          motorMake: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.motorMake, disabled: this.viewForm }),
+          motorSerialNumber: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.motorSerialNumber, disabled: this.viewForm }),
+          dateOfManufacture: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.dateOfManufacture, disabled: true }),
+          dateOfInstallation: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.dateOfInstallation, disabled: true }),
+          peakLoad: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.peakLoad, disabled: this.viewForm }),
+          normalLoad: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.normalLoad, disabled: this.viewForm }),
+          obstructionLoad: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.obstructionLoad, disabled: this.viewForm }),
+          voltageObstruction: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.voltageObstruction, disabled: this.viewForm }),
+          voltageNormal: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.voltageNormal, disabled: this.viewForm }),
+          wjrTiming: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.wjrTiming, disabled: this.viewForm }),
+          operationFrom: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.operationFrom, disabled: true }),
+          operationTo: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.operationTo, disabled: true }),
+          remarks: new FormControl({ value: this.signalMaintanance.metadata.nrsmcData.remarks, disabled: this.viewForm }),
+        }),
+      }),
 
-        });
-    }
+    });
+  }
 
     saveAssetMaintanence(): void {
-        const modelCopy = this.addAssetMaintanenceForm.value;
+      const modelCopy = new PointAssetMaintanence(this.addAssetMaintanenceForm.value);
         modelCopy["assetId"] = this.signal.id;
 
         this.SignalMaintanenceService
             .addSignal(modelCopy)
             .then(signals => {
-                window.location.href = '/#/signals';
+                window.location.href = '/#/points';
                 console.log(signals);
             });
     }
 
-    scanSuccessHandler(scannedData) {
-        console.log('scanned data', scannedData);
-        this.scannedData = scannedData;
-        this.assetDetails = null;
-        this.SignalService.getSignal(scannedData)
-            .then(signal => {
-                //window.location.href = '/#/signals';
-                this.assetDetails = signal;
-                this.scannedData = null;
-                this.closeScanner();
-                console.log(signal);
-            });
-    }
+   
+}
 
-    onHasPermission(permission: boolean) {
-        this.hasPermission = permission;
-        console.log(this.hasPermission, 'has permission');
-        if (!this.hasPermission) {
-            this.enableCamera();
-        }
-    }
+export class PointAssetMaintanence {
+  public id: number;
+  public addedBy: number;
+  public assetId: number;
+  public addedOn: Date;
+  public latitiude: string;
+  public longitude: string;
+  public displayName: string;
+  public designation: string;
+  public name: string;
+  public stationId: number;
+  public stationName: string;
+  public assetLatitude: string;
+  public assetLongitude: string;
+  public serialNumber: string;
+  public make: string;
+  public model: string;
 
-    enableCamera() {
-        navigator.mediaDevices.getUserMedia({ video: true });
-    }
+  public metadata: PointMaintanenceMetadata;
 
-    openScanner() {
-        this.enableScanner = true;
-    }
+  constructor(args) {
+    this.id = args.id;
+    this.assetId = args.assetId;
+    this.displayName = args.displayName;
+    this.designation = args.designation;
+    this.name = args.name;
+    this.stationId = args.stationId;
+    this.stationName = args.stationName;
+    this.assetLatitude = args.assetLatitude;
+    this.assetLongitude = args.assetLongitude;
+    this.addedBy = args.addedBy;
+    this.addedOn = args.addedOn;
+    this.latitiude = args.latitiude;
+    this.longitude = args.longitude;
+    this.serialNumber = args.serialNumber;
+    this.make = args.make;
+    this.model = args.model;
+    this.metadata = new PointMaintanenceMetadata(args.metadata || {});
+  }
+}
 
-    closeScanner() {
-        this.enableScanner = false;
+export class PointMaintanenceMetadata {
+  public isRustFree: boolean;
+  public isPointChairsOiled: boolean;
+  public isPointGearsOiled: boolean;
+  public switchSetting: boolean;
+  public isObservationTest: boolean;
+  public ssdCondition: boolean;
+  public nrsmcData: PointSMCData;
+  public rnsmcData: PointSMCData;
+
+  constructor(args) {
+    this.isRustFree = args.isRustFree;
+    this.isPointChairsOiled = args.isPointChairsOiled;
+    this.isPointGearsOiled = args.isPointGearsOiled;
+    this.switchSetting = args.switchSetting;
+    this.ssdCondition = args.ssdCondition;
+    this.isObservationTest = args.isObservationTest;
+      this.nrsmcData = new PointSMCData(args.nrsmcData || {});
+    this.rnsmcData = new PointSMCData(args.rnsmcData || {});
+    this.rnsmcData.operationTo = "N";
+    this.nrsmcData.operationTo = "R";
+    this.rnsmcData.operationFrom = "R";
+    this.nrsmcData.operationFrom = "N";
     }
 }
 
-export class ColorLightSignalAssetMaintanence {
-    public id: number;
-    public addedBy: number;
-    public addedOn: Date;
-    public latitiude: string;
-    public longitude: string;
-    public metadata: ColorLightSignalMaintanenceMetadata;
-
-    constructor(args: ColorLightSignalAssetMaintanence) {
-        this.id = args.id;
-        this.addedBy = args.addedBy;
-        this.addedOn = args.addedOn;
-        this.latitiude = args.latitiude;
-        this.longitude = args.longitude;
-        this.metadata = new ColorLightSignalMaintanenceMetadata(args.metadata || {});
-    }
-
-}
-
-export class ColorLightSignalMaintanenceMetadata {
-    public cleanSignal: boolean;
-    public smcData: SMCData;
-    public recordBook: RecordBook;
-
-    constructor(args) {
-        this.cleanSignal = args.cleanSignal;
-        this.smcData = new SMCData(args.smcData || {});
-        this.recordBook = new RecordBook(args.recordBook || {});
-
-    }
-}
-
-export class SMCData {
-    public maintanenceType: number;
-    public aspect: string;
-    public make: string;
-    public model: string;
-    public aspectNumber: string;
-    public version: string;
-    public aspectColor: string;
-    public serialNumber: string;
-    public dateOfManufacture: Date;
-    public dataOfInstallation: Date;
-    public lifeInMonths: string;
-    public midLifeRehabilation: string;
-    public remarks: string;
-
-    constructor(args) {
-        this.maintanenceType = args.maintanenceType;
-        this.aspect = args.aspect;
-        this.make = args.make;
-        this.model = args.model;
-        this.aspectNumber = args.aspectNumber;
-        this.version = args.version;
-        this.aspectColor = args.aspectColor;
-        this.serialNumber = args.serialNumber;
-        this.dateOfManufacture = args.dateOfManufacture;
-        this.dataOfInstallation = args.dataOfInstallation;
-        this.lifeInMonths = args.lifeInMonths;
-        this.midLifeRehabilation = args.midLifeRehabilation;
-        this.remarks = args.remarks;
-    }
-
-}
-
-export class RecordBook {
+export class PointSMCData {
     public motorMake: string 
     public motorSerialNumber: string; 
     public dateOfManufacture: string; 
@@ -212,22 +197,22 @@ export class RecordBook {
     public obstructionLoad: string;
     public voltageObstruction: string;
     public voltageNormal: string;
-    public wJRTiming: string;
+  public wjrTiming: string;
     public operationFrom: string;
     public operationTo: string;
     public remarks: string;
 
-    constructor(args: RecordBook) {
+    constructor(args) {
         this.motorMake = args.motorMake;
         this.motorSerialNumber = args.motorSerialNumber;
         this.dateOfManufacture =  args.dateOfManufacture;
-      this.dateOfInstallation = args.dateOfInstallation;
+        this.dateOfInstallation = args.dateOfInstallation;
         this.peakLoad = args.dateOfInstallation;
         this.normalLoad = args.normalLoad;
         this.obstructionLoad = args.obstructionLoad;
         this.voltageObstruction = args.voltageObstruction;
         this.voltageNormal = args.voltageNormal;
-        this.wJRTiming = args.wJRTiming;
+      this.wjrTiming = args.wjrTiming;
         this.operationFrom = args.operationFrom;
         this.operationTo = args.operationTo;
         this.remarks = args.remarks;

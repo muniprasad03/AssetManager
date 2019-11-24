@@ -48,10 +48,13 @@ const routes: Routes = [
   { path: 'axelmaintanecelist/:id', component: AxelMaintaneceListComponent },
   { path: 'axel/:id/view/:mid', component: AddAxelMaintaneceComponent },
   { path: 'pointmaintanece/:id', component: AddPointMaintaneceComponent },
+  { path: 'point/:id/view/:mid', component: AddPointMaintaneceComponent },
   { path: 'pointmaintanecelist/:id', component: PointMaintaneceListComponent },
   { path: 'blockmaintanece/:id', component: AddBlockMaintaneceComponent },
+  { path: 'block/:id/view/:mid', component: AddBlockMaintaneceComponent },
   { path: 'blockmaintanecelist/:id', component: BlockMaintaneceListComponent },
   { path: 'trackcircuitmaintanece/:id', component: AddTrackCircuitMaintaneceComponent },
+  { path: 'track/:id/view/:mid', component: AddTrackCircuitMaintaneceComponent },
   { path: 'trackcircuitmaintanecelist/:id', component: TrackCircuitMaintaneceListComponent },
   { path: 'maintanence', component: MaintanenceComponent }
 ];
