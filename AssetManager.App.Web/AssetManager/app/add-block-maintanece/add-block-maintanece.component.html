@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12 col-xs-12">
     <div class="col-md-3 col-xs-3">
-      <a href="#/signals" class="btn default yellow">Back</a>
+      <a href="#/blocks" class="btn default yellow">Back</a>
     </div>
     <!--<div class="col-md-3 col-sm-6 col-xs-6 pull-right">
       <a href="#/signaladd" class="btn blue">New</a>
@@ -13,24 +13,10 @@
 <div class="row">
   <div class="col-sm-12 col-xs-12">
     <!-- cardTitle="Basic Component" -->
-    <h4 class="font-w800">ADD BLOCK MAINTANECE</h4>
+    <h4 class="font-w800"><span *ngIf="!viewForm">ADD</span> BLOCK MAINTANECE <span *ngIf="viewForm">Details</span></h4>
     <hr>
   </div>
 </div>
-
-<!--<button *ngIf="!enableScanner" (click)="openScanner()">Open Scanner</button>
-<button *ngIf="enableScanner" (click)="closeScanner()">Close Scanner</button>
-<div *ngIf="enableScanner && !hasPermission">
-  Please allow camera permissions and reload the site to scan
-</div>
-<div class="row" style="width: 275px; padding: 15px;">
-  <zxing-scanner *ngIf="enableScanner"
-                 (scanSuccess)="scanSuccessHandler($event)"
-                 (permissionResponse)="onHasPermission($event)"></zxing-scanner>
-</div>
-<div class="row" *ngIf="scannedData && !assetDetails">
-  <h3>No Asset found with that code</h3>
-</div>-->
 
 <accordion [closeOthers]="true">
   <div class="row">
@@ -38,8 +24,12 @@
 
       <form [formGroup]="addAssetMaintanenceForm" name="addAssetMaintanence" #addAssetMaintanence>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
-          <label for="station">Block Instrument Name</label>
+          <label for="station">Station Name</label>
           <input type="text" class="form-control" id="station" formControlName="stationName">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="station">Block Name</label>
+          <input type="text" class="form-control" id="station" formControlName="signalName">
         </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
           <label for="station">Model</label>
@@ -53,191 +43,103 @@
           <label for="station">Serial Number</label>
           <input type="text" class="form-control" id="station" formControlName="serialNumber">
         </div>
-        <div class="col-sm-12 col-xs-12 accordion-head">
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="latitude">Latitude</label>
+          <input type="text" class="form-control" id="latitude" formControlName="slatitude">
+        </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="longitude">Longitude</label>
+          <input type="text" class="form-control" id="longitude" formControlName="slongitude">
+        </div>
+        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
           <accordion-group heading="Check List">
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <div class="input-group">
                 <div class="icheck-inline">
                   <label>
-                    <input type="checkbox" formControlName="cleanSignal" class="icheck">
-                    cleaning of signal units from outside and protective wire mesh. (19.108.1)
+                    <input type="checkbox" formControlName="lockAndSeal" class="icheck">
+                    Locking &Aacute; Sealing. (18.41.1)(18.57)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="smLock" class="icheck">
+                    Proper working of SM's lock up key.
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="needleIndicator" class="icheck">
+                    Full detection of Needle indicator. (18.41.2)(18.57)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="conditionOfFitting" class="icheck">
+                    Good condition and keeping tight all mechanical parts, nuts &Aacute; fittings. (18.41.8)(18.57)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="batteriesCleanliness" class="icheck">
+                    The Block &Aacute; Telephone batteries for cleanliness and voltages recorded in the card. (18.41.9)(18.57)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 pl-8 col-xs-6">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" formControlName="telephoneChord" class="icheck">
+                    The telephone and telephone chord.
                   </label>
                 </div>
               </div>
             </div>
           </accordion-group>
-        </div>
-        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
-          <accordion-group heading="SMC Book" formGroupName="smcData">
-
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="type">To Do</label>
-              <select name="type"
-                      class="form-control"
-                      id="type"
-                      formControlName="maintanenceType">
-                <option value="0">
-                  Installation
-                </option>
-                <option value="1">
-                  Replacement
-                </option>
-                <option value="2">
-                  Remove
-                </option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="type">Aspect</label>
-              <select name="type"
-                      class="form-control"
-                      id="type"
-                      formControlName="aspect">
-                <option value="0">DG</option>
-                <option value="1">HHG</option>
-                <option value="2">HG</option>
-                <option value="3">RG</option>
-                <option value="4">A</option>
-                <option value="5">C</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Manufacture</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="make">
-                <option value="">--Select--</option>
-                <option>Agarwal Engineering Works</option>
-                <option>G.K. Engg. Works &amp; Stores (P) Ltd</option>
-                <option>Kiran Infra Engineers Ltd</option>
-                <option>NSS Stores Supply Agency (P) Ltd</option>
-                <option>RT Vision Technologies (P) Ltd</option>
-                <option>Sankar Engg. Works</option>
-                <option>SBM Engg. Works</option>
-                <option>Shyam Sundar Casting (P) Ltd</option>
-                <option>Sigma Trade Agency</option>
-                <option>TSS India Ltd</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Model</label>
-              <input type="text" class="form-control" id="model" formControlName="model">
-            </div>
-
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Aspect Number</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="aspectNumber">
-                <option value="">--Select--</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Version</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="version">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Aspect Color</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="aspectColor">
-                <option>RED</option>
-                <option>WHITE</option>
-                <option>YELLOW</option>
-                <option>GREEN</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Serial Number</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="serialNumber">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="purchasedon">Date Of Manufacture</label>
-              <div class="input-calendar col-xs-12 col-sm-12 clear-padding-x" style="padding-left:0; padding-right:0">
-                <input type="text"
-                       name="dateOfManufacture"
-                       bsDatepicker
-                       formControlName="dateOfManufacture"
-                       class="form-control"
-                       placement="auto"
-                       [bsConfig]="{ showWeekNumbers: false }"
-                       id="dateOfManufacture" readonly />
-                <span class="ic-calendar"></span>
-              </div>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="purchasedon">Installed on</label>
-              <div class="input-calendar col-xs-12 col-sm-12 clear-padding-x" style="padding-left:0; padding-right:0">
-                <input type="text"
-                       name="dateOfInstallation"
-                       bsDatepicker
-                       formControlName="dataOfInstallation"
-                       class="form-control"
-                       placement="auto"
-                       [bsConfig]="{ showWeekNumbers: false }"
-                       id="dateOfInstallation" readonly />
-                <span class="ic-calendar"></span>
-              </div>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Life In Months</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="lifeInMonths">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Mid Life Rehabilation</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="midLifeRehabilation">
-                <option>No</option>
-                <option>Yes</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">Remarks</label>
-              <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
-            </div>
-          </accordion-group>
           <accordion-group heading="Records Book" formGroupName="recordBook">
-
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">Check & Ensure That:</label>
-            </div>
-
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label>Handle Cannot be turned unless both PB1 and PB2 buttons are pressed at the other end</label>
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="handleChangePB" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="handleChangePB" [value]="false">
                     Unchecked
                   </label>
                 </div>
               </div>
             </div>
-
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label>Sealing and locking of block instrument relays and counters</label>
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="sealAndLockOfRelay" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="sealAndLockOfRelay" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -249,11 +151,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="handleChangeTCFOrTGF" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="handleChangeTCFOrTGF" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -265,11 +167,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="forceDrobingNToTGF" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="forceDrobingNToTGF" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -281,11 +183,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="lssLineClear" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="lssLineClear" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -297,11 +199,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="lssTrackCircuit" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="lssTrackCircuit" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -313,11 +215,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="lssLineGear" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="lssLineGear" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -329,11 +231,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="hsTrackCircuit" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="hsTrackCircuit" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -345,11 +247,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="handleNormalizeWithSM" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="handleNormalizeWithSM" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -361,11 +263,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="handleNormalizeWithSMWithBlock" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="handleNormalizeWithSMWithBlock" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -377,11 +279,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="cancelWithSM" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="cancelWithSM" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -393,11 +295,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="nToPBCancellation" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="nToPBCancellation" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -409,11 +311,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="smKeyInstrument" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="sKeyInstrument" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -425,11 +327,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="shuntingKeyFunction" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="shuntingKeyFunction" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -441,29 +343,24 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="carrierFrequency" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="carrierFrequency" [value]="false">
                     Unchecked
                   </label>
                 </div>
               </div>
             </div>
-
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">RELIABILITY :(Periodicity ESM=F,JE=M,SE=Q)</label>
-            </div>
-
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Line Current (mA)</label>
-              <input type="text" class="form-control" placeholder="mil Amps" id="station" formControlName="linecurrent">
+              <input type="text" class="form-control" placeholder="mil Amps" id="lineCurrent" formControlName="lineCurrent">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Line Voltage (v)</label>
-              <input type="text" class="form-control" placeholder="Volt" id="station" formControlName="linevoltage">
+              <input type="text" class="form-control" placeholder="Volt" id="station" formControlName="lineVoltage">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -471,11 +368,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="buzzerAndIndicator" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="buzzerAndIndicator" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -487,11 +384,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="countersMovement" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="countersMovement" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -503,11 +400,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="telphoneWorking" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="telphoneWorking" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -519,11 +416,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="wirringConnections" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="wirringConnections" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -535,11 +432,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="clean_Spring_Segment_Presure" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="clean_Spring_Segment_Presure" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -551,11 +448,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="insulatedLead" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="insulatedLead" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -567,11 +464,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="referenceMessage" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="referenceMessage" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -583,11 +480,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="fullDeflectionIndicator" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="fullDeflectionIndicator" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -599,11 +496,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="instrumentDue" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="instrumentDue" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -615,11 +512,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="batteryClean" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="batteryClean" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -631,11 +528,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="mechanicalPartsCondition" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="mechanicalPartsCondition" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -647,11 +544,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="lineClearSignal" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="lineClearSignal" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -663,11 +560,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="opposingLastSignal" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="opposingLastSignal" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -679,11 +576,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="arrivalTrainSignal" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="arrivalTrainSignal" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -695,11 +592,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="pushButtonSelfRestore" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="pushButtonSelfRestore" [value]="false">
                     Unchecked
                   </label>
                 </div>
@@ -711,11 +608,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="blockBellArmature" [value]="true">
                     Checked
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="blockBellArmature" [value]="false">
                     Unchecked
                   </label>
                 </div>

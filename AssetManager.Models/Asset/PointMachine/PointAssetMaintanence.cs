@@ -8,7 +8,7 @@ namespace AssetManager.Models.Asset
 {
     public class PointAssetMaintanence : AssetMaintanence
     {
-        public override AssetType AssetType => AssetType.BlockInstrument;
+        public override AssetType AssetType => AssetType.ElectricalOperatedPoints;
 
         public PointAssetMaintanenceMetadata Metadata { get; set; }
     }

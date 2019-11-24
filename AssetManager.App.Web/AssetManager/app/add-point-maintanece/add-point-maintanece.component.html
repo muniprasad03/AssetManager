@@ -13,34 +13,19 @@
 <div class="row">
   <div class="col-sm-12 col-xs-12">
     <!-- cardTitle="Basic Component" -->
-    <h4 class="font-w800">ADD POINT MAINTANECE</h4>
+    <h4 class="font-w800"><span *ngIf="!viewForm">ADD</span> POINT MAINTANECE <span *ngIf="viewForm">Details</span></h4>
     <hr>
   </div>
 </div>
 
-<!--<button *ngIf="!enableScanner" (click)="openScanner()">Open Scanner</button>
-<button *ngIf="enableScanner" (click)="closeScanner()">Close Scanner</button>
-<div *ngIf="enableScanner && !hasPermission">
-  Please allow camera permissions and reload the site to scan
-</div>
-<div class="row" style="width: 275px; padding: 15px;">
-  <zxing-scanner *ngIf="enableScanner"
-                 (scanSuccess)="scanSuccessHandler($event)"
-                 (permissionResponse)="onHasPermission($event)"></zxing-scanner>
-</div>
-<div class="row" *ngIf="scannedData && !assetDetails">
-  <h3>No Asset found with that code</h3>
-</div>-->
-
 <accordion [closeOthers]="true">
   <div class="row">
     <div class="col-sm-12 col-xs-12" style="padding-top:20px;">
-
       <form [formGroup]="addAssetMaintanenceForm" name="addAssetMaintanence" #addAssetMaintanence>
-         <div class="form-group col-sm-6 pl-8 col-xs-6">
-            <label for="station">Station Name</label>
-            <input type="text" class="form-control" id="station" formControlName="stationName">
-         </div>
+        <div class="form-group col-sm-6 pl-8 col-xs-6">
+          <label for="station">Station Name</label>
+          <input type="text" class="form-control" id="station" formControlName="stationName">
+        </div>
         <div class="form-group col-sm-6 pl-8 col-xs-6">
           <label for="station">Point Name</label>
           <input type="text" class="form-control" id="station" formControlName="pointName">
@@ -65,354 +50,184 @@
           <label for="longitude">Longitude</label>
           <input type="text" class="form-control" id="longitude" formControlName="slongitude">
         </div>
-        <div class="col-sm-12 col-xs-12 accordion-head">
+        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
           <accordion-group heading="Check List">
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <div class="input-group">
                 <div class="icheck-inline">
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label for="date">Date</label>
-                    <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
-                      <input type="text"
-                             name="date"
-                             bsDatepicker
-                             formControlName="date"
-                             class="form-control"
-                             placement="auto"
-                             [bsConfig]="{ showWeekNumbers: false, dateInputFormat: 'MMM DD, YYYY' }"
-                             id="dateOfInstallation" readonly />
-                      <span class="ic-calendar"></span>
-                    </div>
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label for="date">Time</label>
-                    <div class="input-calendar col-sm-12" style="padding-left:0; padding-right:0">
-                      <input placeholder="Selected time" type="text" id="input_starttime" class="form-control timepicker">
-                    </div>
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label for="station">Station :</label>
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <h2>Vijayawada</h2>
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label for="station">Gear Name</label>
-                    <input type="text" class="form-control" id="station" formControlName="gearame">
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label for="station">Asset Id</label>
-                    <input type="text" class="form-control" id="station" formControlName="assetid">
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label for="station">Serial Number</label>
-                    <input type="text" class="form-control" id="station" formControlName="serialnumber">
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label for="latitude">Latitude</label>
-                    <input type="text" class="form-control" id="latitude" formControlName="slatitude">
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label for="longitude">Longitude</label>
-                    <input type="text" class="form-control" id="longitude" formControlName="slongitude">
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <div class="icheck-inline">
-                      <input type="checkbox" formControlName="cleanSignal" class="icheck" [value]="true">
-                      <h1>Disconnection Memo</h1>
-                    </div>
-                  </div>
-                  <div class="form-group col-sm-6 pl-8 col-xs-6">
-                    <label>Check List</label>
-                    <div class="input-group">
-                      <div class="icheck-inline">
-                        <label>
-                          <input type="checkbox" formControlName="cleanSignal" class="icheck">
-                          The Machine for tightness and free from rust,dirt.
-                        </label>
-
-                      </div>
-                      <div class="icheck-inline">
-                        <label>
-                          <input type="checkbox" class="icheck" formControlName="faulty">
-                          Cleaning,graphite/oiling of slise chairsgenerally up to thirsd sleeper from toes of Also check that other point chairs are checked
-                        </label>
-                      </div>
-                    </div>
-                  </div>
+                  <label>
+                    <input type="checkbox" formControlName="isRustFree" class="icheck">
+                    The Machine for tightness and free from rust,dirt.
+                  </label>
                 </div>
               </div>
-              </div>
-          </accordion-group>
-          </div>
-        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
-          <accordion-group heading="SMC Book" formGroupName="smcData">
-
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="type">To Do</label>
-              <select name="type"
-                      class="form-control"
-                      id="type"
-                      formControlName="maintanenceType">
-                <option value="0">
-                  Installation
-                </option>
-                <option value="1">
-                  Replacement
-                </option>
-                <option value="2">
-                  Remove
-                </option>
-              </select>
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="type">Aspect</label>
-              <select name="type"
-                      class="form-control"
-                      id="type"
-                      formControlName="aspect">
-                <option value="0">DG</option>
-                <option value="1">HHG</option>
-                <option value="2">HG</option>
-                <option value="3">RG</option>
-                <option value="4">A</option>
-                <option value="5">C</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Manufacture</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="make">
-                <option value="">--Select--</option>
-                <option>Agarwal Engineering Works</option>
-                <option>G.K. Engg. Works &amp; Stores (P) Ltd</option>
-                <option>Kiran Infra Engineers Ltd</option>
-                <option>NSS Stores Supply Agency (P) Ltd</option>
-                <option>RT Vision Technologies (P) Ltd</option>
-                <option>Sankar Engg. Works</option>
-                <option>SBM Engg. Works</option>
-                <option>Shyam Sundar Casting (P) Ltd</option>
-                <option>Sigma Trade Agency</option>
-                <option>TSS India Ltd</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Model</label>
-              <input type="text" class="form-control" id="model" formControlName="model">
-            </div>
-
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Aspect Number</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="aspectNumber">
-                <option value="">--Select--</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Version</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="version">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Aspect Color</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="aspectColor">
-                <option>RED</option>
-                <option>WHITE</option>
-                <option>YELLOW</option>
-                <option>GREEN</option>
-              </select>
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Serial Number</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="serialNumber">
-            </div>
-            <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="purchasedon">Date Of Manufacture</label>
-              <div class="input-calendar col-xs-12 col-sm-12 clear-padding-x" style="padding-left:0; padding-right:0">
-                <input type="text"
-                       name="dateOfManufacture"
-                       bsDatepicker
-                       formControlName="dateOfManufacture"
-                       class="form-control"
-                       placement="auto"
-                       [bsConfig]="{ showWeekNumbers: false }"
-                       id="dateOfManufacture" readonly />
-                <span class="ic-calendar"></span>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" class="icheck" formControlName="isPointChairsOiled">
+                    Cleaning,graphite/oiling of slise chairsgenerally up to thirsd sleeper from toes of switch. Also check that other point chairs are cleaned and oiled regularly by permenant way staff(19.119)(12.192,19.148)
+                  </label>
+                </div>
               </div>
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="purchasedon">Installed on</label>
-              <div class="input-calendar col-xs-12 col-sm-12 clear-padding-x" style="padding-left:0; padding-right:0">
-                <input type="text"
-                       name="dateOfInstallation"
-                       bsDatepicker
-                       formControlName="dataOfInstallation"
-                       class="form-control"
-                       placement="auto"
-                       [bsConfig]="{ showWeekNumbers: false }"
-                       id="dateOfInstallation" readonly />
-                <span class="ic-calendar"></span>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" class="icheck" formControlName="isPointGearsOiled">
+                    Checking and Oiling of Point Gear Assembly, slides, rollers &Aacute; pins with medium grade axel oil IS 1628. Avoid Overflowing. (19.120)
+                  </label>
+                </div>
               </div>
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Life In Months</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="lifeInMonths">
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" class="icheck" formControlName="switchSetting">
+                    The setting of switch for having required amount of sparing action. (19.127.3)
+                  </label>
+                </div>
+              </div>
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="make">Mid Life Rehabilation</label>
-              <select name="type"
-                      class="form-control"
-                      id="make"
-                      formControlName="midLifeRehabilation">
-                <option>No</option>
-                <option>Yes</option>
-              </select>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" class="icheck" formControlName="isObservationTest">
+                    Observation Test- of points with 5mm test piece to ensure point can not be locked, detection contacts should not assume the position indicating point closure &Aacute; friction clutch should slip. (19.127.1)
+                  </label>
+                </div>
+              </div>
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="model">Remarks</label>
-              <textarea name="description" rows="2" class="form-control" formControlName="remarks"></textarea>
+              <div class="input-group">
+                <div class="icheck-inline">
+                  <label>
+                    <input type="checkbox" class="icheck" formControlName="ssdCondition">
+                    Condition of SSD if TWS Point
+                  </label>
+                </div>
+              </div>
             </div>
           </accordion-group>
-         </div>
-        <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
-          <accordion-group heading="Records Book" formGroupName="recordBook">
-            <div class="row">
-              <div class="col-sm-12 col-xs-12">
-                <!-- cardTitle="Basic Component" -->
-                <h4 class="font-w800">Test Result Of Motor Points - SMC - 12 (Normal to Reverse)</h4>
-                <hr>
-              </div>
-            </div>
+          <accordion-group heading="SMC - 12 (Normal to Reverse)" formGroupName="nrsmcData">
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Motor Make</label>
-              <input type="text" class="form-control" id="station" formControlName="MotorMake">
+              <input type="text" class="form-control" id="station" formControlName="motorMake">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Motor Serial Number</label>
-              <input type="text" class="form-control" id="station" formControlName="MotorSerialNumber">
+              <input type="text" class="form-control" id="station" formControlName="motorSerialNumber">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Motor Manufracturing Date</label>
-              <input type="text" class="form-control" id="station" formControlName="DateOfManufacture">
+              <input type="text" class="form-control" id="station" formControlName="dateOfManufacture">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Motor Instalation Date</label>
-              <input type="text" class="form-control" id="station" formControlName="DateOfInstallation">
+              <input type="text" class="form-control" id="station" formControlName="dateOfInstallation">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Peak Load</label>
-              <input type="text" class="form-control" id="station" formControlName="PeakLoad">
+              <input type="text" class="form-control" id="station" formControlName="peakLoad">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Normal Load</label>
-              <input type="text" class="form-control" id="station" formControlName="NormalLoad">
+              <input type="text" class="form-control" id="station" formControlName="normalLoad">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Obstruction Load</label>
-              <input type="text" class="form-control" id="station" formControlName="ObstructionLoad">
+              <input type="text" class="form-control" id="station" formControlName="obstructionLoad">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Voltage Normal</label>
-              <input type="text" class="form-control" id="station" formControlName="VoltageNormal">
+              <input type="text" class="form-control" id="station" formControlName="voltageNormal">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Voltage Obstruction</label>
-              <input type="text" class="form-control" id="station" formControlName="VoltageObstruction">
+              <input type="text" class="form-control" id="station" formControlName="voltageObstruction">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">WJR Timing</label>
-              <input type="text" class="form-control" id="station" formControlName="WJRTiming">
+              <input type="text" class="form-control" id="station" formControlName="wjrTiming">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Operation Of Point From</label>
-              <input type="text" class="form-control" id="station" formControlName="OperationFrom">
+              <input type="text" class="form-control" id="station" formControlName="operationFrom">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Operation Of Point To</label>
-              <input type="text" class="form-control" id="station" formControlName="OperationTo">
+              <input type="text" class="form-control" id="station" formControlName="operationTo">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Remarks</label>
-              <input type="text" class="form-control" id="station" formControlName="Remarks">
+              <input type="text" class="form-control" id="station" formControlName="remarks">
             </div>
-            <div class="row">
-              <div class="col-sm-12 col-xs-12">
-                <!-- cardTitle="Basic Component" -->
-                <h4 class="font-w800">Test Result Of Motor Points - SMC - 12 (Reverse to Normal )</h4>
-                <hr>
-              </div>
-            </div>
+          </accordion-group>
+          <accordion-group heading="SMC - 12 (Reverse to Normal)" formGroupName="rnsmcData">
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Motor Make</label>
-              <input type="text" class="form-control" id="station" formControlName="MotorMake">
+              <input type="text" class="form-control" id="station" formControlName="motorMake">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Motor Serial Number</label>
-              <input type="text" class="form-control" id="station" formControlName="MotorSerialNumber">
+              <input type="text" class="form-control" id="station" formControlName="motorSerialNumber">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Motor Manufracturing Date</label>
-              <input type="text" class="form-control" id="station" formControlName="DateOfManufacture">
+              <input type="text" class="form-control" id="station" formControlName="dateOfManufacture">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Motor Instalation Date</label>
-              <input type="text" class="form-control" id="station" formControlName="DateOfInstallation">
+              <input type="text" class="form-control" id="station" formControlName="dateOfInstallation">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Peak Load</label>
-              <input type="text" class="form-control" id="station" formControlName="PeakLoad">
+              <input type="text" class="form-control" id="station" formControlName="peakLoad">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Normal Load</label>
-              <input type="text" class="form-control" id="station" formControlName="NormalLoad">
+              <input type="text" class="form-control" id="station" formControlName="normalLoad">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Obstruction Load</label>
-              <input type="text" class="form-control" id="station" formControlName="ObstructionLoad">
+              <input type="text" class="form-control" id="station" formControlName="obstructionLoad">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Voltage Normal</label>
-              <input type="text" class="form-control" id="station" formControlName="VoltageNormal">
+              <input type="text" class="form-control" id="station" formControlName="voltageNormal">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Voltage Obstruction</label>
-              <input type="text" class="form-control" id="station" formControlName="VoltageObstruction">
+              <input type="text" class="form-control" id="station" formControlName="voltageObstruction">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">WJR Timing</label>
-              <input type="text" class="form-control" id="station" formControlName="WJRTiming">
+              <input type="text" class="form-control" id="station" formControlName="wjrTiming">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Operation Of Point From</label>
-              <input type="text" class="form-control" id="station" formControlName="OperationFrom">
+              <input type="text" class="form-control" id="station" formControlName="operationFrom">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Operation Of Point To</label>
-              <input type="text" class="form-control" id="station" formControlName="OperationTo">
+              <input type="text" class="form-control" id="station" formControlName="operationTo">
             </div>
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Remarks</label>
-              <input type="text" class="form-control" id="station" formControlName="Remarks">
+              <input type="text" class="form-control" id="station" formControlName="remarks">
             </div>
           </accordion-group>
         </div>
       </form>
     </div>
-  </div>   
+  </div>
 </accordion>
 
-<div class="form-actions">
+<div class="form-actions" *ngIf="!viewForm">
   <div class="row">
     <div class="col-md-offset-4 col-xs-12 col-md-8">
       <!--<button (click)="getLocation()" class="btn default">Get Location</button>-->

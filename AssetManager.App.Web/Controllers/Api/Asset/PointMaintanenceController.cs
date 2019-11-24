@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AssetManager.Models;
+using AssetManager.Models.Asset;
 using AssetManager.Models.Asset.ColorLightSignal;
 using AssetManager.Services;
 using AssetManager.Services.Asset;
@@ -14,36 +15,36 @@ namespace AssetManager.App.Web.Controllers.Api
   [RoutePrefix("api/point/maintanence")]
   public class PointMaintanenceController : BaseApiController
   {
-    public ColorLightSignalMaintanenceService AssetService { get; set; }
+    public PointMaintanenceService AssetService { get; set; }
 
 
-    public PointMaintanenceController(ColorLightSignalMaintanenceService assetService)
+    public PointMaintanenceController(PointMaintanenceService assetService)
     {
       this.AssetService = assetService;
     }
 
     [Route("list/{id}")]
-    public List<ColorLightSignalAssetMaintanence> GetAll(int id)
+    public List<PointAssetMaintanence> GetAll(int id)
     {
       return this.AssetService.GetSignalListView(id);
     }
 
     [Route("detail/{id}")]
-    public ColorLightSignalAssetMaintanence Get(int id)
+    public PointAssetMaintanence Get(int id)
     {
       return this.AssetService.GetById(id);
     }
 
     [Route("add")]
     [HttpPost]
-    public int AddSignal(ColorLightSignalAssetMaintanence asset)
+    public int AddSignal(PointAssetMaintanence asset)
     {
       return this.AssetService.CreateAsset(asset);
     }
 
     [Route("update/{id}")]
     [HttpPut]
-    public bool UpdateSignal(int id, ColorLightSignalAssetMaintanence asset)
+    public bool UpdateSignal(int id, PointAssetMaintanence asset)
     {
       return this.AssetService.UpdateAsset(id, asset);
     }

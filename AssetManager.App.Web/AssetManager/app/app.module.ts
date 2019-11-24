@@ -40,6 +40,9 @@ import { AddAxelMaintaneceComponent } from './add-axel-maintanece/add-axel-maint
 import { AddPointMaintaneceComponent } from './add-point-maintanece/add-point-maintanece.component';
 import { MaintanenceComponent } from './Maintanence/maintanence/maintanence.component';
 import { AxelMaintanenceService } from './AxelCounter/axel-maintenance-service';
+import { BlockMaintanenceService } from './Block/block-maintenance-service';
+import { PointMaintanenceService } from './Point/point-maintenance-service';
+import { TrackMaintanenceService } from './Track Circuits/track-maintenance-service';
 
 
 
@@ -91,6 +94,9 @@ import { AxelMaintanenceService } from './AxelCounter/axel-maintenance-service';
     TrackService,
     SignalMaintanenceService,
     AxelMaintanenceService,
+    BlockMaintanenceService,
+    PointMaintanenceService,
+    TrackMaintanenceService,
     StationService,
   ],
   bootstrap: [AppComponent]
