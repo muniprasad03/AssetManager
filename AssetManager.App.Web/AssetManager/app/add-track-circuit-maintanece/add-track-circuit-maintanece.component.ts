@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { SignalService } from '../signal-service/signal-service'
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { Signal } from '../add-signal/add-signal.component';
+import { TrackCircuitAsset } from '../Track Circuits/add-track/add-track.component';
 import { ActivatedRoute } from '@angular/router';
-import { SignalMaintanenceService } from '../signal-service/signal-maintenance-service';
+import { TrackMaintanenceService } from '../Track Circuits/track-service-maintenace';
+import { TrackService } from '../Track Circuits/track-service';
 
 @Component({
   selector: 'app-add-track-circuit-maintanece',
@@ -15,13 +16,13 @@ export class AddTrackCircuitMaintaneceComponent implements OnInit {
 
     public addAssetMaintanenceForm: FormGroup;
     public signalId: number;
-    public signal: Signal = new Signal({});
+    public signal: TrackCircuitAsset = new TrackCircuitAsset({});
     public maintananceId: number;
     public viewForm: boolean;
-    public signalMaintanance: ColorLightSignalAssetMaintanence = new ColorLightSignalAssetMaintanence({});
+    public signalMaintanance: TrackAssetMaintanence = new TrackAssetMaintanence({});
 
-    constructor(private SignalService: SignalService,
-        private SignalMaintanenceService: SignalMaintanenceService,
+    constructor(private SignalService: TrackService ,
+        private SignalMaintanenceService:TrackMaintanenceService,
         private route: ActivatedRoute,
         private formBuilder: FormBuilder
     ) {
@@ -43,7 +44,7 @@ export class AddTrackCircuitMaintaneceComponent implements OnInit {
         }
         else if (this.signalId > 0) {
             this.SignalService.getSignal(this.signalId).then(sig => {
-                this.signal = new Signal(sig);
+                this.signal = new TrackCircuitAsset(sig);
                 this.signalMaintanance.name = this.signal.name;
                 this.signalMaintanance.assetLatitude = this.signal.latitude;
                 this.signalMaintanance.assetLongitude = this.signal.longitude;
@@ -56,7 +57,10 @@ export class AddTrackCircuitMaintaneceComponent implements OnInit {
     buildAddAssetForm() {
         this.addAssetMaintanenceForm = this.formBuilder.group({
             stationName: new FormControl({ value: this.signalMaintanance.stationName, disabled: true }),
-            signalName: new FormControl({ value: this.signalMaintanance.name, disabled: true }),
+            date: new FormControl({ value: this.signalMaintanance.addedOn, disabled: true }),
+            time: new FormControl({ value: this.signalMaintanance.time, disabled: true }),
+            gearName: new FormControl({ value: this.signalMaintanance.name, disabled: true }),
+            assetId: new FormControl({ value: this.signalMaintanance.assetId, disabled: true }),
             slatitude: new FormControl({ value: this.signalMaintanance.assetLatitude, disabled: true }),
             slongitude: new FormControl({ value: this.signalMaintanance.assetLongitude, disabled: true }),
             latitude: new FormControl({ value: this.signalMaintanance.latitiude, disabled: this.viewForm }),
@@ -65,7 +69,6 @@ export class AddTrackCircuitMaintaneceComponent implements OnInit {
             make: new FormControl({ value: this.signal.make, disabled: true }),
             model: new FormControl({ value: this.signal.model, disabled: true }),
             metadata: new FormGroup({
-                cleanSignal: new FormControl({ value: this.signalMaintanance.metadata.cleanSignal, disabled: this.viewForm }),
                 smc9lh: new FormGroup({
                     typeOfRelay: new FormControl({ value: this.signalMaintanance.metadata.smc9lh.typeOfRelay, disabled: this.viewForm }),
                     dateOfInstallation: new FormControl({ value: this.signalMaintanance.metadata.smc9lh.dateOfInstallation, disabled: this.viewForm }),
@@ -155,13 +158,13 @@ export class AddTrackCircuitMaintaneceComponent implements OnInit {
         this.SignalMaintanenceService
             .addSignal(modelCopy)
             .then(signals => {
-                window.location.href = '/#/signals';
+                window.location.href = '/#/tracks';
                 console.log(signals);
             });
     }
 }
 
-export class ColorLightSignalAssetMaintanence {
+export class TrackAssetMaintanence {
     public id: number;
     public addedBy: number;
     public assetId: number;
@@ -178,8 +181,9 @@ export class ColorLightSignalAssetMaintanence {
     public serialNumber: string;
     public make: string;
     public model: string;
+    public time: string;
 
-    public metadata: ColorLightSignalMaintanenceMetadata;
+    public metadata: TrackAssetMaintanenceMetadata;
 
     constructor(args) {
         this.id = args.id;
@@ -198,20 +202,18 @@ export class ColorLightSignalAssetMaintanence {
         this.serialNumber = args.serialNumber;
         this.make = args.make;
         this.model = args.model;
-        this.metadata = new ColorLightSignalMaintanenceMetadata(args.metadata || {});
+        this.metadata = new TrackAssetMaintanenceMetadata(args.metadata || {});
     }
 
 }
 
-export class ColorLightSignalMaintanenceMetadata {
-    public cleanSignal: boolean;
+export class TrackAssetMaintanenceMetadata {
     public smc9lh: SMC9LH;
     public smc9rh: SMC9RH;
     public smc10: SMC10 ;
     public recordBook: RecordBook;
 
     constructor(args) {
-        this.cleanSignal = args.cleanSignal;
         this.smc9lh = new SMC9LH(args.smc9lh || {});
         this.smc9rh = new SMC9RH(args.smc9rh || {});
         this.smc10 = new SMC10(args.smc10 || {});

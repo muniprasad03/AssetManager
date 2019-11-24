@@ -5812,6 +5812,7 @@
     <TypeScriptCompile Include="assetManager\app\station-Service\station-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\add-track\add-track.component.ts" />
+    <TypeScriptCompile Include="assetManager\app\Track Circuits\track-service-maintenace.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\track-service.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\track-list\track-list.component.spec.ts" />
     <TypeScriptCompile Include="assetManager\app\Track Circuits\track-list\track-list.component.ts" />
