@@ -86,55 +86,55 @@
           <div class="input-group">
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="outSideConnections" class="icheck">
                 Outside track bonds, impedance bonds,bond wires and clips,jumper,power feed,relay and cable connections.
               </label>
             </div>
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="firmnessAndInsulation" class="icheck">
                 For firminess,insulation condition of jumper connections/ Track lead connections,replacing if insulation worn out or connections corrored and properly securing them.(17.26)(17.27)(17.21.1)
               </label>
             </div>
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="replacingCorredBonds" class="icheck">
                 Replacing corroded bonds.(17.26.2 & 3)
               </label>
             </div>
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="visualCheckAndClean" class="icheck">
                 Visual check & cleaning of insulated block joints(17.21.5)
               </label>
             </div>
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="shortCircuits" class="icheck">
                 Traction bonds/ jumpers do not cause any short circuits with track circuit rails / connections
               </label>
             </div>
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="engineeringFittness" class="icheck">
                 Engineering fittings - Track condition, availability of liners & pad
               </label>
             </div>
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="bugsAndGluedJoint" class="icheck">
                 Bugs and Glued Joint Position
               </label>
             </div>
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="gapsInGlueJoint" class="icheck">
                 Gaps in Glued Joint
               </label>
             </div>
             <div class="icheck-inline">
               <label>
-                <input type="checkbox" formControlName="cleanSignal" class="icheck">
+                <input type="checkbox" formControlName="positionOfBurr" class="icheck">
                 Position of burr on Arm Glued Joint
               </label>
             </div>
@@ -155,7 +155,7 @@
               <select name="type"
                       class="form-control"
                       id="type"
-                      formControlName="Make">
+                      formControlName="make">
                 <option value="0">N/A</option>
               </select>
             </div>
@@ -165,50 +165,50 @@
               <select name="type"
                       class="form-control"
                       id="type"
-                      formControlName="Model">
+                      formControlName="model">
                 <option value="0">N/A</option>
               </select>
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="type">Serial Number</label>
-              <input type="text" class="form-control" id="station" formControlName="serialnumber">
+              <input type="text" class="form-control" id="station" formControlName="serialNumber">
             </div>
 
           </accordion-group>
         </div>
         <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
-          <accordion-group heading="SMC-9(A) - LH" formGroupName="smcData2">
+          <accordion-group heading="SMC-9(A) - LH" formGroupName="smc9lh">
 
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Type of Relay</label>
-              <input type="text" class="form-control" id="model" formControlName="typeofrelay">
+              <input type="text" class="form-control" id="model" formControlName="typeOfRelay">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Date Installed</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="dateinstalled">
+              <input type="text" class="form-control" id="aspectNumber" formControlName="dateOfInstallation">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">P.U Volts</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="puvolts">
+              <input type="text" class="form-control" id="aspectNumber" formControlName="pUVolt">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">D.A Volts</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="davolts">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="dAVolts">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">P.U Volts</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="pucurrent">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="pUCurrent">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">D.A Current</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="dacurrent">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="dACurrent">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -218,52 +218,52 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">length of track Circuit(m)</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="lengthoftrackcircuit">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="trackLength">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Length Of Leads From Feed End To Track(m)</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="lengthofleadsfromfeedendtotrack">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="feedToTrackLength">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Type Of Ballast</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeofbalast">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeOfBallast">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Type Of Track Feed</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeoftrackfeed">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeOfTrackFeed">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Size Of Track Feed Conductor</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="sizeoftrackfeedconductor">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="trackFeedSize">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Size Of Conductor To Relay</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="sizeofconductorrealy">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="relayToTrackLength">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Type Of Sleeper and Condition</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeofsleeperandcondition">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeOfSleeper">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Type Of Insulated Joints</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="typeofinsulatedjoints">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName=" typeOfInsulatedJoints">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">No Of Bridges/ Curvelts in track</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="noofbridgescurveltsintrack">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="noOfBridgesInTrack">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">No Of Level Crossing in Track</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="nooflevelcrossingintrack">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="noOfLevelCrossInTrack">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -275,7 +275,7 @@
         <!-----------------------end of smc9(A) LH--------------------------------------------------------------->
 
         <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
-          <accordion-group heading="SMC-9(A) - RH" formGroupName="smcData2">
+          <accordion-group heading="SMC-9(A) - RH" formGroupName="smc9rh">
 
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -288,7 +288,7 @@
               <select name="type"
                       class="form-control"
                       id="type"
-                      formControlName="conditionofbalast">
+                      formControlName="ballastCondition">
                 <option value="0">Wet</option>
                 <option value="1">Damp</option>
                 <option value="2">Dry</option>
@@ -297,7 +297,7 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Percentage of Ballast clear of Rails</label>
-              <input type="text" class="form-control" id="aspectNumber" formControlName="percentageofrails">
+              <input type="text" class="form-control" id="aspectNumber" formControlName="percentageOfBallast">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -305,7 +305,7 @@
               <select name="type"
                       class="form-control"
                       id="type"
-                      formControlName="drainingoftrack">
+                      formControlName=" drainingTrack">
                 <option value="0">Good</option>
                 <option value="1">Fair</option>
                 <option value="2">Bad</option>
@@ -314,17 +314,17 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Condition Of Rail Surface</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofrailsurface">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionOfRail">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Condition Of Bonds and Jumper</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofbondsandjumpers">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionOfBonds">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">COndition Of Insulated Joints</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofinsulatedjoins">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionOfInsulatedJoint">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -342,22 +342,22 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Feed Resistance</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="feedresistance">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="feedResistance">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Volatge At Battery/Track Feed Voltage</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="trackfeedvoltage">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="trackFeedVoltage">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">VF Voltage at rails</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="voltageatrails">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="vFVoltage">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">IF Current at Rails</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="ifcurrentatrails">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="iFCurrentOnRails">
             </div>
 
             <div class="row">
@@ -375,17 +375,17 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Voltage At Realy Terminals</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="voltageatrelay">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="voltageAtRelayTerminals">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">IR Current at Relay Terminals</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="currentatrelay">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="iRCurrentAtRelay">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Ballast Resistance</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="ballastresistance">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="ballastResistance">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -395,27 +395,27 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Drop Shunt Value</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="dropshuntvalue">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="dropShuntValue">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Pick Up Shunt Value</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="pickupshuntvalue">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="pickUpShuntValue">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
-              <label for="station">Phase Angle (fro AC Track Circuit)</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="phaseangle">
+              <label for="station">Phase Angle (from AC Track Circuit)</label>
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="phaseAngle">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">No of Track failures during the year</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="trackfailure">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="noOfFailures">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Cause Of Failure</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="causeoffailure">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="causeOfFailure">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -427,7 +427,7 @@
         <!-----------------------end of smc9(A) RH--------------------------------------------------------------->
 
         <div class="col-sm-12 col-xs-12 accordion-head" style="padding-top:20px;" formGroupName="metadata">
-          <accordion-group heading="SMC-10" formGroupName="smcData2">
+          <accordion-group heading="SMC-10" formGroupName="smc10">
 
             <div class="row">
               <div class="col-sm-12 col-xs-12">
@@ -439,7 +439,7 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Track No</label>
-              <input type="text" class="form-control" id="model" formControlName="trackno">
+              <input type="text" class="form-control" id="model" formControlName="trackNo">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
@@ -447,7 +447,7 @@
               <select name="type"
                       class="form-control"
                       id="type"
-                      formControlName="jointype">
+                      formControlName="jointType">
                 <option value="0">--Select--</option>
                 <option value="1">Glued</option>
                 <option value="2">Insulation</option>
@@ -461,7 +461,7 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">End Post</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="conditionofrailsurface">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="endPost">
             </div>
 
             <div class="row">
@@ -474,22 +474,22 @@
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Channel Plate -1</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="channel1">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="channelPlate1">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Channel Plate -2</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="channel2">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="channelPlate2">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Channel Plate -3</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="channel3">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="channelPlate3">
             </div>
 
             <div class="form-group col-sm-6 pl-8 col-xs-6">
               <label for="station">Channel Plate -4</label>
-              <input type="text" class="form-control" id="lifeInMonths" formControlName="channel4">
+              <input type="text" class="form-control" id="lifeInMonths" formControlName="channelPlate4">
             </div>
 
             <div class="row">
@@ -558,11 +558,11 @@
               <div class="input-group">
                 <div class="icheck-inline">
                   <label class="">
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="false">
+                    <input type="radio" class="icheck" formControlName="isFailed" [value]="false">
                     Failed
                   </label>
                   <label>
-                    <input type="radio" class="icheck" formControlName="faulty" [value]="true">
+                    <input type="radio" class="icheck" formControlName="isFailed" [value]="true">
                     Maintenance
                   </label>
                 </div>
@@ -584,48 +584,48 @@
 
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="station">Battery Voltage(V)</label>
-            <input type="text" class="form-control" id="station" formControlName="batteryvoltage">
+            <input type="text" class="form-control" id="station" formControlName=" batteryVoltage">
           </div>
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="station">Speific Gravity</label>
-            <input type="text" class="form-control" id="station" formControlName="specificgravity">
+            <input type="text" class="form-control" id="station" formControlName="specificGravity">
           </div>
 
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="model">Charger</label>
-            <input type="text" class="form-control" placeholder="Off Load" id="hgVoltage" formControlName="offload">
-            <input type="text" class="form-control" placeholder="Off Load" id="hhgVoltage" formControlName="onload">
-            <input type="text" class="form-control" placeholder="current" id="hhgVoltage" formControlName="current">
+            <input type="text" class="form-control" placeholder="Off Load" id="hgVoltage" formControlName="chargerOffLoad">
+            <input type="text" class="form-control" placeholder="Off Load" id="hhgVoltage" formControlName="chargerOnLoad">
+            <input type="text" class="form-control" placeholder="current" id="hhgVoltage" formControlName="chargerCurrent">
           </div>
 
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="codalLife">Drop Across chock</label>
-            <input type="text" class="form-control" id="cogVoltage" formControlName="dropacross">
+            <input type="text" class="form-control" id="cogVoltage" formControlName="dropAcrossChock">
           </div>
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="latitude">Drop Across Resistance</label>
-            <input type="text" class="form-control" id="amarker" formControlName="dropacrossresistance">
+            <input type="text" class="form-control" id="amarker" formControlName="dropAcrossResistance">
           </div>
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="longitude">Voltage at Feed end(v)</label>
-            <input type="text" class="form-control" id="agmarker" formControlName="voltageatfeedend">
+            <input type="text" class="form-control" id="agmarker" formControlName="feedEndVoltage">
           </div>
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="longitude">Current at Feed end(mA)</label>
-            <input type="text" class="form-control" id="agmarker" formControlName="currentatfeedend">
+            <input type="text" class="form-control" id="agmarker" formControlName="feedEndCurrent">
           </div>
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="longitude">Voltage at Relay end(V)</label>
-            <input type="text" class="form-control" id="routeIndicator" formControlName="voltageatrelayend">
+            <input type="text" class="form-control" id="routeIndicator" formControlName="relayEndVoltage">
           </div>
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="model">Current at Relay end(mA)</label>
-            <textarea name="description" rows="2" class="form-control" formControlName="currentatrelayend"></textarea>
+            <textarea name="description" rows="2" class="form-control" formControlName="relayEndCurrent"></textarea>
           </div>
 
           <div class="form-group col-sm-6 pl-8 col-xs-6">
             <label for="model">Schedule Done</label>
-            <textarea name="description" rows="2" class="form-control" formControlName="scheduledone"></textarea>
+            <textarea name="description" rows="2" class="form-control" formControlName="scheduleDone"></textarea>
           </div>
 
           <div class="form-group col-sm-6 pl-8 col-xs-6">

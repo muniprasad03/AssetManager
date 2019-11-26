@@ -4,8 +4,8 @@ import { SignalService } from '../signal-service/signal-service'
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { TrackCircuitAsset } from '../Track Circuits/add-track/add-track.component';
 import { ActivatedRoute } from '@angular/router';
-import { TrackMaintanenceService } from '../Track Circuits/track-service-maintenace';
 import { TrackService } from '../Track Circuits/track-service';
+import { TrackMaintanenceService } from '../Track Circuits/track-maintenance-service';
 
 @Component({
   selector: 'app-add-track-circuit-maintanece',
@@ -66,9 +66,21 @@ export class AddTrackCircuitMaintaneceComponent implements OnInit {
             latitude: new FormControl({ value: this.signalMaintanance.latitiude, disabled: this.viewForm }),
             longitude: new FormControl({ value: this.signalMaintanance.longitude, disabled: this.viewForm }),
             serialNumber: new FormControl({ value: this.signal.metadata.serialNumber, disabled: true }),
-            make: new FormControl({ value: this.signal.make, disabled: true }),
-            model: new FormControl({ value: this.signal.model, disabled: true }),
+            outSideConnections: new FormControl({ value: this.signalMaintanance.metadata.outSideConnections, disabled: this.viewForm }),
+            firmnessAndInsulation: new FormControl({ value: this.signalMaintanance.metadata.firmnessAndInsulation, disabled: this.viewForm }),
+            replacingCorredBonds: new FormControl({ value: this.signalMaintanance.metadata.replacingCorredBonds, disabled: this.viewForm }),
+            visualCheckAndClean: new FormControl({ value: this.signalMaintanance.metadata.visualCheckAndClean, disabled: this.viewForm }),
+            shortCircuits: new FormControl({ value: this.signalMaintanance.metadata.shortCircuits, disabled: this.viewForm }),
+            engineeringFittness: new FormControl({ value: this.signalMaintanance.metadata.engineeringFittness, disabled: this.viewForm }),
+            bugsAndGluedJoint: new FormControl({ value: this.signalMaintanance.metadata.bugsAndGluedJoint, disabled: this.viewForm }),
+            gapsInGlueJoint: new FormControl({ value: this.signalMaintanance.metadata.gapsInGlueJoint, disabled: this.viewForm }),
+            positionOfBurr: new FormControl({ value: this.signalMaintanance.metadata.positionOfBurr, disabled: this.viewForm }),
+            model: new FormControl({ value: this.signalMaintanance.model, disabled: true }),
+            make: new FormControl({ value: this.signalMaintanance.make, disabled: true }),
+
             metadata: new FormGroup({
+  
+   
                 smc9lh: new FormGroup({
                     typeOfRelay: new FormControl({ value: this.signalMaintanance.metadata.smc9lh.typeOfRelay, disabled: this.viewForm }),
                     dateOfInstallation: new FormControl({ value: this.signalMaintanance.metadata.smc9lh.dateOfInstallation, disabled: this.viewForm }),
@@ -113,6 +125,7 @@ export class AddTrackCircuitMaintaneceComponent implements OnInit {
                     remarks: new FormControl({ value: this.signalMaintanance.metadata.smc9rh.remarks, disabled: this.viewForm }),
                 }),
                 smc10: new FormGroup({
+                    trackNo: new FormControl({ value: this.signalMaintanance.metadata.smc10.trackNo, disabled: this.viewForm }),
                     jointType: new FormControl({ value: this.signalMaintanance.metadata.smc10.jointType, disabled: this.viewForm }),
                     endPost: new FormControl({ value: this.signalMaintanance.metadata.smc10.endPost, disabled: this.viewForm }),
                     channelPlate1: new FormControl({ value: this.signalMaintanance.metadata.smc10.channelPlate1, disabled: this.viewForm }),
@@ -202,18 +215,37 @@ export class TrackAssetMaintanence {
         this.serialNumber = args.serialNumber;
         this.make = args.make;
         this.model = args.model;
+
         this.metadata = new TrackAssetMaintanenceMetadata(args.metadata || {});
     }
 
 }
 
 export class TrackAssetMaintanenceMetadata {
+    public outSideConnections: boolean;
+    public firmnessAndInsulation: boolean;
+    public replacingCorredBonds: boolean;
+    public visualCheckAndClean: boolean;
+    public shortCircuits: boolean;
+    public engineeringFittness: boolean;
+    public bugsAndGluedJoint: boolean;
+    public gapsInGlueJoint: boolean;
+    public positionOfBurr: boolean;
     public smc9lh: SMC9LH;
     public smc9rh: SMC9RH;
     public smc10: SMC10 ;
     public recordBook: RecordBook;
 
     constructor(args) {
+        this.outSideConnections = args.outSideConnections;
+        this.firmnessAndInsulation = args.firmnessAndInsulation;
+        this.replacingCorredBonds = args.replacingCorredBonds;
+        this.visualCheckAndClean = args.visualCheckAndClean;
+        this.shortCircuits = args.shortCircuits;
+        this.engineeringFittness = args.engineeringFittness;
+        this.bugsAndGluedJoint = args.bugsAndGluedJoint;
+        this.gapsInGlueJoint = args.gapsInGlueJoint;
+        this.positionOfBurr = args.positionOfBurr;
         this.smc9lh = new SMC9LH(args.smc9lh || {});
         this.smc9rh = new SMC9RH(args.smc9rh || {});
         this.smc10 = new SMC10(args.smc10 || {});
@@ -322,6 +354,7 @@ export class SMC9RH {
 }
 
 export class SMC10 {
+        public trackNo: string;
         public  jointType : string ;
         public  endPost : string ;
         public  channelPlate1 : string ;
@@ -340,6 +373,7 @@ export class SMC10 {
         public  remarks : string ;
 
     constructor(args: SMC10) {
+        this.trackNo = args.trackNo;
         this.jointType = args.jointType;
         this.endPost = args.endPost ; 
         this.channelPlate1 = args.channelPlate1 ;

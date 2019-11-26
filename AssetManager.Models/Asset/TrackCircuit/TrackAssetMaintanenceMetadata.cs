@@ -74,6 +74,7 @@ namespace AssetManager.Models.Asset
 
     public class SMC10
     {
+        public string TrackNo { get; set; }
         public string JointType { get; set; }
         public string EndPost { get; set; }
         public string ChannelPlate1 { get; set; }

@@ -96,8 +96,9 @@ import { TrackMaintanenceService } from './Track Circuits/track-maintenance-serv
     AxelMaintanenceService,
     BlockMaintanenceService,
     PointMaintanenceService,
+      TrackMaintanenceService,
     TrackMaintanenceService,
-    StationService,
+    StationService
   ],
   bootstrap: [AppComponent]
 })
