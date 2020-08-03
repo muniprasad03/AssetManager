@@ -22,7 +22,7 @@ import { PointMaintaneceListComponent } from './point-maintanece-list/point-main
 import { AddTrackCircuitMaintaneceComponent } from './add-track-circuit-maintanece/add-track-circuit-maintanece.component';
 import { TrackCircuitMaintaneceListComponent } from './track-circuit-maintanece-list/track-circuit-maintanece-list.component';
 import { MaintanenceComponent } from './Maintanence/maintanence/maintanence.component';
-
+import { StationListComponent } from './station-list/station-list.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -56,7 +56,8 @@ const routes: Routes = [
   { path: 'trackcircuitmaintanece/:id', component: AddTrackCircuitMaintaneceComponent },
   { path: 'track/:id/view/:mid', component: AddTrackCircuitMaintaneceComponent },
   { path: 'trackcircuitmaintanecelist/:id', component: TrackCircuitMaintaneceListComponent },
-  { path: 'maintanence', component: MaintanenceComponent }
+  { path: 'maintanence', component: MaintanenceComponent },
+  { path: 'stationlist', component: StationListComponent }
 ];
 
 @NgModule({

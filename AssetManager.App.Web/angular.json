@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "assetManager"
+  "defaultProject": "assetManager",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { TrackService } from '../track-service';
 import { StationService } from '../../station-Service/station-service';
 import { ActivatedRoute, Router } from '@angular/router';

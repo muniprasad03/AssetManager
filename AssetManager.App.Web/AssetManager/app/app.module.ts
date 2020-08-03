@@ -12,7 +12,7 @@ import { AddSignalComponent } from './add-signal/add-signal.component';
 import { AddSignalMaintaneceComponent } from './add-signal-maintanece/add-signal-maintanece.component';
 import { SignalService } from './signal-service/signal-service';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { BsDatepickerModule, DatepickerModule} from 'ngx-bootstrap';
+import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AxelListComponent } from './AxelCounter/axel-list/axel-list.component';
 import { AxelService } from './AxelCounter/axel-service';
@@ -43,6 +43,8 @@ import { AxelMaintanenceService } from './AxelCounter/axel-maintenance-service';
 import { BlockMaintanenceService } from './Block/block-maintenance-service';
 import { PointMaintanenceService } from './Point/point-maintenance-service';
 import { TrackMaintanenceService } from './Track Circuits/track-maintenance-service';
+import { StationComponent } from './station/station.component';
+import { StationListComponent } from './station-list/station-list.component';
 
 
 
@@ -70,7 +72,9 @@ import { TrackMaintanenceService } from './Track Circuits/track-maintenance-serv
     AddTrackCircuitMaintaneceComponent,
     AddAxelMaintaneceComponent,
     AddPointMaintaneceComponent,
-    MaintanenceComponent
+    MaintanenceComponent,
+    StationComponent,
+    StationListComponent
   ],
   imports: [
     BrowserModule,
